@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Aixeta
       'aixeta.title': 'Eman laguntza Aixetan',
       'aixeta.desc': 'Aixeta mikromezezentza plataforma bat da, zuek bezalako pertsonei gizarte-bokaziodun proiektuei eta sortzaileei laguntza ekonomikoa emateko aukera ematen diena. Nire proiektuak gustuko badituzu eta aldea markatzen duten tresna digitalak sortzen jarraitzen lagundu nahi badidazu, kontuan hartu Aixetaren bidez ekarpen bat egitea. Tanta bakoitzak badu garrantzia!',
+      'aixeta.btn': 'Egin ekarpena',
       // Contact
       'contact.title': 'Jarri harremanetan',
       'contact.desc': 'Proiekturen bat buruan duzu? Ideia baten inguruan hitz egin nahi duzu? Bete formularioa eta ahalik eta lasterren erantzungo dizut.',
@@ -290,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Aixeta
       'aixeta.title': 'Dáme apoio na Aixeta',
       'aixeta.desc': 'A Aixeta é unha plataforma de micromecenado que permite a persoas coma ti dar apoio económico a proxectos e creadores con vocación social. Se che gustan os meus proxectos e queres axudarme a seguir creando ferramentas dixitais que marcan a diferenza, considera facer unha achega a través da Aixeta. Cada gota conta!',
+      'aixeta.btn': 'Fai unha achega',
       // Contact
       'contact.title': 'Contacta comigo',
       'contact.desc': 'Tes un proxecto en mente? Queres falar sobre unha idea? Enche o formulario e respondereiche canto antes.',
