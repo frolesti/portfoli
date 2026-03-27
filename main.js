@@ -138,6 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
+  // ---------- TERMINAL ANIMATION ----------
+  const terminalMockup = document.querySelector('.terminal-mockup');
+  if (terminalMockup) {
+    const termObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            termObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    termObserver.observe(terminalMockup);
+  }
+
   // ---------- SMOOTH ANCHOR SCROLL ----------
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
