@@ -852,6 +852,7 @@ img {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   line-height: 2;
+  color: #d4d4d4;
 }
 
 .t-green { color: #5ce0d8; }
