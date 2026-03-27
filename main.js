@@ -151,17 +151,215 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- LANGUAGE SWITCHER DEMO ----------
   const langs = document.querySelectorAll('.lang-switcher-demo .lang');
+  const disclaimer = document.querySelector('.lang-disclaimer');
+  let currentLang = 'ca';
+
+  // Translations — EU (euskera) and GL (galego)
+  const translations = {
+    eu: {
+      // Nav
+      'Projectes': 'Proiektuak',
+      'Sobre mi': 'Niri buruz',
+      "Contacta'm": 'Jarri harremanetan',
+      // Hero
+      'Desenvolupador autònom · SaaS · Software social': 'Garatzaile autonomoa · SaaS · Software soziala',
+      'Creo eines digitals': 'Tresna digitalak sortzen ditut',
+      'que marquen la diferència': 'aldea markatzen dutenak',
+      // Hero description (simplified key approach)
+      // Section headers
+      'Els meus projectes': 'Nire proiektuak',
+      'Software amb propòsit': 'Helburudun softwarea',
+      'Tens un projecte amb vocació social?': 'Gizarte-bokaziodun proiektua duzu?',
+      "Dona'm suport a l'Aixeta": 'Eman laguntza Aixetan',
+      "Contacta'm": 'Jarri harremanetan',
+      // Buttons
+      'Veure projectes': 'Ikusi proiektuak',
+      'Parlem?': 'Hitz egingo dugu?',
+      "Contacta'm": 'Jarri harremanetan',
+      'Enviar missatge': 'Mezua bidali',
+      // Featured cards
+      'Extensions de navegador': 'Nabigatzaile-luzapenak',
+      "Canvi d'idioma": 'Hizkuntza aldaketa',
+      "Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.": 'Eraman katalana, euskara eta galegoa zure nabigatzailera klik bakar batez.',
+      'Automatització': 'Automatizazioa',
+      'Bot del SEPE': 'SEPEren bot-a',
+      "Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.": "Estatuko Enplegu Zerbitzu Publikoarekin kudeaketak automatizatzen dituen bot-a.",
+      'App mòbil': 'Mugikorrerako aplikazioa',
+      "Troba bars on veure els partits del Barça a prop teu, visquis on visquis.": "Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.",
+      // Projects section
+      "Sempre estic treballant en alguna cosa nova. Aquí tens els projectes als quals he dedicat més energia i il·lusió.": "Beti ari naiz zerbait berrian lanean. Hemen dituzu energia eta ilusioz bete ditudan proiektuak.",
+      // About section
+      'Vocació social': 'Gizarte-bokazioa',
+      'Cada projecte busca resoldre un problema real.': 'Proiektu bakoitzak benetako arazo bat konpontzea bilatzen du.',
+      'Autonomia': 'Autonomia',
+      "Gestió integral del projecte, des de la idea fins al desplegament.": "Proiektuaren kudeaketa integrala, ideia hedapeneraino.",
+      'Producte SaaS': 'SaaS produktua',
+      'Especialitzat en software com a servei escalable.': 'Zerbitzu eskalagarri gisa softwarean espezializatua.',
+      // Footer
+      'Inici': 'Hasiera',
+      'Contacte': 'Kontaktua',
+      // Form
+      'Nom': 'Izena',
+      'Correu electrònic': 'Posta elektronikoa',
+      'Missatge': 'Mezua',
+      'El teu nom': 'Zure izena',
+      'hola@exemple.cat': 'kaixo@adibidea.eus',
+      "Explica'm la teva idea o projecte...": 'Kontatu zure ideia edo proiektua...',
+    },
+    gl: {
+      // Nav
+      'Projectes': 'Proxectos',
+      'Sobre mi': 'Sobre min',
+      "Contacta'm": 'Contacta comigo',
+      // Hero
+      'Desenvolupador autònom · SaaS · Software social': 'Desenvolvedor autónomo · SaaS · Software social',
+      'Creo eines digitals': 'Creo ferramentas dixitais',
+      'que marquen la diferència': 'que marcan a diferenza',
+      // Section headers
+      'Els meus projectes': 'Os meus proxectos',
+      'Software amb propòsit': 'Software con propósito',
+      'Tens un projecte amb vocació social?': 'Tes un proxecto con vocación social?',
+      "Dona'm suport a l'Aixeta": 'Dáme apoio na Aixeta',
+      "Contacta'm": 'Contacta comigo',
+      // Buttons
+      'Veure projectes': 'Ver proxectos',
+      'Parlem?': 'Falamos?',
+      'Enviar missatge': 'Enviar mensaxe',
+      // Featured cards
+      'Extensions de navegador': 'Extensións de navegador',
+      "Canvi d'idioma": 'Cambio de idioma',
+      "Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.": 'Leva o catalán, o éuscaro e o galego ao teu navegador cun só clic.',
+      'Automatització': 'Automatización',
+      'Bot del SEPE': 'Bot do SEPE',
+      "Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.": "Bot que automatiza as xestións co Servizo Público de Emprego Estatal.",
+      'App mòbil': 'App móbil',
+      "Troba bars on veure els partits del Barça a prop teu, visquis on visquis.": "Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.",
+      // Projects section
+      "Sempre estic treballant en alguna cosa nova. Aquí tens els projectes als quals he dedicat més energia i il·lusió.": "Sempre estou traballando en algo novo. Aquí tes os proxectos aos que lle dediquei máis enerxía e ilusión.",
+      // About section
+      'Vocació social': 'Vocación social',
+      'Cada projecte busca resoldre un problema real.': 'Cada proxecto busca resolver un problema real.',
+      'Autonomia': 'Autonomía',
+      "Gestió integral del projecte, des de la idea fins al desplegament.": "Xestión integral do proxecto, dende a idea ata o despregamento.",
+      'Producte SaaS': 'Produto SaaS',
+      'Especialitzat en software com a servei escalable.': 'Especializado en software como servizo escalable.',
+      // Footer
+      'Inici': 'Inicio',
+      'Contacte': 'Contacto',
+      // Form
+      'Nom': 'Nome',
+      'Correu electrònic': 'Correo electrónico',
+      'Missatge': 'Mensaxe',
+      'El teu nom': 'O teu nome',
+      'hola@exemple.cat': 'ola@exemplo.gal',
+      "Explica'm la teva idea o projecte...": 'Cóntame a túa idea ou proxecto...',
+    }
+  };
+
+  // Store original CA text for restoration
+  const originalTexts = new Map();
+
+  function collectOriginalTexts() {
+    // Collect all translatable elements
+    const selectors = [
+      '.nav-links a:not(.nav-cta)', '.nav-cta',
+      '.hero-tag', '.hero-accent',
+      '.hero-actions .btn',
+      '.fc-label', '.featured-card h3', '.featured-card p',
+      '.section-header h2', '.section-subtitle',
+      '.about-text h2',
+      '.value-item strong', '.value-item p',
+      '.cta-banner h2',
+      '.aixeta-banner-text h2',
+      '.contact-text h2',
+      '.footer-links a',
+      '.form-group label',
+      '.contact-form .btn'
+    ];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (!originalTexts.has(el)) {
+          originalTexts.set(el, el.textContent.trim());
+        }
+      });
+    });
+    // Placeholders
+    document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
+      if (!originalTexts.has(el)) {
+        originalTexts.set(el, el.placeholder);
+      }
+    });
+    // The h1 first text node
+    const h1 = document.querySelector('.hero h1');
+    if (h1 && !originalTexts.has(h1)) {
+      originalTexts.set(h1, h1.childNodes[0].textContent.trim());
+    }
+  }
+
+  function translatePage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    const dict = lang === 'ca' ? null : translations[lang];
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+
+    // Show/hide disclaimer
+    if (disclaimer) {
+      disclaimer.classList.toggle('visible', lang !== 'ca');
+    }
+
+    if (!dict) {
+      // Restore originals
+      originalTexts.forEach((text, el) => {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = text;
+        } else if (el === document.querySelector('.hero h1')) {
+          el.childNodes[0].textContent = text + '\n';
+        } else {
+          el.textContent = text;
+        }
+      });
+      return;
+    }
+
+    // Apply translations
+    originalTexts.forEach((originalText, el) => {
+      const translated = dict[originalText];
+      if (translated) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = translated;
+        } else if (el === document.querySelector('.hero h1')) {
+          el.childNodes[0].textContent = translated + '\n';
+        } else {
+          el.textContent = translated;
+        }
+      }
+    });
+  }
+
   if (langs.length) {
+    collectOriginalTexts();
+
     langs.forEach(lang => {
+      lang.addEventListener('click', () => {
+        langs.forEach(l => l.classList.remove('active'));
+        lang.classList.add('active');
+        translatePage(lang.dataset.lang);
+      });
+
       lang.addEventListener('mouseenter', () => {
         langs.forEach(l => l.classList.remove('active'));
         lang.classList.add('active');
       });
     });
+
     const container = document.querySelector('.lang-switcher-demo');
     container.addEventListener('mouseleave', () => {
+      // Restore to current language selection visually
       langs.forEach(l => l.classList.remove('active'));
-      langs[0].classList.add('active');
+      const activeLang = container.querySelector(`[data-lang="${currentLang}"]`);
+      if (activeLang) activeLang.classList.add('active');
     });
   }
 

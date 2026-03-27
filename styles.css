@@ -424,6 +424,27 @@ img {
   font-size: 0.85rem;
 }
 
+.btn-ext {
+  background: transparent;
+  color: var(--text);
+  padding: 10px 22px;
+  font-size: 0.85rem;
+  border: 2px solid var(--text-dim);
+}
+
+.btn-ext:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+.btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  font-style: italic;
+}
+
 /* ---------- FEATURED CAROUSEL ---------- */
 .featured {
   padding: 0 0 80px;
@@ -671,15 +692,23 @@ img {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
+}
+
+.ext-row {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.ext-row:first-child {
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
 
 .ext-links-label {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.85rem;
-  margin-top: 8px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -747,7 +776,25 @@ img {
 .browser-content {
   padding: 48px 32px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   justify-content: center;
+}
+
+.lang-disclaimer {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 280px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.lang-disclaimer.visible {
+  opacity: 1;
 }
 
 .lang-switcher-demo {
@@ -764,7 +811,8 @@ img {
   background: var(--surface);
   color: var(--text-dim);
   transition: var(--transition);
-  cursor: default;
+  cursor: pointer;
+  user-select: none;
 }
 
 .lang.active {
@@ -1400,6 +1448,7 @@ img {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  gap: 14px;
   padding: 16px 28px;
   background: #00c8c8;
   border-radius: var(--radius-lg);
@@ -1409,6 +1458,17 @@ img {
 .aixeta-logo-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 200, 200, 0.3);
+}
+
+.aixeta-logo-link:hover .aixeta-arrow {
+  transform: translateX(4px);
+}
+
+.aixeta-arrow {
+  color: #fff;
+  font-size: 1.4rem;
+  transition: transform var(--transition);
+  line-height: 1;
 }
 
 .aixeta-logo-btn {
