@@ -154,152 +154,175 @@ document.addEventListener('DOMContentLoaded', () => {
   const disclaimer = document.querySelector('.lang-disclaimer');
   let currentLang = 'ca';
 
-  // Translations — EU (euskera) and GL (galego)
-  const translations = {
+  // Complete translations — every data-i18n key and data-i18n-ph key
+  const i18n = {
     eu: {
       // Nav
-      'Projectes': 'Proiektuak',
-      'Sobre mi': 'Niri buruz',
-      "Contacta'm": 'Jarri harremanetan',
+      'nav.projectes': 'Proiektuak',
+      'nav.sobre': 'Niri buruz',
+      'nav.contacta': 'Jarri harremanetan',
       // Hero
-      'Desenvolupador autònom · SaaS · Software social': 'Garatzaile autonomoa · SaaS · Software soziala',
-      'Creo eines digitals': 'Tresna digitalak sortzen ditut',
-      'que marquen la diferència': 'aldea markatzen dutenak',
-      // Hero description (simplified key approach)
-      // Section headers
-      'Els meus projectes': 'Nire proiektuak',
-      'Software amb propòsit': 'Helburudun softwarea',
-      'Tens un projecte amb vocació social?': 'Gizarte-bokaziodun proiektua duzu?',
-      "Dona'm suport a l'Aixeta": 'Eman laguntza Aixetan',
-      "Contacta'm": 'Jarri harremanetan',
-      // Buttons
-      'Veure projectes': 'Ikusi proiektuak',
-      'Parlem?': 'Hitz egingo dugu?',
-      "Contacta'm": 'Jarri harremanetan',
-      'Enviar missatge': 'Mezua bidali',
+      'hero.tag': 'Garatzaile autonomoa · SaaS · Software soziala',
+      'hero.title1': 'Tresna digitalak sortzen ditut',
+      'hero.title2': 'aldea markatzen dutenak',
+      'hero.desc': 'Kaixo, farmaziola! Nire izena <strong>Froilán Olesti i Casas</strong> da eta kode-garatzailea naiz, SaaS (Software as a Service) produktuetan eta <strong>gizarte-bokazioa</strong> duten tresna digitaletan espezializatua. Modu autonomoan lan egiten dut ideiak benetako arazoak konpontzen dituen software funtzionalean eraldatzeko.',
+      'hero.btn1': 'Ikusi proiektuak',
+      'hero.btn2': 'Hitz egingo dugu?',
       // Featured cards
-      'Extensions de navegador': 'Nabigatzaile-luzapenak',
-      "Canvi d'idioma": 'Hizkuntza aldaketa',
-      "Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.": 'Eraman katalana, euskara eta galegoa zure nabigatzailera klik bakar batez.',
-      'Automatització': 'Automatizazioa',
-      'Bot del SEPE': 'SEPEren bot-a',
-      "Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.": "Estatuko Enplegu Zerbitzu Publikoarekin kudeaketak automatizatzen dituen bot-a.",
-      'App mòbil': 'Mugikorrerako aplikazioa',
-      "Troba bars on veure els partits del Barça a prop teu, visquis on visquis.": "Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.",
+      'fc.ext.label': 'Nabigatzaile-luzapenak',
+      'fc.ext.title': 'Hizkuntza aldaketa',
+      'fc.ext.desc': 'Eraman katalana, euskara eta galegoa zure nabigatzailera klik bakar batez.',
+      'fc.sepe.label': 'Automatizazioa',
+      'fc.sepe.title': 'SEPEren bot-a',
+      'fc.sepe.desc': 'Estatuko Enplegu Zerbitzu Publikoarekin kudeaketak automatizatzen dituen bot-a.',
+      'fc.bars.label': 'Mugikorrerako aplikazioa',
+      'fc.bars.desc': 'Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.',
       // Projects section
-      "Sempre estic treballant en alguna cosa nova. Aquí tens els projectes als quals he dedicat més energia i il·lusió.": "Beti ari naiz zerbait berrian lanean. Hemen dituzu energia eta ilusioz bete ditudan proiektuak.",
-      // About section
-      'Vocació social': 'Gizarte-bokazioa',
-      'Cada projecte busca resoldre un problema real.': 'Proiektu bakoitzak benetako arazo bat konpontzea bilatzen du.',
-      'Autonomia': 'Autonomia',
-      "Gestió integral del projecte, des de la idea fins al desplegament.": "Proiektuaren kudeaketa integrala, ideia hedapeneraino.",
-      'Producte SaaS': 'SaaS produktua',
-      'Especialitzat en software com a servei escalable.': 'Zerbitzu eskalagarri gisa softwarean espezializatua.',
-      // Footer
-      'Inici': 'Hasiera',
-      'Contacte': 'Kontaktua',
+      'proj.title': 'Nire proiektuak',
+      'proj.subtitle': 'Beti ari naiz zerbait berrian lanean. Hemen dituzu energia eta ilusioz bete ditudan proiektuak.',
+      // Project: Extensions
+      'proj.ext.title': 'Hizkuntza aldaketarako luzapenak',
+      'proj.ext.desc1': 'Hiru luzapen — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> eta <strong>En galego, por favor</strong> — nabigatzailea bisitatzen ari garen web orriaren hizkuntza gutxitu hauetako bat duen bertsiora birbideratzeko aukera ematen dutenak klik bakar batez. Katalanez, euskaraz eta galegoz hitz egiten dutenentzat pentsatua, Interneten beren hizkuntzan erabat nabigatu nahi dutenentzat.',
+      'proj.ext.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (eta beste Chromium nabigatzaileetan), <strong>Firefox</strong> eta <strong>Edge</strong> nabigatzaileetan erabilgarri. Laster <strong>Safari</strong> eta nabigatzaile gehiagotan.',
+      // Project: SEPE
+      'proj.sepe.desc': 'Bot batek <strong>Estatuko Enplegu Zerbitzu Publikoarekin (SEPE)</strong> kudeaketa aspergarrienak automatizatzen ditu. Burokrazia digital opaku eta motel batean nabigatu behar duten milaka pertsonen frustrazioak sortua. Tresna honek prozesuak errazten ditu eta denbora eta buruhausteak aurrezten ditu.',
+      'proj.sepe.btn': 'Ikusi proiektua ↗',
+      'proj.sepe.t1': 'Saioa hasitzen...',
+      'proj.sepe.t2': 'Hitzordu erabilgarriak kontsultatzen...',
+      'proj.sepe.t3': 'Hitzordua erreservatua: 2026/03/24, 10:30',
+      // Project: troBar
+      'proj.bars.desc': '<strong>troBar</strong>-ek laguntzen dizu <strong>FC Barcelona</strong>ren partidak ikusteko tabernak aurkitzen zure inguruan, non bizi zaren berdin. Barçari jarraitzea hobe delako laguntzarekin, giro onarekin eta garagardo on batekin. Zuzeneko partiduen informazioa, mapa interaktiboa eta kokapenaren araberako iragazkiak biltzen ditu.',
+      'proj.bars.btn': 'Landing page ↗',
+      'proj.bars.search': 'Non ikusi nahi duzu partida?',
+      'proj.bars.match': 'Hurrengo partida · lr., apirilak 4, 21:00',
+      'proj.bars.nav1': 'Partidak',
+      'proj.bars.nav2': 'Mapa',
+      'proj.bars.nav3': 'Profila',
+      // About
+      'about.title': 'Helburudun softwarea',
+      'about.p1': 'Uste dut teknologiak <strong>pertsonen bizitza hobetzeko</strong> balio behar duela. Horregatik nire denbora benetako arazoak konpontzen dituzten tresnak sortzen ematen dut — batez ere baztertutako edo ahulak diren komunitateei eragiten dietenak.',
+      'about.p2': '<strong>Garatzaile autonomo</strong> gisa lan egiten dut, eta horrek nire balioekin lerrokatutako proiektuak aukeratzeko aukera ematen dit. Gizarte-eragina duen produktu digital baterako ideia baduzu, entzutea gustatuko litzaidake.',
+      'about.v1.title': 'Gizarte-bokazioa',
+      'about.v1.desc': 'Proiektu bakoitzak benetako arazo bat konpontzea bilatzen du.',
+      'about.v2.title': 'Autonomia',
+      'about.v2.desc': 'Proiektuaren kudeaketa integrala, ideiaren hasieratik hedapenera arte.',
+      'about.v3.title': 'SaaS produktua',
+      'about.v3.desc': 'Zerbitzu eskalagarri gisa softwarean espezializatua.',
+      'about.quote': '«Teknologiarik onena gehien behar duenari bizitza errazten diona da.»',
+      // CTA
+      'cta.title': 'Gizarte-bokaziodun proiektua duzu?',
+      'cta.desc': 'Eragin positibodun software proiektuetan lankidetzan aritzea bilatzen dut. Ideia baduzu, <strong>hitz egin dezagun</strong>.',
+      // Aixeta
+      'aixeta.title': 'Eman laguntza Aixetan',
+      'aixeta.desc': 'Aixeta mikromezezentza plataforma bat da, zuek bezalako pertsonei gizarte-bokaziodun proiektuei eta sortzaileei laguntza ekonomikoa emateko aukera ematen diena. Nire proiektuak gustuko badituzu eta aldea markatzen duten tresna digitalak sortzen jarraitzen lagundu nahi badidazu, kontuan hartu Aixetaren bidez ekarpen bat egitea. Tanta bakoitzak badu garrantzia!',
+      // Contact
+      'contact.title': 'Jarri harremanetan',
+      'contact.desc': 'Proiekturen bat buruan duzu? Ideia baten inguruan hitz egin nahi duzu? Bete formularioa eta ahalik eta lasterren erantzungo dizut.',
       // Form
-      'Nom': 'Izena',
-      'Correu electrònic': 'Posta elektronikoa',
-      'Missatge': 'Mezua',
-      'El teu nom': 'Zure izena',
-      'hola@exemple.cat': 'kaixo@adibidea.eus',
-      "Explica'm la teva idea o projecte...": 'Kontatu zure ideia edo proiektua...',
+      'form.name': 'Izena',
+      'form.email': 'Posta elektronikoa',
+      'form.msg': 'Mezua',
+      'form.submit': 'Mezua bidali',
+      'form.name.ph': 'Zure izena',
+      'form.email.ph': 'kaixo@adibidea.eus',
+      'form.msg.ph': 'Kontatu zure ideia edo proiektua...',
+      // Footer
+      'footer.copy': 'Gizarte-bokaziodun software garapena',
+      'footer.inici': 'Hasiera',
+      'footer.contacte': 'Kontaktua',
     },
     gl: {
       // Nav
-      'Projectes': 'Proxectos',
-      'Sobre mi': 'Sobre min',
-      "Contacta'm": 'Contacta comigo',
+      'nav.projectes': 'Proxectos',
+      'nav.sobre': 'Sobre min',
+      'nav.contacta': 'Contacta comigo',
       // Hero
-      'Desenvolupador autònom · SaaS · Software social': 'Desenvolvedor autónomo · SaaS · Software social',
-      'Creo eines digitals': 'Creo ferramentas dixitais',
-      'que marquen la diferència': 'que marcan a diferenza',
-      // Section headers
-      'Els meus projectes': 'Os meus proxectos',
-      'Software amb propòsit': 'Software con propósito',
-      'Tens un projecte amb vocació social?': 'Tes un proxecto con vocación social?',
-      "Dona'm suport a l'Aixeta": 'Dáme apoio na Aixeta',
-      "Contacta'm": 'Contacta comigo',
-      // Buttons
-      'Veure projectes': 'Ver proxectos',
-      'Parlem?': 'Falamos?',
-      'Enviar missatge': 'Enviar mensaxe',
+      'hero.tag': 'Desenvolvedor autónomo · SaaS · Software social',
+      'hero.title1': 'Creo ferramentas dixitais',
+      'hero.title2': 'que marcan a diferenza',
+      'hero.desc': 'Ola, farmaciola! O meu nome é <strong>Froilán Olesti i Casas</strong> e son desenvolvedor de código especializado en produtos SaaS (Software as a Service) e ferramentas dixitais con <strong>vocación social</strong>. Traballo de forma autónoma para transformar ideas en software funcional que resolva problemas reais.',
+      'hero.btn1': 'Ver proxectos',
+      'hero.btn2': 'Falamos?',
       // Featured cards
-      'Extensions de navegador': 'Extensións de navegador',
-      "Canvi d'idioma": 'Cambio de idioma',
-      "Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.": 'Leva o catalán, o éuscaro e o galego ao teu navegador cun só clic.',
-      'Automatització': 'Automatización',
-      'Bot del SEPE': 'Bot do SEPE',
-      "Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.": "Bot que automatiza as xestións co Servizo Público de Emprego Estatal.",
-      'App mòbil': 'App móbil',
-      "Troba bars on veure els partits del Barça a prop teu, visquis on visquis.": "Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.",
+      'fc.ext.label': 'Extensións de navegador',
+      'fc.ext.title': 'Cambio de idioma',
+      'fc.ext.desc': 'Leva o catalán, o éuscaro e o galego ao teu navegador cun só clic.',
+      'fc.sepe.label': 'Automatización',
+      'fc.sepe.title': 'Bot do SEPE',
+      'fc.sepe.desc': 'Bot que automatiza as xestións co Servizo Público de Emprego Estatal.',
+      'fc.bars.label': 'App móbil',
+      'fc.bars.desc': 'Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.',
       // Projects section
-      "Sempre estic treballant en alguna cosa nova. Aquí tens els projectes als quals he dedicat més energia i il·lusió.": "Sempre estou traballando en algo novo. Aquí tes os proxectos aos que lle dediquei máis enerxía e ilusión.",
-      // About section
-      'Vocació social': 'Vocación social',
-      'Cada projecte busca resoldre un problema real.': 'Cada proxecto busca resolver un problema real.',
-      'Autonomia': 'Autonomía',
-      "Gestió integral del projecte, des de la idea fins al desplegament.": "Xestión integral do proxecto, dende a idea ata o despregamento.",
-      'Producte SaaS': 'Produto SaaS',
-      'Especialitzat en software com a servei escalable.': 'Especializado en software como servizo escalable.',
-      // Footer
-      'Inici': 'Inicio',
-      'Contacte': 'Contacto',
+      'proj.title': 'Os meus proxectos',
+      'proj.subtitle': 'Sempre estou traballando en algo novo. Aquí tes os proxectos aos que lle dediquei máis enerxía e ilusión.',
+      // Project: Extensions
+      'proj.ext.title': 'Extensións de cambio de idioma',
+      'proj.ext.desc1': 'Tres extensións — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> e <strong>En galego, por favor</strong> — que permiten redirixir o navegador á versión da páxina web que esteamos visitando que conteña algunha destas linguas minorizadas cun só clic. Pensadas para falantes de catalán, éuscaro e galego que queren navegar por Internet plenamente na súa lingua.',
+      'proj.ext.note': 'Dispoñibles para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (e outros navegadores Chromium), <strong>Firefox</strong> e <strong>Edge</strong>. Proximamente para <strong>Safari</strong> e máis navegadores.',
+      // Project: SEPE
+      'proj.sepe.desc': 'Un bot que automatiza as xestións máis tediosas co <strong>Servizo Público de Emprego Estatal (SEPE)</strong>. Nacido da frustración compartida por miles de persoas que teñen que navegar por unha burocracia dixital opaca e lenta. Esta ferramenta facilita procesos e aforra tempo e dores de cabeza.',
+      'proj.sepe.btn': 'Ver proxecto ↗',
+      'proj.sepe.t1': 'Iniciando sesión...',
+      'proj.sepe.t2': 'Consultando citas dispoñibles...',
+      'proj.sepe.t3': 'Cita reservada: 24/03/2026, 10:30h',
+      // Project: troBar
+      'proj.bars.desc': '<strong>troBar</strong> axúdache a atopar bares onde ver os partidos do <strong>FC Barcelona</strong> preto de ti, vivas onde vivas. Porque seguir o Barça é mellor en compaña, cun bo ambiente e unha boa cervexa. Inclúe info de partidos en tempo real, mapa interactivo e filtros por ubicación.',
+      'proj.bars.btn': 'Landing page ↗',
+      'proj.bars.search': 'Onde queres ver o partido?',
+      'proj.bars.match': 'Próximo partido · sáb., 4 de abr., 21:00',
+      'proj.bars.nav1': 'Partidos',
+      'proj.bars.nav2': 'Mapa',
+      'proj.bars.nav3': 'Perfil',
+      // About
+      'about.title': 'Software con propósito',
+      'about.p1': 'Creo que a tecnoloxía debe servir para <strong>mellorar a vida das persoas</strong>. Por iso dedico o meu tempo a crear ferramentas que resolvan problemas reais — especialmente aqueles que afectan a comunidades desatendidas ou vulnerables.',
+      'about.p2': 'Traballo como <strong>desenvolvedor autónomo</strong>, o que me permite escoller proxectos aliñados cos meus valores. Se tes unha idea para un produto dixital con impacto social, encantaríame escoitala.',
+      'about.v1.title': 'Vocación social',
+      'about.v1.desc': 'Cada proxecto busca resolver un problema real.',
+      'about.v2.title': 'Autonomía',
+      'about.v2.desc': 'Xestión integral do proxecto, dende a idea ata o despregamento.',
+      'about.v3.title': 'Produto SaaS',
+      'about.v3.desc': 'Especializado en software como servizo escalable.',
+      'about.quote': '«A mellor tecnoloxía é a que lle fai a vida máis fácil a quen máis o necesita.»',
+      // CTA
+      'cta.title': 'Tes un proxecto con vocación social?',
+      'cta.desc': 'Busco colaborar en proxectos de software con impacto positivo. Se tes unha idea, <strong>falemos</strong>.',
+      // Aixeta
+      'aixeta.title': 'Dáme apoio na Aixeta',
+      'aixeta.desc': 'A Aixeta é unha plataforma de micromecenado que permite a persoas coma ti dar apoio económico a proxectos e creadores con vocación social. Se che gustan os meus proxectos e queres axudarme a seguir creando ferramentas dixitais que marcan a diferenza, considera facer unha achega a través da Aixeta. Cada gota conta!',
+      // Contact
+      'contact.title': 'Contacta comigo',
+      'contact.desc': 'Tes un proxecto en mente? Queres falar sobre unha idea? Enche o formulario e respondereiche canto antes.',
       // Form
-      'Nom': 'Nome',
-      'Correu electrònic': 'Correo electrónico',
-      'Missatge': 'Mensaxe',
-      'El teu nom': 'O teu nome',
-      'hola@exemple.cat': 'ola@exemplo.gal',
-      "Explica'm la teva idea o projecte...": 'Cóntame a túa idea ou proxecto...',
+      'form.name': 'Nome',
+      'form.email': 'Correo electrónico',
+      'form.msg': 'Mensaxe',
+      'form.submit': 'Enviar mensaxe',
+      'form.name.ph': 'O teu nome',
+      'form.email.ph': 'ola@exemplo.gal',
+      'form.msg.ph': 'Cóntame a túa idea ou proxecto...',
+      // Footer
+      'footer.copy': 'Desenvolvemento de software con vocación social',
+      'footer.inici': 'Inicio',
+      'footer.contacte': 'Contacto',
     }
   };
 
-  // Store original CA text for restoration
-  const originalTexts = new Map();
+  // Store original innerHTML/placeholders for CA restoration
+  const originals = new Map();
 
-  function collectOriginalTexts() {
-    // Collect all translatable elements
-    const selectors = [
-      '.nav-links a:not(.nav-cta)', '.nav-cta',
-      '.hero-tag', '.hero-accent',
-      '.hero-actions .btn',
-      '.fc-label', '.featured-card h3', '.featured-card p',
-      '.section-header h2', '.section-subtitle',
-      '.about-text h2',
-      '.value-item strong', '.value-item p',
-      '.cta-banner h2',
-      '.aixeta-banner-text h2',
-      '.contact-text h2',
-      '.footer-links a',
-      '.form-group label',
-      '.contact-form .btn'
-    ];
-    selectors.forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => {
-        if (!originalTexts.has(el)) {
-          originalTexts.set(el, el.textContent.trim());
-        }
-      });
+  function collectOriginals() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      originals.set(el, el.innerHTML);
     });
-    // Placeholders
-    document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
-      if (!originalTexts.has(el)) {
-        originalTexts.set(el, el.placeholder);
-      }
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      originals.set('ph:' + el.getAttribute('data-i18n-ph'), el.placeholder);
     });
-    // The h1 first text node
-    const h1 = document.querySelector('.hero h1');
-    if (h1 && !originalTexts.has(h1)) {
-      originalTexts.set(h1, h1.childNodes[0].textContent.trim());
-    }
   }
 
   function translatePage(lang) {
     if (lang === currentLang) return;
     currentLang = lang;
-    const dict = lang === 'ca' ? null : translations[lang];
 
     // Update html lang attribute
     document.documentElement.lang = lang;
@@ -309,37 +332,44 @@ document.addEventListener('DOMContentLoaded', () => {
       disclaimer.classList.toggle('visible', lang !== 'ca');
     }
 
-    if (!dict) {
-      // Restore originals
-      originalTexts.forEach((text, el) => {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.placeholder = text;
-        } else if (el === document.querySelector('.hero h1')) {
-          el.childNodes[0].textContent = text + '\n';
-        } else {
-          el.textContent = text;
+    if (lang === 'ca') {
+      // Restore all originals
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (originals.has(el)) {
+          el.innerHTML = originals.get(el);
+        }
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = 'ph:' + el.getAttribute('data-i18n-ph');
+        if (originals.has(key)) {
+          el.placeholder = originals.get(key);
         }
       });
       return;
     }
 
-    // Apply translations
-    originalTexts.forEach((originalText, el) => {
-      const translated = dict[originalText];
-      if (translated) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.placeholder = translated;
-        } else if (el === document.querySelector('.hero h1')) {
-          el.childNodes[0].textContent = translated + '\n';
-        } else {
-          el.textContent = translated;
-        }
+    const dict = i18n[lang];
+    if (!dict) return;
+
+    // Translate all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Translate all placeholders
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.getAttribute('data-i18n-ph');
+      if (dict[key]) {
+        el.placeholder = dict[key];
       }
     });
   }
 
   if (langs.length) {
-    collectOriginalTexts();
+    collectOriginals();
 
     langs.forEach(lang => {
       lang.addEventListener('click', () => {
@@ -356,7 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.querySelector('.lang-switcher-demo');
     container.addEventListener('mouseleave', () => {
-      // Restore to current language selection visually
       langs.forEach(l => l.classList.remove('active'));
       const activeLang = container.querySelector(`[data-lang="${currentLang}"]`);
       if (activeLang) activeLang.classList.add('active');

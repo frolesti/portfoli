@@ -17,10 +17,10 @@
   <nav id="navbar">
     <a href="#top" class="nav-logo">frolesti</a>
     <div class="nav-links">
-      <a href="#projectes">Projectes</a>
-      <a href="#sobre">Sobre mi</a>
+      <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
+      <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
       <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
-      <a href="#contacte" class="nav-cta">Contacta'm</a>
+      <a href="#contacte" class="nav-cta" data-i18n="nav.contacta">Contacta'm</a>
     </div>
     <button class="nav-toggle" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -29,27 +29,27 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#projectes">Projectes</a>
-    <a href="#sobre">Sobre mi</a>
+    <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
+    <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
     <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
-    <a href="#contacte">Contacta'm</a>
+    <a href="#contacte" data-i18n="nav.contacta">Contacta'm</a>
   </div>
 
   <!-- HERO -->
   <header id="top" class="hero">
     <div class="hero-content">
-      <p class="hero-tag">Desenvolupador autònom · SaaS · Software social</p>
+      <p class="hero-tag" data-i18n="hero.tag">Desenvolupador autònom · SaaS · Software social</p>
       <h1>
-        Creo eines digitals<br>
-        <span class="hero-accent">que marquen la diferència</span>
+        <span data-i18n="hero.title1">Creo eines digitals</span><br>
+        <span class="hero-accent" data-i18n="hero.title2">que marquen la diferència</span>
       </h1>
-      <p class="hero-description">
+      <p class="hero-description" data-i18n="hero.desc">
         Hola, farmaciola! El meu nom és <strong>Froilán Olesti i Casas</strong> i sóc desenvolupador de codi especialitzat en productes SaaS (Software as a Service) i eines digitals amb <strong>vocació social</strong>. Treballo de forma autònoma per 
         transformar idees en software funcional que resolgui problemes reals.
       </p>
       <div class="hero-actions">
-        <a href="#projectes" class="btn btn-primary">Veure projectes</a>
-        <a href="#contacte" class="btn btn-outline">Parlem?</a>
+        <a href="#projectes" class="btn btn-primary" data-i18n="hero.btn1">Veure projectes</a>
+        <a href="#contacte" class="btn btn-outline" data-i18n="hero.btn2">Parlem?</a>
       </div>
     </div>
   </header>
@@ -75,21 +75,21 @@
         <div class="carousel-track-container">
           <div class="carousel-track">
         <a href="#projecte-extensions" class="featured-card fc-1">
-          <span class="fc-label">Extensions de navegador</span>
-          <h3>Canvi d'idioma</h3>
-          <p>Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.</p>
+          <span class="fc-label" data-i18n="fc.ext.label">Extensions de navegador</span>
+          <h3 data-i18n="fc.ext.title">Canvi d'idioma</h3>
+          <p data-i18n="fc.ext.desc">Porta el català, l'euskera i el gallec al teu navegador amb un sol clic.</p>
           <span class="fc-arrow">↓</span>
         </a>
         <a href="#projecte-sepe" class="featured-card fc-2">
-          <span class="fc-label">Automatització</span>
-          <h3>Bot del SEPE</h3>
-          <p>Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.</p>
+          <span class="fc-label" data-i18n="fc.sepe.label">Automatització</span>
+          <h3 data-i18n="fc.sepe.title">Bot del SEPE</h3>
+          <p data-i18n="fc.sepe.desc">Bot que automatitza les gestions amb el Servei Públic d'Ocupació Estatal.</p>
           <span class="fc-arrow">↓</span>
         </a>
         <a href="#projecte-bars" class="featured-card fc-3">
-          <span class="fc-label">App mòbil</span>
+          <span class="fc-label" data-i18n="fc.bars.label">App mòbil</span>
           <h3>troBar</h3>
-          <p>Troba bars on veure els partits del Barça a prop teu, visquis on visquis.</p>
+          <p data-i18n="fc.bars.desc">Troba bars on veure els partits del Barça a prop teu, visquis on visquis.</p>
           <span class="fc-arrow">↓</span>
         </a>
           </div>
@@ -104,8 +104,8 @@
   <section id="projectes" class="projects">
     <div class="container">
       <div class="section-header">
-        <h2>Els meus projectes</h2>
-        <p class="section-subtitle">
+        <h2 data-i18n="proj.title">Els meus projectes</h2>
+        <p class="section-subtitle" data-i18n="proj.subtitle">
           Sempre estic treballant en alguna cosa nova. Aquí tens els projectes 
           als quals he dedicat més energia i il·lusió.
         </p>
@@ -114,15 +114,15 @@
       <!-- Project: Extensions -->
       <article id="projecte-extensions" class="project-detail">
         <div class="project-info">
-          <span class="project-tag">Extensions de navegador</span>
-          <h3>Extensions de canvi d'idioma</h3>
-          <p>
+          <span class="project-tag" data-i18n="fc.ext.label">Extensions de navegador</span>
+          <h3 data-i18n="proj.ext.title">Extensions de canvi d'idioma</h3>
+          <p data-i18n="proj.ext.desc1">
             Tres extensions — <strong>En català, si us plau</strong>, 
             <strong>Euskaraz, mesedez</strong> i <strong>En galego, por favor</strong> — 
             que permeten redirigir el navegador a la versió de la pàgina web que estiguem visitant que contingui alguna d'aquestes llengües minoritzades amb un sol clic. 
             Pensades per a parlants de català, euskera i gallec que volen navegar per internet plenament en la seva llengua.
           </p>
-          <p class="project-note">
+          <p class="project-note" data-i18n="proj.ext.note">
             Disponibles per a <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> 
             (i altres navegadors Chromium), <strong>Firefox</strong> i <strong>Edge</strong>. 
             Pròximament per a <strong>Safari</strong> i més navegadors.
@@ -185,9 +185,9 @@
       <!-- Project: Bot SEPE -->
       <article id="projecte-sepe" class="project-detail reverse">
         <div class="project-info">
-          <span class="project-tag">Automatització</span>
-          <h3>Bot del SEPE</h3>
-          <p>
+          <span class="project-tag" data-i18n="fc.sepe.label">Automatització</span>
+          <h3 data-i18n="fc.sepe.title">Bot del SEPE</h3>
+          <p data-i18n="proj.sepe.desc">
             Un bot que automatitza les gestions més tedioses amb el 
             <strong>Servei Públic d'Ocupació Estatal (SEPE)</strong>. Nascut de la frustració 
             compartida per milers de persones que han de navegar per una burocràcia digital 
@@ -200,7 +200,7 @@
             <li>UX Social</li>
           </ul>
           <div class="project-links">
-            <a href="https://cita-sepe.duckdns.org/" target="_blank" rel="noopener" class="btn btn-small btn-primary">Veure projecte ↗</a>
+            <a href="https://cita-sepe.duckdns.org/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-i18n="proj.sepe.btn">Veure projecte ↗</a>
           </div>
         </div>
         <div class="project-visual pv-sepe">
@@ -213,9 +213,9 @@
             </div>
             <div class="terminal-content">
               <p><span class="t-green">$</span> python sepe_bot.py</p>
-              <p><span class="t-dim">→ Iniciant sessió...</span></p>
-              <p><span class="t-dim">→ Consultant cites disponibles...</span></p>
-              <p><span class="t-green">✓</span> Cita reservada: 24/03/2026, 10:30h</p>
+              <p><span class="t-dim">→</span> <span data-i18n="proj.sepe.t1">Iniciant sessió...</span></p>
+              <p><span class="t-dim">→</span> <span data-i18n="proj.sepe.t2">Consultant cites disponibles...</span></p>
+              <p><span class="t-green">✓</span> <span data-i18n="proj.sepe.t3">Cita reservada: 24/03/2026, 10:30h</span></p>
               <p class="t-cursor">█</p>
             </div>
           </div>
@@ -225,9 +225,9 @@
       <!-- Project: troBar -->
       <article id="projecte-bars" class="project-detail">
         <div class="project-info">
-          <span class="project-tag">App mòbil</span>
+          <span class="project-tag" data-i18n="fc.bars.label">App mòbil</span>
           <h3>troBar</h3>
-          <p>
+          <p data-i18n="proj.bars.desc">
             <strong>troBar</strong> t'ajuda a trobar bars on veure els partits del 
             <strong>FC Barcelona</strong> a prop teu, visquis on visquis. Perquè seguir 
             el Barça és millor en companyia, amb un bon ambient i una bona cervesa. 
@@ -240,7 +240,7 @@
             <li>Firebase</li>
           </ul>
           <div class="project-links">
-            <a href="#" class="btn btn-small btn-primary">Landing page ↗</a>
+            <a href="#" class="btn btn-small btn-primary" data-i18n="proj.bars.btn">Landing page ↗</a>
           </div>
         </div>
         <div class="project-visual pv-bars">
@@ -250,12 +250,12 @@
               <!-- Search bar -->
               <div class="trobar-search">
                 <span class="trobar-search-icon">🔍</span>
-                <span>On vols veure el partit?</span>
+                <span data-i18n="proj.bars.search">On vols veure el partit?</span>
                 <span class="trobar-filter-icon">⚙</span>
               </div>
               <!-- Match banner -->
               <div class="trobar-match">
-                <p class="trobar-match-label">Proper partit · ds., 4 d'abr., 21:00</p>
+                <p class="trobar-match-label" data-i18n="proj.bars.match">Proper partit · ds., 4 d'abr., 21:00</p>
                 <div class="trobar-match-teams">
                   <span class="trobar-team">ATM</span>
                   <span class="trobar-vs">vs</span>
@@ -276,9 +276,9 @@
               </div>
               <!-- Bottom nav -->
               <div class="trobar-nav">
-                <div class="trobar-nav-item">📅<span>Partits</span></div>
-                <div class="trobar-nav-item active"><span class="trobar-nav-pin">📍</span><span>Mapa</span></div>
-                <div class="trobar-nav-item">👤<span>Perfil</span></div>
+                <div class="trobar-nav-item">📅<span data-i18n="proj.bars.nav1">Partits</span></div>
+                <div class="trobar-nav-item active"><span class="trobar-nav-pin">📍</span><span data-i18n="proj.bars.nav2">Mapa</span></div>
+                <div class="trobar-nav-item">👤<span data-i18n="proj.bars.nav3">Perfil</span></div>
               </div>
             </div>
           </div>
@@ -293,13 +293,13 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
-          <h2>Software amb propòsit</h2>
-          <p>
+          <h2 data-i18n="about.title">Software amb propòsit</h2>
+          <p data-i18n="about.p1">
             Crec que la tecnologia ha de servir per <strong>millorar la vida de les persones</strong>. 
             Per això dedico el meu temps a crear eines que resolguin problemes reals — 
             especialment aquells que afecten comunitats desateses o vulnerables.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             Treballo com a <strong>desenvolupador autònom</strong>, cosa que em permet escollir 
             projectes alineats amb els meus valors. Si tens una idea per a un producte digital 
             amb impacte social, m'encantaria escoltar-la.
@@ -308,29 +308,29 @@
             <div class="value-item">
               <span class="value-icon">◆</span>
               <div>
-                <strong>Vocació social</strong>
-                <p>Cada projecte busca resoldre un problema real.</p>
+                <strong data-i18n="about.v1.title">Vocació social</strong>
+                <p data-i18n="about.v1.desc">Cada projecte busca resoldre un problema real.</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-icon">◆</span>
               <div>
-                <strong>Autonomia</strong>
-                <p>Gestió integral del projecte, des de la idea fins al desplegament.</p>
+                <strong data-i18n="about.v2.title">Autonomia</strong>
+                <p data-i18n="about.v2.desc">Gestió integral del projecte, des de la idea fins al desplegament.</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-icon">◆</span>
               <div>
-                <strong>Producte SaaS</strong>
-                <p>Especialitzat en software com a servei escalable.</p>
+                <strong data-i18n="about.v3.title">Producte SaaS</strong>
+                <p data-i18n="about.v3.desc">Especialitzat en software com a servei escalable.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="about-visual">
           <div class="about-card">
-            <p class="about-quote">
+            <p class="about-quote" data-i18n="about.quote">
               «La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.»
             </p>
           </div>
@@ -356,12 +356,12 @@
   <!-- CTA BANNER -->
   <section class="cta-banner">
     <div class="container">
-      <h2>Tens un projecte amb vocació social?</h2>
-      <p>
+      <h2 data-i18n="cta.title">Tens un projecte amb vocació social?</h2>
+      <p data-i18n="cta.desc">
         Busco col·laborar en projectes de software amb impacte positiu.
         Si tens una idea, <strong>parlem&#8209;ne</strong>.
       </p>
-      <a href="#contacte" class="btn btn-primary btn-large">Contacta'm</a>
+      <a href="#contacte" class="btn btn-primary btn-large" data-i18n="nav.contacta">Contacta'm</a>
     </div>
   </section>
 
@@ -370,8 +370,8 @@
     <div class="container">
       <div class="aixeta-banner-content">
         <div class="aixeta-banner-text">
-          <h2>Dona'm suport a l'Aixeta</h2>
-          <p>
+          <h2 data-i18n="aixeta.title">Dona'm suport a l'Aixeta</h2>
+          <p data-i18n="aixeta.desc">
             L'Aixeta és una plataforma de micromecenatge que permet a persones com tu donar suport econòmic a projectes i creadors amb vocació social. Si t'agraden els meus projectes i vols ajudar-me a seguir creant eines digitals que marquen la diferència, considera fer una aportació a través de l'Aixeta. Cada gota compta!
           </p>
         </div>
@@ -388,8 +388,8 @@
     <div class="container">
       <div class="contact-grid">
         <div class="contact-text">
-          <h2>Contacta'm</h2>
-          <p>
+          <h2 data-i18n="contact.title">Contacta'm</h2>
+          <p data-i18n="contact.desc">
             Tens un projecte en ment? Vols parlar sobre una idea? 
             Omple el formulari i et respondré tan aviat com pugui.
           </p>
@@ -406,18 +406,18 @@
           <input type="hidden" name="from_name" value="Portfoli Frolesti">
           <input type="checkbox" name="botcheck" class="hidden" style="display:none">
           <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" placeholder="El teu nom" required>
+            <label for="name" data-i18n="form.name">Nom</label>
+            <input type="text" id="name" name="name" placeholder="El teu nom" data-i18n-ph="form.name.ph" required>
           </div>
           <div class="form-group">
-            <label for="email">Correu electrònic</label>
-            <input type="email" id="email" name="email" placeholder="hola@exemple.cat" required>
+            <label for="email" data-i18n="form.email">Correu electrònic</label>
+            <input type="email" id="email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="form.email.ph" required>
           </div>
           <div class="form-group">
-            <label for="message">Missatge</label>
-            <textarea id="message" name="message" rows="5" placeholder="Explica'm la teva idea o projecte..." required></textarea>
+            <label for="message" data-i18n="form.msg">Missatge</label>
+            <textarea id="message" name="message" rows="5" placeholder="Explica'm la teva idea o projecte..." data-i18n-ph="form.msg.ph" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-large">Enviar missatge</button>
+          <button type="submit" class="btn btn-primary btn-large" data-i18n="form.submit">Enviar missatge</button>
         </form>
       </div>
     </div>
@@ -428,13 +428,13 @@
     <div class="container">
       <div class="footer-content">
         <p class="footer-logo">frolesti</p>
-        <p class="footer-copy">Desenvolupament de software amb vocació social</p>
+        <p class="footer-copy" data-i18n="footer.copy">Desenvolupament de software amb vocació social</p>
         <div class="footer-links">
-          <a href="#top">Inici</a>
-          <a href="#projectes">Projectes</a>
-          <a href="#sobre">Sobre mi</a>
+          <a href="#top" data-i18n="footer.inici">Inici</a>
+          <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
+          <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
           <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
-          <a href="#contacte">Contacte</a>
+          <a href="#contacte" data-i18n="footer.contacte">Contacte</a>
         </div>
       </div>
     </div>
