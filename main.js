@@ -221,6 +221,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.bars.nav1': 'Partidak',
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Profila',
+      // Project: Stremio
+      'fc.stremio.label': 'Streaming gehigarria',
+      'fc.stremio.title': 'Stremio Katalanez',
+      'fc.stremio.desc': 'Katalanezko filmen eta serieen katalogoa streaming plataforma guztietan.',
+      'proj.stremio.title': 'Stremio Katalanez',
+      'proj.stremio.desc': '<strong>Stremio</strong>rako gehigarria, streaming plataforma nagusietan <strong>katalanez eskuragarri dauden film eta serieen</strong> katalogo osoa eskaintzen duena: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ eta gehiago. Ikus-entzunezko edukiaz bere hizkuntzan gozatu nahi duen ororentzat pentsatua.',
+      'proj.stremio.btn': 'Gehigarria instalatu ↗',
+      // Project: Alerta Desnona
+      'fc.alerta.label': 'Gizarte-justizia',
+      'fc.alerta.title': 'Alerta Desnona',
+      'fc.alerta.desc': 'Iberiar Penintsulako kaleratze-alertei buruzko mapa interaktiboa.',
+      'proj.alerta.title': 'Alerta Desnona',
+      'proj.alerta.desc': '<strong>Kaleratze-alerten</strong> aplikazioa Iberiar Penintsulari buruz. BOEn argitaratutako enkante eta kaleratzeak denbora errealean erakusten dituen <strong>mapa interaktibo</strong> batekin, herritarrek eta etxebizitza-plataformek egoera hauen aurrean antolatu eta jarduteko aukera emanez.',
+      'proj.alerta.note': 'Push jakinarazpenak, posta elektronikoz alertak eta eremu geografikoaren araberako iragazki-sistema bat biltzen ditu.',
+      // Project: Open Data Capture
+      'fc.odc.label': 'Plataforma klinikoa',
+      'fc.odc.desc': 'Kode irekiko plataforma datu klinikoen etengabeko bilketarako.',
+      'proj.odc.desc': '<strong>Kode irekiko</strong> web plataforma <strong>datu klinikoen</strong> etengabeko bilketarako diseinatua. Tresna klinikoak urrunetik eta presentzialki administratzeko aukera ematen du, tresnak sortzeko sistema malgua, datuen bistaratzea eta eskariaren araberako esportazioa barne.',
+      'proj.odc.note': '<strong>Douglas Neuroinformatics Platform</strong>eko proiektu baterako ekarpena. Eleaniztuna, lehenespenez segurua JWT autentifikazioarekin eta baimen granularrekin.',
+      'proj.odc.btn': 'Proiektuaren weba ↗',
       // About
       'about.title': 'Helburudun softwarea',
       'about.p1': 'Uste dut teknologiak <strong>pertsonen bizitza hobetzeko</strong> balio behar duela. Horregatik nire denbora benetako arazoak konpontzen dituzten tresnak sortzen ematen dut — batez ere baztertutako edo ahulak diren komunitateei eragiten dietenak.',
@@ -297,6 +317,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.bars.nav1': 'Partidos',
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Perfil',
+      // Project: Stremio
+      'fc.stremio.label': 'Complemento de streaming',
+      'fc.stremio.title': 'Stremio en Catalán',
+      'fc.stremio.desc': 'Catálogo de películas e series en catalán en tódalas plataformas de streaming.',
+      'proj.stremio.title': 'Stremio en Catalán',
+      'proj.stremio.desc': 'Un complemento para <strong>Stremio</strong> que ofrece un catálogo completo de <strong>películas e series dispoñibles en catalán</strong> nas principais plataformas de streaming: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ e máis. Pensado para todos os que queiran gozar de contido audiovisual na súa lingua.',
+      'proj.stremio.btn': 'Instalar complemento ↗',
+      // Project: Alerta Desnona
+      'fc.alerta.label': 'Xustiza social',
+      'fc.alerta.title': 'Alerta Desnona',
+      'fc.alerta.desc': 'Mapa interactivo de alertas de desafiuzamentos na Península Ibérica.',
+      'proj.alerta.title': 'Alerta Desnona',
+      'proj.alerta.desc': 'Unha aplicación de <strong>alertas de desafiuzamentos</strong> na Península Ibérica. Cun <strong>mapa interactivo</strong> que amosa en tempo real as póxas e desafiuzamentos publicados no BOE, permitindo á cidadanía e ás plataformas de vivenda organizarse e actuar ante estas situacións.',
+      'proj.alerta.note': 'Inclúe notificacións push, alertas por correo electrónico e un sistema de filtraxe por zona xeográfica.',
+      // Project: Open Data Capture
+      'fc.odc.label': 'Plataforma clínica',
+      'fc.odc.desc': 'Plataforma de código aberto para a recollida continua de datos clínicos.',
+      'proj.odc.desc': 'Plataforma web de <strong>código aberto</strong> deseñada para a recollida continua de <strong>datos clínicos</strong>. Permite administrar instrumentos clínicos de forma remota e presencial, cun sistema flexible de creación de instrumentos, visualización de datos e exportación baixo demanda.',
+      'proj.odc.note': 'Contribución a un proxecto do <strong>Douglas Neuroinformatics Platform</strong>. Multilingue, seguro por defecto con autenticación JWT e permisos granulares.',
+      'proj.odc.btn': 'Web do proxecto ↗',
       // About
       'about.title': 'Software con propósito',
       'about.p1': 'Creo que a tecnoloxía debe servir para <strong>mellorar a vida das persoas</strong>. Por iso dedico o meu tempo a crear ferramentas que resolvan problemas reais — especialmente aqueles que afectan a comunidades desatendidas ou vulnerables.',
