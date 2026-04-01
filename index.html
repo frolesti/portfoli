@@ -92,6 +92,24 @@
           <p data-i18n="fc.bars.desc">Troba bars on veure els partits del Barça a prop teu, visquis on visquis.</p>
           <span class="fc-arrow">↓</span>
         </a>
+        <a href="#projecte-stremio" class="featured-card fc-4">
+          <span class="fc-label">Addon de streaming</span>
+          <h3>Stremio en Català</h3>
+          <p>Catàleg de pel·lícules i sèries en català a totes les plataformes d'streaming.</p>
+          <span class="fc-arrow">↓</span>
+        </a>
+        <a href="#projecte-alerta" class="featured-card fc-5">
+          <span class="fc-label">Justícia social</span>
+          <h3>Alerta Desnona</h3>
+          <p>Mapa interactiu d'alertes de desnonaments a la Península Ibèrica.</p>
+          <span class="fc-arrow">↓</span>
+        </a>
+        <a href="#projecte-odc" class="featured-card fc-6">
+          <span class="fc-label">Plataforma clínica</span>
+          <h3>Open Data Capture</h3>
+          <p>Plataforma de codi obert per a la recollida contínua de dades clíniques.</p>
+          <span class="fc-arrow">↓</span>
+        </a>
           </div>
         </div>
         <button class="carousel-btn carousel-next" aria-label="Següent">›</button>
@@ -279,6 +297,165 @@
                 <div class="trobar-nav-item">📅<span data-i18n="proj.bars.nav1">Partits</span></div>
                 <div class="trobar-nav-item active"><span class="trobar-nav-pin">📍</span><span data-i18n="proj.bars.nav2">Mapa</span></div>
                 <div class="trobar-nav-item">👤<span data-i18n="proj.bars.nav3">Perfil</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: Stremio en Català -->
+      <article id="projecte-stremio" class="project-detail reverse">
+        <div class="project-info">
+          <span class="project-tag">Addon de streaming</span>
+          <h3>Stremio en Català</h3>
+          <p>
+            Un addon per a <strong>Stremio</strong> que ofereix un catàleg complet de 
+            <strong>pel·lícules i sèries disponibles en català</strong> a les principals 
+            plataformes d'streaming: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, 
+            Movistar+ i més. Pensat per a tothom que vulgui gaudir de contingut audiovisual 
+            en la seva llengua.
+          </p>
+          <ul class="project-tech">
+            <li>Node.js</li>
+            <li>Stremio SDK</li>
+            <li>Express</li>
+            <li>TMDB API</li>
+            <li>Vercel</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://stremio-en-catala.vercel.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary">Instal·lar addon ↗</a>
+          </div>
+        </div>
+        <div class="project-visual pv-stremio">
+          <div class="streaming-mockup">
+            <div class="streaming-bar">
+              <span class="streaming-logo">▶ Stremio</span>
+              <span class="streaming-lang">CA</span>
+            </div>
+            <div class="streaming-content">
+              <div class="streaming-title">En Català</div>
+              <div class="streaming-grid">
+                <div class="streaming-card sc-1"></div>
+                <div class="streaming-card sc-2"></div>
+                <div class="streaming-card sc-3"></div>
+                <div class="streaming-card sc-4"></div>
+                <div class="streaming-card sc-5"></div>
+                <div class="streaming-card sc-6"></div>
+              </div>
+              <div class="streaming-platforms">
+                <span>3Cat</span>
+                <span>Filmin</span>
+                <span>Netflix</span>
+                <span>Disney+</span>
+                <span>Max</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: Alerta Desnona -->
+      <article id="projecte-alerta" class="project-detail">
+        <div class="project-info">
+          <span class="project-tag">Justícia social</span>
+          <h3>Alerta Desnona</h3>
+          <p>
+            Una aplicació d'<strong>alertes de desnonaments</strong> a la Península Ibèrica. 
+            Amb un <strong>mapa interactiu</strong> que mostra en temps real les subhastes 
+            i desnonaments publicats al BOE, permetent a la ciutadania i les plataformes 
+            d'habitatge organitzar-se i actuar davant d'aquestes situacions.
+          </p>
+          <p class="project-note">
+            Inclou notificacions push, alertes per correu electrònic i un sistema de 
+            filtratge per zona geogràfica.
+          </p>
+          <ul class="project-tech">
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>Leaflet</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>SQLite</li>
+            <li>Web Push</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="btn btn-small btn-primary">Veure projecte ↗</a>
+          </div>
+        </div>
+        <div class="project-visual pv-alerta">
+          <div class="map-mockup">
+            <div class="browser-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="map-content">
+              <div class="map-surface">
+                <div class="map-alert-pin" style="top:22%;left:65%"><span class="map-pin-dot urgent"></span></div>
+                <div class="map-alert-pin" style="top:35%;left:45%"><span class="map-pin-dot"></span></div>
+                <div class="map-alert-pin" style="top:30%;left:72%"><span class="map-pin-dot urgent"></span></div>
+                <div class="map-alert-pin" style="top:50%;left:38%"><span class="map-pin-dot"></span></div>
+                <div class="map-alert-pin" style="top:45%;left:58%"><span class="map-pin-dot urgent"></span></div>
+                <div class="map-alert-pin" style="top:60%;left:52%"><span class="map-pin-dot"></span></div>
+                <div class="map-alert-pin" style="top:68%;left:30%"><span class="map-pin-dot"></span></div>
+              </div>
+              <div class="map-legend">
+                <span class="map-legend-item"><span class="map-pin-dot urgent small"></span> Urgent</span>
+                <span class="map-legend-item"><span class="map-pin-dot small"></span> Programat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: Open Data Capture -->
+      <article id="projecte-odc" class="project-detail reverse">
+        <div class="project-info">
+          <span class="project-tag">Plataforma clínica</span>
+          <h3>Open Data Capture</h3>
+          <p>
+            Plataforma web de <strong>codi obert</strong> dissenyada per a la recollida 
+            contínua de <strong>dades clíniques</strong>. Permet administrar instruments 
+            clínics de forma remota i presencial, amb un sistema flexible de creació 
+            d'instruments, visualització de dades i exportació sota demanda.
+          </p>
+          <p class="project-note">
+            Contribució a un projecte del <strong>Douglas Neuroinformatics Platform</strong>. 
+            Multilingüe, segur per defecte amb autenticació JWT i permisos granulars.
+          </p>
+          <ul class="project-tech">
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>Docker</li>
+            <li>WebAssembly</li>
+            <li>JWT</li>
+            <li>REST API</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-primary">Web del projecte ↗</a>
+            <a href="https://demo.opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-outline">Demo ↗</a>
+            <a href="https://github.com/DouglasNeuroInformatics/OpenDataCapture" target="_blank" rel="noopener" class="btn btn-small btn-outline">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-visual pv-odc">
+          <div class="odc-mockup">
+            <div class="browser-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="odc-content">
+              <div class="odc-sidebar">
+                <div class="odc-nav-item active">📋 Instruments</div>
+                <div class="odc-nav-item">👥 Subjects</div>
+                <div class="odc-nav-item">📊 Data</div>
+                <div class="odc-nav-item">⚙ Settings</div>
+              </div>
+              <div class="odc-main">
+                <div class="odc-form-field"></div>
+                <div class="odc-form-field short"></div>
+                <div class="odc-form-field"></div>
+                <div class="odc-form-btn"></div>
               </div>
             </div>
           </div>

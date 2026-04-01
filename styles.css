@@ -1067,6 +1067,277 @@ img {
   line-height: 1;
 }
 
+/* ---------- NEW FEATURED CARD STYLES ---------- */
+.fc-4 {
+  background: linear-gradient(160deg, #e0f0ea 0%, #c8e6d8 100%);
+  border: 1px solid rgba(42, 122, 110, 0.15);
+}
+
+.fc-5 {
+  background: linear-gradient(160deg, #f5e8e8 0%, #f0d6d6 100%);
+  border: 1px solid rgba(199, 85, 48, 0.15);
+}
+
+.fc-6 {
+  background: linear-gradient(160deg, #e8eaf5 0%, #d6daf0 100%);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+/* ---------- STREMIO MOCKUP ---------- */
+.streaming-mockup {
+  width: 100%;
+  max-width: 420px;
+  background: #0c0b13;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+
+.streaming-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #1a1726;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.streaming-logo {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #8b6cf6;
+}
+
+.streaming-lang {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: var(--accent-2);
+  color: #fff;
+  border-radius: 100px;
+}
+
+.streaming-content {
+  padding: 20px 18px;
+}
+
+.streaming-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.streaming-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.streaming-card {
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2a2444, #3a2f5a);
+  position: relative;
+  overflow: hidden;
+}
+
+.streaming-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.sc-1 { background: linear-gradient(135deg, #c75530 30%, #2a2444); }
+.sc-2 { background: linear-gradient(135deg, #2a7a6e 30%, #2a2444); }
+.sc-3 { background: linear-gradient(135deg, #8b5cf6 30%, #2a2444); }
+.sc-4 { background: linear-gradient(135deg, #d4920a 30%, #2a2444); }
+.sc-5 { background: linear-gradient(135deg, #4a90d9 30%, #2a2444); }
+.sc-6 { background: linear-gradient(135deg, #c7556e 30%, #2a2444); }
+
+.streaming-platforms {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.streaming-platforms span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ---------- MAP MOCKUP (Alerta Desnona) ---------- */
+.map-mockup {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+
+.map-content {
+  position: relative;
+}
+
+.map-surface {
+  height: 280px;
+  background: linear-gradient(165deg, #e8e0d4 0%, #ddd6c8 40%, #d4cfc4 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0,0,0,0.04) 28px, rgba(0,0,0,0.04) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(0,0,0,0.04) 28px, rgba(0,0,0,0.04) 29px);
+  pointer-events: none;
+}
+
+.map-alert-pin {
+  position: absolute;
+  z-index: 2;
+}
+
+.map-pin-dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-2);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: pulse-pin 2.5s ease-in-out infinite;
+}
+
+.map-pin-dot.urgent {
+  background: var(--accent-1);
+  box-shadow: 0 0 0 4px rgba(199, 85, 48, 0.2), 0 2px 8px rgba(0,0,0,0.2);
+  animation: pulse-urgent 1.8s ease-in-out infinite;
+}
+
+.map-pin-dot.small {
+  width: 8px;
+  height: 8px;
+  animation: none;
+  box-shadow: none;
+  border-width: 1px;
+}
+
+@keyframes pulse-pin {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(199, 85, 48, 0.2); }
+  50% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(199, 85, 48, 0.1); }
+}
+
+.map-legend {
+  display: flex;
+  gap: 16px;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- ODC MOCKUP (Open Data Capture) ---------- */
+.odc-mockup {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+
+.odc-content {
+  display: flex;
+  min-height: 260px;
+}
+
+.odc-sidebar {
+  width: 110px;
+  padding: 16px 10px;
+  background: #f0ebe3;
+  border-right: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.odc-nav-item {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: default;
+  transition: var(--transition);
+}
+
+.odc-nav-item.active {
+  background: var(--accent-3);
+  color: #fff;
+  font-weight: 600;
+}
+
+.odc-main {
+  flex: 1;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.odc-form-field {
+  height: 18px;
+  background: var(--surface);
+  border-radius: 6px;
+  width: 100%;
+}
+
+.odc-form-field.short {
+  width: 60%;
+}
+
+.odc-form-btn {
+  width: 80px;
+  height: 28px;
+  background: var(--accent-3);
+  border-radius: 100px;
+  margin-top: 8px;
+}
+
 /* ---------- ABOUT ---------- */
 .about {
   padding: 100px 0;
