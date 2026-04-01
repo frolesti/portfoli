@@ -54,10 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return Math.max(1, cards.length - perView + 1);
     }
 
+    function wrapPage(page) {
+      const totalPages = getTotalPages();
+      if (totalPages <= 1) return 0;
+      return ((page % totalPages) + totalPages) % totalPages;
+    }
+
     function updateCarousel() {
       const perView = getCardsPerView();
       const totalPages = getTotalPages();
-      currentPage = Math.min(currentPage, totalPages - 1);
+      currentPage = wrapPage(currentPage);
 
       // Calculate offset
       const gap = 20;
@@ -73,9 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const offset = currentPage * (cardWidth + gap);
       track.style.transform = `translateX(-${offset}px)`;
 
-      // Buttons
-      if (prevBtn) prevBtn.disabled = currentPage === 0;
-      if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
+      // Buttons — always enabled for infinite carousel
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
 
       // Show/hide nav when not needed
       const showNav = cards.length > perView;
@@ -96,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => { currentPage = Math.max(0, currentPage - 1); updateCarousel(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { currentPage = Math.min(getTotalPages() - 1, currentPage + 1); updateCarousel(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { currentPage = wrapPage(currentPage - 1); updateCarousel(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { currentPage = wrapPage(currentPage + 1); updateCarousel(); });
 
     // Touch/swipe support
     let touchStartX = 0;
@@ -107,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
       touchEndX = e.changedTouches[0].screenX;
       const diff = touchStartX - touchEndX;
       if (Math.abs(diff) > 50) {
-        if (diff > 0) { currentPage = Math.min(getTotalPages() - 1, currentPage + 1); }
-        else { currentPage = Math.max(0, currentPage - 1); }
+        if (diff > 0) { currentPage = wrapPage(currentPage + 1); }
+        else { currentPage = wrapPage(currentPage - 1); }
         updateCarousel();
       }
     }, { passive: true });
