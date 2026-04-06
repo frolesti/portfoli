@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Newsletter private data
+newsletter/scripts/subscribers.json
+newsletter/output/
+
+# Environment
+.env
+.env.local
+
+# OS
+Thumbs.db
+.DS_Store

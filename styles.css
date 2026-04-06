@@ -1448,6 +1448,131 @@ img {
   color: var(--accent-1);
 }
 
+/* ---------- NEWSLETTER ---------- */
+.newsletter-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.newsletter-card {
+  background: linear-gradient(135deg, #f5f0ea 0%, #ece5db 50%, #e8f0f5 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: rgba(199, 85, 48, 0.06);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.newsletter-text {
+  text-align: center;
+}
+
+.newsletter-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.newsletter-text h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.newsletter-text p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.newsletter-input-group input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 100px;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  flex: 1;
+  min-width: 180px;
+}
+
+.newsletter-input-group input::placeholder {
+  color: var(--text-dim);
+}
+
+.newsletter-input-group input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(199, 85, 48, 0.10);
+}
+
+.newsletter-btn {
+  padding: 14px 28px !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.newsletter-note {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .newsletter-card {
+    padding: 32px 24px;
+  }
+
+  .newsletter-input-group {
+    flex-direction: column;
+  }
+
+  .newsletter-input-group input,
+  .newsletter-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 /* ---------- CTA BANNER ---------- */
 .cta-banner {
   padding: 80px 0;

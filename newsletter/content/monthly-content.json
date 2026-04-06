@@ -1,0 +1,19 @@
+{
+  "2026-01": {
+    "language-redirector-extension": {
+      "title": "En Català, si us plau",
+      "updates": [
+        "🎉 Disponible a Mozilla Firefox",
+        "🆕 Nova funcionalitat per excloure dominis",
+        "✨ Millores de rendiment i estabilitat"
+      ]
+    },
+    "aixeta": {
+      "title": "Aixeta.cat",
+      "updates": [
+        "📝 Millores en la gestió de subscripcions",
+        "🎨 Actualitzacions visuals"
+      ]
+    }
+  }
+}

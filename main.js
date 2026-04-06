@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- SCROLL REVEAL ----------
   const revealElements = document.querySelectorAll(
-    '.featured, .project-detail, .about-grid, .cta-banner, .contact-grid, .section-header, .aixeta-banner-content'
+    '.featured, .project-detail, .about-grid, .newsletter-card, .cta-banner, .contact-grid, .section-header, .aixeta-banner-content'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
@@ -241,6 +241,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.odc.desc': '<strong>Kode irekiko</strong> web plataforma <strong>datu klinikoen</strong> etengabeko bilketarako diseinatua. Tresna klinikoak urrunetik eta presentzialki administratzeko aukera ematen du, tresnak sortzeko sistema malgua, datuen bistaratzea eta eskariaren araberako esportazioa barne.',
       'proj.odc.note': '<strong>Douglas Neuroinformatics Platform</strong>eko proiektu baterako ekarpena. Eleaniztuna, lehenespenez segurua JWT autentifikazioarekin eta baimen granularrekin.',
       'proj.odc.btn': 'Proiektuaren weba ↗',
+      // Newsletter
+      'newsletter.title': 'Hileko buletina',
+      'newsletter.desc': 'Hilero nire proiektuen berritasunen laburpena bidaltzen dizut: funtzionalitate berriak, argitalpenak eta prestatzen ari naizen guztia. Harpidetu eguneratuta egoteko!',
+      'newsletter.btn': 'Harpidetu 📨',
+      'newsletter.note': 'Spamik gabe. Hilean posta bat bakarrik. Edozein momentutan eman dezakezu baja.',
+      'newsletter.name.ph': 'Zure izena',
+      'newsletter.email.ph': 'kaixo@adibidea.eus',
       // About
       'about.title': 'Helburudun softwarea',
       'about.p1': 'Uste dut teknologiak <strong>pertsonen bizitza hobetzeko</strong> balio behar duela. Horregatik nire denbora benetako arazoak konpontzen dituzten tresnak sortzen ematen dut — batez ere baztertutako edo ahulak diren komunitateei eragiten dietenak.',
@@ -337,6 +344,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.odc.desc': 'Plataforma web de <strong>código aberto</strong> deseñada para a recollida continua de <strong>datos clínicos</strong>. Permite administrar instrumentos clínicos de forma remota e presencial, cun sistema flexible de creación de instrumentos, visualización de datos e exportación baixo demanda.',
       'proj.odc.note': 'Contribución a un proxecto do <strong>Douglas Neuroinformatics Platform</strong>. Multilingue, seguro por defecto con autenticación JWT e permisos granulares.',
       'proj.odc.btn': 'Web do proxecto ↗',
+      // Newsletter
+      'newsletter.title': 'Boletín mensual',
+      'newsletter.desc': 'Cada mes envíoche un resumo das novidades dos meus proxectos: novas funcionalidades, lanzamentos e todo o que estou a coñeciñar. Subscríbete para estar ao día!',
+      'newsletter.btn': 'Subscríbeme 📨',
+      'newsletter.note': 'Sen spam. Só un correo ao mes. Podes cancelar en calquera momento.',
+      'newsletter.name.ph': 'O teu nome',
+      'newsletter.email.ph': 'ola@exemplo.gal',
       // About
       'about.title': 'Software con propósito',
       'about.p1': 'Creo que a tecnoloxía debe servir para <strong>mellorar a vida das persoas</strong>. Por iso dedico o meu tempo a crear ferramentas que resolvan problemas reais — especialmente aqueles que afectan a comunidades desatendidas ou vulnerables.',
@@ -454,6 +468,62 @@ document.addEventListener('DOMContentLoaded', () => {
       langs.forEach(l => l.classList.remove('active'));
       const activeLang = container.querySelector(`[data-lang="${currentLang}"]`);
       if (activeLang) activeLang.classList.add('active');
+    });
+  }
+
+  // ---------- NEWSLETTER FORM (Web3Forms) ----------
+  const nlForm = document.getElementById('newsletterForm');
+  if (nlForm) {
+    nlForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btn = nlForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      const name = nlForm.querySelector('#nl-name').value.trim();
+      const email = nlForm.querySelector('#nl-email').value.trim();
+      if (!name || !email) return;
+
+      btn.textContent = 'Enviant...';
+      btn.disabled = true;
+
+      try {
+        const formData = new FormData();
+        formData.append('access_key', 'fa15478a-a76d-4a21-bfb8-3168d774d4da');
+        formData.append('subject', 'Nova subscripció al Butlletí de frolesti');
+        formData.append('from_name', 'Portfoli Frolesti — Newsletter');
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', `Nova subscripció al butlletí:\nNom: ${name}\nEmail: ${email}\nData: ${new Date().toISOString()}`);
+
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          btn.textContent = 'Subscrit correctament ✓';
+          btn.style.background = 'var(--accent-2)';
+          btn.style.color = '#fff';
+          nlForm.reset();
+        } else {
+          btn.textContent = 'Error. Torna-ho a provar.';
+          btn.style.background = '#c0392b';
+          btn.style.color = '#fff';
+        }
+      } catch (err) {
+        btn.textContent = 'Error de connexió.';
+        btn.style.background = '#c0392b';
+        btn.style.color = '#fff';
+      }
+
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 4000);
     });
   }
 
