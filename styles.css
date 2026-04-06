@@ -1448,8 +1448,54 @@ img {
   color: var(--accent-1);
 }
 
-/* ---------- NEWSLETTER ---------- */
-/* ---------- FOOTER ---------- */
+/* ---------- AIXETA BANNER ---------- */
+.aixeta-banner {
+  padding: 40px 0 60px;
+}
+
+.footer-aixeta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 28px;
+  background: linear-gradient(135deg, #e8f0f5, #f0e8f5);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.footer-aixeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 200, 0.15);
+}
+
+.footer-aixeta-logo {
+  height: 44px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.footer-aixeta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-aixeta-text strong {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.footer-aixeta-text span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ---------- CONTACT ---------- */
 .contact {
   padding: 100px 0;
   position: relative;
@@ -1607,54 +1653,6 @@ img {
 .footer {
   padding: 48px 0;
   border-top: none;
-}
-
-.footer-top {
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.footer-aixeta {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 28px;
-  background: linear-gradient(135deg, #e8f0f5, #f0e8f5);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(0,0,0,0.06);
-  text-decoration: none;
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.footer-aixeta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 200, 200, 0.15);
-}
-
-.footer-aixeta-logo {
-  height: 44px;
-  width: auto;
-  flex-shrink: 0;
-}
-
-.footer-aixeta-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.footer-aixeta-text strong {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text);
-}
-
-.footer-aixeta-text span {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
 }
 
 .footer-content {

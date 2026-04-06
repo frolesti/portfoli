@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- SCROLL REVEAL ----------
   const revealElements = document.querySelectorAll(
-    '.featured, .project-detail, .about-grid, .contact-unified, .sidebar-card, .section-header'
+    '.featured, .project-detail, .about-grid, .footer-aixeta, .contact-unified, .sidebar-card, .section-header'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
