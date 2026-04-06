@@ -530,79 +530,19 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="newsletter-section">
-    <div class="container">
-      <div class="newsletter-card">
-        <div class="newsletter-text">
-          <span class="newsletter-icon">📬</span>
-          <h2 data-i18n="newsletter.title">Butlletí mensual</h2>
-          <p data-i18n="newsletter.desc">
-            Cada mes t'envio un resum de les novetats dels meus projectes: noves funcionalitats, 
-            llançaments i tot el que estic cuinant. Subscriu-te per estar al dia!
-          </p>
-        </div>
-        <form class="newsletter-form" id="newsletterForm">
-          <div class="newsletter-input-group">
-            <input type="text" id="nl-name" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
-            <input type="email" id="nl-email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
-            <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me 📨</button>
-          </div>
-          <p class="newsletter-note" data-i18n="newsletter.note">
-            Sense spam. Només un correu al mes. Pots cancel·lar en qualsevol moment.
-          </p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2 data-i18n="cta.title">Tens un projecte amb vocació social?</h2>
-      <p data-i18n="cta.desc">
-        Busco col·laborar en projectes de software amb impacte positiu.
-        Si tens una idea, <strong>parlem&#8209;ne</strong>.
-      </p>
-      <a href="#contacte" class="btn btn-primary btn-large" data-i18n="nav.contacta">Contacta'm</a>
-    </div>
-  </section>
-
-  <!-- AIXETA BANNER -->
-  <section class="aixeta-banner">
-    <div class="container">
-      <div class="aixeta-banner-content">
-        <div class="aixeta-banner-text">
-          <h2 data-i18n="aixeta.title">Dona'm suport a l'Aixeta</h2>
-          <p data-i18n="aixeta.desc">
-            L'Aixeta és una plataforma de micromecenatge que permet a persones com tu donar suport econòmic a projectes i creadors amb vocació social. Si t'agraden els meus projectes i vols ajudar-me a seguir creant eines digitals que marquen la diferència, considera fer una aportació a través de l'Aixeta. Cada gota compta!
-          </p>
-        </div>
-        <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener" class="aixeta-logo-link">
-          <img src="img/aixeta-logo.png" alt="Aixeta" class="aixeta-logo-btn">
-          <span class="aixeta-link-text" data-i18n="aixeta.btn">Fes una aportació</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
+  <!-- CONTACT (unified: form + newsletter + Aixeta) -->
   <section id="contacte" class="contact">
     <div class="container">
-      <div class="contact-grid">
-        <div class="contact-text">
-          <h2 data-i18n="contact.title">Contacta'm</h2>
-          <p data-i18n="contact.desc">
-            Tens un projecte en ment? Vols parlar sobre una idea? 
-            Omple el formulari i et respondré tan aviat com pugui.
-          </p>
-          <div class="contact-info">
-            <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener" class="contact-link">
-              <span class="contact-icon"><img src="img/aixeta-icon.ico" alt="Aixeta" class="aixeta-inline-icon"></span>
-              frolesti.aixeta.cat
-            </a>
-          </div>
-        </div>
+      <div class="section-header">
+        <h2 data-i18n="contact.title">Contacta'm</h2>
+        <p class="section-subtitle" data-i18n="contact.desc">
+          Tens un projecte en ment? Vols parlar sobre una idea? 
+          Omple el formulari i et respondré tan aviat com pugui.
+        </p>
+      </div>
+
+      <div class="contact-unified">
+        <!-- Left: Contact form -->
         <form class="contact-form" id="contactForm">
           <input type="hidden" name="access_key" value="fa15478a-a76d-4a21-bfb8-3168d774d4da">
           <input type="hidden" name="subject" value="Nou missatge del portfoli de Frolesti">
@@ -622,6 +562,34 @@
           </div>
           <button type="submit" class="btn btn-primary btn-large" data-i18n="form.submit">Enviar missatge</button>
         </form>
+
+        <!-- Right: Newsletter + Aixeta -->
+        <div class="contact-sidebar">
+          <!-- Newsletter -->
+          <div class="sidebar-card sidebar-newsletter">
+            <span class="sidebar-icon">📬</span>
+            <h3 data-i18n="newsletter.title">Butlletí mensual</h3>
+            <p data-i18n="newsletter.desc.short">
+              Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.
+            </p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="text" id="nl-name" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
+              <input type="email" id="nl-email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
+              <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me 📨</button>
+            </form>
+          </div>
+
+          <!-- Aixeta -->
+          <div class="sidebar-card sidebar-aixeta">
+            <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener" class="aixeta-sidebar-link">
+              <img src="img/aixeta-logo.png" alt="Aixeta" class="aixeta-sidebar-logo">
+              <div class="aixeta-sidebar-text">
+                <strong data-i18n="aixeta.title.short">Dona'm suport</strong>
+                <span data-i18n="aixeta.desc.short">Si t'agraden els meus projectes, dona'm suport a l'Aixeta. Cada gota compta!</span>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- SCROLL REVEAL ----------
   const revealElements = document.querySelectorAll(
-    '.featured, .project-detail, .about-grid, .newsletter-card, .cta-banner, .contact-grid, .section-header, .aixeta-banner-content'
+    '.featured, .project-detail, .about-grid, .contact-unified, .sidebar-card, .section-header'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
@@ -243,9 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.odc.btn': 'Proiektuaren weba ↗',
       // Newsletter
       'newsletter.title': 'Hileko buletina',
-      'newsletter.desc': 'Hilero nire proiektuen berritasunen laburpena bidaltzen dizut: funtzionalitate berriak, argitalpenak eta prestatzen ari naizen guztia. Harpidetu eguneratuta egoteko!',
+      'newsletter.desc.short': 'Jaso hilero nire proiektuen berritasunak. Spamik gabe, posta bat bakarrik.',
       'newsletter.btn': 'Harpidetu 📨',
-      'newsletter.note': 'Spamik gabe. Hilean posta bat bakarrik. Edozein momentutan eman dezakezu baja.',
       'newsletter.name.ph': 'Zure izena',
       'newsletter.email.ph': 'kaixo@adibidea.eus',
       // About
@@ -259,13 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'about.v3.title': 'SaaS produktua',
       'about.v3.desc': 'Zerbitzu eskalagarri gisa softwarean espezializatua.',
       'about.quote': '«Teknologiarik onena gehien behar duenari bizitza errazten diona da.»',
-      // CTA
-      'cta.title': 'Gizarte-bokaziodun proiektua duzu?',
-      'cta.desc': 'Eragin positibodun software proiektuetan lankidetzan aritzea bilatzen dut. Ideia baduzu, <strong>hitz egin dezagun</strong>.',
       // Aixeta
-      'aixeta.title': 'Eman laguntza Aixetan',
-      'aixeta.desc': 'Aixeta mikromezezentza plataforma bat da, zuek bezalako pertsonei gizarte-bokaziodun proiektuei eta sortzaileei laguntza ekonomikoa emateko aukera ematen diena. Nire proiektuak gustuko badituzu eta aldea markatzen duten tresna digitalak sortzen jarraitzen lagundu nahi badidazu, kontuan hartu Aixetaren bidez ekarpen bat egitea. Tanta bakoitzak badu garrantzia!',
-      'aixeta.btn': 'Egin ekarpena',
+      'aixeta.title.short': 'Eman laguntza',
+      'aixeta.desc.short': 'Nire proiektuak gustuko badituzu, eman laguntza Aixetan. Tanta bakoitzak badu garrantzia!',
       // Contact
       'contact.title': 'Jarri harremanetan',
       'contact.desc': 'Proiekturen bat buruan duzu? Ideia baten inguruan hitz egin nahi duzu? Bete formularioa eta ahalik eta lasterren erantzungo dizut.',
@@ -346,9 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.odc.btn': 'Web do proxecto ↗',
       // Newsletter
       'newsletter.title': 'Boletín mensual',
-      'newsletter.desc': 'Cada mes envíoche un resumo das novidades dos meus proxectos: novas funcionalidades, lanzamentos e todo o que estou a coñeciñar. Subscríbete para estar ao día!',
+      'newsletter.desc.short': 'Recibe cada mes as novidades dos meus proxectos. Sen spam, só un correo.',
       'newsletter.btn': 'Subscríbeme 📨',
-      'newsletter.note': 'Sen spam. Só un correo ao mes. Podes cancelar en calquera momento.',
       'newsletter.name.ph': 'O teu nome',
       'newsletter.email.ph': 'ola@exemplo.gal',
       // About
@@ -362,13 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'about.v3.title': 'Produto SaaS',
       'about.v3.desc': 'Especializado en software como servizo escalable.',
       'about.quote': '«A mellor tecnoloxía é a que lle fai a vida máis fácil a quen máis o necesita.»',
-      // CTA
-      'cta.title': 'Tes un proxecto con vocación social?',
-      'cta.desc': 'Busco colaborar en proxectos de software con impacto positivo. Se tes unha idea, <strong>falemos</strong>.',
       // Aixeta
-      'aixeta.title': 'Dáme apoio na Aixeta',
-      'aixeta.desc': 'A Aixeta é unha plataforma de micromecenado que permite a persoas coma ti dar apoio económico a proxectos e creadores con vocación social. Se che gustan os meus proxectos e queres axudarme a seguir creando ferramentas dixitais que marcan a diferenza, considera facer unha achega a través da Aixeta. Cada gota conta!',
-      'aixeta.btn': 'Fai unha achega',
+      'aixeta.title.short': 'Dáme apoio',
+      'aixeta.desc.short': 'Se che gustan os meus proxectos, dáme apoio na Aixeta. Cada gota conta!',
       // Contact
       'contact.title': 'Contacta comigo',
       'contact.desc': 'Tes un proxecto en mente? Queres falar sobre unha idea? Enche o formulario e respondereiche canto antes.',
