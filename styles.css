@@ -1503,6 +1503,7 @@ img {
   font-size: 1.6rem;
   display: block;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .sidebar-card h3 {
@@ -1510,6 +1511,7 @@ img {
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .sidebar-card > p {
@@ -1517,6 +1519,7 @@ img {
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .newsletter-form {
@@ -1550,52 +1553,6 @@ img {
   padding: 12px 24px !important;
   font-size: 0.9rem !important;
   white-space: nowrap;
-}
-
-/* Sidebar Aixeta */
-.sidebar-aixeta {
-  background: linear-gradient(135deg, #e8f0f5, #f0e8f5);
-  padding: 0;
-  overflow: hidden;
-}
-
-.aixeta-sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 24px 28px;
-  text-decoration: none;
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.aixeta-sidebar-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 200, 200, 0.18);
-}
-
-.aixeta-sidebar-logo {
-  height: 48px;
-  width: auto;
-  flex-shrink: 0;
-}
-
-.aixeta-sidebar-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.aixeta-sidebar-text strong {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--text);
-}
-
-.aixeta-sidebar-text span {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
 }
 
 /* Form */
@@ -1650,6 +1607,54 @@ img {
 .footer {
   padding: 48px 0;
   border-top: none;
+}
+
+.footer-top {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.footer-aixeta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 28px;
+  background: linear-gradient(135deg, #e8f0f5, #f0e8f5);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.footer-aixeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 200, 0.15);
+}
+
+.footer-aixeta-logo {
+  height: 44px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.footer-aixeta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-aixeta-text strong {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.footer-aixeta-text span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .footer-content {

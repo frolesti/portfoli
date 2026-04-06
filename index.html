@@ -567,7 +567,7 @@
         <div class="contact-sidebar">
           <!-- Newsletter -->
           <div class="sidebar-card sidebar-newsletter">
-            <span class="sidebar-icon">📬</span>
+            <span class="sidebar-icon" aria-hidden="true">📬</span>
             <h3 data-i18n="newsletter.title">Butlletí mensual</h3>
             <p data-i18n="newsletter.desc.short">
               Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.
@@ -575,20 +575,10 @@
             <form class="newsletter-form" id="newsletterForm">
               <input type="text" id="nl-name" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
               <input type="email" id="nl-email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
-              <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me 📨</button>
+              <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
             </form>
           </div>
 
-          <!-- Aixeta -->
-          <div class="sidebar-card sidebar-aixeta">
-            <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener" class="aixeta-sidebar-link">
-              <img src="img/aixeta-logo.png" alt="Aixeta" class="aixeta-sidebar-logo">
-              <div class="aixeta-sidebar-text">
-                <strong data-i18n="aixeta.title.short">Dona'm suport</strong>
-                <span data-i18n="aixeta.desc.short">Si t'agraden els meus projectes, dona'm suport a l'Aixeta. Cada gota compta!</span>
-              </div>
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -597,6 +587,15 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
+      <div class="footer-top">
+        <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener" class="footer-aixeta">
+          <img src="img/aixeta-logo.png" alt="Aixeta" class="footer-aixeta-logo">
+          <div class="footer-aixeta-text">
+            <strong data-i18n="aixeta.title.short">Dona'm suport</strong>
+            <span data-i18n="aixeta.desc.short">Si t'agraden els meus projectes, dona'm suport a l'Aixeta. Cada gota compta!</span>
+          </div>
+        </a>
+      </div>
       <div class="footer-content">
         <p class="footer-logo">frolesti</p>
         <p class="footer-copy" data-i18n="footer.copy">Desenvolupament de software amb vocació social</p>
@@ -604,8 +603,8 @@
           <a href="#top" data-i18n="footer.inici">Inici</a>
           <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
           <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
-          <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
           <a href="#contacte" data-i18n="footer.contacte">Contacte</a>
+          <a href="#contacte" data-i18n="footer.newsletter">Butlletí</a>
         </div>
       </div>
     </div>

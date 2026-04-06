@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Newsletter
       'newsletter.title': 'Hileko buletina',
       'newsletter.desc.short': 'Jaso hilero nire proiektuen berritasunak. Spamik gabe, posta bat bakarrik.',
-      'newsletter.btn': 'Harpidetu 📨',
+      'newsletter.btn': 'Harpidetu',
       'newsletter.name.ph': 'Zure izena',
       'newsletter.email.ph': 'kaixo@adibidea.eus',
       // About
@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Gizarte-bokaziodun software garapena',
       'footer.inici': 'Hasiera',
       'footer.contacte': 'Kontaktua',
+      'footer.newsletter': 'Buletina',
     },
     gl: {
       // Nav
@@ -342,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Newsletter
       'newsletter.title': 'Boletín mensual',
       'newsletter.desc.short': 'Recibe cada mes as novidades dos meus proxectos. Sen spam, só un correo.',
-      'newsletter.btn': 'Subscríbeme 📨',
+      'newsletter.btn': 'Subscríbeme',
       'newsletter.name.ph': 'O teu nome',
       'newsletter.email.ph': 'ola@exemplo.gal',
       // About
@@ -374,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Desenvolvemento de software con vocación social',
       'footer.inici': 'Inicio',
       'footer.contacte': 'Contacto',
+      'footer.newsletter': 'Boletín',
     }
   };
 
