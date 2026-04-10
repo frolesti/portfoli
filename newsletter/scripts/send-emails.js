@@ -35,11 +35,15 @@ function createTransporter() {
 // Enviar email a un subscriptor
 async function sendEmail(transporter, subscriber, htmlTemplate, subject) {
   try {
+    // Personalitzar el nom del subscriptor
+    const firstName = (subscriber.name || '').split(' ')[0] || 'farmaciola';
+    const personalizedHtml = htmlTemplate.replace('{{NAME}}', firstName);
+
     await transporter.sendMail({
       from: `"frolesti — Butlletí" <${process.env.GMAIL_USER}>`,
       to: subscriber.email,
       subject: subject,
-      html: htmlTemplate,
+      html: personalizedHtml,
       // Text pla com a alternativa
       text: 'Aquest butlletí requereix un client de correu amb suport HTML.'
     });
