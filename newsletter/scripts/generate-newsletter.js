@@ -6,7 +6,7 @@ const path = require('path');
 const REPOS = [
   'AixetaOrg/language-redirector-extension',
   'AixetaOrg/aixeta',
-  'frolesti/portfoli',
+  'frolesti/portafolis',
   'frolesti/stremio-addon-catalan-subtitles',
   'frolesti/alerta-desnona',
   'DouglasNeuroInformatics/OpenDataCapture',
@@ -111,7 +111,7 @@ async function getRepoActivity(repo) {
 }
 
 // Generar el contingut HTML
-function generateNewsletterHTML(reposData, tier = 'Hola Món') {
+function generateNewsletterHTML(reposData) {
   const template = fs.readFileSync(
     path.join(__dirname, '../templates/newsletter-template.html'),
     'utf8'
@@ -139,84 +139,128 @@ function generateNewsletterHTML(reposData, tier = 'Hola Món') {
       manualContent = allContent[monthKey] || {};
     }
   } catch (error) {
-    console.log('ℹ️  No s\'ha trobat contingut manual per aquest mes');
+    console.log('No s\'ha trobat contingut manual per aquest mes');
   }
 
-  // Generar el contingut dels projectes
-  let projectsContent = '';
-  
+  // Determinar quin és el projecte destacat
+  const featuredSlug = manualContent['_featured'] || null;
+
+  // Generar article destacat
+  let featuredContent = '';
+  // Generar columnes secundàries
+  const secondaryProjects = [];
+
   reposData.forEach(repo => {
     if (repo.error) return;
-    
+
     const repoSlug = repo.fullName.split('/')[1];
     const manual = manualContent[repoSlug];
-    
-    // Prioritzar contingut manual
-    if (manual && manual.updates && manual.updates.length > 0) {
-      projectsContent += `
-      <div class="project">
-        <h2>📦 ${manual.title || repo.name}</h2>
+
+    // Projecte destacat
+    if (repoSlug === featuredSlug && manual) {
+      const kicker = manual.kicker || 'Destacat';
+      const lede = manual.lede || '';
+      featuredContent = `
+      <div class="featured-article">
+        <div class="kicker">${kicker}</div>
+        <h2>${manual.title || repo.name}</h2>
+        ${lede ? `<p class="lede">${lede}</p>` : ''}
         <ul>
-          ${manual.updates.map(update => `<li>${update}</li>`).join('\n          ')}
+          ${manual.updates.map(u => `<li>${u}</li>`).join('\n          ')}
         </ul>
-      </div>
-    `;
+        ${manual.cta_url ? `<a href="${manual.cta_url}" class="featured-cta" target="_blank" rel="noopener">${manual.cta_text || 'Veure projecte'}</a>` : ''}
+      </div>`;
       return;
     }
-    
-    // Si hi ha release recent amb notes, usar-les
-    if (repo.releases > 0 && repo.latestRelease && repo.latestRelease.body) {
-      const releaseNotes = repo.latestRelease.body.split('\n')
-        .filter(line => line.trim())
-        .slice(0, 5)
-        .map(line => line.replace(/^[-*]\s*/, ''));
-      
-      if (releaseNotes.length > 0) {
-        projectsContent += `
-      <div class="project">
-        <h2>📦 ${repo.name}</h2>
-        <p><strong>🚀 Nova versió ${repo.latestRelease.tag_name}</strong></p>
-        <ul>
-          ${releaseNotes.map(note => `<li>${note}</li>`).join('\n          ')}
-        </ul>
-      </div>
-    `;
-        return;
-      }
+
+    // Projectes secundaris (contingut manual)
+    if (manual && manual.updates && manual.updates.length > 0) {
+      secondaryProjects.push({
+        title: manual.title || repo.name,
+        kicker: manual.kicker || null,
+        updates: manual.updates
+      });
+      return;
     }
-    
-    // Si només hi ha release sense notes
+
+    // Projectes secundaris (auto des de GitHub)
     if (repo.releases > 0 && repo.latestRelease) {
-      projectsContent += `
-      <div class="project">
-        <h2>📦 ${repo.name}</h2>
-        <p>🚀 Nova versió <strong>${repo.latestRelease.tag_name}</strong> publicada${repo.latestRelease.name ? `: ${repo.latestRelease.name}` : '!'}</p>
-      </div>
-    `;
+      const updates = [];
+      if (repo.latestRelease.body) {
+        const notes = repo.latestRelease.body.split('\n')
+          .filter(l => l.trim())
+          .slice(0, 3)
+          .map(l => l.replace(/^[-*]\s*/, ''));
+        updates.push(...notes);
+      } else {
+        updates.push(`Nova versió <strong>${repo.latestRelease.tag_name}</strong> publicada`);
+      }
+      secondaryProjects.push({
+        title: repo.name,
+        kicker: null,
+        updates
+      });
     }
   });
 
-  // Si no hi ha activitat, afegir missatge
-  if (!projectsContent) {
-    projectsContent = `
-      <div class="project">
-        <p>Aquest mes ha estat tranquil, sense grans actualitzacions. Estem treballant en millores que veureu aviat! 🚀</p>
-      </div>
-    `;
+  // Si no hi ha destacat, agafar el primer projecte secundari
+  if (!featuredContent && secondaryProjects.length > 0) {
+    const first = secondaryProjects.shift();
+    featuredContent = `
+      <div class="featured-article">
+        <div class="kicker">${first.kicker || 'Actualització'}</div>
+        <h2>${first.title}</h2>
+        <ul>
+          ${first.updates.map(u => `<li>${u}</li>`).join('\n          ')}
+        </ul>
+      </div>`;
   }
 
-  // Determinar icona segons tier
-  let tierIcon = '👋'; // Per defecte Hola Món
-  if (tier.toLowerCase().includes('ninot') || tier.toLowerCase().includes('proves')) {
-    tierIcon = '🧪';
+  // Si no hi ha res, missatge neutre
+  if (!featuredContent) {
+    featuredContent = `
+      <div class="featured-article">
+        <div class="kicker">Actualitat</div>
+        <h2>Un mes tranquil</h2>
+        <p class="lede">Aquest mes hem estat treballant entre bastidors. Aviat compartirem novetats.</p>
+      </div>`;
+  }
+
+  // Generar columnes (agrupar de 2 en 2)
+  let columnsContent = '';
+  for (let i = 0; i < secondaryProjects.length; i += 2) {
+    const left = secondaryProjects[i];
+    const right = secondaryProjects[i + 1];
+    columnsContent += `<div class="columns">`;
+    columnsContent += `
+        <div class="column">
+          ${left.kicker ? `<div class="kicker">${left.kicker}</div>` : '<div class="kicker">Projecte</div>'}
+          <h3>${left.title}</h3>
+          <ul>
+            ${left.updates.map(u => `<li>${u}</li>`).join('\n            ')}
+          </ul>
+        </div>`;
+    if (right) {
+      columnsContent += `
+        <div class="column">
+          ${right.kicker ? `<div class="kicker">${right.kicker}</div>` : '<div class="kicker">Projecte</div>'}
+          <h3>${right.title}</h3>
+          <ul>
+            ${right.updates.map(u => `<li>${u}</li>`).join('\n            ')}
+          </ul>
+        </div>`;
+    } else {
+      // Columna buida per mantenir layout
+      columnsContent += `<div class="column"></div>`;
+    }
+    columnsContent += `</div>`;
   }
 
   // Reemplaçar les variables a la plantilla
   const html = template
     .replaceAll('{{MONTH_YEAR}}', monthYear)
-    .replaceAll('{{PROJECTS_CONTENT}}', projectsContent)
-    .replaceAll('{{TIER}}', tier)
-    .replaceAll('{{TIER_ICON}}', tierIcon)
+    .replaceAll('{{FEATURED_CONTENT}}', featuredContent)
+    .replaceAll('{{COLUMNS_CONTENT}}', columnsContent)
     .replaceAll('{{YEAR}}', date.getFullYear());
 
   return html;
@@ -234,19 +278,18 @@ function updateHistoryIndex(outputPath) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Històric de Butlletins</title>
+  <title>Històric de Butlletins — frolesti</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
-    h1 { color: #667eea; }
+    body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 40px auto; padding: 20px; color: #1a1a1a; background: #f2f0eb; }
+    h1 { font-size: 32px; font-weight: 700; letter-spacing: -.3px; border-bottom: 4px double #1a1a1a; padding-bottom: 12px; margin-bottom: 24px; }
     .newsletter-list { list-style: none; padding: 0; }
-    .newsletter-item { background: #f9f9ff; margin: 10px 0; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #667eea; }
-    .newsletter-item a { color: #667eea; text-decoration: none; font-weight: 600; }
-    .newsletter-item a:hover { text-decoration: underline; }
-    .date { color: #666; font-size: 14px; }
+    .newsletter-item { margin: 0; padding: 14px 0; border-bottom: 1px dotted #ccc; }
+    .newsletter-item a { color: #1a1a1a; text-decoration: none; font-size: 18px; font-weight: 600; }
+    .newsletter-item a:hover { color: #c75530; }
   </style>
 </head>
 <body>
-  <h1>📰 Històric de Butlletins</h1>
+  <h1>Històric de Butlletins</h1>
   <ul class="newsletter-list">
     ${files.map(f => {
       const date = f.replace('newsletter-', '').replace('.html', '');

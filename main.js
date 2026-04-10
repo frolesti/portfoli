@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.alerta.title': 'Alerta Desnona',
       'proj.alerta.desc': '<strong>Kaleratze-alerten</strong> aplikazioa Iberiar Penintsulari buruz. BOEn argitaratutako enkante eta kaleratzeak denbora errealean erakusten dituen <strong>mapa interaktibo</strong> batekin, herritarrek eta etxebizitza-plataformek egoera hauen aurrean antolatu eta jarduteko aukera emanez.',
       'proj.alerta.note': 'Push jakinarazpenak, posta elektronikoz alertak eta eremu geografikoaren araberako iragazki-sistema bat biltzen ditu.',
+      'proj.alerta.btn': 'Beta ikusi ↗',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma klinikoa',
       'fc.odc.desc': 'Kode irekiko plataforma datu klinikoen etengabeko bilketarako.',
@@ -334,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.alerta.title': 'Alerta Desnona',
       'proj.alerta.desc': 'Unha aplicación de <strong>alertas de desafiuzamentos</strong> na Península Ibérica. Cun <strong>mapa interactivo</strong> que amosa en tempo real as póxas e desafiuzamentos publicados no BOE, permitindo á cidadanía e ás plataformas de vivenda organizarse e actuar ante estas situacións.',
       'proj.alerta.note': 'Inclúe notificacións push, alertas por correo electrónico e un sistema de filtraxe por zona xeográfica.',
+      'proj.alerta.btn': 'Ver beta ↗',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma clínica',
       'fc.odc.desc': 'Plataforma de código aberto para a recollida continua de datos clínicos.',
@@ -463,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- NEWSLETTER FORM (Web3Forms) ----------
+  // ---------- NEWSLETTER FORM (Netlify Function → GitHub Gist) ----------
   const nlForm = document.getElementById('newsletterForm');
   if (nlForm) {
     nlForm.addEventListener('submit', async (e) => {
@@ -479,26 +481,23 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
 
       try {
-        const formData = new FormData();
-        formData.append('access_key', 'fa15478a-a76d-4a21-bfb8-3168d774d4da');
-        formData.append('subject', 'Nova subscripció al Butlletí de frolesti');
-        formData.append('from_name', 'Portfoli Frolesti — Newsletter');
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', `Nova subscripció al butlletí:\nNom: ${name}\nEmail: ${email}\nData: ${new Date().toISOString()}`);
-
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('/.netlify/functions/subscribe', {
           method: 'POST',
-          body: formData
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
         });
 
         const data = await res.json();
 
-        if (data.success) {
+        if (res.ok && data.success) {
           btn.textContent = 'Subscrit correctament ✓';
           btn.style.background = 'var(--accent-2)';
           btn.style.color = '#fff';
           nlForm.reset();
+        } else if (data.error === 'already_subscribed') {
+          btn.textContent = 'Ja estàs subscrit!';
+          btn.style.background = 'var(--accent-2)';
+          btn.style.color = '#fff';
         } else {
           btn.textContent = 'Error. Torna-ho a provar.';
           btn.style.background = '#c0392b';

@@ -1,7 +1,7 @@
 {
-  "name": "frolesti-portfoli",
+  "name": "frolesti-portafolis",
   "version": "1.0.0",
-  "description": "Portfoli de frolesti amb sistema de butlletí mensual integrat",
+  "description": "Portafolis de frolesti amb sistema de butlletí mensual integrat",
   "private": true,
   "scripts": {
     "newsletter:generate": "node newsletter/scripts/generate-newsletter.js",
@@ -10,7 +10,7 @@
     "newsletter:run": "npm run newsletter:generate && npm run newsletter:send"
   },
   "keywords": [
-    "portfolio",
+    "portafoliso",
     "newsletter",
     "saas"
   ],

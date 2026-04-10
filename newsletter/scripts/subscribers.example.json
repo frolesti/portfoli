@@ -2,13 +2,11 @@
   {
     "name": "Anna Garcia",
     "email": "anna@example.com",
-    "tier": "Hola Món",
     "subscriptionDate": "2026-01-15"
   },
   {
     "name": "Pau Martínez",
     "email": "pau@example.com",
-    "tier": "Ninot de Proves",
     "subscriptionDate": "2026-01-20"
   }
 ]

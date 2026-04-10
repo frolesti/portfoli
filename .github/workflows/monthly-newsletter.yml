@@ -22,6 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Fetch subscribers from Gist
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+        run: |
+          echo "📋 Descarregant subscriptors del Gist..."
+          curl -sf -H "Authorization: Bearer $GH_PAT" \
+            "https://api.github.com/gists/$GIST_ID" | \
+            node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('/dev/stdin', 'utf8'));
+              const content = data.files['subscribers.json'].content;
+              fs.writeFileSync('newsletter/scripts/subscribers.json', content);
+              const subs = JSON.parse(content);
+              console.log('✅ ' + subs.length + ' subscriptors carregats');
+            "
+
       - name: Generate newsletter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

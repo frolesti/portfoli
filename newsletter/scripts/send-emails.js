@@ -35,14 +35,11 @@ function createTransporter() {
 // Enviar email a un subscriptor
 async function sendEmail(transporter, subscriber, htmlTemplate, subject) {
   try {
-    // Personalitzar l'HTML amb el tier del subscriptor
-    const personalizedHtml = htmlTemplate.replace('{{TIER}}', subscriber.tier || 'Hola Món');
-    
     await transporter.sendMail({
-      from: `"Butlletí de Projectes" <${process.env.GMAIL_USER}>`,
+      from: `"frolesti — Butlletí" <${process.env.GMAIL_USER}>`,
       to: subscriber.email,
       subject: subject,
-      html: personalizedHtml,
+      html: htmlTemplate,
       // Text pla com a alternativa
       text: 'Aquest butlletí requereix un client de correu amb suport HTML.'
     });

@@ -3,16 +3,46 @@
     "language-redirector-extension": {
       "title": "En Català, si us plau",
       "updates": [
-        "🎉 Disponible a Mozilla Firefox",
-        "🆕 Nova funcionalitat per excloure dominis",
-        "✨ Millores de rendiment i estabilitat"
+        "Disponible a Mozilla Firefox",
+        "Nova funcionalitat per excloure dominis",
+        "Millores de rendiment i estabilitat"
       ]
     },
     "aixeta": {
       "title": "Aixeta.cat",
       "updates": [
-        "📝 Millores en la gestió de subscripcions",
-        "🎨 Actualitzacions visuals"
+        "Millores en la gestió de subscripcions",
+        "Actualitzacions visuals"
+      ]
+    }
+  },
+  "2026-04": {
+    "_featured": "alerta-desnona",
+    "alerta-desnona": {
+      "title": "Alerta Desnona",
+      "kicker": "Llançament",
+      "lede": "L'aplicació de justícia social sobre desnonaments a la Península Ibèrica arriba a la seva primera versió pública.",
+      "updates": [
+        "<strong>Versió beta publicada.</strong> Ja podeu accedir a l'aplicació a <a href=\"https://alerta-desnona-production.up.railway.app/\" style=\"color:#c75530;\">alerta-desnona-production.up.railway.app</a>",
+        "<strong>Mapa interactiu</strong> de desnonaments i subhastes publicats al BOE en temps real",
+        "Sistema d'<strong>alertes per zona geogràfica:</strong> rep notificacions dels desnonaments que afecten la teva àrea",
+        "Filtres avançats per tipus d'alerta, data i localització",
+        "Estem en <strong>fase beta</strong> — qualsevol error o suggeriment, escriviu-nos"
+      ]
+    },
+    "portafolis": {
+      "title": "Portafolis",
+      "updates": [
+        "Butlletí mensual integrat al portafolis",
+        "Tres nous projectes afegits: Stremio en Català, Alerta Desnona i Open Data Capture",
+        "Traduccions completes en euskera i gallec"
+      ]
+    },
+    "stremio-addon-catalan-subtitles": {
+      "title": "Stremio en Català",
+      "updates": [
+        "Catàleg actualitzat amb les últimes novetats",
+        "Millores d'estabilitat de l'addon"
       ]
     }
   }

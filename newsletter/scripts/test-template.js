@@ -35,7 +35,7 @@ const testData = [
 ];
 
 // Generar HTML de prova
-const html = generateNewsletterHTML(testData, 'Hola Món');
+const html = generateNewsletterHTML(testData);
 
 // Guardar en un fitxer de prova
 const outputPath = path.join(__dirname, '../output');
