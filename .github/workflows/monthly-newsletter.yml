@@ -2,8 +2,8 @@ name: Butlletí Mensual
 
 on:
   schedule:
-    # Dia 1 de cada mes a les 9:00 AM UTC
-    - cron: '0 9 1 * *'
+    # Cada dilluns a les 9:00 AM UTC — el workflow comprova si és l'últim dilluns del mes
+    - cron: '0 9 * * 1'
   workflow_dispatch:
 
 jobs:
@@ -11,18 +11,66 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if last Monday of the month
+        id: check_date
+        run: |
+          # Si és workflow_dispatch, saltar la comprovació
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "🔧 Execució manual — saltant comprovació de data"
+            exit 0
+          fi
+
+          # Comprovar si d'aquí 7 dies ja som en un mes diferent
+          TODAY=$(date +%m)
+          NEXT_MONDAY=$(date -d "+7 days" +%m)
+          if [ "$TODAY" != "$NEXT_MONDAY" ]; then
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "✅ Últim dilluns del mes — procedim amb l'enviament"
+          else
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⏭️ No és l'últim dilluns del mes — sortint"
+          fi
+
       - name: Checkout
+        if: steps.check_date.outputs.skip != 'true'
         uses: actions/checkout@v4
 
+      - name: Check newsletter content exists
+        if: steps.check_date.outputs.skip != 'true'
+        id: check_content
+        run: |
+          MONTH_KEY=$(date +%Y-%m)
+          echo "month_key=$MONTH_KEY" >> $GITHUB_OUTPUT
+
+          if node -e "
+            const fs = require('fs');
+            const content = JSON.parse(fs.readFileSync('newsletter/content/monthly-content.json', 'utf8'));
+            if (content['$MONTH_KEY']) {
+              console.log('✅ Contingut trobat per a $MONTH_KEY');
+              process.exit(0);
+            } else {
+              console.log('⏭️ No hi ha contingut per a $MONTH_KEY — saltant enviament');
+              process.exit(1);
+            }
+          "; then
+            echo "has_content=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_content=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Node.js
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         run: npm ci
 
       - name: Fetch subscribers from Gist
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           GIST_ID: ${{ secrets.GIST_ID }}
@@ -34,23 +82,26 @@ jobs:
               const fs = require('fs');
               const data = JSON.parse(fs.readFileSync('/dev/stdin', 'utf8'));
               const content = data.files['subscribers.json'].content;
-              fs.writeFileSync('newsletter/scripts/subscribers.json', content);
+              fs.writeFileSync('newsletter/scripts/subscribers.json', content, 'utf8');
               const subs = JSON.parse(content);
               console.log('✅ ' + subs.length + ' subscriptors carregats');
             "
 
       - name: Generate newsletter
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run newsletter:generate
 
       - name: Send emails
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: npm run newsletter:send
 
       - name: Upload newsletter artifact
+        if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: newsletter-${{ github.run_number }}
