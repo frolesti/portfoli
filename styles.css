@@ -1693,6 +1693,21 @@ img {
   color: var(--accent-1);
 }
 
+.footer-socials {
+  display: flex;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.footer-socials a {
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.footer-socials a:hover {
+  color: var(--accent-1);
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .featured-card {
