@@ -278,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.inici': 'Hasiera',
       'footer.contacte': 'Kontaktua',
       'footer.newsletter': 'Buletina',
+      'footer.privacy': 'Webgune honek cookie gabeko analitika anonimoa erabiltzen du (GoatCounter) esperientzia hobetzeko.',
     },
     gl: {
       // Nav
@@ -378,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.inici': 'Inicio',
       'footer.contacte': 'Contacto',
       'footer.newsletter': 'Boletín',
+      'footer.privacy': 'Esta páxina utiliza analítica anónima e sen cookies (GoatCounter) para mellorar a experiencia.',
     }
   };
 

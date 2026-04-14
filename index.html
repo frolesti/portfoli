@@ -48,8 +48,8 @@
         transformar idees en software funcional que resolgui problemes reals.
       </p>
       <div class="hero-actions">
-        <a href="#projectes" class="btn btn-primary" data-i18n="hero.btn1">Veure projectes</a>
-        <a href="#contacte" class="btn btn-outline" data-i18n="hero.btn2">Parlem?</a>
+        <a href="#projectes" class="btn btn-primary" data-goatcounter-click="cta-veure-projectes" data-i18n="hero.btn1">Veure projectes</a>
+        <a href="#contacte" class="btn btn-outline" data-goatcounter-click="cta-parlem" data-i18n="hero.btn2">Parlem?</a>
       </div>
     </div>
   </header>
@@ -155,8 +155,8 @@
             <div class="ext-row">
               <p class="ext-links-label"><img src="img/ext-catala.png" alt="En català" class="ext-icon"> En català, si us plau</p>
               <div class="project-links">
-                <a href="https://chromewebstore.google.com/detail/en-catal%C3%A0-si-us-plau/fljkmgniiajdaefnomebclfbpfdgjplc" target="_blank" rel="noopener" class="btn btn-small btn-ext">Chrome / Brave / Ecosia</a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/en-catal%C3%A0-sisplau/" target="_blank" rel="noopener" class="btn btn-small btn-ext">Firefox</a>
+                <a href="https://chromewebstore.google.com/detail/en-catal%C3%A0-si-us-plau/fljkmgniiajdaefnomebclfbpfdgjplc" target="_blank" rel="noopener" class="btn btn-small btn-ext" data-goatcounter-click="ext-catala-chrome">Chrome / Brave / Ecosia</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/en-catal%C3%A0-sisplau/" target="_blank" rel="noopener" class="btn btn-small btn-ext" data-goatcounter-click="ext-catala-firefox">Firefox</a>
                 <span class="btn btn-small btn-ext btn-disabled">Edge (pròximament)</span>
                 <span class="btn btn-small btn-ext btn-disabled">Safari (pròximament)</span>
               </div>
@@ -218,7 +218,7 @@
             <li>UX Social</li>
           </ul>
           <div class="project-links">
-            <a href="https://cita-sepe.duckdns.org/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-i18n="proj.sepe.btn">Veure projecte ↗</a>
+            <a href="https://cita-sepe.duckdns.org/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-sepe" data-i18n="proj.sepe.btn">Veure projecte ↗</a>
           </div>
         </div>
         <div class="project-visual pv-sepe">
@@ -323,7 +323,7 @@
             <li>Vercel</li>
           </ul>
           <div class="project-links">
-            <a href="https://stremio-en-catala.vercel.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-i18n="proj.stremio.btn">Instal·lar addon ↗</a>
+            <a href="https://stremio-en-catala.vercel.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-stremio" data-i18n="proj.stremio.btn">Instal·lar addon ↗</a>
           </div>
         </div>
         <div class="project-visual pv-stremio">
@@ -379,7 +379,7 @@
             <li>Web Push</li>
           </ul>
           <div class="project-links">
-            <a href="https://alerta-desnona-production.up.railway.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-i18n="proj.alerta.btn">Veure beta ↗</a>
+            <a href="https://alerta-desnona-production.up.railway.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-alerta-desnona" data-i18n="proj.alerta.btn">Veure beta ↗</a>
           </div>
         </div>
         <div class="project-visual pv-alerta">
@@ -432,9 +432,9 @@
             <li>REST API</li>
           </ul>
           <div class="project-links">
-            <a href="https://opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-i18n="proj.odc.btn">Web del projecte ↗</a>
-            <a href="https://demo.opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-outline">Demo ↗</a>
-            <a href="https://github.com/DouglasNeuroInformatics/OpenDataCapture" target="_blank" rel="noopener" class="btn btn-small btn-outline">GitHub ↗</a>
+            <a href="https://opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-odc-web" data-i18n="proj.odc.btn">Web del projecte ↗</a>
+            <a href="https://demo.opendatacapture.org" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-goatcounter-click="proj-odc-demo">Demo ↗</a>
+            <a href="https://github.com/DouglasNeuroInformatics/OpenDataCapture" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-goatcounter-click="proj-odc-github">GitHub ↗</a>
           </div>
         </div>
         <div class="project-visual pv-odc">
@@ -625,10 +625,12 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
+        <p class="footer-privacy" data-i18n="footer.privacy">Aquesta pàgina utilitza analítica anònima i sense cookies (<a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>) per millorar l'experiència.</p>
       </div>
     </div>
   </footer>
 
   <script src="main.js"></script>
+  <script data-goatcounter="https://frolesti.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
