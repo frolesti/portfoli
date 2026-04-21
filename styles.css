@@ -1083,6 +1083,11 @@ img {
   border: 1px solid rgba(139, 92, 246, 0.15);
 }
 
+.fc-7 {
+  background: linear-gradient(160deg, #f5eee6 0%, #eadfd4 100%);
+  border: 1px solid rgba(199, 85, 48, 0.12);
+}
+
 /* ---------- STREMIO MOCKUP ---------- */
 .streaming-mockup {
   width: 100%;
@@ -1336,6 +1341,104 @@ img {
   background: var(--accent-3);
   border-radius: 100px;
   margin-top: 8px;
+}
+
+/* ---------- APARADOR MOCKUP ---------- */
+.aparador-mockup {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+
+.aparador-content {
+  padding: 20px;
+  background: linear-gradient(180deg, #fffaf5 0%, #f6efe7 100%);
+}
+
+.aparador-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.aparador-brand {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--accent-1);
+}
+
+.aparador-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(199, 85, 48, 0.08);
+  color: var(--accent-1);
+}
+
+.aparador-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.aparador-overline {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.aparador-hero h4 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.aparador-pill {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(42, 122, 110, 0.1);
+  color: var(--accent-2);
+}
+
+.aparador-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.aparador-photo {
+  min-height: 86px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #e8ddd0 0%, #d8c2ad 100%);
+}
+
+.aparador-photo.tall {
+  min-height: 122px;
+}
+
+.aparador-photo.wide {
+  grid-column: span 2;
+}
+
+.aparador-photo.accent {
+  background: linear-gradient(160deg, #d8e8e2 0%, #b9d9cf 100%);
 }
 
 /* ---------- ABOUT ---------- */
