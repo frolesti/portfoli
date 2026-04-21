@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Profila',
       // Project: Aparador
-      'proj.aparador.desc': '<strong>Aparador</strong> web plataforma bat da, <strong>argazkilariek</strong> beren albumak bezeroekin <strong>sarbide-kodeen</strong> bidez partekatu ahal izateko sortua. Bezeroek eroso nabigatu dezakete, argazkiak galerian ikusi eta jatorrizko bereizmenean deskargatu.',
-      'proj.aparador.note': 'Stripe bidezko aukerako dohaintzak, albumak eta argazki igoerak kudeatzeko dashboard bat, eta kostuak baxu mantentzeko arkitektura arina biltzen ditu. Oraindik ez dago publikoki eskuragarri: <strong>laster</strong> iritsiko da.',
+      'proj.aparador.desc': '<strong>Aparador</strong> web plataforma bat da, <strong>argazkilariek</strong> beren albumak beren <strong>ikusleekin</strong> sarbide-kodeen bidez partekatu ahal izateko sortua. Ikusleek eroso nabigatu dezakete, argazkiak galerian ikusi eta jatorrizko bereizmenean deskargatu.',
+      'proj.aparador.note': 'Stripe bidezko aukerako dohaintzak, albumak eta argazki igoerak kudeatzeko dashboard bat, eta kostuak baxu mantentzeko arkitektura arina biltzen ditu.',
       'proj.aparador.btn': 'Laster…',
       // Project: Stremio
       'fc.stremio.label': 'Streaming gehigarria',
@@ -331,8 +331,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Perfil',
       // Project: Aparador
-      'proj.aparador.desc': '<strong>Aparador</strong> é unha plataforma web pensada para que os <strong>fotógrafos</strong> poidan compartir álbums cos seus clientes mediante <strong>códigos de acceso</strong>. Os clientes poden navegar con comodidade, ver as fotos en galería e descargalas na súa resolución orixinal.',
-      'proj.aparador.note': 'Inclúe donativos opcionais vía Stripe, un panel para xestionar álbums e subidas de fotos, e unha arquitectura lixeira para manter os custos baixos. Aínda non é público: chegará <strong>proximamente</strong>.',
+      'proj.aparador.desc': '<strong>Aparador</strong> é unha plataforma web pensada para que os <strong>fotógrafos</strong> poidan compartir álbums co seu <strong>público</strong> mediante <strong>códigos de acceso</strong>. O público pode navegar con comodidade, ver as fotos en galería e descargalas na súa resolución orixinal.',
+      'proj.aparador.note': 'Inclúe donativos opcionais vía Stripe, un panel para xestionar álbums e subidas de fotos, e unha arquitectura lixeira para manter os custos baixos.',
       'proj.aparador.btn': 'Proximamente…',
       // Project: Stremio
       'fc.stremio.label': 'Complemento de streaming',
