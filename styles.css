@@ -1656,6 +1656,10 @@ img {
   background: linear-gradient(135deg, #f5f0ea 0%, #ece5db 50%, #e8f0f5 100%);
 }
 
+.sidebar-share {
+  background: linear-gradient(135deg, #ece8f5 0%, #e8eef8 50%, #ece5db 100%);
+}
+
 .sidebar-icon {
   font-size: 1.6rem;
   display: block;
@@ -1710,6 +1714,31 @@ img {
   padding: 12px 24px !important;
   font-size: 0.9rem !important;
   white-space: nowrap;
+}
+
+.share-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.share-native,
+.share-copy {
+  width: 100%;
+}
+
+.share-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.share-link {
+  text-align: center;
+}
+
+.share-native.hidden {
+  display: none;
 }
 
 /* Form */
@@ -1854,6 +1883,10 @@ img {
 
   .about-grid,
   .contact-unified {
+    grid-template-columns: 1fr;
+  }
+
+  .share-grid {
     grid-template-columns: 1fr;
   }
 

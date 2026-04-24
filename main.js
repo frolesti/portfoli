@@ -254,6 +254,15 @@ document.addEventListener('DOMContentLoaded', () => {
       'newsletter.btn': 'Harpidetu',
       'newsletter.name.ph': 'Zure izena',
       'newsletter.email.ph': 'kaixo@adibidea.eus',
+      // Share
+      'share.title': 'Partekatu orri hau',
+      'share.desc.short': 'Proiektu hauek norbaiti lagun diezaioketela uste baduzu, zabaldu mesedez.',
+      'share.native': 'Partekatu mugikorretik',
+      'share.linkedin': 'LinkedIn',
+      'share.x': 'X',
+      'share.whatsapp': 'WhatsApp',
+      'share.telegram': 'Telegram',
+      'share.copy': 'Esteka kopiatu',
       // About
       'about.title': 'Helburudun softwarea',
       'about.p1': 'Uste dut teknologiak <strong>pertsonen bizitza hobetzeko</strong> balio behar duela. Horregatik nire denbora benetako arazoak konpontzen dituzten tresnak sortzen ematen dut — batez ere baztertutako edo ahulak diren komunitateei eragiten dietenak.',
@@ -361,6 +370,15 @@ document.addEventListener('DOMContentLoaded', () => {
       'newsletter.btn': 'Subscríbeme',
       'newsletter.name.ph': 'O teu nome',
       'newsletter.email.ph': 'ola@exemplo.gal',
+      // Share
+      'share.title': 'Comparte esta páxina',
+      'share.desc.short': 'Se cres que estes proxectos poden axudar a alguén, difúndeos.',
+      'share.native': 'Compartir dende o móbil',
+      'share.linkedin': 'LinkedIn',
+      'share.x': 'X',
+      'share.whatsapp': 'WhatsApp',
+      'share.telegram': 'Telegram',
+      'share.copy': 'Copiar ligazón',
       // About
       'about.title': 'Software con propósito',
       'about.p1': 'Creo que a tecnoloxía debe servir para <strong>mellorar a vida das persoas</strong>. Por iso dedico o meu tempo a crear ferramentas que resolvan problemas reais — especialmente aqueles que afectan a comunidades desatendidas ou vulnerables.',
@@ -479,6 +497,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function trackGoatEvent(path, title) {
+    if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
+    window.goatcounter.count({ path, title, event: true });
+  }
+
+  function buildLinkEventName(anchor) {
+    const href = anchor.getAttribute('href') || '';
+    if (!href || href.startsWith('javascript:')) return null;
+
+    if (href.startsWith('#')) {
+      const anchorId = href.replace(/^#/, '').replace(/[^a-zA-Z0-9-_]/g, '') || 'top';
+      return `link-ancla-${anchorId}`;
+    }
+
+    try {
+      const url = new URL(anchor.href, window.location.origin);
+
+      if (url.origin === window.location.origin) {
+        const internalPath = (url.pathname === '/' ? 'home' : url.pathname.replace(/^\//, '').replace(/\//g, '-')) || 'home';
+        return `link-intern-${internalPath}`;
+      }
+
+      const host = url.hostname.replace(/^www\./, '').replace(/\./g, '-');
+      const pathPart = (url.pathname === '/' ? 'home' : url.pathname.replace(/^\//, '').replace(/\//g, '-')) || 'home';
+      return `link-sortida-${host}-${pathPart}`;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href]');
+    if (!anchor) return;
+    if (anchor.dataset.goatcounterClick) return;
+
+    const eventPath = buildLinkEventName(anchor);
+    if (!eventPath) return;
+
+    trackGoatEvent(eventPath, `Click: ${anchor.textContent.trim() || anchor.href}`);
+  });
+
+  // ---------- SHARE ACTIONS ----------
+  const shareTitle = 'frolesti — Desenvolupament de Software Social';
+  const shareText = 'Projectes de software amb vocació social. Fes-hi una ullada:';
+  const shareUrl = window.location.origin + window.location.pathname;
+
+  const shareActions = document.getElementById('shareActions');
+  const nativeShareBtn = document.getElementById('nativeShareBtn');
+  const copyShareLinkBtn = document.getElementById('copyShareLinkBtn');
+
+  if (shareActions) {
+    const shareLinks = shareActions.querySelectorAll('.share-link[data-share-platform]');
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedText = encodeURIComponent(`${shareText} ${shareUrl}`);
+    const encodedTitle = encodeURIComponent(shareTitle);
+
+    shareLinks.forEach((link) => {
+      const platform = link.dataset.sharePlatform;
+      let href = '#';
+
+      if (platform === 'linkedin') href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (platform === 'x') href = `https://x.com/intent/tweet?text=${encodedText}`;
+      if (platform === 'whatsapp') href = `https://wa.me/?text=${encodedText}`;
+      if (platform === 'telegram') href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
+
+      link.href = href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    });
+  }
+
+  if (nativeShareBtn) {
+    if (navigator.share) {
+      nativeShareBtn.addEventListener('click', async () => {
+        try {
+          await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+          trackGoatEvent('share-native', 'Native share');
+        } catch (_) {
+          // User canceled or destination unavailable.
+        }
+      });
+    } else {
+      nativeShareBtn.classList.add('hidden');
+    }
+  }
+
+  if (copyShareLinkBtn) {
+    copyShareLinkBtn.addEventListener('click', async () => {
+      const originalText = copyShareLinkBtn.textContent;
+
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        copyShareLinkBtn.textContent = 'Link copiat ✓';
+        copyShareLinkBtn.disabled = true;
+        trackGoatEvent('share-copy-link', 'Copy share link');
+      } catch (_) {
+        copyShareLinkBtn.textContent = 'No s\'ha pogut copiar';
+      }
+
+      setTimeout(() => {
+        copyShareLinkBtn.textContent = originalText;
+        copyShareLinkBtn.disabled = false;
+      }, 2000);
+    });
+  }
+
   // ---------- NEWSLETTER FORM (Netlify Function → GitHub Gist) ----------
   const nlForm = document.getElementById('newsletterForm');
   if (nlForm) {
@@ -490,6 +614,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = nlForm.querySelector('#nl-name').value.trim();
       const email = nlForm.querySelector('#nl-email').value.trim();
       if (!name || !email) return;
+
+      trackGoatEvent('newsletter-submit-attempt', 'Newsletter submit attempt');
 
       btn.textContent = 'Enviant...';
       btn.disabled = true;
@@ -507,20 +633,24 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.textContent = 'Subscrit correctament ✓';
           btn.style.background = 'var(--accent-2)';
           btn.style.color = '#fff';
+          trackGoatEvent('newsletter-subscribe-success', 'Newsletter subscribed');
           nlForm.reset();
         } else if (data.error === 'already_subscribed') {
           btn.textContent = 'Ja estàs subscrit!';
           btn.style.background = 'var(--accent-2)';
           btn.style.color = '#fff';
+          trackGoatEvent('newsletter-subscribe-duplicate', 'Newsletter duplicate');
         } else {
           btn.textContent = 'Error. Torna-ho a provar.';
           btn.style.background = '#c0392b';
           btn.style.color = '#fff';
+          trackGoatEvent('newsletter-subscribe-error', 'Newsletter subscribe error');
         }
       } catch (err) {
         btn.textContent = 'Error de connexió.';
         btn.style.background = '#c0392b';
         btn.style.color = '#fff';
+        trackGoatEvent('newsletter-subscribe-network-error', 'Newsletter network error');
       }
 
       btn.disabled = false;
