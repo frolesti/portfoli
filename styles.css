@@ -700,6 +700,10 @@ img {
 }
 
 .ext-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
@@ -712,22 +716,25 @@ img {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.85rem;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .browser-icon-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex: 0 0 auto;
 }
 
 .browser-link {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.12);
   background: #fff;
@@ -784,7 +791,15 @@ a.browser-link:hover {
 }
 
 .browser-link.browser-firefox {
-  background: radial-gradient(circle at 30% 30%, #ffce73 10%, #ff8f3f 38%, #e66035 58%, #aa3b95 100%);
+  background: radial-gradient(circle at 70% 30%, #ffe2a3 0 24%, #ffac4b 25% 46%, #f56a31 47% 68%, #7a3fb6 69% 100%);
+}
+
+.browser-link.browser-firefox::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 42%, #ffd483 0 30%, #ff8f3f 31% 58%, #c63f8c 59% 100%);
 }
 
 .browser-link.browser-edge {
@@ -809,6 +824,22 @@ a.browser-link:hover {
 .ext-icon-eu {
   transform: scale(1.35);
   margin: 0 4px;
+}
+
+@media (max-width: 560px) {
+  .ext-row {
+    gap: 8px;
+  }
+
+  .ext-links-label {
+    font-size: 0.82rem;
+    gap: 6px;
+  }
+
+  .browser-link {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .project-note {
