@@ -693,14 +693,14 @@ img {
 
 /* Extension links grid */
 .ext-links-grid {
-  margin-top: 20px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
 .ext-row {
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
@@ -712,10 +712,87 @@ img {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.85rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.browser-icon-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.browser-link {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.browser-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(2px);
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  white-space: nowrap;
+  background: var(--bg);
+  color: var(--text-light);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 10;
+}
+
+.browser-link:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+a.browser-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,0.2);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.browser-link.is-disabled {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.browser-link.browser-chrome {
+  background: conic-gradient(#ea4335 0deg 120deg, #fbbc05 120deg 240deg, #34a853 240deg 360deg);
+}
+
+.browser-link.browser-chrome::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: #4285f4;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.browser-link.browser-firefox {
+  background: radial-gradient(circle at 30% 30%, #ffce73 10%, #ff8f3f 38%, #e66035 58%, #aa3b95 100%);
+}
+
+.browser-link.browser-edge {
+  background: radial-gradient(circle at 62% 24%, #61d6ea 12%, #30b9dd 35%, #16a27a 65%, #0078d4 100%);
+}
+
+.browser-link.browser-safari {
+  background: radial-gradient(circle at 35% 30%, #8dd5ff 10%, #31a6ff 60%, #0078d4 100%);
 }
 
 .ext-icon {
