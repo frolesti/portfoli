@@ -626,6 +626,10 @@ img {
   margin-bottom: 100px;
 }
 
+.projects .project-detail:last-of-type {
+  margin-bottom: 24px;
+}
+
 .project-detail.reverse {
   direction: rtl;
 }
