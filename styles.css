@@ -1656,9 +1656,6 @@ img {
   background: linear-gradient(135deg, #f5f0ea 0%, #ece5db 50%, #e8f0f5 100%);
 }
 
-.sidebar-share {
-  background: linear-gradient(135deg, #ece8f5 0%, #e8eef8 50%, #ece5db 100%);
-}
 
 .sidebar-icon {
   font-size: 1.6rem;
@@ -1714,31 +1711,6 @@ img {
   padding: 12px 24px !important;
   font-size: 0.9rem !important;
   white-space: nowrap;
-}
-
-.share-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.share-native,
-.share-copy {
-  width: 100%;
-}
-
-.share-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.share-link {
-  text-align: center;
-}
-
-.share-native.hidden {
-  display: none;
 }
 
 /* Form */
@@ -1854,6 +1826,69 @@ img {
   color: var(--accent-1);
 }
 
+.share-btn-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.footer-share-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.footer-share-btn:hover {
+  color: var(--accent-1);
+}
+
+.share-popover {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 200;
+}
+
+.share-popover[hidden] {
+  display: none;
+}
+
+.share-popover-item {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 10px 16px;
+  color: var(--text);
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.share-popover-item:hover {
+  background: rgba(0,0,0,0.04);
+  color: var(--accent-1);
+}
+
+.share-popover-item + .share-popover-item {
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
 .footer-privacy {
   margin-top: 12px;
   font-size: 0.75rem;
@@ -1883,10 +1918,6 @@ img {
 
   .about-grid,
   .contact-unified {
-    grid-template-columns: 1fr;
-  }
-
-  .share-grid {
     grid-template-columns: 1fr;
   }
 

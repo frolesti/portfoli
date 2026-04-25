@@ -538,69 +538,64 @@ document.addEventListener('DOMContentLoaded', () => {
     trackGoatEvent(eventPath, `Click: ${anchor.textContent.trim() || anchor.href}`);
   });
 
-  // ---------- SHARE ACTIONS ----------
+  // ---------- SHARE BUTTON ----------
   const shareTitle = 'frolesti — Desenvolupament de Software Social';
   const shareText = 'Projectes de software amb vocació social. Fes-hi una ullada:';
   const shareUrl = window.location.origin + window.location.pathname;
 
-  const shareActions = document.getElementById('shareActions');
-  const nativeShareBtn = document.getElementById('nativeShareBtn');
-  const copyShareLinkBtn = document.getElementById('copyShareLinkBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const sharePopover = document.getElementById('sharePopover');
+  const popoverCopyBtn = document.getElementById('popoverCopyBtn');
 
-  if (shareActions) {
-    const shareLinks = shareActions.querySelectorAll('.share-link[data-share-platform]');
+  if (shareBtn && sharePopover) {
     const encodedUrl = encodeURIComponent(shareUrl);
     const encodedText = encodeURIComponent(`${shareText} ${shareUrl}`);
     const encodedTitle = encodeURIComponent(shareTitle);
 
-    shareLinks.forEach((link) => {
-      const platform = link.dataset.sharePlatform;
-      let href = '#';
-
-      if (platform === 'linkedin') href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-      if (platform === 'x') href = `https://x.com/intent/tweet?text=${encodedText}`;
-      if (platform === 'whatsapp') href = `https://wa.me/?text=${encodedText}`;
-      if (platform === 'telegram') href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
-
-      link.href = href;
+    sharePopover.querySelectorAll('[data-share-platform]').forEach((link) => {
+      const p = link.dataset.sharePlatform;
+      if (p === 'linkedin') link.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (p === 'x') link.href = `https://x.com/intent/tweet?text=${encodedText}`;
+      if (p === 'whatsapp') link.href = `https://wa.me/?text=${encodedText}`;
+      if (p === 'telegram') link.href = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
     });
-  }
 
-  if (nativeShareBtn) {
-    if (navigator.share) {
-      nativeShareBtn.addEventListener('click', async () => {
+    shareBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+
+      if (navigator.share) {
         try {
           await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
           trackGoatEvent('share-native', 'Native share');
-        } catch (_) {
-          // User canceled or destination unavailable.
-        }
-      });
-    } else {
-      nativeShareBtn.classList.add('hidden');
-    }
-  }
-
-  if (copyShareLinkBtn) {
-    copyShareLinkBtn.addEventListener('click', async () => {
-      const originalText = copyShareLinkBtn.textContent;
-
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        copyShareLinkBtn.textContent = 'Link copiat ✓';
-        copyShareLinkBtn.disabled = true;
-        trackGoatEvent('share-copy-link', 'Copy share link');
-      } catch (_) {
-        copyShareLinkBtn.textContent = 'No s\'ha pogut copiar';
+        } catch (_) { /* canceled */ }
+        return;
       }
 
-      setTimeout(() => {
-        copyShareLinkBtn.textContent = originalText;
-        copyShareLinkBtn.disabled = false;
-      }, 2000);
+      const isOpen = !sharePopover.hidden;
+      sharePopover.hidden = isOpen;
     });
+
+    document.addEventListener('click', (e) => {
+      if (!sharePopover.hidden && !shareBtn.parentElement.contains(e.target)) {
+        sharePopover.hidden = true;
+      }
+    });
+
+    if (popoverCopyBtn) {
+      popoverCopyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          popoverCopyBtn.textContent = 'Copiat ✓';
+          trackGoatEvent('share-copy-link', 'Copy share link');
+        } catch (_) {
+          popoverCopyBtn.textContent = 'Error';
+        }
+        setTimeout(() => { popoverCopyBtn.textContent = 'Copiar enllaç'; }, 2000);
+        sharePopover.hidden = true;
+      });
+    }
   }
 
   // ---------- NEWSLETTER FORM (Netlify Function → GitHub Gist) ----------
