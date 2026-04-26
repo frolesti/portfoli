@@ -691,12 +691,19 @@ img {
   flex-wrap: wrap;
 }
 
-/* Extension links grid */
+/* Extension links grid — placed inside project-visual */
+.pv-extensions {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
 .ext-links-grid {
-  margin-top: 12px;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
+  width: 100%;
 }
 
 .ext-row {
