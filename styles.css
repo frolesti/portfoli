@@ -740,13 +740,23 @@ img {
 
 .browser-link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: #fff;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: none;
+  background: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.browser-link img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
 }
 
 .browser-link::after {
@@ -775,46 +785,11 @@ img {
 
 a.browser-link:hover {
   transform: translateY(-2px);
-  border-color: rgba(0,0,0,0.2);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
 .browser-link.is-disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   filter: grayscale(1);
-}
-
-.browser-link.browser-chrome {
-  background: conic-gradient(#ea4335 0deg 120deg, #fbbc05 120deg 240deg, #34a853 240deg 360deg);
-}
-
-.browser-link.browser-chrome::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background: #4285f4;
-  box-shadow: inset 0 0 0 2px #fff;
-}
-
-.browser-link.browser-firefox {
-  background: radial-gradient(circle at 70% 30%, #ffe2a3 0 24%, #ffac4b 25% 46%, #f56a31 47% 68%, #7a3fb6 69% 100%);
-}
-
-.browser-link.browser-firefox::before {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 42% 42%, #ffd483 0 30%, #ff8f3f 31% 58%, #c63f8c 59% 100%);
-}
-
-.browser-link.browser-edge {
-  background: radial-gradient(circle at 62% 24%, #61d6ea 12%, #30b9dd 35%, #16a27a 65%, #0078d4 100%);
-}
-
-.browser-link.browser-safari {
-  background: radial-gradient(circle at 35% 30%, #8dd5ff 10%, #31a6ff 60%, #0078d4 100%);
 }
 
 .ext-icon {
