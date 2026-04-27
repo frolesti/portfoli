@@ -3,7 +3,6 @@ node_modules/
 
 # Newsletter private data
 newsletter/scripts/subscribers.json
-newsletter/output/
 
 # Environment
 .env

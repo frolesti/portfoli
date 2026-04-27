@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>frolesti — Abril 2026</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Georgia,'Times New Roman',Times,serif;background:#f2f0eb;color:#1a1a1a;line-height:1.5;-webkit-font-smoothing:antialiased}
+    .container{max-width:660px;margin:0 auto;background:#fff;border:1px solid #d4d0c8}
+
+    /* MASTHEAD */
+    .masthead{padding:36px 40px 24px;text-align:center;border-bottom:1px solid #e0ddd5}
+    .masthead-rule-top{display:block;height:4px;background:#1a1a1a;margin-bottom:20px}
+    .masthead-eyebrow{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:8px}
+    .masthead-title{font-family:Georgia,serif;font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1}
+    .masthead-rule-mid{display:block;width:100%;height:1px;background:#1a1a1a;margin:14px 0}
+    .masthead-meta{display:table;width:100%}
+    .masthead-meta-left,.masthead-meta-right{display:table-cell;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;vertical-align:middle}
+    .masthead-meta-left{text-align:left}
+    .masthead-meta-right{text-align:right}
+    .masthead-rule-bottom{display:block;height:4px;background:#1a1a1a;margin-top:14px}
+
+    /* NAV */
+    .nav-bar{border-bottom:1px solid #e0ddd5;padding:10px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#888}
+    .nav-bar a{color:#666;text-decoration:none;margin:0 12px}
+    .nav-bar a:hover{color:#c75530}
+    .nav-sep{color:#ccc}
+
+    .content{padding:0}
+
+    /* LEAD */
+    .lead{padding:32px 40px;border-bottom:1px solid #e0ddd5}
+    .lead .salutation{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;color:#999;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+    .lead p{font-size:16px;line-height:1.7;color:#444}
+
+    /* HEADLINE BANNER */
+    .headline-banner{padding:28px 40px;border-bottom:1px solid #e0ddd5;text-align:center;background:#faf9f6}
+    .headline-banner h2{font-family:Georgia,serif;font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-.5px;color:#1a1a1a;margin-bottom:6px}
+    .headline-banner .subtitle{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#666;line-height:1.4}
+
+    /* FEATURED */
+    .featured-article{padding:32px 40px;border-bottom:1px solid #e0ddd5}
+    .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c75530;font-weight:600;margin-bottom:10px}
+    .featured-article h3{font-family:Georgia,serif;font-size:22px;font-weight:700;line-height:1.2;margin-bottom:14px;color:#1a1a1a}
+    .featured-article p{font-size:15px;line-height:1.7;color:#444;margin-bottom:14px}
+    .featured-article a{color:#c75530;text-decoration:none;border-bottom:1px solid #c75530}
+    .featured-article a:hover{color:#a5431f}
+    .featured-cta{display:inline-block;margin-top:8px;padding:10px 28px;background:#1a1a1a;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none!important;border:none!important}
+
+    /* STAT ROW */
+    .stats-row{display:table;width:100%;border-bottom:1px solid #e0ddd5}
+    .stat-cell{display:table-cell;width:33.33%;padding:20px 10px;text-align:center;vertical-align:top}
+    .stat-cell+.stat-cell{border-left:1px solid #e0ddd5}
+    .stat-number{font-family:Georgia,serif;font-size:28px;font-weight:700;color:#c75530;line-height:1}
+    .stat-label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:6px;line-height:1.3}
+
+    /* SECTION DIVIDER */
+    .section-label{padding:12px 40px;border-bottom:1px solid #e0ddd5;background:#faf9f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#999;font-weight:600}
+
+    /* ARTICLE BLOCK */
+    .article-block{padding:28px 40px;border-bottom:1px solid #e0ddd5}
+    .article-block h3{font-family:Georgia,serif;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:12px;color:#1a1a1a}
+    .article-block p{font-size:14px;line-height:1.7;color:#555;margin-bottom:10px}
+    .article-block a{color:#c75530;text-decoration:none;border-bottom:1px solid #c75530}
+
+    /* TWO COLUMN */
+    .columns{display:table;width:100%;border-bottom:1px solid #e0ddd5}
+    .column{display:table-cell;width:50%;vertical-align:top;padding:24px 28px}
+    .column+.column{border-left:1px solid #e0ddd5}
+    .column .kicker{margin-bottom:6px}
+    .column h3{font-family:Georgia,serif;font-size:17px;font-weight:700;line-height:1.2;margin-bottom:10px;color:#1a1a1a}
+    .column p{font-size:13px;line-height:1.6;color:#555;margin-bottom:8px}
+    .column a{color:#c75530;text-decoration:none;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.5px}
+
+    /* INSET BOX */
+    .inset-box{margin:20px 40px;padding:22px 28px;border:2px solid #1a1a1a;background:#faf9f6}
+    .inset-box .kicker{margin-bottom:6px}
+    .inset-box h3{font-family:Georgia,serif;font-size:18px;font-weight:700;margin-bottom:8px;color:#1a1a1a}
+    .inset-box p{font-size:14px;line-height:1.65;color:#555}
+
+    /* PULLQUOTE */
+    .pullquote{padding:36px 50px;border-bottom:1px solid #e0ddd5;text-align:center}
+    .pullquote-mark{font-family:Georgia,serif;font-size:48px;line-height:1;color:#d4d0c8;margin-bottom:4px}
+    .pullquote p{font-family:Georgia,serif;font-size:21px;font-style:italic;line-height:1.45;color:#333;max-width:480px;margin:0 auto}
+    .pullquote .attribution{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-style:normal;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:12px}
+
+    /* CTA */
+    .cta-section{padding:32px 40px;text-align:center;border-bottom:1px solid #e0ddd5;background:#1a1a1a;color:#fff}
+    .cta-section p{font-size:15px;color:#bbb;margin-bottom:20px;line-height:1.6}
+    .cta-section strong{color:#fff}
+    .cta-btn{display:inline-block;padding:13px 36px;background:#c75530;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;text-decoration:none;border:none}
+
+    /* FOOTER */
+    .email-footer{padding:28px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;border-top:4px double #1a1a1a}
+    .footer-logo{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#1a1a1a;letter-spacing:-.3px}
+    .footer-tagline{font-size:11px;color:#999;margin-top:4px;letter-spacing:.5px}
+    .email-footer p{font-size:11px;color:#999;margin-top:6px;line-height:1.6}
+    .email-footer a{color:#c75530;text-decoration:none}
+    .email-footer .unsub{font-size:10px;color:#bbb;margin-top:14px}
+    .email-footer .unsub a{color:#bbb;text-decoration:underline}
+
+    @media only screen and (max-width:600px){
+      .masthead{padding:24px 20px 18px}.masthead-title{font-size:34px}
+      .lead,.featured-article,.article-block,.pullquote,.cta-section{padding-left:20px;padding-right:20px}
+      .columns{display:block}.column{display:block;width:100%;padding:20px}.column+.column{border-left:none;border-top:1px solid #e0ddd5}
+      .headline-banner{padding:22px 20px}.headline-banner h2{font-size:26px}
+      .inset-box{margin:16px 20px}
+      .stats-row{display:block}.stat-cell{display:block;width:100%;padding:14px 20px;text-align:left;border-left:none!important;border-bottom:1px solid #e0ddd5}.stat-cell:last-child{border-bottom:none}.stat-number{display:inline;font-size:22px;margin-right:6px}.stat-label{display:inline;font-size:11px}
+      .email-footer{padding:20px}.nav-bar{padding:10px 20px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ═══════ MASTHEAD ═══════ -->
+    <div class="masthead">
+      <span class="masthead-rule-top"></span>
+      <div class="masthead-eyebrow">Butlletí mensual</div>
+      <div class="masthead-title">frolesti</div>
+      <span class="masthead-rule-mid"></span>
+      <div class="masthead-meta">
+        <span class="masthead-meta-left">Abril 2026 · Núm. 04</span>
+        <span class="masthead-meta-right">Software amb vocació social</span>
+      </div>
+      <span class="masthead-rule-bottom"></span>
+    </div>
+
+    <div class="nav-bar">
+      <a href="https://frolesti-saas.netlify.app" target="_blank" rel="noopener">Portafolis</a>
+      <span class="nav-sep">/</span>
+      <a href="https://frolesti.aixeta.cat/ca" target="_blank" rel="noopener">Aixeta</a>
+      <span class="nav-sep">/</span>
+      <a href="https://github.com/frolesti" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="content">
+
+      <!-- ═══════ INTRO ═══════ -->
+      <div class="lead">
+        <p class="salutation">Hola, {{NAME}}</p>
+        <p>Gràcies per formar part de la comunitat que fa possible mantenir aquests projectes en marxa. Aquest mes porto una notícia important: <strong>Alerta Desnona</strong> ja és accessible al públic en versió beta. A dins trobaràs tots els detalls, a més de les novetats dels altres projectes.</p>
+      </div>
+
+      <!-- ═══════ HEADLINE ═══════ -->
+      <div class="headline-banner">
+        <h2>Alerta Desnona ja és aquí</h2>
+        <div class="subtitle">Primera versió beta pública de l'eina de justícia social contra els desnonaments</div>
+      </div>
+
+      <!-- ═══════ FEATURED ARTICLE ═══════ -->
+      <div class="featured-article">
+        <div class="kicker">Llançament · Versió Beta</div>
+        <h3>Què és Alerta Desnona?</h3>
+        <p>Alerta Desnona és una aplicació web que <strong>monitoritza en temps real les subhastes i desnonaments</strong> publicats al Butlletí Oficial de l'Estat (BOE) i els projecta sobre un mapa interactiu de la Península Ibèrica. L'objectiu és donar eines a la ciutadania, les plataformes d'habitatge i les entitats socials per organitzar-se i actuar davant d'aquestes situacions.</p>
+        <p>El projecte neix d'una realitat que afecta milers de famílies cada any. Segons dades del Consell General del Poder Judicial, l'any 2024 es van executar més de 26.000 llançaments a tot l'Estat. Alerta Desnona vol convertir dades públiques opaques en informació accessible i accionable.</p>
+
+        <h3>Què inclou la beta?</h3>
+        <p><strong>Mapa interactiu</strong> — Visualitza desnonaments i subhastes per ubicació. Cada punt conté informació detallada: data, tipus de procediment, adreça i estat actual. Pots navegar, fer zoom i filtrar per àrea geogràfica.</p>
+        <p><strong>Sistema d'alertes</strong> — Defineix les zones que t'interessen i rep notificacions quan es publiquen nous desnonaments a la teva àrea. Disponible via notificacions push i correu electrònic.</p>
+        <p><strong>Filtres avançats</strong> — Cerca per tipus d'alerta (subhasta, llançament judicial, execució hipotecària), interval de dates, província o comunitat autònoma.</p>
+        <p><strong>Dades obertes</strong> — Tota la informació prové de fonts públiques oficials. L'aplicació processa i estructura automàticament les dades del BOE perquè siguin comprensibles.</p>
+
+        <h3>D'on surten les dades?</h3>
+        <p>Les xifres sobre desnonaments provenen d'informes oficials publicats pel <strong>Consell General del Poder Judicial (CGPJ)</strong>. En concret, l'informe <em>«Efectos de la crisis económica en los órganos judiciales»</em> recull trimestralment les dades de llançaments i execucions hipotecàries a tot l'Estat. El BOE proporciona les subhastes i edictes judicials en temps real.</p>
+        <p style="font-size:13px;color:#666;line-height:1.55;margin-top:12px;">
+          <strong>Fonts i referències:</strong><br>
+          — <a href="https://www.poderjudicial.es/cgpj/es/Temas/Estadistica-Judicial/Estadistica-por-temas/Datos-penales--civiles-y-laborales/Civil-y-laboral/Efectos-de-la-crisis-en-los-organos-judiciales/" target="_blank" rel="noopener">CGPJ — Efectos de la crisis en los órganos judiciales</a><br>
+          — <a href="https://www.boe.es" target="_blank" rel="noopener">Butlletí Oficial de l'Estat (BOE)</a><br>
+          — <a href="https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176993&menu=ultiDatos&idp=1254735576757" target="_blank" rel="noopener">INE — Estadística d'execucions hipotecàries</a>
+        </p>
+
+        <h3>Pròximament: versió mòbil</h3>
+        <p>Estem treballant en una <strong>versió mòbil nativa</strong> d'Alerta Desnona que permetrà rebre notificacions push directament al telèfon i consultar el mapa de desnonaments sense necessitat de navegador. La versió web actual ja és responsive, però l'app mòbil oferirà una experiència més àgil i integrada. Si vols ser dels primers a provar-la, estigues atent als pròxims butlletins.</p>
+
+        <p style="margin-top:18px;margin-bottom:0;">
+          <a href="https://alerta-desnona-production.up.railway.app/" class="featured-cta" target="_blank" rel="noopener" style="color:#fff!important;border:none!important;">Accedir a la beta</a>
+        </p>
+      </div>
+
+      <!-- ═══════ STATS ═══════ -->
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="stat-number">+26.000</div>
+          <div class="stat-label">Llançaments judicials l'any 2024 (CGPJ)</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Dades de fonts públiques oficials</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">Diari</div>
+          <div class="stat-label">Actualització automàtica del BOE</div>
+        </div>
+      </div>
+
+      <!-- ═══════ FEEDBACK BOX ═══════ -->
+      <div class="inset-box">
+        <div class="kicker">Participa</div>
+        <h3>La teva opinió importa</h3>
+        <p>Estem en fase beta i necessitem la teva ajuda per millorar l'eina. Si trobes errors, tens suggeriments o vols proposar funcionalitats noves, escriu-nos directament responent a aquest correu o a través del formulari de contacte del portafolis. Cada aportació compta per fer d'Alerta Desnona una eina més útil.</p>
+      </div>
+
+      <!-- ═══════ SECTION: MÉS PROJECTES ═══════ -->
+      <div class="section-label">Més projectes</div>
+
+      <!-- ═══════ PORTAFOLI ═══════ -->
+      <div class="article-block">
+        <div class="kicker">Actualització</div>
+        <h3>Portafolis personal — Nova versió amb butlletí i tres projectes nous</h3>
+        <p>El portafolis web ha rebut una actualització important aquest mes. S'han afegit <strong>tres nous projectes</strong> a la pàgina: Stremio en Català, Alerta Desnona i Open Data Capture, cadascun amb el seu mockup interactiu i descripció detallada.</p>
+        <p>A més, s'ha integrat el sistema de <strong>butlletí mensual</strong> directament al portafolis — el que estàs llegint ara mateix. I tot el contingut de la pàgina ja està disponible en <strong>euskera i gallec</strong>, a més del català original.</p>
+      </div>
+
+      <!-- ═══════ STREMIO EN CATALÀ ═══════ -->
+      <div class="article-block">
+        <div class="kicker">Nou projecte · Streaming</div>
+        <h3>Stremio en Català — Contingut audiovisual en la nostra llengua</h3>
+        <p><strong>Stremio en Català</strong> és un addon per a la plataforma de streaming Stremio que permet cercar i veure pel·lícules i sèries amb subtítols i àudio en català. Agrega el catàleg de plataformes com <strong>3Cat, Filmin, Netflix, Disney+ i Max</strong>, i ho reuneix tot en una sola interfície.</p>
+        <p>L'addon funciona sense necessitat de comptes addicionals: instal·les Stremio, afegeixes l'addon i ja tens accés a tot el contingut en català disponible a les principals plataformes. S'actualitza automàticament amb les últimes novetats de cada servei.</p>
+        <p>Aquest mes s'han resolt diversos problemes d'estabilitat que afectaven la càrrega del catàleg en certs dispositius, i s'ha ampliat el catàleg amb les últimes incorporacions de totes les plataformes integrades.</p>
+        <p style="margin-top:14px;">
+          <a href="https://stremio-en-catala.vercel.app/" target="_blank" rel="noopener" style="color:#c75530;text-decoration:none;border-bottom:1px solid #c75530;">Instal·lar addon →</a>
+        </p>
+      </div>
+
+      <!-- ═══════ OPEN DATA CAPTURE ═══════ -->
+      <div class="article-block">
+        <div class="kicker">Nou projecte · Salut</div>
+        <h3>Open Data Capture — Recollida de dades clíniques àgil i oberta</h3>
+        <p><strong>Open Data Capture</strong> és una plataforma de codi obert per a la recollida i gestió de dades clíniques i de recerca en salut. Permetrà a investigadors, clíniques i institucions sanitàries crear formularis personalitzats, recollir dades de pacients de manera estructurada i exportar-les per a anàlisi.</p>
+        <p>El projecte es basa en la necessitat de disposar d'eines lliures i flexibles per a la gestió de dades sanitàries, sense dependre de plataformes propietàries costoses. Estem treballant en la integració amb estàndards internacionals de dades de salut com <strong>FHIR</strong> i <strong>REDCap</strong> per facilitar la interoperabilitat.</p>
+        <p>Actualment el projecte es troba en fase de desenvolupament actiu. Si treballes en l'àmbit de la recerca clínica o la salut pública i t'interessa participar en la beta, posa't en contacte amb nosaltres.</p>
+      </div>
+
+      <!-- ═══════ HIRE / PROPOSA PROJECTE ═══════ -->
+      <div class="inset-box" style="background:#1a1a1a;color:#f2f0eb;border-color:#333;">
+        <div class="kicker" style="color:#c75530;">Encàrrecs i col·laboracions</div>
+        <h3 style="color:#fff;">Tens una idea? Parlem-ne.</h3>
+        <p style="color:#ccc;">Si tens un projecte SaaS que necessites desenvolupar, una eina interna per al teu equip, o una idea de producte digital amb vocació social, pots proposar-m'ho directament. Treballo amb tecnologies web modernes (React, Node.js, Python, bases de dades, APIs) i tinc experiència en projectes que van des d'aplicacions de dades fins a extensions de navegador.</p>
+        <p style="color:#ccc;margin-top:10px;">No cal tenir-ho tot definit — puc ajudar-te des de la conceptualització fins al desplegament. Respon a aquest correu o escriu-me a través del <a href="https://frolesti-saas.netlify.app/#contacte" target="_blank" rel="noopener" style="color:#c75530;border-bottom:1px solid #c75530;">formulari de contacte del portafolis</a>.</p>
+      </div>
+
+      <!-- ═══════ PULLQUOTE ═══════ -->
+      <div class="pullquote">
+        <div class="pullquote-mark">«</div>
+        <p>La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.</p>
+        <div class="attribution">— frolesti</div>
+      </div>
+
+      <!-- ═══════ CTA ═══════ -->
+      <div class="cta-section">
+        <p>Tots aquests projectes es mantenen gràcies al suport de persones com tu.<br>Si vols ajudar, comparteix el meu portafolis amb la teva xarxa. <strong>Cada difusió compta.</strong></p>
+        <a href="https://frolesti-saas.netlify.app" class="cta-btn" target="_blank" rel="noopener noreferrer">Veure el portafolis</a>
+      </div>
+
+    </div>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <div class="email-footer">
+      <div class="footer-logo">frolesti</div>
+      <div class="footer-tagline">Desenvolupament de software amb vocació social</div>
+      <p class="unsub">Si no vols rebre més correus, respon amb "baixa" i et traurem de la llista.</p>
+      <p style="font-size:10px;color:#ccc;margin-top:16px;">© 2026 frolesti</p>
+    </div>
+
+  </div>
+</body>
+</html>
