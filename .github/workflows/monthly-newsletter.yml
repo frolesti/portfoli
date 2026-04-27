@@ -105,11 +105,20 @@ jobs:
             console.log('✅ ' + subs.length + ' subscriptors carregats');
           "
 
-      - name: Generate newsletter
+      - name: Generate newsletter (only if not already crafted)
         if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run newsletter:generate
+        run: |
+          MONTH_NAME=$(node -e "process.stdout.write(new Date().toLocaleDateString('ca-ES',{month:'long'}))")
+          YEAR=$(date +%Y)
+          FILE="newsletter/output/newsletter-${MONTH_NAME}-${YEAR}.html"
+          if [ -f "$FILE" ]; then
+            echo "✅ Ja existeix $FILE — saltant generació, s'enviarà la versió curada"
+          else
+            echo "⚙️ No existeix $FILE — generant des del template"
+            npm run newsletter:generate
+          fi
 
       - name: Send emails
         if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
