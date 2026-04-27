@@ -37,7 +37,10 @@ async function sendEmail(transporter, subscriber, htmlTemplate, subject) {
   try {
     // Personalitzar el nom del subscriptor
     const firstName = (subscriber.name || '').split(' ')[0] || 'farmaciola';
-    const personalizedHtml = htmlTemplate.replace('{{NAME}}', firstName);
+    const unsubscribeUrl = `https://frolesti-saas.netlify.app/.netlify/functions/unsubscribe?email=${encodeURIComponent(subscriber.email)}`;
+    const personalizedHtml = htmlTemplate
+      .replace('{{NAME}}', firstName)
+      .replace('{{UNSUBSCRIBE_URL}}', unsubscribeUrl);
 
     await transporter.sendMail({
       from: `"frolesti — Butlletí" <${process.env.GMAIL_USER}>`,
