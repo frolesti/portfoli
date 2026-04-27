@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Nav
       'nav.projectes': 'Proiektuak',
       'nav.sobre': 'Niri buruz',
+      'nav.testimonis': 'Testigantzak',
       'nav.contacta': 'Jarri harremanetan',
       // Hero
       'hero.tag': 'Garatzaile autonomoa · SaaS · Software soziala',
@@ -299,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Nav
       'nav.projectes': 'Proxectos',
       'nav.sobre': 'Sobre min',
+      'nav.testimonis': 'Testemuños',
       'nav.contacta': 'Contacta comigo',
       // Hero
       'hero.tag': 'Desenvolvedor autónomo · SaaS · Software social',
@@ -543,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shareText = 'Projectes de software amb vocació social. Fes-hi una ullada:';
   const shareUrl = window.location.origin + window.location.pathname;
 
+
   const shareBtn = document.getElementById('shareBtn');
   const sharePopover = document.getElementById('sharePopover');
   const popoverCopyBtn = document.getElementById('popoverCopyBtn');
@@ -596,6 +599,136 @@ document.addEventListener('DOMContentLoaded', () => {
         sharePopover.hidden = true;
       });
     }
+  }
+
+  // ---------- REVIEWS ----------
+  const reviewsList    = document.getElementById('reviewsList');
+  const reviewsLoading = document.getElementById('reviewsLoading');
+  const reviewForm     = document.getElementById('reviewForm');
+  const reviewStatus   = document.getElementById('reviewFormStatus');
+  const starBtns       = document.querySelectorAll('.star-rating .star');
+  const ratingInput    = document.getElementById('rv-rating');
+
+  function starsHtml(n) {
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+  }
+
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('ca-ES', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch { return ''; }
+  }
+
+  function renderReviews(reviews) {
+    if (!reviewsList) return;
+    reviewsList.innerHTML = '';
+    if (!reviews.length) {
+      reviewsList.innerHTML = '<p class="reviews-empty">Encara no hi ha comentaris. Sigues el primer!</p>';
+      return;
+    }
+    reviews.forEach((r) => {
+      const card = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML = `
+        <div class="review-card-header">
+          <div>
+            <p class="review-author">${r.name || 'Anònim'}</p>
+            ${r.project ? `<p class="review-project">${r.project}</p>` : ''}
+          </div>
+          <span class="review-stars" title="${r.rating} de 5">${starsHtml(r.rating)}</span>
+        </div>
+        <p class="review-message">${r.message}</p>
+        <p class="review-date">${formatDate(r.date)}</p>
+      `;
+      reviewsList.appendChild(card);
+    });
+  }
+
+  async function loadReviews() {
+    try {
+      const res = await fetch('/.netlify/functions/reviews');
+      if (!res.ok) throw new Error('network');
+      const data = await res.json();
+      if (reviewsLoading) reviewsLoading.remove();
+      renderReviews(data);
+    } catch {
+      if (reviewsLoading) reviewsLoading.textContent = 'No s\'han pogut carregar els comentaris.';
+    }
+  }
+
+  if (reviewsList) loadReviews();
+
+  // Star rating UI
+  let selectedRating = 5;
+  starBtns.forEach((btn) => {
+    btn.classList.toggle('active', parseInt(btn.dataset.value, 10) <= selectedRating);
+    btn.addEventListener('mouseover', () => {
+      const v = parseInt(btn.dataset.value, 10);
+      starBtns.forEach((b) => b.classList.toggle('hover', parseInt(b.dataset.value, 10) <= v));
+    });
+    btn.addEventListener('mouseout', () => {
+      starBtns.forEach((b) => b.classList.remove('hover'));
+    });
+    btn.addEventListener('click', () => {
+      selectedRating = parseInt(btn.dataset.value, 10);
+      if (ratingInput) ratingInput.value = selectedRating;
+      starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= selectedRating));
+    });
+  });
+
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(reviewForm);
+      const payload = {
+        name:    fd.get('name') || '',
+        project: fd.get('project') || '',
+        rating:  parseInt(fd.get('rating') || '5', 10),
+        message: fd.get('message') || ''
+      };
+
+      const submitBtn = reviewForm.querySelector('[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Publicant…';
+      if (reviewStatus) { reviewStatus.hidden = true; reviewStatus.className = 'review-form-status'; }
+
+      try {
+        const res = await fetch('/.netlify/functions/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          reviewForm.reset();
+          selectedRating = 5;
+          if (ratingInput) ratingInput.value = 5;
+          starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= 5));
+          if (reviewStatus) {
+            reviewStatus.textContent = 'Comentari publicat. Gràcies!';
+            reviewStatus.className = 'review-form-status ok';
+            reviewStatus.hidden = false;
+          }
+          trackGoatEvent('review-submit-success', 'Review submitted');
+          await loadReviews();
+        } else {
+          throw new Error(data.message || 'error');
+        }
+      } catch (err) {
+        if (reviewStatus) {
+          reviewStatus.textContent = err.message === 'El missatge és massa curt.'
+            ? err.message
+            : 'No s\'ha pogut publicar el comentari. Torna-ho a intentar.';
+          reviewStatus.className = 'review-form-status error';
+          reviewStatus.hidden = false;
+        }
+        trackGoatEvent('review-submit-error', 'Review submit error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Publicar comentari';
+      }
+    });
   }
 
   // ---------- NEWSLETTER FORM (Netlify Function → GitHub Gist) ----------

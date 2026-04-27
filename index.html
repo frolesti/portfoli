@@ -33,6 +33,7 @@
     <div class="nav-links">
       <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
       <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
+      <a href="#testimonis" data-i18n="nav.testimonis">Testimonis</a>
       <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
       <a href="#contacte" class="nav-cta" data-i18n="nav.contacta">Contacta'm</a>
     </div>
@@ -45,6 +46,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
     <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
+    <a href="#testimonis" data-i18n="nav.testimonis">Testimonis</a>
     <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
     <a href="#contacte" data-i18n="nav.contacta">Contacta'm</a>
   </div>
@@ -607,6 +609,67 @@
             <span>APIs REST</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="testimonis" class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="reviews.title">Què diuen els clients</h2>
+        <p class="section-subtitle" data-i18n="reviews.subtitle">Comentaris reals de persones i organitzacions amb qui he treballat. Sense filtre.</p>
+      </div>
+
+      <!-- Llista de comentaris -->
+      <div class="reviews-list" id="reviewsList">
+        <p class="reviews-loading" id="reviewsLoading">Carregant comentaris…</p>
+      </div>
+
+      <!-- Formulari nou comentari -->
+      <div class="review-form-wrap">
+        <h3 class="review-form-title" data-i18n="reviews.form.title">Deixa el teu comentari</h3>
+        <form class="review-form" id="reviewForm" novalidate>
+          <div class="review-form-row">
+            <div class="form-group">
+              <label for="rv-name" data-i18n="reviews.form.name">Nom (opcional)</label>
+              <input type="text" id="rv-name" name="name" placeholder="El teu nom o empresa" data-i18n-ph="reviews.form.name.ph" maxlength="80" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="rv-project" data-i18n="reviews.form.project">Projecte</label>
+              <select id="rv-project" name="project">
+                <option value="" data-i18n="reviews.form.project.any">Qualsevol / General</option>
+                <option value="Extensions de canvi d'idioma">Extensions de canvi d'idioma</option>
+                <option value="Bot del SEPE">Bot del SEPE</option>
+                <option value="troBar">troBar</option>
+                <option value="Stremio en Català">Stremio en Català</option>
+                <option value="Alerta Desnona">Alerta Desnona</option>
+                <option value="Open Data Capture">Open Data Capture</option>
+                <option value="Aparador">Aparador</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i18n="reviews.form.rating">Valoració</label>
+            <div class="star-rating" id="starRating" role="radiogroup" aria-label="Valoració">
+              <button type="button" class="star" data-value="1" aria-label="1 estrella">★</button>
+              <button type="button" class="star" data-value="2" aria-label="2 estrelles">★</button>
+              <button type="button" class="star" data-value="3" aria-label="3 estrelles">★</button>
+              <button type="button" class="star" data-value="4" aria-label="4 estrelles">★</button>
+              <button type="button" class="star" data-value="5" aria-label="5 estrelles">★</button>
+            </div>
+            <input type="hidden" id="rv-rating" name="rating" value="5">
+          </div>
+          <div class="form-group">
+            <label for="rv-message" data-i18n="reviews.form.message">Missatge <span class="required">*</span></label>
+            <textarea id="rv-message" name="message" rows="4" placeholder="Explica la teva experiència..." data-i18n-ph="reviews.form.message.ph" required maxlength="1000"></textarea>
+          </div>
+          <div class="review-form-footer">
+            <p class="review-form-note" data-i18n="reviews.form.note">Cap registre. El teu comentari apareixerà immediatament.</p>
+            <button type="submit" class="btn btn-primary" data-i18n="reviews.form.submit">Publicar comentari</button>
+          </div>
+          <p class="review-form-status" id="reviewFormStatus" hidden></p>
+        </form>
       </div>
     </div>
   </section>
