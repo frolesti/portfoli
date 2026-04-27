@@ -76,16 +76,34 @@ jobs:
           GIST_ID: ${{ secrets.GIST_ID }}
         run: |
           echo "📋 Descarregant subscriptors del Gist..."
-          curl -sf -H "Authorization: Bearer $GH_PAT" \
-            "https://api.github.com/gists/$GIST_ID" | \
-            node -e "
-              const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('/dev/stdin', 'utf8'));
-              const content = data.files['subscribers.json'].content;
-              fs.writeFileSync('newsletter/scripts/subscribers.json', content, 'utf8');
-              const subs = JSON.parse(content);
-              console.log('✅ ' + subs.length + ' subscriptors carregats');
-            "
+
+          HTTP_STATUS=$(curl -s -o /tmp/gist_response.json -w "%{http_code}" \
+            -H "Authorization: Bearer $GH_PAT" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/gists/$GIST_ID")
+
+          echo "🌐 HTTP status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "❌ Error accedint al Gist (HTTP $HTTP_STATUS)"
+            echo "Resposta de l'API:"
+            cat /tmp/gist_response.json
+            exit 1
+          fi
+
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('/tmp/gist_response.json', 'utf8'));
+            if (!data.files || !data.files['subscribers.json']) {
+              console.error('❌ No s\\'ha trobat subscribers.json dins del Gist');
+              console.error('Fitxers disponibles:', Object.keys(data.files || {}));
+              process.exit(1);
+            }
+            const content = data.files['subscribers.json'].content;
+            fs.writeFileSync('newsletter/scripts/subscribers.json', content, 'utf8');
+            const subs = JSON.parse(content);
+            console.log('✅ ' + subs.length + ' subscriptors carregats');
+          "
 
       - name: Generate newsletter
         if: steps.check_date.outputs.skip != 'true' && steps.check_content.outputs.has_content == 'true'
