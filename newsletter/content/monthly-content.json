@@ -45,5 +45,48 @@
         "Millores d'estabilitat de l'addon"
       ]
     }
+  },
+  "2026-05": {
+    "_featured": "trobar",
+    "trobar": {
+      "title": "troBar",
+      "kicker": "Beta Android",
+      "lede": "L'app per trobar bars on veure els partits del Barça arriba a la seva primera versió beta per a Android.",
+      "updates": [
+        "<strong>Beta pública per a Android</strong> ja disponible per provar",
+        "Mapa interactiu amb bars i pubs propers a la teva ubicació",
+        "Calendari del FC Barcelona en temps real, amb hora i competició",
+        "Filtres per ambient, ràdio del partit en català i menjar disponible",
+        "Si vols rebre l'APK de la beta, respon a aquest correu"
+      ]
+    },
+    "aparador": {
+      "title": "Aparador",
+      "kicker": "Llançament",
+      "updates": [
+        "<strong>Primera iteració pública.</strong> Ja podem compartir àlbums de fotos amb grups mitjançant un codi d'accés",
+        "El públic pot veure les fotos en galeria i descarregar-les en resolució original",
+        "Dashboard inicial per gestionar àlbums i pujades",
+        "Pròxims passos: integració de donatius via Stripe i millores d'UX"
+      ]
+    },
+    "instagram-catradio": {
+      "title": "frolesti a Catalunya Ràdio",
+      "kicker": "Mitjans",
+      "updates": [
+        "<strong>Reel destacat al perfil oficial de Catalunya Ràdio</strong> a Instagram",
+        "Una mica de visibilitat extra per als projectes amb vocació social",
+        "Gràcies a l'equip de Catalunya Ràdio per l'altaveu"
+      ]
+    },
+    "aixeta-agents-base": {
+      "title": "Repositori base amb agents",
+      "kicker": "Eines de desenvolupament",
+      "updates": [
+        "Nou repositori plantilla per crear projectes amb <strong>agents d'IA preinstal·lats</strong>",
+        "Configuració llesta per a Copilot/Claude amb les nostres convencions",
+        "Accelera el setup inicial de qualsevol projecte nou de l'organització"
+      ]
+    }
   }
 }
