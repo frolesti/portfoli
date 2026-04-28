@@ -633,7 +633,7 @@
             <input type="text" id="rv-name" name="name" placeholder="El teu nom o empresa" data-i18n-ph="reviews.form.name.ph" maxlength="80" autocomplete="name">
           </div>
           <div class="form-group">
-            <label data-i18n="reviews.form.rating">Valoració</label>
+            <label data-i18n="reviews.form.rating">Valoració <span class="required">*</span></label>
             <div class="star-rating" id="starRating" role="radiogroup" aria-label="Valoració">
               <button type="button" class="star" data-value="1" aria-label="1 estrella">★</button>
               <button type="button" class="star" data-value="2" aria-label="2 estrelles">★</button>
@@ -641,14 +641,13 @@
               <button type="button" class="star" data-value="4" aria-label="4 estrelles">★</button>
               <button type="button" class="star" data-value="5" aria-label="5 estrelles">★</button>
             </div>
-            <input type="hidden" id="rv-rating" name="rating" value="5">
+            <input type="hidden" id="rv-rating" name="rating" value="0">
           </div>
           <div class="form-group">
             <label for="rv-message" data-i18n="reviews.form.message">Missatge <span class="required">*</span></label>
             <textarea id="rv-message" name="message" rows="4" placeholder="Explica la teva experiència..." data-i18n-ph="reviews.form.message.ph" required maxlength="1000"></textarea>
           </div>
           <div class="review-form-footer">
-            <p class="review-form-note" data-i18n="reviews.form.note">Cap registre. El teu comentari apareixerà immediatament.</p>
             <button type="submit" class="btn btn-primary" data-i18n="reviews.form.submit">Publicar comentari</button>
           </div>
           <p class="review-form-status" id="reviewFormStatus" hidden></p>

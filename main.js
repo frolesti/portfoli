@@ -654,9 +654,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (reviewsList) loadReviews();
 
   // Star rating UI
-  let selectedRating = 5;
+  let selectedRating = 0;
   starBtns.forEach((btn) => {
-    btn.classList.toggle('active', parseInt(btn.dataset.value, 10) <= selectedRating);
     btn.addEventListener('mouseover', () => {
       const v = parseInt(btn.dataset.value, 10);
       starBtns.forEach((b) => b.classList.toggle('hover', parseInt(b.dataset.value, 10) <= v));
@@ -668,6 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedRating = parseInt(btn.dataset.value, 10);
       if (ratingInput) ratingInput.value = selectedRating;
       starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= selectedRating));
+      const sr = document.getElementById('starRating');
+      sr?.classList.remove('error');
     });
   });
 
@@ -675,9 +676,20 @@ document.addEventListener('DOMContentLoaded', () => {
     reviewForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const fd = new FormData(reviewForm);
+      const rating = parseInt(fd.get('rating') || '0', 10);
+      if (!rating || rating < 1) {
+        const sr = document.getElementById('starRating');
+        sr?.classList.add('error');
+        if (reviewStatus) {
+          reviewStatus.textContent = 'Selecciona una valoració abans d\'enviar.';
+          reviewStatus.className = 'review-form-status error';
+          reviewStatus.hidden = false;
+        }
+        return;
+      }
       const payload = {
         name:    fd.get('name') || '',
-        rating:  parseInt(fd.get('rating') || '5', 10),
+        rating:  rating,
         message: fd.get('message') || ''
       };
 
@@ -696,9 +708,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (res.ok) {
           reviewForm.reset();
-          selectedRating = 5;
-          if (ratingInput) ratingInput.value = 5;
-          starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= 5));
+          selectedRating = 0;
+          if (ratingInput) ratingInput.value = 0;
+          starBtns.forEach((b) => b.classList.remove('active'));
           if (reviewStatus) {
             reviewStatus.textContent = 'Comentari publicat. Gràcies!';
             reviewStatus.className = 'review-form-status ok';
