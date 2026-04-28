@@ -622,32 +622,15 @@
       </div>
 
       <!-- Llista de comentaris -->
-      <div class="reviews-list" id="reviewsList">
-        <p class="reviews-loading" id="reviewsLoading">Carregant comentaris…</p>
-      </div>
+      <div class="reviews-list" id="reviewsList"></div>
 
       <!-- Formulari nou comentari -->
       <div class="review-form-wrap">
-        <h3 class="review-form-title" data-i18n="reviews.form.title">Deixa el teu comentari</h3>
+        <h3 class="review-form-title" data-i18n="reviews.form.title">Deixa la teva opinió</h3>
         <form class="review-form" id="reviewForm" novalidate>
-          <div class="review-form-row">
-            <div class="form-group">
-              <label for="rv-name" data-i18n="reviews.form.name">Nom (opcional)</label>
-              <input type="text" id="rv-name" name="name" placeholder="El teu nom o empresa" data-i18n-ph="reviews.form.name.ph" maxlength="80" autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="rv-project" data-i18n="reviews.form.project">Projecte</label>
-              <select id="rv-project" name="project">
-                <option value="" data-i18n="reviews.form.project.any">Qualsevol / General</option>
-                <option value="Extensions de canvi d'idioma">Extensions de canvi d'idioma</option>
-                <option value="Bot del SEPE">Bot del SEPE</option>
-                <option value="troBar">troBar</option>
-                <option value="Stremio en Català">Stremio en Català</option>
-                <option value="Alerta Desnona">Alerta Desnona</option>
-                <option value="Open Data Capture">Open Data Capture</option>
-                <option value="Aparador">Aparador</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="rv-name" data-i18n="reviews.form.name">Nom (opcional)</label>
+            <input type="text" id="rv-name" name="name" placeholder="El teu nom o empresa" data-i18n-ph="reviews.form.name.ph" maxlength="80" autocomplete="name">
           </div>
           <div class="form-group">
             <label data-i18n="reviews.form.rating">Valoració</label>
@@ -680,13 +663,14 @@
       <div class="section-header">
         <h2 data-i18n="contact.title">Contacta'm</h2>
         <p class="section-subtitle" data-i18n="contact.desc">
-          Tens un projecte en ment? Vols parlar sobre una idea? 
-          Omple el formulari i et respondré tan aviat com pugui.
+          Tens un projecte en ment? Vols parlar sobre una idea?
+          Omple el formulari i et respondré tan aviat com pugui. O subscriu-te al
+          <a href="#newsletter-band" class="inline-link">butlletí mensual</a> més avall.
         </p>
       </div>
 
       <div class="contact-unified">
-        <!-- Left: Contact form -->
+        <!-- Contact form (centered) -->
         <form class="contact-form" id="contactForm">
           <input type="hidden" name="access_key" value="fa15478a-a76d-4a21-bfb8-3168d774d4da">
           <input type="hidden" name="subject" value="Nou missatge del portafolis de Frolesti">
@@ -706,24 +690,22 @@
           </div>
           <button type="submit" class="btn btn-primary btn-large" data-i18n="form.submit">Enviar missatge</button>
         </form>
+      </div>
 
-        <!-- Right: Newsletter + Aixeta -->
-        <div class="contact-sidebar">
-          <!-- Newsletter -->
-          <div class="sidebar-card sidebar-newsletter">
-            <span class="sidebar-icon" aria-hidden="true">📬</span>
+      <!-- Newsletter band -->
+      <div class="newsletter-band" id="newsletter-band">
+        <div class="newsletter-band-text">
+          <span class="newsletter-band-icon" aria-hidden="true">📬</span>
+          <div>
             <h3 data-i18n="newsletter.title">Butlletí mensual</h3>
-            <p data-i18n="newsletter.desc.short">
-              Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.
-            </p>
-            <form class="newsletter-form" id="newsletterForm">
-              <input type="text" id="nl-name" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
-              <input type="email" id="nl-email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
-              <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
-            </form>
+            <p data-i18n="newsletter.desc.short">Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.</p>
           </div>
-
         </div>
+        <form class="newsletter-form newsletter-band-form" id="newsletterForm">
+          <input type="text" id="nl-name" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
+          <input type="email" id="nl-email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
+          <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
+        </form>
       </div>
     </div>
   </section>
@@ -774,16 +756,18 @@
   </footer>
 
   <!-- Newsletter popup (first visit) -->
-  <div class="nl-popup" id="nlPopup" role="dialog" aria-modal="false" aria-labelledby="nlPopupTitle" hidden>
-    <button class="nl-popup-close" id="nlPopupClose" aria-label="Tancar">×</button>
-    <span class="nl-popup-icon" aria-hidden="true">📬</span>
-    <h3 id="nlPopupTitle" data-i18n="newsletter.title">Butlletí mensual</h3>
-    <p data-i18n="newsletter.desc.short">Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.</p>
-    <form class="newsletter-form" id="nlPopupForm">
-      <input type="text" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
-      <input type="email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
-      <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
-    </form>
+  <div class="nl-popup-backdrop" id="nlPopupBackdrop" hidden>
+    <div class="nl-popup" id="nlPopup" role="dialog" aria-modal="true" aria-labelledby="nlPopupTitle">
+      <button class="nl-popup-close" id="nlPopupClose" aria-label="Tancar">×</button>
+      <span class="nl-popup-icon" aria-hidden="true">📬</span>
+      <h3 id="nlPopupTitle" data-i18n="newsletter.title">Butlletí mensual</h3>
+      <p data-i18n="newsletter.desc.short">Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.</p>
+      <form class="newsletter-form" id="nlPopupForm">
+        <input type="text" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
+        <input type="email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
+        <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
+      </form>
+    </div>
   </div>
 
   <script src="main.js"></script>

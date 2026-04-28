@@ -622,10 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderReviews(reviews) {
     if (!reviewsList) return;
     reviewsList.innerHTML = '';
-    if (!reviews.length) {
-      reviewsList.innerHTML = '<p class="reviews-empty">Encara no hi ha comentaris. Sigues el primer!</p>';
-      return;
-    }
+    if (!reviews.length) return;
     reviews.forEach((r) => {
       const card = document.createElement('div');
       card.className = 'review-card';
@@ -633,7 +630,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="review-card-header">
           <div>
             <p class="review-author">${r.name || 'Anònim'}</p>
-            ${r.project ? `<p class="review-project">${r.project}</p>` : ''}
           </div>
           <span class="review-stars" title="${r.rating} de 5">${starsHtml(r.rating)}</span>
         </div>
@@ -647,12 +643,11 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadReviews() {
     try {
       const res = await fetch('/.netlify/functions/reviews');
-      if (!res.ok) throw new Error('network');
+      if (!res.ok) return;
       const data = await res.json();
-      if (reviewsLoading) reviewsLoading.remove();
       renderReviews(data);
     } catch {
-      if (reviewsLoading) reviewsLoading.textContent = 'No s\'han pogut carregar els comentaris.';
+      /* silent: just leave empty */
     }
   }
 
@@ -682,7 +677,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const fd = new FormData(reviewForm);
       const payload = {
         name:    fd.get('name') || '',
-        project: fd.get('project') || '',
         rating:  parseInt(fd.get('rating') || '5', 10),
         message: fd.get('message') || ''
       };
@@ -789,8 +783,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------- NEWSLETTER POPUP (first visit, on scroll) ----------
+  const nlPopupBackdrop = document.getElementById('nlPopupBackdrop');
   const nlPopup = document.getElementById('nlPopup');
-  if (nlPopup) {
+  if (nlPopupBackdrop && nlPopup) {
     const STORAGE_KEY = 'nl-popup-seen';
     const closeBtn = document.getElementById('nlPopupClose');
     const popupForm = document.getElementById('nlPopupForm');
@@ -799,13 +794,13 @@ document.addEventListener('DOMContentLoaded', () => {
       try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
     };
     const hidePopup = () => {
-      nlPopup.classList.remove('is-visible');
-      setTimeout(() => { nlPopup.hidden = true; }, 350);
+      nlPopupBackdrop.classList.remove('is-visible');
+      setTimeout(() => { nlPopupBackdrop.hidden = true; }, 300);
       markSeen();
     };
     const showPopup = () => {
-      nlPopup.hidden = false;
-      requestAnimationFrame(() => nlPopup.classList.add('is-visible'));
+      nlPopupBackdrop.hidden = false;
+      requestAnimationFrame(() => nlPopupBackdrop.classList.add('is-visible'));
       trackGoatEvent('newsletter-popup-shown', 'Newsletter popup shown');
     };
 
@@ -825,6 +820,15 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn?.addEventListener('click', () => {
       trackGoatEvent('newsletter-popup-dismissed', 'Newsletter popup dismissed');
       hidePopup();
+    });
+    nlPopupBackdrop.addEventListener('click', (e) => {
+      if (e.target === nlPopupBackdrop) {
+        trackGoatEvent('newsletter-popup-dismissed', 'Newsletter popup dismissed');
+        hidePopup();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !nlPopupBackdrop.hidden) hidePopup();
     });
 
     popupForm?.addEventListener('submit', async (e) => {
