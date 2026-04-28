@@ -655,6 +655,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Star rating UI
   let selectedRating = 0;
+  const reviewSubmitBtn = reviewForm?.querySelector('[type="submit"]');
+  const updateSubmitState = () => {
+    if (reviewSubmitBtn) reviewSubmitBtn.disabled = selectedRating < 1;
+  };
+  updateSubmitState();
   starBtns.forEach((btn) => {
     btn.addEventListener('mouseover', () => {
       const v = parseInt(btn.dataset.value, 10);
@@ -667,8 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedRating = parseInt(btn.dataset.value, 10);
       if (ratingInput) ratingInput.value = selectedRating;
       starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= selectedRating));
-      const sr = document.getElementById('starRating');
-      sr?.classList.remove('error');
+      updateSubmitState();
     });
   });
 
@@ -677,16 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const fd = new FormData(reviewForm);
       const rating = parseInt(fd.get('rating') || '0', 10);
-      if (!rating || rating < 1) {
-        const sr = document.getElementById('starRating');
-        sr?.classList.add('error');
-        if (reviewStatus) {
-          reviewStatus.textContent = 'Selecciona una valoració abans d\'enviar.';
-          reviewStatus.className = 'review-form-status error';
-          reviewStatus.hidden = false;
-        }
-        return;
-      }
+      if (!rating || rating < 1) return;
       const payload = {
         name:    fd.get('name') || '',
         rating:  rating,
@@ -731,8 +726,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         trackGoatEvent('review-submit-error', 'Review submit error');
       } finally {
-        submitBtn.disabled = false;
         submitBtn.textContent = 'Publicar comentari';
+        updateSubmitState();
       }
     });
   }
