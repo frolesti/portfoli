@@ -773,6 +773,19 @@
     </div>
   </footer>
 
+  <!-- Newsletter popup (first visit) -->
+  <div class="nl-popup" id="nlPopup" role="dialog" aria-modal="false" aria-labelledby="nlPopupTitle" hidden>
+    <button class="nl-popup-close" id="nlPopupClose" aria-label="Tancar">×</button>
+    <span class="nl-popup-icon" aria-hidden="true">📬</span>
+    <h3 id="nlPopupTitle" data-i18n="newsletter.title">Butlletí mensual</h3>
+    <p data-i18n="newsletter.desc.short">Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.</p>
+    <form class="newsletter-form" id="nlPopupForm">
+      <input type="text" name="name" placeholder="El teu nom" data-i18n-ph="newsletter.name.ph" required>
+      <input type="email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
+      <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
+    </form>
+  </div>
+
   <script src="main.js"></script>
   <script data-goatcounter="https://frolesti.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

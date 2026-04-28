@@ -1,5 +1,5 @@
 /* ================================================
-   FROLESTI — Portafolisso
+   FROLESTI — Portafolis
    Estil eclèctic càlid · Paleta suau · Tipografia mixta
    ================================================ */
 
@@ -1911,13 +1911,11 @@ a.browser-link:hover {
 }
 
 .sidebar-card {
-  padding: 28px;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(0,0,0,0.06);
+  padding: 28px 0;
 }
 
 .sidebar-newsletter {
-  background: linear-gradient(135deg, #f5f0ea 0%, #ece5db 50%, #e8f0f5 100%);
+  background: transparent;
 }
 
 
@@ -1975,6 +1973,67 @@ a.browser-link:hover {
   padding: 12px 24px !important;
   font-size: 0.9rem !important;
   white-space: nowrap;
+}
+
+/* Newsletter popup */
+.nl-popup {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  padding: 24px 24px 22px;
+  background: linear-gradient(135deg, #f5f0ea 0%, #ece5db 50%, #e8f0f5 100%);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+.nl-popup[hidden] { display: none; }
+.nl-popup.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.nl-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.nl-popup-close:hover { color: var(--text); }
+.nl-popup-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.nl-popup h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.nl-popup p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .nl-popup { bottom: 12px; right: 12px; left: 12px; width: auto; }
 }
 
 /* Form */

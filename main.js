@@ -741,9 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const originalText = btn.textContent;
       const name = nlForm.querySelector('#nl-name').value.trim();
       const email = nlForm.querySelector('#nl-email').value.trim();
-      if (!name || !email) return;
-
-      trackGoatEvent('newsletter-submit-attempt', 'Newsletter submit attempt');
+      if (!name || !email) return;      trackGoatEvent('newsletter-submit-attempt', 'Newsletter submit attempt');
 
       btn.textContent = 'Enviant...';
       btn.disabled = true;
@@ -779,6 +777,100 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.background = '#c0392b';
         btn.style.color = '#fff';
         trackGoatEvent('newsletter-subscribe-network-error', 'Newsletter network error');
+      }
+
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 4000);
+    });
+  }
+
+  // ---------- NEWSLETTER POPUP (first visit, on scroll) ----------
+  const nlPopup = document.getElementById('nlPopup');
+  if (nlPopup) {
+    const STORAGE_KEY = 'nl-popup-seen';
+    const closeBtn = document.getElementById('nlPopupClose');
+    const popupForm = document.getElementById('nlPopupForm');
+
+    const markSeen = () => {
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+    };
+    const hidePopup = () => {
+      nlPopup.classList.remove('is-visible');
+      setTimeout(() => { nlPopup.hidden = true; }, 350);
+      markSeen();
+    };
+    const showPopup = () => {
+      nlPopup.hidden = false;
+      requestAnimationFrame(() => nlPopup.classList.add('is-visible'));
+      trackGoatEvent('newsletter-popup-shown', 'Newsletter popup shown');
+    };
+
+    let alreadySeen = false;
+    try { alreadySeen = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+
+    if (!alreadySeen) {
+      const onScroll = () => {
+        if (window.scrollY > 300) {
+          window.removeEventListener('scroll', onScroll);
+          showPopup();
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    closeBtn?.addEventListener('click', () => {
+      trackGoatEvent('newsletter-popup-dismissed', 'Newsletter popup dismissed');
+      hidePopup();
+    });
+
+    popupForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = popupForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      const name = popupForm.querySelector('input[name="name"]').value.trim();
+      const email = popupForm.querySelector('input[name="email"]').value.trim();
+      if (!name || !email) return;
+
+      trackGoatEvent('newsletter-popup-submit-attempt', 'Newsletter popup submit');
+      btn.textContent = 'Enviant...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          btn.textContent = 'Subscrit ✓';
+          btn.style.background = 'var(--accent-2)';
+          btn.style.color = '#fff';
+          trackGoatEvent('newsletter-popup-success', 'Newsletter popup subscribed');
+          popupForm.reset();
+          setTimeout(hidePopup, 1800);
+        } else if (data.error === 'already_subscribed') {
+          btn.textContent = 'Ja estàs subscrit!';
+          btn.style.background = 'var(--accent-2)';
+          btn.style.color = '#fff';
+          trackGoatEvent('newsletter-popup-duplicate', 'Newsletter popup duplicate');
+          setTimeout(hidePopup, 1800);
+        } else {
+          btn.textContent = 'Error. Torna-ho a provar.';
+          btn.style.background = '#c0392b';
+          btn.style.color = '#fff';
+          trackGoatEvent('newsletter-popup-error', 'Newsletter popup error');
+        }
+      } catch (err) {
+        btn.textContent = 'Error de connexió.';
+        btn.style.background = '#c0392b';
+        btn.style.color = '#fff';
+        trackGoatEvent('newsletter-popup-network-error', 'Newsletter popup network error');
       }
 
       btn.disabled = false;
