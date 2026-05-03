@@ -609,6 +609,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const starBtns       = document.querySelectorAll('.star-rating .star');
   const ratingInput    = document.getElementById('rv-rating');
 
+  async function safeJson(res) {
+    try {
+      return await res.json();
+    } catch {
+      return {};
+    }
+  }
+
   function starsHtml(n) {
     return '★'.repeat(n) + '☆'.repeat(5 - n);
   }
@@ -643,11 +651,14 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadReviews() {
     try {
       const res = await fetch('/.netlify/functions/reviews');
-      if (!res.ok) return;
-      const data = await res.json();
+      const data = await safeJson(res);
+      if (!res.ok) {
+        console.warn('No s\'han pogut carregar els comentaris:', data?.message || data?.error || res.status);
+        return;
+      }
       renderReviews(data);
-    } catch {
-      /* silent: just leave empty */
+    } catch (err) {
+      console.warn('Error carregant comentaris:', err?.message || err);
     }
   }
 
@@ -699,7 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        const data = await res.json();
+        const data = await safeJson(res);
 
         if (res.ok) {
           reviewForm.reset();
@@ -707,20 +718,18 @@ document.addEventListener('DOMContentLoaded', () => {
           if (ratingInput) ratingInput.value = 0;
           starBtns.forEach((b) => b.classList.remove('active'));
           if (reviewStatus) {
-            reviewStatus.textContent = 'Comentari publicat. Gràcies!';
+            reviewStatus.textContent = data.message || 'Comentari rebut. El revisaré abans de publicar-lo.';
             reviewStatus.className = 'review-form-status ok';
             reviewStatus.hidden = false;
           }
           trackGoatEvent('review-submit-success', 'Review submitted');
           await loadReviews();
         } else {
-          throw new Error(data.message || 'error');
+          throw new Error(data.message || 'No s\'ha pogut publicar el comentari.');
         }
       } catch (err) {
         if (reviewStatus) {
-          reviewStatus.textContent = err.message === 'El missatge és massa curt.'
-            ? err.message
-            : 'No s\'ha pogut publicar el comentari. Torna-ho a intentar.';
+          reviewStatus.textContent = err?.message || 'No s\'ha pogut publicar el comentari. Torna-ho a intentar.';
           reviewStatus.className = 'review-form-status error';
           reviewStatus.hidden = false;
         }

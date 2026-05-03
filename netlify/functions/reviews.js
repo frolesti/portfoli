@@ -1,6 +1,6 @@
 // netlify/functions/reviews.js
-// GET  → retorna tots els comentaris del Gist REVIEWS_GIST_ID
-// POST → afegeix un comentari nou
+// GET  -> retorna nomes comentaris aprovats
+// POST -> afegeix un comentari pendent de moderacio
 
 const https = require('https');
 
@@ -49,6 +49,24 @@ function sanitize(str) {
   return String(str || '').replace(/[<>"'`]/g, '').trim();
 }
 
+function parseReviews(rawContent) {
+  try {
+    const parsed = JSON.parse(rawContent || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function isPubliclyVisible(review) {
+  if (!review || typeof review !== 'object') return false;
+
+  if (review.status === 'pending' || review.status === 'rejected') return false;
+  if (review.approved === false) return false;
+
+  return true;
+}
+
 // ── handler ──────────────────────────────────────────────
 
 exports.handler = async (event) => {
@@ -56,21 +74,34 @@ exports.handler = async (event) => {
     return { statusCode: 204, headers: CORS_HEADERS };
   }
 
-  const gistId = process.env.REVIEWS_GIST_ID;
+  const gistId = process.env.REVIEWS_GIST_ID || process.env.GIST_ID;
   if (!gistId || !process.env.GH_PAT) {
-    return { statusCode: 500, headers: CORS_HEADERS, body: JSON.stringify({ error: 'server_config' }) };
+    return {
+      statusCode: 500,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({
+        error: 'server_config',
+        message: 'Configuracio del servidor incompleta (GH_PAT i REVIEWS_GIST_ID o GIST_ID).'
+      })
+    };
   }
 
-  // ── GET: retorna comentaris ──────────────────────────────
+  // ── GET: retorna nomes comentaris aprovats ───────────────
   if (event.httpMethod === 'GET') {
     const res = await ghRequest('GET', `/gists/${gistId}`);
     if (res.status !== 200) {
-      return { statusCode: 502, headers: CORS_HEADERS, body: JSON.stringify({ error: 'gist_read_error' }) };
+      return {
+        statusCode: 502,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({
+          error: 'gist_read_error',
+          message: 'No s\'han pogut carregar els comentaris (error llegint el Gist).'
+        })
+      };
     }
 
     const raw = res.data.files?.['reviews.json']?.content || '[]';
-    let reviews = [];
-    try { reviews = JSON.parse(raw); } catch { reviews = []; }
+    const reviews = parseReviews(raw).filter(isPubliclyVisible);
 
     return {
       statusCode: 200,
@@ -79,11 +110,15 @@ exports.handler = async (event) => {
     };
   }
 
-  // ── POST: afegeix comentari ──────────────────────────────
+  // ── POST: afegeix comentari pendent ──────────────────────
   if (event.httpMethod === 'POST') {
     let body = {};
     try { body = JSON.parse(event.body || '{}'); } catch {
-      return { statusCode: 400, headers: CORS_HEADERS, body: JSON.stringify({ error: 'invalid_json' }) };
+      return {
+        statusCode: 400,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'invalid_json', message: 'Cos de petició invàlid (JSON mal format).' })
+      };
     }
 
     const name    = sanitize(body.name || 'Anònim').slice(0, MAX_NAME_LENGTH) || 'Anònim';
@@ -102,13 +137,18 @@ exports.handler = async (event) => {
     // Llegim l'estat actual
     const getRes = await ghRequest('GET', `/gists/${gistId}`);
     if (getRes.status !== 200) {
-      return { statusCode: 502, headers: CORS_HEADERS, body: JSON.stringify({ error: 'gist_read_error' }) };
+      return {
+        statusCode: 502,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({
+          error: 'gist_read_error',
+          message: 'No s\'ha pogut llegir el Gist abans de publicar.'
+        })
+      };
     }
 
-    const sha  = getRes.data.files?.['reviews.json'] ? undefined : undefined; // not needed for gist
     const raw  = getRes.data.files?.['reviews.json']?.content || '[]';
-    let reviews = [];
-    try { reviews = JSON.parse(raw); } catch { reviews = []; }
+    let reviews = parseReviews(raw);
 
     reviews.unshift({
       id: Date.now(),
@@ -116,7 +156,10 @@ exports.handler = async (event) => {
       project,
       rating,
       message,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      approved: false,
+      status: 'pending',
+      moderatedAt: null
     });
 
     // Guardem (màxim 200 entrades)
@@ -127,13 +170,20 @@ exports.handler = async (event) => {
     });
 
     if (patchRes.status !== 200) {
-      return { statusCode: 502, headers: CORS_HEADERS, body: JSON.stringify({ error: 'gist_write_error' }) };
+      return {
+        statusCode: 502,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({
+          error: 'gist_write_error',
+          message: 'No s\'ha pogut guardar el comentari al Gist (revisa permisos del token).'
+        })
+      };
     }
 
     return {
       statusCode: 201,
       headers: CORS_HEADERS,
-      body: JSON.stringify({ ok: true })
+      body: JSON.stringify({ ok: true, pending: true, message: 'Comentari rebut. El revisaré abans de publicar-lo.' })
     };
   }
 
