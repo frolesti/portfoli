@@ -1202,6 +1202,113 @@ a.browser-link:hover {
   border: 1px solid rgba(74, 140, 87, 0.2);
 }
 
+.pv-base-skills {
+  align-items: center;
+}
+
+.copilot-session-mockup {
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #111821;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+  color: #d8e2ec;
+}
+
+.session-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1f2a36;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.session-title {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #9fb2c3;
+}
+
+.session-body {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  min-height: 170px;
+}
+
+.session-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 10px;
+  background: #16212c;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.session-sidebar span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #89a0b2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.session-editor {
+  padding: 12px;
+  background: #0f1720;
+}
+
+.editor-tab {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #263342;
+  color: #b5c6d5;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+}
+
+.editor-line {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #c3d1de;
+  line-height: 1.5;
+}
+
+.editor-line .ln {
+  display: inline-block;
+  width: 16px;
+  color: #607588;
+}
+
+.session-terminal {
+  padding: 11px 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #0b1118;
+}
+
+.session-terminal p {
+  margin: 0 0 5px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: #abc0d2;
+}
+
+.session-footer {
+  margin: 0;
+  padding: 10px 12px 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: #8ecfa7;
+}
+
 /* ---------- STREMIO MOCKUP ---------- */
 .streaming-mockup {
   width: 100%;

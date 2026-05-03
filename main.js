@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // ---------- TERMINAL ANIMATION ----------
-  const terminalMockup = document.querySelector('.terminal-mockup');
-  if (terminalMockup) {
+  const terminalMockups = document.querySelectorAll('.terminal-mockup');
+  if (terminalMockups.length) {
     const termObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       { threshold: 0.4 }
     );
-    termObserver.observe(terminalMockup);
+    terminalMockups.forEach((mockup) => termObserver.observe(mockup));
   }
 
   // ---------- SMOOTH ANCHOR SCROLL ----------
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.',
       'fc.aparador.label': 'Argazki-biltegia',
       'fc.aparador.desc': 'Argazkilarientzako album pribatuak, sarbide kodearekin, jatorrizko deskargekin eta aukerako dohaintzekin.',
-      'fc.skills.label': 'AI engineering txantiloia',
+      'fc.skills.label': 'IA ingeniaritzako txantiloia',
       'fc.skills.title': 'Base Skills Repo',
-      'fc.skills.desc': 'Copilot optimizatuarekin repoak abiatzeko skills, prompts eta agentedun oinarri berrerabilgarria.',
+      'fc.skills.desc': 'Copilot optimizatuarekin biltegiak abiatzeko gaitasun, agindu eta agentez osatutako oinarri berrerabilgarria.',
       // Projects section
       'proj.title': 'Nire proiektuak',
       'proj.subtitle': 'Beti ari naiz zerbait berrian lanean. Hemen dituzu energia eta ilusioz bete ditudan proiektuak.',
@@ -233,11 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aparador.btn': 'Laster…',
       // Project: Base Skills Repo
       'proj.skills.title': 'Base Skills Repo',
-      'proj.skills.desc1': '<strong>Base Skills Repo</strong> hasierako biltegi bat da proiektuak <strong>GitHub Copilot</strong> ondo konfiguratuta abiatzeko. Ezagutza geruzetan antolatzen du (jarraibideak, skills, prompts, chatmodes eta repo memoria), agenteak zeregin bakoitzean dagokion testuingurua bakarrik karga dezan.',
-      'proj.skills.note': '<strong>Bootstrap</strong> mekanismoa dakar: stack-a detektatzen du edo galdetzen du, pakete egokiak aktibatzen ditu eta repoa prest uzten du zehaztasun handiagoz eta token kostu txikiagoarekin lan egiteko.',
+      'proj.skills.desc1': '<strong>Base Skills Repo</strong> hasierako biltegi bat da proiektuak <strong>GitHub Copilot</strong> ondo konfiguratuta abiatzeko. Ezagutza geruzetan antolatzen du (jarraibideak, gaitasunak, aginduak, txat-moduak eta repo memoria), agenteak zeregin bakoitzean dagokion testuingurua bakarrik karga dezan.',
+      'proj.skills.note': '<strong>Hasierako abioko</strong> mekanismoa dakar: oinarri teknologikoa detektatzen du edo galdetzen du, pakete egokiak aktibatzen ditu eta repoa prest uzten du zehaztasun handiagoz eta token kostu txikiagoarekin lan egiteko.',
       'proj.skills.btn': 'GitHub ↗',
-      'proj.skills.t1': 'Stack-a eta lehentasunak detektatzen...',
-      'proj.skills.t2': 'Jarraibide, skills eta prompt garrantzitsuak aktibatzen...',
+      'proj.skills.t1': 'Oinarri teknologikoa eta lehentasunak detektatzen...',
+      'proj.skills.t2': 'Jarraibide, gaitasun eta agindu garrantzitsuak aktibatzen...',
       'proj.skills.t3': 'Repo prest: testuinguru doitua eta token kostu murriztua.',
       // Project: Stremio
       'fc.stremio.label': 'Streaming gehigarria',
@@ -331,9 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.',
       'fc.aparador.label': 'Repositorio fotográfico',
       'fc.aparador.desc': 'Álbums privados para fotógrafos con acceso por código, descarga orixinal e donativos opcionais.',
-      'fc.skills.label': 'Plantilla AI engineering',
+      'fc.skills.label': 'Plantilla de enxeñaría con IA',
       'fc.skills.title': 'Base Skills Repo',
-      'fc.skills.desc': 'Base reutilizable con skills, prompts e axentes para iniciar repos con Copilot optimizado.',
+      'fc.skills.desc': 'Base reutilizable con capacidades, ordes e axentes para iniciar repositorios con Copilot optimizado.',
       // Projects section
       'proj.title': 'Os meus proxectos',
       'proj.subtitle': 'Sempre estou traballando en algo novo. Aquí tes os proxectos aos que lle dediquei máis enerxía e ilusión.',
@@ -361,11 +361,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aparador.btn': 'Proximamente…',
       // Project: Base Skills Repo
       'proj.skills.title': 'Base Skills Repo',
-      'proj.skills.desc1': '<strong>Base Skills Repo</strong> é un repositorio base para iniciar proxectos con <strong>GitHub Copilot</strong> ben configurado desde o primeiro día. Organiza o coñecemento por capas (instrucións, skills, prompts, chatmodes e memoria de repo) para que o axente cargue só o contexto relevante en cada tarefa.',
-      'proj.skills.note': 'Inclúe un mecanismo de <strong>bootstrap</strong> que detecta o stack ou o pregunta, activa os paquetes axeitados e deixa o repo preparado para traballar con máis precisión e menor custo de tokens.',
+      'proj.skills.desc1': '<strong>Base Skills Repo</strong> é un repositorio base para iniciar proxectos con <strong>GitHub Copilot</strong> ben configurado desde o primeiro día. Organiza o coñecemento por capas (instrucións, capacidades, ordes, modos de conversa e memoria de repo) para que o axente cargue só o contexto relevante en cada tarefa.',
+      'proj.skills.note': 'Inclúe un mecanismo de <strong>arranque inicial</strong> que detecta a base tecnolóxica ou a pregunta, activa os paquetes axeitados e deixa o repo preparado para traballar con máis precisión e menor custo de tokens.',
       'proj.skills.btn': 'GitHub ↗',
-      'proj.skills.t1': 'Detectando stack e preferencias...',
-      'proj.skills.t2': 'Activando instrucións, skills e prompts relevantes...',
+      'proj.skills.t1': 'Detectando base tecnolóxica e preferencias...',
+      'proj.skills.t2': 'Activando instrucións, capacidades e ordes relevantes...',
       'proj.skills.t3': 'Repo listo: contexto afinado e custo de tokens reducido.',
       // Project: Stremio
       'fc.stremio.label': 'Complemento de streaming',

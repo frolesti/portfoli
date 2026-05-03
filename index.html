@@ -133,9 +133,9 @@
           <span class="fc-arrow">↓</span>
         </a>
         <a href="#projecte-base-skills" class="featured-card fc-8">
-          <span class="fc-label" data-i18n="fc.skills.label">Plantilla AI engineering</span>
+          <span class="fc-label" data-i18n="fc.skills.label">Plantilla d'enginyeria amb IA</span>
           <h3 data-i18n="fc.skills.title">Base Skills Repo</h3>
-          <p data-i18n="fc.skills.desc">Base reusable amb skills, prompts i agents per arrencar repos amb Copilot optimitzat.</p>
+          <p data-i18n="fc.skills.desc">Base reutilitzable amb capacitats, ordres i agents per arrencar repositoris amb Copilot optimitzat.</p>
           <span class="fc-arrow">↓</span>
         </a>
           </div>
@@ -541,43 +541,58 @@
       <!-- Project: Base Skills Repo -->
       <article id="projecte-base-skills" class="project-detail reverse">
         <div class="project-info">
-          <span class="project-tag" data-i18n="fc.skills.label">Plantilla AI engineering</span>
+          <span class="project-tag" data-i18n="fc.skills.label">Plantilla d'enginyeria amb IA</span>
           <h3 data-i18n="proj.skills.title">Base Skills Repo</h3>
           <p data-i18n="proj.skills.desc1">
             <strong>Base Skills Repo</strong> és un repositori base per començar projectes amb
             <strong>GitHub Copilot</strong> ben configurat des del primer dia. Organitza el coneixement
-            en capes (instruccions, skills, prompts, chatmodes i memòria de repo) perquè l'agent
+            en capes (instruccions, capacitats, ordres, modes de xat i memòria del repositori) perquè l'agent
             carregui només el context rellevant a cada tasca.
           </p>
           <p class="project-note" data-i18n="proj.skills.note">
-            Inclou un mecanisme de <strong>bootstrap</strong> que detecta el stack o el pregunta, activa
+            Inclou un mecanisme d'<strong>arrencada inicial</strong> que detecta la base tecnològica o la pregunta, activa
             els paquets adients i deixa el repo preparat per treballar amb més precisió i menor cost de tokens.
           </p>
           <ul class="project-tech">
             <li>GitHub Copilot</li>
-            <li>Skills</li>
-            <li>Prompts</li>
-            <li>Chatmodes</li>
-            <li>Token Optimization</li>
+            <li>Capacitats</li>
+            <li>Ordres /</li>
+            <li>Modes de xat</li>
+            <li>Optimització de tokens</li>
           </ul>
           <div class="project-links">
             <a href="https://github.com/frolesti/base-skills" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-base-skills-github" data-i18n="proj.skills.btn">GitHub ↗</a>
           </div>
         </div>
         <div class="project-visual pv-base-skills">
-          <div class="terminal-mockup">
-            <div class="terminal-bar">
+          <div class="copilot-session-mockup" aria-label="Simulació d'una sessió de codi assistida amb VS Code i terminal">
+            <div class="session-topbar">
               <span class="dot red"></span>
               <span class="dot yellow"></span>
               <span class="dot green"></span>
-              <span class="terminal-title">base-skills-repo</span>
+              <span class="session-title">base-skills-repo · VS Code</span>
             </div>
-            <div class="terminal-content">
-              <p class="term-line" style="--line-index:0"><span class="t-green">$</span> /bootstrap</p>
-              <p class="term-line" style="--line-index:1"><span class="t-dim">→</span> <span data-i18n="proj.skills.t1">Detectant stack i preferències...</span></p>
-              <p class="term-line" style="--line-index:2"><span class="t-dim">→</span> <span data-i18n="proj.skills.t2">Activant instruccions, skills i prompts rellevants...</span></p>
-              <p class="term-line" style="--line-index:3"><span class="t-green">✓</span> <span data-i18n="proj.skills.t3">Repo llest: context afinat i cost de tokens reduït.</span></p>
-              <p class="term-line t-cursor" style="--line-index:4">█</p>
+
+            <div class="session-body">
+              <aside class="session-sidebar" aria-hidden="true">
+                <span>.github/</span>
+                <span>skills/</span>
+                <span>prompts/</span>
+                <span>chatmodes/</span>
+                <span>memories/</span>
+              </aside>
+
+              <div class="session-editor" aria-hidden="true">
+                <div class="editor-tab">copilot-instructions.md</div>
+                <p class="editor-line"><span class="ln">1</span>Si no hi ha stack.json, executa /bootstrap.</p>
+                <p class="editor-line"><span class="ln">2</span>Carrega instruccions per al fitxer actiu.</p>
+              </div>
+            </div>
+
+            <div class="session-terminal" aria-hidden="true">
+              <p><span class="t-green">$</span> /bootstrap</p>
+              <p><span class="t-green">$</span> /planner</p>
+              <p><span class="t-green">$</span> /reviewer</p>
             </div>
           </div>
         </div>
