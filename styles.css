@@ -1197,6 +1197,11 @@ a.browser-link:hover {
   border: 1px solid rgba(233, 30, 140, 0.18);
 }
 
+.fc-8 {
+  background: linear-gradient(160deg, #e8f2e5 0%, #d9ebd2 100%);
+  border: 1px solid rgba(74, 140, 87, 0.2);
+}
+
 /* ---------- STREMIO MOCKUP ---------- */
 .streaming-mockup {
   width: 100%;

@@ -203,6 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.',
       'fc.aparador.label': 'Argazki-biltegia',
       'fc.aparador.desc': 'Argazkilarientzako album pribatuak, sarbide kodearekin, jatorrizko deskargekin eta aukerako dohaintzekin.',
+      'fc.skills.label': 'AI engineering txantiloia',
+      'fc.skills.title': 'Base Skills Repo',
+      'fc.skills.desc': 'Copilot optimizatuarekin repoak abiatzeko skills, prompts eta agentedun oinarri berrerabilgarria.',
       // Projects section
       'proj.title': 'Nire proiektuak',
       'proj.subtitle': 'Beti ari naiz zerbait berrian lanean. Hemen dituzu energia eta ilusioz bete ditudan proiektuak.',
@@ -228,6 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aparador.desc': '<strong>Aparador</strong> web plataforma bat da, <strong>argazkilariek</strong> beren albumak beren <strong>ikusleekin</strong> sarbide-kodeen bidez partekatu ahal izateko sortua. Ikusleek eroso nabigatu dezakete, argazkiak galerian ikusi eta jatorrizko bereizmenean deskargatu.',
       'proj.aparador.note': 'Stripe bidezko aukerako dohaintzak, albumak eta argazki igoerak kudeatzeko dashboard bat, eta kostuak baxu mantentzeko arkitektura arina biltzen ditu.',
       'proj.aparador.btn': 'Laster…',
+      // Project: Base Skills Repo
+      'proj.skills.title': 'Base Skills Repo',
+      'proj.skills.desc1': '<strong>Base Skills Repo</strong> hasierako biltegi bat da proiektuak <strong>GitHub Copilot</strong> ondo konfiguratuta abiatzeko. Ezagutza geruzetan antolatzen du (jarraibideak, skills, prompts, chatmodes eta repo memoria), agenteak zeregin bakoitzean dagokion testuingurua bakarrik karga dezan.',
+      'proj.skills.note': '<strong>Bootstrap</strong> mekanismoa dakar: stack-a detektatzen du edo galdetzen du, pakete egokiak aktibatzen ditu eta repoa prest uzten du zehaztasun handiagoz eta token kostu txikiagoarekin lan egiteko.',
+      'proj.skills.btn': 'GitHub ↗',
+      'proj.skills.t1': 'Stack-a eta lehentasunak detektatzen...',
+      'proj.skills.t2': 'Jarraibide, skills eta prompt garrantzitsuak aktibatzen...',
+      'proj.skills.t3': 'Repo prest: testuinguru doitua eta token kostu murriztua.',
       // Project: Stremio
       'fc.stremio.label': 'Streaming gehigarria',
       'fc.stremio.title': 'Stremio Katalanez',
@@ -320,6 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.',
       'fc.aparador.label': 'Repositorio fotográfico',
       'fc.aparador.desc': 'Álbums privados para fotógrafos con acceso por código, descarga orixinal e donativos opcionais.',
+      'fc.skills.label': 'Plantilla AI engineering',
+      'fc.skills.title': 'Base Skills Repo',
+      'fc.skills.desc': 'Base reutilizable con skills, prompts e axentes para iniciar repos con Copilot optimizado.',
       // Projects section
       'proj.title': 'Os meus proxectos',
       'proj.subtitle': 'Sempre estou traballando en algo novo. Aquí tes os proxectos aos que lle dediquei máis enerxía e ilusión.',
@@ -345,6 +359,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aparador.desc': '<strong>Aparador</strong> é unha plataforma web pensada para que os <strong>fotógrafos</strong> poidan compartir álbums co seu <strong>público</strong> mediante <strong>códigos de acceso</strong>. O público pode navegar con comodidade, ver as fotos en galería e descargalas na súa resolución orixinal.',
       'proj.aparador.note': 'Inclúe donativos opcionais vía Stripe, un panel para xestionar álbums e subidas de fotos, e unha arquitectura lixeira para manter os custos baixos.',
       'proj.aparador.btn': 'Proximamente…',
+      // Project: Base Skills Repo
+      'proj.skills.title': 'Base Skills Repo',
+      'proj.skills.desc1': '<strong>Base Skills Repo</strong> é un repositorio base para iniciar proxectos con <strong>GitHub Copilot</strong> ben configurado desde o primeiro día. Organiza o coñecemento por capas (instrucións, skills, prompts, chatmodes e memoria de repo) para que o axente cargue só o contexto relevante en cada tarefa.',
+      'proj.skills.note': 'Inclúe un mecanismo de <strong>bootstrap</strong> que detecta o stack ou o pregunta, activa os paquetes axeitados e deixa o repo preparado para traballar con máis precisión e menor custo de tokens.',
+      'proj.skills.btn': 'GitHub ↗',
+      'proj.skills.t1': 'Detectando stack e preferencias...',
+      'proj.skills.t2': 'Activando instrucións, skills e prompts relevantes...',
+      'proj.skills.t3': 'Repo listo: contexto afinado e custo de tokens reducido.',
       // Project: Stremio
       'fc.stremio.label': 'Complemento de streaming',
       'fc.stremio.title': 'Stremio en Catalán',

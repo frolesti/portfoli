@@ -132,6 +132,12 @@
           <p data-i18n="fc.aparador.desc">Àlbums privats per a fotògrafs amb accés per codi, descàrrega original i donatius opcionals.</p>
           <span class="fc-arrow">↓</span>
         </a>
+        <a href="#projecte-base-skills" class="featured-card fc-8">
+          <span class="fc-label" data-i18n="fc.skills.label">Plantilla AI engineering</span>
+          <h3 data-i18n="fc.skills.title">Base Skills Repo</h3>
+          <p data-i18n="fc.skills.desc">Base reusable amb skills, prompts i agents per arrencar repos amb Copilot optimitzat.</p>
+          <span class="fc-arrow">↓</span>
+        </a>
           </div>
         </div>
         <button class="carousel-btn carousel-next" aria-label="Següent">›</button>
@@ -527,6 +533,51 @@
                   <span class="aparador-input-text">Introdueix el codi de l'àlbum</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: Base Skills Repo -->
+      <article id="projecte-base-skills" class="project-detail reverse">
+        <div class="project-info">
+          <span class="project-tag" data-i18n="fc.skills.label">Plantilla AI engineering</span>
+          <h3 data-i18n="proj.skills.title">Base Skills Repo</h3>
+          <p data-i18n="proj.skills.desc1">
+            <strong>Base Skills Repo</strong> és un repositori base per començar projectes amb
+            <strong>GitHub Copilot</strong> ben configurat des del primer dia. Organitza el coneixement
+            en capes (instruccions, skills, prompts, chatmodes i memòria de repo) perquè l'agent
+            carregui només el context rellevant a cada tasca.
+          </p>
+          <p class="project-note" data-i18n="proj.skills.note">
+            Inclou un mecanisme de <strong>bootstrap</strong> que detecta el stack o el pregunta, activa
+            els paquets adients i deixa el repo preparat per treballar amb més precisió i menor cost de tokens.
+          </p>
+          <ul class="project-tech">
+            <li>GitHub Copilot</li>
+            <li>Skills</li>
+            <li>Prompts</li>
+            <li>Chatmodes</li>
+            <li>Token Optimization</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/frolesti/base-skills" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-base-skills-github" data-i18n="proj.skills.btn">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-visual pv-base-skills">
+          <div class="terminal-mockup">
+            <div class="terminal-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="terminal-title">base-skills-repo</span>
+            </div>
+            <div class="terminal-content">
+              <p class="term-line" style="--line-index:0"><span class="t-green">$</span> /bootstrap</p>
+              <p class="term-line" style="--line-index:1"><span class="t-dim">→</span> <span data-i18n="proj.skills.t1">Detectant stack i preferències...</span></p>
+              <p class="term-line" style="--line-index:2"><span class="t-dim">→</span> <span data-i18n="proj.skills.t2">Activant instruccions, skills i prompts rellevants...</span></p>
+              <p class="term-line" style="--line-index:3"><span class="t-green">✓</span> <span data-i18n="proj.skills.t3">Repo llest: context afinat i cost de tokens reduït.</span></p>
+              <p class="term-line t-cursor" style="--line-index:4">█</p>
             </div>
           </div>
         </div>
