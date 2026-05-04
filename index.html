@@ -565,34 +565,20 @@
           </div>
         </div>
         <div class="project-visual pv-base-skills">
-          <div class="copilot-session-mockup" aria-label="Simulació d'una sessió de codi assistida amb VS Code i terminal">
-            <div class="session-topbar">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <span class="session-title">base-skills-repo · VS Code</span>
+          <div class="bs-card" aria-label="Simulació terminal: escrius la sinopsi i els agents creen el repositori">
+            <div class="bs-card-head">
+              <span class="bs-dot"></span>
+              <span class="bs-card-title">base-skills · sessió assistida</span>
             </div>
 
-            <div class="session-body">
-              <aside class="session-sidebar" aria-hidden="true">
-                <span>.github/</span>
-                <span>skills/</span>
-                <span>prompts/</span>
-                <span>chatmodes/</span>
-                <span>memories/</span>
-              </aside>
-
-              <div class="session-editor" aria-hidden="true">
-                <div class="editor-tab">copilot-instructions.md</div>
-                <p class="editor-line"><span class="ln">1</span>Si no hi ha stack.json, executa /bootstrap.</p>
-                <p class="editor-line"><span class="ln">2</span>Carrega instruccions per al fitxer actiu.</p>
-              </div>
-            </div>
-
-            <div class="session-terminal" aria-hidden="true">
-              <p><span class="t-green">$</span> /bootstrap</p>
-              <p><span class="t-green">$</span> /planner</p>
-              <p><span class="t-green">$</span> /reviewer</p>
+            <div class="bs-terminal" aria-hidden="true">
+              <p class="bs-line bs-l1"><span class="bs-prompt">$</span> Quin projecte vols crear?</p>
+              <p class="bs-line bs-l2"><span class="bs-prompt">&gt;</span> Plataforma de cites mèdiques amb registre, calendari i panell admin</p>
+              <p class="bs-line bs-l3"><span class="bs-agent">[planner]</span> proposa stack: Next.js + PostgreSQL + Auth.js</p>
+              <p class="bs-line bs-l4"><span class="bs-agent">[scaffolder]</span> crea estructura inicial del repositori...</p>
+              <p class="bs-line bs-l5"><span class="bs-tree">├─</span> app/, components/, db/, tests/</p>
+              <p class="bs-line bs-l6"><span class="bs-tree">└─</span> README.md amb instruccions d'arrencada</p>
+              <p class="bs-line bs-l7"><span class="bs-ok">✓</span> Repositori creat i llest per continuar</p>
             </div>
           </div>
         </div>

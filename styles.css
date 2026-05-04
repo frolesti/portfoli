@@ -479,6 +479,8 @@ img {
   overflow: hidden;
   flex: 1;
   border-radius: var(--radius-lg);
+  padding: 10px 0 14px;
+  margin: -10px 0 -14px;
 }
 
 .carousel-track {
@@ -1206,107 +1208,106 @@ a.browser-link:hover {
   align-items: center;
 }
 
-.copilot-session-mockup {
+/* Base Skills configuration card */
+.bs-card {
   width: 100%;
-  max-width: 420px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  max-width: 380px;
   background: #111821;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
   box-shadow: 0 16px 48px rgba(0,0,0,0.16);
   color: #d8e2ec;
+  overflow: hidden;
 }
 
-.session-topbar {
+.bs-card-head {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
-  background: #1f2a36;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.session-title {
-  margin-left: auto;
+  padding: 11px 14px;
+  background: #1a2531;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: #9fb2c3;
 }
 
-.session-body {
-  display: grid;
-  grid-template-columns: 38% 62%;
-  min-height: 170px;
+.bs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5ce0d8;
+  box-shadow: 0 0 0 3px rgba(92, 224, 216, 0.15);
 }
 
-.session-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 12px 10px;
-  background: #16212c;
-  border-right: 1px solid rgba(255,255,255,0.08);
+.bs-card-title {
+  font-weight: 600;
 }
 
-.session-sidebar span {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: #89a0b2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.bs-terminal {
+  padding: 13px 14px 14px;
+  background: #09111a;
 }
 
-.session-editor {
-  padding: 12px;
-  background: #0f1720;
-}
-
-.editor-tab {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  background: #263342;
-  color: #b5c6d5;
-  font-family: var(--font-mono);
-  font-size: 0.63rem;
-}
-
-.editor-line {
+.bs-line {
   margin: 0 0 6px;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: #c3d1de;
-  line-height: 1.5;
-}
-
-.editor-line .ln {
-  display: inline-block;
-  width: 16px;
-  color: #607588;
-}
-
-.session-terminal {
-  padding: 11px 12px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  background: #0b1118;
-}
-
-.session-terminal p {
-  margin: 0 0 5px;
-  font-family: var(--font-mono);
   font-size: 0.64rem;
-  color: #abc0d2;
+  line-height: 1.45;
+  color: #b8c9d8;
+  opacity: 0.2;
+  transform: translateY(2px);
+  animation: bsLinePulse 11.2s linear infinite;
 }
 
-.session-footer {
-  margin: 0;
-  padding: 10px 12px 12px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  color: #8ecfa7;
+.bs-prompt {
+  color: #66d8d0;
+  font-weight: 700;
+}
+
+.bs-agent {
+  color: #8fcfa7;
+  font-weight: 700;
+}
+
+.bs-tree {
+  color: #6faec9;
+}
+
+.bs-ok {
+  color: #8fd8b2;
+  font-weight: 700;
+}
+
+.bs-l1 { animation-delay: 0s; }
+.bs-l2 { animation-delay: 1.2s; }
+.bs-l3 { animation-delay: 2.6s; }
+.bs-l4 { animation-delay: 4.1s; }
+.bs-l5 { animation-delay: 5.6s; }
+.bs-l6 { animation-delay: 7.1s; }
+.bs-l7 { animation-delay: 8.8s; }
+
+@keyframes bsLinePulse {
+  0% {
+    opacity: 0.2;
+    transform: translateY(2px);
+  }
+  6% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  16% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  24% {
+    opacity: 0.2;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(2px);
+  }
 }
 
 /* ---------- STREMIO MOCKUP ---------- */
