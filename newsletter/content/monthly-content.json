@@ -47,7 +47,7 @@
     }
   },
   "2026-05": {
-    "_featured": "trobar",
+    "_featured": "aparador",
     "trobar": {
       "title": "troBar",
       "kicker": "Beta Android",
@@ -61,13 +61,18 @@
       ]
     },
     "aparador": {
-      "title": "Aparador",
-      "kicker": "Llançament",
+      "title": "Aparador en acció: Casament d'Adri i Marita",
+      "kicker": "Cas pràctic",
+      "lede": "Aquest mes hem posat a prova Aparador amb un escenari real: el casament d'Adri i Marita. L'experiència de compartir l'àlbum amb els convidats ha estat un èxit total.",
+      "images": [
+        "../../img/aparador-album-1.png",
+        "../../img/aparador-album-2.png"
+      ],
       "updates": [
-        "<strong>Primera iteració pública.</strong> Ja podem compartir àlbums de fotos amb grups mitjançant un codi d'accés",
-        "El públic pot veure les fotos en galeria i descarregar-les en resolució original",
-        "Dashboard inicial per gestionar àlbums i pujades",
-        "Pròxims passos: integració de donatius via Stripe i millores d'UX"
+        "S'han pujat 122 fotos a resolució original gairebé a l'instant mitjançant el panell de control.",
+        "Els convidats han pogut accedir de seguida a la galeria i descarregar les imatges evitant la pèrdua de qualitat típica de WhatsApp.",
+        "El flux de navegació per les diferents fotos del casament s'ha demostrat intuïtiu i ràpid, fins i tot en dispositius mòbils.",
+        "Pròxims passos: seguir llimant detalls d'UX i preparar la integració de pagaments per als fotògrafs."
       ]
     },
     "instagram-catradio": {

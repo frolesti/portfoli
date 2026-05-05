@@ -149,12 +149,14 @@ function generateNewsletterHTML(reposData) {
   let featuredContent = '';
   // Generar columnes secundàries
   const secondaryProjects = [];
+  const processedSlugs = new Set();
 
   reposData.forEach(repo => {
     if (repo.error) return;
 
     const repoSlug = repo.fullName.split('/')[1];
     const manual = manualContent[repoSlug];
+    processedSlugs.add(repoSlug);
 
     // Projecte destacat
     if (repoSlug === featuredSlug && manual) {
@@ -165,6 +167,7 @@ function generateNewsletterHTML(reposData) {
         <div class="kicker">${kicker}</div>
         <h2>${manual.title || repo.name}</h2>
         ${lede ? `<p class="lede">${lede}</p>` : ''}
+        ${manual.images && manual.images.length > 0 ? manual.images.map(img => `<img src="${img}" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">`).join('\n        ') : ''}
         <ul>
           ${manual.updates.map(u => `<li>${u}</li>`).join('\n          ')}
         </ul>
@@ -199,6 +202,40 @@ function generateNewsletterHTML(reposData) {
         title: repo.name,
         kicker: null,
         updates
+      });
+    }
+  });
+
+  // Processar elements manuals que no corresponen a repos
+  Object.keys(manualContent).forEach(slug => {
+    if (slug === '_featured' || processedSlugs.has(slug)) return;
+
+    const manual = manualContent[slug];
+    
+    // Projecte destacat
+    if (slug === featuredSlug) {
+      const kicker = manual.kicker || 'Destacat';
+      const lede = manual.lede || '';
+      featuredContent = `
+      <div class="featured-article">
+        <div class="kicker">${kicker}</div>
+        <h2>${manual.title || slug}</h2>
+        ${lede ? `<p class="lede">${lede}</p>` : ''}
+        ${manual.images && manual.images.length > 0 ? manual.images.map(img => `<img src="${img}" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">`).join('\n        ') : ''}
+        <ul>
+          ${manual.updates.map(u => `<li>${u}</li>`).join('\n          ')}
+        </ul>
+        ${manual.cta_url ? `<a href="${manual.cta_url}" class="featured-cta" target="_blank" rel="noopener">${manual.cta_text || 'Veure projecte'}</a>` : ''}
+      </div>`;
+      return;
+    }
+
+    // Projectes secundaris
+    if (manual.updates && manual.updates.length > 0) {
+      secondaryProjects.push({
+        title: manual.title || slug,
+        kicker: manual.kicker || null,
+        updates: manual.updates
       });
     }
   });

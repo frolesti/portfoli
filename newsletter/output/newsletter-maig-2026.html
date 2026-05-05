@@ -3,250 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>frolesti — Maig 2026</title>
+  <title>frolesti — Maig del 2026</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Georgia,'Times New Roman',Times,serif;background:#f2f0eb;color:#1a1a1a;line-height:1.5;-webkit-font-smoothing:antialiased}
-    .container{max-width:660px;margin:0 auto;background:#fff;border:1px solid #d4d0c8}
+    .container{max-width:640px;margin:0 auto;background:#fff;border:1px solid #d4d0c8}
 
     /* MASTHEAD */
-    .masthead{padding:36px 40px 24px;text-align:center;border-bottom:1px solid #e0ddd5}
-    .masthead-rule-top{display:block;height:4px;background:#1a1a1a;margin-bottom:20px}
-    .masthead-eyebrow{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:8px}
-    .masthead-title{font-family:Georgia,serif;font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1}
-    .masthead-rule-mid{display:block;width:100%;height:1px;background:#1a1a1a;margin:14px 0}
-    .masthead-meta{display:table;width:100%}
-    .masthead-meta-left,.masthead-meta-right{display:table-cell;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;vertical-align:middle}
-    .masthead-meta-left{text-align:left}
-    .masthead-meta-right{text-align:right}
-    .masthead-rule-bottom{display:block;height:4px;background:#1a1a1a;margin-top:14px}
+    .masthead{border-bottom:4px double #1a1a1a;padding:32px 40px 20px;text-align:center}
+    .masthead-rule{display:block;width:60px;height:2px;background:#1a1a1a;margin:0 auto 12px}
+    .masthead-title{font-family:Georgia,serif;font-size:38px;font-weight:700;letter-spacing:-.5px;line-height:1.1}
+    .masthead-date{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#666;margin-top:10px}
+    .masthead-edition{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:4px}
 
     /* NAV */
-    .nav-bar{border-bottom:1px solid #e0ddd5;padding:10px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#888}
-    .nav-bar a{color:#666;text-decoration:none;margin:0 12px}
-    .nav-bar a:hover{color:#c75530}
-    .nav-sep{color:#ccc}
+    .nav-bar{border-bottom:1px solid #e0ddd5;padding:10px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#888}
+    .nav-bar a{color:#666;text-decoration:none;margin:0 10px}
+    .nav-bar span{color:#ccc}
 
     .content{padding:0}
 
     /* LEAD */
-    .lead{padding:32px 40px;border-bottom:1px solid #e0ddd5}
-    .lead .salutation{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;color:#999;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
-    .lead p{font-size:16px;line-height:1.7;color:#444}
-
-    /* HEADLINE BANNER */
-    .headline-banner{padding:28px 40px;border-bottom:1px solid #e0ddd5;text-align:center;background:#faf9f6}
-    .headline-banner h2{font-family:Georgia,serif;font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-.5px;color:#1a1a1a;margin-bottom:6px}
-    .headline-banner .subtitle{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#666;line-height:1.4}
+    .lead{padding:30px 40px;border-bottom:1px solid #e0ddd5}
+    .lead .salutation{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;color:#888;letter-spacing:.3px;margin-bottom:10px}
+    .lead p{font-size:16px;line-height:1.65;color:#444}
 
     /* FEATURED */
-    .featured-article{padding:32px 40px;border-bottom:1px solid #e0ddd5}
-    .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c75530;font-weight:600;margin-bottom:10px}
-    .featured-article h3{font-family:Georgia,serif;font-size:22px;font-weight:700;line-height:1.2;margin-bottom:14px;color:#1a1a1a}
-    .featured-article p{font-size:15px;line-height:1.7;color:#444;margin-bottom:14px}
+    .featured-article{padding:30px 40px;border-bottom:1px solid #e0ddd5}
+    .featured-article .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c75530;font-weight:600;margin-bottom:8px}
+    .featured-article h2{font-family:Georgia,serif;font-size:28px;font-weight:700;line-height:1.15;letter-spacing:-.3px;margin-bottom:16px;color:#1a1a1a}
+    .featured-article .lede{font-size:17px;line-height:1.6;color:#333;margin-bottom:18px;font-style:italic}
+    .featured-article ul{list-style:none;padding:0;margin:0}
+    .featured-article li{position:relative;padding:8px 0 8px 16px;font-size:15px;line-height:1.55;color:#444;border-bottom:1px dotted #e0ddd5}
+    .featured-article li:last-child{border-bottom:none}
+    .featured-article li::before{content:'';position:absolute;left:0;top:16px;width:5px;height:5px;background:#1a1a1a;border-radius:50%}
+    .featured-article li strong{color:#1a1a1a;font-weight:600}
     .featured-article a{color:#c75530;text-decoration:none;border-bottom:1px solid #c75530}
-    .featured-article a:hover{color:#a5431f}
-    .featured-cta{display:inline-block;margin-top:8px;padding:10px 28px;background:#1a1a1a;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none!important;border:none!important}
+    .featured-cta{display:inline-block;margin-top:20px;padding:10px 24px;background:#1a1a1a;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border:none}
 
-    /* STAT ROW */
-    .stats-row{display:table;width:100%;border-bottom:1px solid #e0ddd5}
-    .stat-cell{display:table-cell;width:33.33%;padding:20px 10px;text-align:center;vertical-align:top}
-    .stat-cell+.stat-cell{border-left:1px solid #e0ddd5}
-    .stat-number{font-family:Georgia,serif;font-size:28px;font-weight:700;color:#c75530;line-height:1}
-    .stat-label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:6px;line-height:1.3}
-
-    /* SECTION DIVIDER */
-    .section-label{padding:12px 40px;border-bottom:1px solid #e0ddd5;background:#faf9f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#999;font-weight:600}
-
-    /* ARTICLE BLOCK */
-    .article-block{padding:28px 40px;border-bottom:1px solid #e0ddd5}
-    .article-block h3{font-family:Georgia,serif;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:12px;color:#1a1a1a}
-    .article-block p{font-size:14px;line-height:1.7;color:#555;margin-bottom:10px}
-    .article-block a{color:#c75530;text-decoration:none;border-bottom:1px solid #c75530}
-
-    /* TWO COLUMN */
+    /* COLUMNS */
     .columns{display:table;width:100%;border-bottom:1px solid #e0ddd5}
-    .column{display:table-cell;width:50%;vertical-align:top;padding:24px 28px}
+    .column{display:table-cell;width:50%;vertical-align:top;padding:24px 30px}
     .column+.column{border-left:1px solid #e0ddd5}
-    .column .kicker{margin-bottom:6px}
-    .column h3{font-family:Georgia,serif;font-size:17px;font-weight:700;line-height:1.2;margin-bottom:10px;color:#1a1a1a}
-    .column p{font-size:13px;line-height:1.6;color:#555;margin-bottom:8px}
-    .column a{color:#c75530;text-decoration:none;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.5px}
-
-    /* INSET BOX */
-    .inset-box{margin:20px 40px;padding:22px 28px;border:2px solid #1a1a1a;background:#faf9f6}
-    .inset-box .kicker{margin-bottom:6px}
-    .inset-box h3{font-family:Georgia,serif;font-size:18px;font-weight:700;margin-bottom:8px;color:#1a1a1a}
-    .inset-box p{font-size:14px;line-height:1.65;color:#555}
+    .column .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;font-weight:600;margin-bottom:6px}
+    .column h3{font-family:Georgia,serif;font-size:18px;font-weight:700;line-height:1.2;margin-bottom:10px;color:#1a1a1a}
+    .column ul{list-style:none;padding:0;margin:0}
+    .column li{font-size:13px;line-height:1.5;color:#555;padding:4px 0;border-bottom:1px dotted #eae7e0}
+    .column li:last-child{border-bottom:none}
+    .column li strong{color:#333}
 
     /* PULLQUOTE */
-    .pullquote{padding:36px 50px;border-bottom:1px solid #e0ddd5;text-align:center}
-    .pullquote-mark{font-family:Georgia,serif;font-size:48px;line-height:1;color:#d4d0c8;margin-bottom:4px}
-    .pullquote p{font-family:Georgia,serif;font-size:21px;font-style:italic;line-height:1.45;color:#333;max-width:480px;margin:0 auto}
-    .pullquote .attribution{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-style:normal;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:12px}
+    .pullquote{padding:28px 40px;border-bottom:1px solid #e0ddd5;text-align:center}
+    .pullquote p{font-family:Georgia,serif;font-size:20px;font-style:italic;line-height:1.5;color:#333;max-width:480px;margin:0 auto}
+    .pullquote .attribution{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-style:normal;letter-spacing:1px;text-transform:uppercase;color:#999;margin-top:10px}
 
     /* CTA */
-    .cta-section{padding:32px 40px;text-align:center;border-bottom:1px solid #e0ddd5;background:#1a1a1a;color:#fff}
-    .cta-section p{font-size:15px;color:#bbb;margin-bottom:20px;line-height:1.6}
-    .cta-section strong{color:#fff}
-    .cta-btn{display:inline-block;padding:13px 36px;background:#c75530;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;text-decoration:none;border:none}
+    .cta-section{padding:30px 40px;text-align:center;border-bottom:1px solid #e0ddd5;background:#faf9f6}
+    .cta-section p{font-size:14px;color:#666;margin-bottom:18px;line-height:1.6}
+    .cta-btn{display:inline-block;padding:12px 32px;background:#c75530;color:#fff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border:none}
 
     /* FOOTER */
-    .email-footer{padding:28px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;border-top:4px double #1a1a1a}
-    .footer-logo{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#1a1a1a;letter-spacing:-.3px}
-    .footer-tagline{font-size:11px;color:#999;margin-top:4px;letter-spacing:.5px}
+    .email-footer{padding:24px 40px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+    .footer-logo{font-family:Georgia,serif;font-size:16px;font-weight:700;color:#1a1a1a;letter-spacing:-.3px}
     .email-footer p{font-size:11px;color:#999;margin-top:6px;line-height:1.6}
     .email-footer a{color:#c75530;text-decoration:none}
     .email-footer .unsub{font-size:10px;color:#bbb;margin-top:14px}
     .email-footer .unsub a{color:#bbb;text-decoration:underline}
 
     @media only screen and (max-width:600px){
-      .masthead{padding:24px 20px 18px}.masthead-title{font-size:34px}
-      .lead,.featured-article,.article-block,.pullquote,.cta-section{padding-left:20px;padding-right:20px}
+      .masthead{padding:24px 20px 16px}.masthead-title{font-size:30px}
+      .lead,.featured-article,.pullquote,.cta-section{padding-left:20px;padding-right:20px}
       .columns{display:block}.column{display:block;width:100%;padding:20px}.column+.column{border-left:none;border-top:1px solid #e0ddd5}
-      .headline-banner{padding:22px 20px}.headline-banner h2{font-size:26px}
-      .inset-box{margin:16px 20px}
-      .stats-row{display:block}.stat-cell{display:block;width:100%;padding:14px 20px;text-align:left;border-left:none!important;border-bottom:1px solid #e0ddd5}.stat-cell:last-child{border-bottom:none}.stat-number{display:inline;font-size:22px;margin-right:6px}.stat-label{display:inline;font-size:11px}
-      .email-footer{padding:20px}.nav-bar{padding:10px 20px}
+      .featured-article h2{font-size:24px}.email-footer{padding:20px}.nav-bar{padding:10px 20px}
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- ═══════ MASTHEAD ═══════ -->
+    <!-- MASTHEAD -->
     <div class="masthead">
-      <span class="masthead-rule-top"></span>
-      <div class="masthead-eyebrow">Butlletí mensual</div>
+      <span class="masthead-rule"></span>
       <div class="masthead-title">frolesti</div>
-      <span class="masthead-rule-mid"></span>
-      <div class="masthead-meta">
-        <span class="masthead-meta-left">Maig 2026 · Núm. 05</span>
-        <span class="masthead-meta-right">Software amb vocació social</span>
-      </div>
-      <span class="masthead-rule-bottom"></span>
+      <div class="masthead-date">Maig del 2026</div>
+      <div class="masthead-edition">Butlletí mensual · Software amb vocació social</div>
     </div>
 
     <div class="nav-bar">
-      <a href="https://frolesti-saas.netlify.app" target="_blank" rel="noopener">Portafolis</a>
-      <span class="nav-sep">/</span>
+      <a href="https://frolesti.github.io/portafolis/" target="_blank" rel="noopener">Portafolis</a>
+      <span>&middot;</span>
       <a href="https://frolesti.aixeta.cat/ca" target="_blank" rel="noopener">Aixeta</a>
-      <span class="nav-sep">/</span>
+      <span>&middot;</span>
       <a href="https://github.com/frolesti" target="_blank" rel="noopener">GitHub</a>
     </div>
 
     <div class="content">
 
-      <!-- ═══════ INTRO ═══════ -->
+      <!-- INTRO -->
       <div class="lead">
         <p class="salutation">Hola, {{NAME}}</p>
-        <p>Aquest mes ha estat especialment intens. <strong>troBar</strong> arriba a Android en versió beta, llancem la primera iteració d'<strong>Aparador</strong> per compartir àlbums fotogràfics amb codi, i la <strong>Catalunya Ràdio</strong> es fa ressò d'un dels nostres projectes. A dins t'ho expliquem amb detall.</p>
+        <p>Gràcies per formar part de la comunitat que fa possible mantenir aquests projectes en marxa. Aquí tens el resum d'activitat d'aquest mes.</p>
       </div>
 
-      <!-- ═══════ HEADLINE ═══════ -->
-      <div class="headline-banner">
-        <h2>troBar arriba a Android</h2>
-        <div class="subtitle">Primera versió beta de l'app per trobar bars on veure els partits del Barça</div>
-      </div>
-
-      <!-- ═══════ FEATURED ARTICLE ═══════ -->
+      <!-- FEATURED -->
+      
       <div class="featured-article">
-        <div class="kicker">Beta · Android</div>
-        <h3>Què és troBar?</h3>
-        <p><strong>troBar</strong> és una aplicació mòbil pensada per a la gent que segueix el <strong>FC Barcelona</strong> i vol veure els partits acompanyada, en un bar amb bon ambient i, per què no, amb una bona cervesa. Funciona amb mapa, geolocalització i informació de partits en temps real, i et permet trobar el millor lloc per gaudir del futbol allà on siguis — Catalunya, Madrid, Berlín o Buenos Aires.</p>
-        <p>L'app neix d'una experiència compartida: la d'haver de buscar al darrer moment, mig perdut per una ciutat desconeguda, un bar que retransmeti el partit del Barça. troBar resol això amb un mapa interactiu, ressenyes de la comunitat i informació pràctica de cada local.</p>
-
-        <h3>Què inclou la beta d'Android?</h3>
-        <p><strong>Mapa interactiu</strong> — Visualitza els bars més propers a la teva ubicació, amb informació detallada de cadascun: ambient, pantalles, menjar disponible i si retransmeten en català.</p>
-        <p><strong>Calendari del Barça en directe</strong> — Tots els partits del primer equip masculí amb hora, competició i rival actualitzats automàticament.</p>
-        <p><strong>Filtres pràctics</strong> — Cerca per ambient (familiar, de penya, esportiu), si tenen menjar, si retransmeten amb àudio en català, o per distància.</p>
-        <p><strong>Ressenyes obertes</strong> — Cada local pot rebre comentaris i puntuacions de la comunitat per ajudar a triar.</p>
-
-        <h3>Com aconsegueixo l'APK?</h3>
-        <p>La beta es distribueix de manera privada per facilitar el feedback inicial. Si vols formar part del grup de proves, <strong>respon a aquest correu</strong> i t'enviarem l'APK de la versió beta amb les instruccions d'instal·lació. Estem buscant feedback honest sobre rendiment, usabilitat del mapa i precisió de la informació dels bars.</p>
-
-        <h3>Pròximament: iOS i landing page</h3>
-        <p>La <strong>versió per a iOS</strong> ja està en desenvolupament i sortirà properament. També estem polint la <strong>landing page</strong> pública del projecte amb la possibilitat que els bars s'autoregistrin i actualitzin la seva informació directament.</p>
+        <div class="kicker">Cas pràctic</div>
+        <h2>Aparador en acció: Casament d'Adri i Marita</h2>
+        <p class="lede">Aquest mes hem posat a prova Aparador amb un escenari real: el casament d'Adri i Marita. L'experiència de compartir l'àlbum amb els convidats ha estat un èxit total.</p>
+        <img src="../../img/aparador-album-1.png" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">
+        <img src="../../img/aparador-album-2.png" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">
+        <ul>
+          <li>S'han pujat 122 fotos a resolució original gairebé a l'instant mitjançant el panell de control.</li>
+          <li>Els convidats han pogut accedir de seguida a la galeria i descarregar les imatges evitant la pèrdua de qualitat típica de WhatsApp.</li>
+          <li>El flux de navegació per les diferents fotos del casament s'ha demostrat intuïtiu i ràpid, fins i tot en dispositius mòbils.</li>
+          <li>Pròxims passos: seguir llimant detalls d'UX i preparar la integració de pagaments per als fotògrafs.</li>
+        </ul>
+        
       </div>
 
-      <!-- ═══════ STATS ═══════ -->
-      <div class="stats-row">
-        <div class="stat-cell">
-          <div class="stat-number">Beta</div>
-          <div class="stat-label">Disponible per a Android</div>
+      <!-- COLUMNS -->
+      <div class="columns">
+        <div class="column">
+          <div class="kicker">Beta Android</div>
+          <h3>troBar</h3>
+          <ul>
+            <li><strong>Beta pública per a Android</strong> ja disponible per provar</li>
+            <li>Mapa interactiu amb bars i pubs propers a la teva ubicació</li>
+            <li>Calendari del FC Barcelona en temps real, amb hora i competició</li>
+            <li>Filtres per ambient, ràdio del partit en català i menjar disponible</li>
+            <li>Si vols rebre l'APK de la beta, respon a aquest correu</li>
+          </ul>
         </div>
-        <div class="stat-cell">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Qualsevol ciutat del món</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number">FCB</div>
-          <div class="stat-label">Partits sempre actualitzats</div>
-        </div>
-      </div>
+        <div class="column">
+          <div class="kicker">Mitjans</div>
+          <h3>frolesti a Catalunya Ràdio</h3>
+          <ul>
+            <li><strong>Reel destacat al perfil oficial de Catalunya Ràdio</strong> a Instagram</li>
+            <li>Una mica de visibilitat extra per als projectes amb vocació social</li>
+            <li>Gràcies a l'equip de Catalunya Ràdio per l'altaveu</li>
+          </ul>
+        </div></div><div class="columns">
+        <div class="column">
+          <div class="kicker">Eines de desenvolupament</div>
+          <h3>Repositori base amb agents</h3>
+          <ul>
+            <li>Nou repositori plantilla per crear projectes amb <strong>agents d'IA preinstal·lats</strong></li>
+            <li>Configuració llesta per a Copilot/Claude amb les nostres convencions</li>
+            <li>Accelera el setup inicial de qualsevol projecte nou de l'organització</li>
+          </ul>
+        </div><div class="column"></div></div>
 
-      <!-- ═══════ FEEDBACK BOX ═══════ -->
-      <div class="inset-box">
-        <div class="kicker">Participa</div>
-        <h3>Vols provar la beta?</h3>
-        <p>Estem buscant <strong>provadors actius</strong> per a la beta de troBar a Android. Si tens un dispositiu Android i vols ajudar-nos a polir l'aplicació abans del llançament públic, respon a aquest correu i t'enviarem l'APK amb les instruccions. Cada feedback ens ajuda a fer l'app més útil.</p>
-      </div>
-
-      <!-- ═══════ SECTION: MÉS PROJECTES ═══════ -->
-      <div class="section-label">Més novetats</div>
-
-      <!-- ═══════ APARADOR ═══════ -->
-      <div class="article-block">
-        <div class="kicker">Llançament · Aparador</div>
-        <h3>Aparador — Comparteix àlbums de fotos amb un codi</h3>
-        <p>Aquest mes hem publicat la <strong>primera iteració pública</strong> d'Aparador, una plataforma web pensada perquè els <strong>fotògrafs</strong> puguin compartir àlbums amb el seu públic mitjançant un simple <strong>codi d'accés</strong>. L'objectiu és resoldre un problema concret: enviar fotos en alta resolució a clients, famílies o grups sense dependre del WhatsApp, del correu o de plataformes de compartició complicades.</p>
-        <p>El públic només necessita el codi de l'àlbum per accedir-hi, navegar per les fotos en una galeria còmoda i descarregar-les en la seva <strong>resolució original</strong>. El fotògraf gestiona els àlbums des d'un dashboard senzill, controla qui hi té accés i pot pujar lots de fotos d'una sola vegada.</p>
-        <p><strong>Què ve a continuació:</strong> integració de <strong>donatius opcionals via Stripe</strong> perquè el públic pugui col·laborar amb el fotògraf, millores d'UX al dashboard i sistemes de previsualització més ràpids per a àlbums grans.</p>
-      </div>
-
-      <!-- ═══════ CATALUNYA RÀDIO ═══════ -->
-      <div class="article-block">
-        <div class="kicker">Mitjans · Visibilitat</div>
-        <h3>frolesti destacat al perfil d'Instagram de Catalunya Ràdio</h3>
-        <p>Aquest mes <strong>Catalunya Ràdio</strong> ha publicat un <strong>reel al seu perfil oficial d'Instagram</strong> on apareixem nosaltres parlant dels projectes amb vocació social que estem desenvolupant. Per a nosaltres ha estat una alegria — la mena de visibilitat que ajuda que projectes com Alerta Desnona, troBar o les extensions per a llengües minoritzades arribin a més gent.</p>
-        <p>Gràcies a tot l'equip de Catalunya Ràdio per donar veu a iniciatives que aposten per posar la tecnologia al servei de la societat i de la llengua. Si vols veure el reel, el trobaràs al seu perfil d'Instagram <a href="https://www.instagram.com/catradio/" target="_blank" rel="noopener">@catradio</a>.</p>
-      </div>
-
-      <!-- ═══════ REPO BASE AGENTS ═══════ -->
-      <div class="article-block">
-        <div class="kicker">Eines · Desenvolupament</div>
-        <h3>Nou repositori base amb agents d'IA preinstal·lats</h3>
-        <p>Internament hem alliberat un <strong>repositori plantilla</strong> que ja inclou la configuració de tots els <strong>agents d'IA</strong> que fem servir habitualment (Copilot, Claude i altres) amb les nostres convencions, els nostres skills i els nostres patrons. L'objectiu és accelerar el setup inicial de qualsevol projecte nou: clonar, renombrar, i en cinc minuts ja tenim un entorn productiu amb agents capaços d'entendre el nostre estil de desenvolupament des del primer commit.</p>
-        <p>Aquesta plantilla està pensada per a projectes web i SaaS, però és prou flexible com per adaptar-la a backends, mòbils o eines internes. Si treballes en projectes propis i t'interessa una configuració similar, contacta'ns i t'expliquem com ho fem.</p>
-      </div>
-
-      <!-- ═══════ HIRE / PROPOSA PROJECTE ═══════ -->
-      <div class="inset-box" style="background:#1a1a1a;color:#f2f0eb;border-color:#333;">
-        <div class="kicker" style="color:#c75530;">Encàrrecs i col·laboracions</div>
-        <h3 style="color:#fff;">Tens una idea? Parlem-ne.</h3>
-        <p style="color:#ccc;">Si tens un projecte SaaS que necessites desenvolupar, una eina interna per al teu equip, o una idea de producte digital amb vocació social, pots proposar-m'ho directament. Treballo amb tecnologies web modernes (React, Node.js, Python, bases de dades, APIs) i tinc experiència en projectes que van des d'aplicacions de dades fins a extensions de navegador.</p>
-        <p style="color:#ccc;margin-top:10px;">No cal tenir-ho tot definit — puc ajudar-te des de la conceptualització fins al desplegament. Respon a aquest correu o escriu-me a través del <a href="https://frolesti-saas.netlify.app/#contacte" target="_blank" rel="noopener" style="color:#c75530;border-bottom:1px solid #c75530;">formulari de contacte del portafolis</a>.</p>
-      </div>
-
-      <!-- ═══════ PULLQUOTE ═══════ -->
+      <!-- PULLQUOTE -->
       <div class="pullquote">
-        <div class="pullquote-mark">«</div>
-        <p>La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.</p>
+        <p>«La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.»</p>
         <div class="attribution">— frolesti</div>
       </div>
 
-      <!-- ═══════ CTA FINAL ═══════ -->
+      <!-- CTA -->
       <div class="cta-section">
-        <p>Si t'agraden aquests projectes, comparteix el portafolis amb la teva xarxa.<br><strong>Cada difusió compta.</strong></p>
-        <a href="https://frolesti-saas.netlify.app" class="cta-btn" target="_blank" rel="noopener">Veure el portafolis</a>
+        <p>Si t'agraden els meus projectes, comparteix el meu portafolis amb la teva xarxa. Cada difusió compta.</p>
+        <a href="https://frolesti-saas.netlify.app" class="cta-btn" target="_blank" rel="noopener noreferrer">Veure el portafolis</a>
       </div>
 
     </div>
 
-    <!-- ═══════ FOOTER ═══════ -->
+    <!-- FOOTER -->
     <div class="email-footer">
       <div class="footer-logo">frolesti</div>
-      <div class="footer-tagline">Desenvolupament de software amb vocació social</div>
+      <p>Desenvolupament de software amb vocació social</p>
+      <p style="margin-top:14px;">
+        <a href="https://github.com/frolesti" style="color:#666;text-decoration:none;margin:0 8px;">GitHub</a>
+        <span style="color:#ccc;">·</span>
+        <a href="https://www.linkedin.com/in/frolesti/" style="color:#666;text-decoration:none;margin:0 8px;">LinkedIn</a>
+        <span style="color:#ccc;">·</span>
+        <a href="https://x.com/frolesti" style="color:#666;text-decoration:none;margin:0 8px;">X</a>
+        <span style="color:#ccc;">·</span>
+        <a href="https://www.instagram.com/frolesti/" style="color:#666;text-decoration:none;margin:0 8px;">Instagram</a>
+      </p>
       <p class="unsub"><a href="{{UNSUBSCRIBE_URL}}">Donar-me de baixa</a></p>
       <p style="font-size:10px;color:#ccc;margin-top:16px;">© 2026 frolesti</p>
     </div>
