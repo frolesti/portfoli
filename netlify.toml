@@ -3,11 +3,11 @@
 
 [[redirects]]
   from = "/admin/comentaris"
-  to = "/admin-reviews.html"
+  to = "/admin/reviews.html"
   status = 200
 
 [[headers]]
-  for = "/admin-reviews.html"
+  for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
     Cache-Control = "no-store"
