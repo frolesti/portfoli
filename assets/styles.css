@@ -2094,6 +2094,12 @@ a.browser-link:hover {
 }
 .newsletter-band-form input {
   width: 180px;
+  flex-shrink: 0;
+}
+.newsletter-band-form .newsletter-btn {
+  min-width: 180px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 @media (max-width: 768px) {
   .newsletter-band {

@@ -45,22 +45,21 @@ function htmlPage(title, heading, message, color) {
   <title>${title} — frolesti</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Georgia,'Times New Roman',serif;background:#f2f0eb;color:#1a1a1a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
-    .card{background:#fff;border:1px solid #d4d0c8;max-width:480px;width:100%;padding:48px 40px;text-align:center}
-    .logo{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:32px}
-    .icon{font-size:40px;margin-bottom:16px;color:${color}}
-    h1{font-size:22px;font-weight:700;margin-bottom:12px}
-    p{font-size:15px;line-height:1.65;color:#666;margin-bottom:20px}
-    a{color:#c75530;text-decoration:none;border-bottom:1px solid #c75530}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:linear-gradient(135deg,#f9f3ec 0%,#efe6d8 50%,#e6edf2 100%);color:#1a1a1a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    .card{background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.08);max-width:440px;width:100%;padding:48px 40px;text-align:center}
+    .icon{font-size:48px;margin-bottom:20px;line-height:1;color:${color}}
+    h1{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:600;margin-bottom:14px;color:#1a1a1a}
+    p{font-size:15px;line-height:1.6;color:#555;margin-bottom:24px}
+    .back{display:inline-block;font-size:14px;color:#c75530;text-decoration:none;border-bottom:1px solid #c75530;padding-bottom:2px}
+    .back:hover{color:#a04020;border-color:#a04020}
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="logo">frolesti</div>
     <div class="icon">${heading}</div>
     <h1>${title}</h1>
     <p>${message}</p>
-    <p><a href="https://frolesti-saas.netlify.app">Tornar al portafolis</a></p>
+    <a class="back" href="https://frolesti-saas.netlify.app">Tornar al portafolis</a>
   </div>
 </body>
 </html>`;
@@ -135,7 +134,7 @@ exports.handler = async (event) => {
       statusCode: 200,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
       body: htmlPage(
-        'Baixa confirmada',
+        'T\'hem donat de baixa',
         '👋',
         'T\'hem eliminat de la llista del butlletí. No rebràs més correus de frolesti. Gràcies per haver-hi estat!',
         '#2e7d32'
