@@ -1,0 +1,35 @@
+name: Butlletí - Prova manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_email:
+        description: 'Correu de destí per a la prova'
+        required: true
+        default: 'frolesti4@gmail.com'
+
+jobs:
+  send-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate newsletter
+        run: node newsletter/scripts/generate-newsletter.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send test email
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: node newsletter/scripts/send-test.js "${{ github.event.inputs.target_email }}"

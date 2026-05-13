@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin-reviews.html
+Disallow: /admin/
 
 Sitemap: https://frolesti-saas.netlify.app/sitemap.xml
