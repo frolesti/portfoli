@@ -25,6 +25,9 @@
   <meta name="twitter:title" content="frolesti — Desenvolupador freelance d'eines digitals amb impacte social">
   <meta name="twitter:description" content="Desenvolupador freelance de SaaS i extensions amb vocació social. Projectes en català.">
   <meta name="twitter:image" content="https://www.frolesti.cat/img/seo/og-preview.png">
+  <script>
+    window.GA_MEASUREMENT_ID = 'G-EVCD6Z4DN8';
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -836,7 +839,7 @@
             </div>
           </div>
         </div>
-        <p class="footer-privacy" data-i18n="footer.privacy">Aquesta pàgina utilitza analítica anònima i sense cookies (<a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>) per millorar l'experiència.</p>
+        <p class="footer-privacy" data-i18n="footer.privacy">Aquesta pàgina utilitza Google Analytics amb consentiment per mesurar visites i millorar l'experiència.</p>
       </div>
     </div>
   </footer>
@@ -856,7 +859,21 @@
     </div>
   </div>
 
+  <div class="analytics-banner" id="analyticsBanner" hidden>
+    <div class="analytics-banner__content">
+      <p class="analytics-banner__eyebrow">Cookies i analítica</p>
+      <h2>Ajuda'ns a entendre què funciona</h2>
+      <p>
+        Fem servir Google Analytics per saber quines pàgines es visiten, quins botons es clica i quantes subscripcions arriben a bon port.
+        Només es carregarà si ho acceptes.
+      </p>
+    </div>
+    <div class="analytics-banner__actions">
+      <button type="button" class="btn btn-outline analytics-banner__btn" id="analyticsRejectBtn">Rebutja</button>
+      <button type="button" class="btn btn-primary analytics-banner__btn" id="analyticsAcceptBtn">Accepta cookies</button>
+    </div>
+  </div>
+
   <script src="assets/main.js"></script>
-  <script data-goatcounter="https://frolesti.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

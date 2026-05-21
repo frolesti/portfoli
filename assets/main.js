@@ -32,6 +32,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---------- ANALYTICS CONSENT / GA4 ----------
+  const analyticsBanner = document.getElementById('analyticsBanner');
+  const analyticsAcceptBtn = document.getElementById('analyticsAcceptBtn');
+  const analyticsRejectBtn = document.getElementById('analyticsRejectBtn');
+  const gaMeasurementId = window.GA_MEASUREMENT_ID || '';
+  const analyticsStorageKey = 'frolesti-analytics-consent';
+  let analyticsLoaded = false;
+
+  function readAnalyticsConsent() {
+    try {
+      return localStorage.getItem(analyticsStorageKey);
+    } catch {
+      return null;
+    }
+  }
+
+  function writeAnalyticsConsent(value) {
+    try {
+      localStorage.setItem(analyticsStorageKey, value);
+    } catch {
+      /* ignore storage failures */
+    }
+  }
+
+  function canTrackAnalytics() {
+    return readAnalyticsConsent() === 'granted' && typeof window.gtag === 'function';
+  }
+
+  function loadGoogleAnalytics() {
+    if (analyticsLoaded || !gaMeasurementId) return;
+    analyticsLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaMeasurementId)}`;
+    document.head.appendChild(script);
+
+    window.gtag('js', new Date());
+    window.gtag('config', gaMeasurementId, {
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      send_page_view: true,
+    });
+  }
+
+  function setAnalyticsConsent(value) {
+    writeAnalyticsConsent(value);
+
+    if (value === 'granted') {
+      loadGoogleAnalytics();
+      trackGoogleEvent('consent_update', { analytics_storage: 'granted' });
+    }
+
+    if (analyticsBanner) {
+      analyticsBanner.hidden = true;
+    }
+  }
+
+  function trackGoogleEvent(eventName, params = {}) {
+    if (!canTrackAnalytics()) return;
+    window.gtag('event', eventName, params);
+  }
+
+  const storedConsent = readAnalyticsConsent();
+  if (storedConsent === 'granted') {
+    loadGoogleAnalytics();
+  } else if (analyticsBanner) {
+    analyticsBanner.hidden = false;
+  }
+
+  analyticsAcceptBtn?.addEventListener('click', () => setAnalyticsConsent('granted'));
+  analyticsRejectBtn?.addEventListener('click', () => setAnalyticsConsent('denied'));
+
   // ---------- CAROUSEL ----------
   const track = document.querySelector('.carousel-track');
   const cards = track ? Array.from(track.children) : [];
@@ -305,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.inici': 'Hasiera',
       'footer.contacte': 'Kontaktua',
       'footer.newsletter': 'Buletina',
-      'footer.privacy': 'Webgune honek cookie gabeko analitika anonimoa erabiltzen du (GoatCounter) esperientzia hobetzeko.',
+      'footer.privacy': 'Webgune honek Google Analytics erabiltzen du consentimentuz, esperientzia hobetzeko.',
     },
     gl: {
       // Nav
@@ -433,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.inici': 'Inicio',
       'footer.contacte': 'Contacto',
       'footer.newsletter': 'Boletín',
-      'footer.privacy': 'Esta páxina utiliza analítica anónima e sen cookies (GoatCounter) para mellorar a experiencia.',
+      'footer.privacy': 'Esta páxina utiliza Google Analytics con consentimento para mellorar a experiencia.',
     }
   };
 
@@ -522,8 +601,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function trackGoatEvent(path, title) {
-    if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
-    window.goatcounter.count({ path, title, event: true });
+    trackGoogleEvent('site_interaction', {
+      interaction_type: path,
+      interaction_label: title,
+      page_path: window.location.pathname + window.location.search,
+      page_location: window.location.href,
+    });
   }
 
   function buildLinkEventName(anchor) {
