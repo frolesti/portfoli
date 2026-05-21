@@ -10,7 +10,7 @@
     "newsletter:run": "npm run newsletter:generate && npm run newsletter:send"
   },
   "keywords": [
-    "portafoliso",
+    "portafolis",
     "newsletter",
     "saas"
   ],
