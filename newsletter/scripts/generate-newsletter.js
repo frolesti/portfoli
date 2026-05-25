@@ -117,11 +117,17 @@ function generateNewsletterHTML(reposData) {
     'utf8'
   );
 
-  // Data actual
-  const date = new Date();
-  let monthYear = date.toLocaleDateString('ca-ES', { 
-    month: 'long', 
-    year: 'numeric' 
+  // Data actual (o sobreescrita amb NEWSLETTER_MONTH=YYYY-MM per previsualitzar
+  // un mes concret sense haver d'esperar a la data real)
+  let date = new Date();
+  if (process.env.NEWSLETTER_MONTH && /^\d{4}-\d{2}$/.test(process.env.NEWSLETTER_MONTH)) {
+    const [y, m] = process.env.NEWSLETTER_MONTH.split('-').map(Number);
+    date = new Date(y, m - 1, 1);
+    console.log(`📅 NEWSLETTER_MONTH=${process.env.NEWSLETTER_MONTH} — generant per a aquest mes`);
+  }
+  let monthYear = date.toLocaleDateString('ca-ES', {
+    month: 'long',
+    year: 'numeric'
   });
   // Capitalitzar la primera lletra
   monthYear = monthYear.charAt(0).toUpperCase() + monthYear.slice(1);
@@ -360,6 +366,10 @@ async function main() {
     }
 
     const date = new Date();
+    if (process.env.NEWSLETTER_MONTH && /^\d{4}-\d{2}$/.test(process.env.NEWSLETTER_MONTH)) {
+      const [y, m] = process.env.NEWSLETTER_MONTH.split('-').map(Number);
+      date.setFullYear(y, m - 1, 1);
+    }
     const monthName = date.toLocaleDateString('ca-ES', { month: 'long' });
     const year = date.getFullYear();
     const filename = `newsletter-${monthName}-${year}.html`;

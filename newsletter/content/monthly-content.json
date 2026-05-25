@@ -48,49 +48,57 @@
   },
   "2026-05": {
     "_featured": "aparador",
-    "trobar": {
-      "title": "troBar",
-      "kicker": "Beta Android",
-      "lede": "L'app per trobar bars on veure els partits del Barça arriba a la seva primera versió beta per a Android.",
-      "updates": [
-        "<strong>Beta pública per a Android</strong> ja disponible per provar",
-        "Mapa interactiu amb bars i pubs propers a la teva ubicació",
-        "Calendari del FC Barcelona en temps real, amb hora i competició",
-        "Filtres per ambient, ràdio del partit en català i menjar disponible",
-        "Si vols rebre l'APK de la beta, respon a aquest correu"
-      ]
-    },
     "aparador": {
-      "title": "Aparador en acció: Casament d'Adri i Marita",
-      "kicker": "Cas pràctic",
-      "lede": "Aquest mes hem posat a prova Aparador amb un escenari real: el casament d'Adri i Marita. L'experiència de compartir l'àlbum amb els convidats ha estat un èxit total.",
+      "title": "Aparador en acció: el casament d'Adrià i Marita",
+      "kicker": "Cas d'èxit",
+      "lede": "Aquest mes Aparador ha passat la primera prova real en un escenari de veritat: el casament d'Adrià i Marita. Els convidats han pogut accedir a l'àlbum complet amb un sol codi i descarregar les fotos en qualitat original.",
       "images": [
-        "../../img/projects/aparador-album-1.png",
-        "../../img/projects/aparador-album-2.png"
+        "https://www.frolesti.cat/assets/img/projects/aparador-album-1.png",
+        "https://www.frolesti.cat/assets/img/projects/aparador-album-2.png"
       ],
       "updates": [
-        "S'han pujat 122 fotos a resolució original gairebé a l'instant mitjançant el panell de control.",
-        "Els convidats han pogut accedir de seguida a la galeria i descarregar les imatges evitant la pèrdua de qualitat típica de WhatsApp.",
-        "El flux de navegació per les diferents fotos del casament s'ha demostrat intuïtiu i ràpid, fins i tot en dispositius mòbils.",
-        "Pròxims passos: seguir llimant detalls d'UX i preparar la integració de pagaments per als fotògrafs."
+        "S'han pujat <strong>122 fotos a resolució original</strong> gairebé a l'instant des del panell de control.",
+        "Els convidats han pogut entrar a la galeria amb un codi i descarregar les imatges <strong>sense la pèrdua de qualitat típica de WhatsApp</strong>.",
+        "El flux de navegació entre àlbums i fotos s'ha demostrat intuïtiu i ràpid, també des de mòbil.",
+        "Pròxims passos: seguir polint la UX i acabar la integració de pagaments per als fotògrafs."
+      ],
+      "cta_url": "https://aparador.vercel.app",
+      "cta_text": "Prova la beta d'Aparador"
+    },
+    "trobar": {
+      "title": "troBar — disseny definitiu",
+      "kicker": "Producte",
+      "updates": [
+        "<strong>Disseny visual definitiu</strong> de l'aplicació, llest per a la implementació final.",
+        "Nova <strong>animació d'entrada</strong> que comunica millor el to del producte.",
+        "L'aplicació segueix orientada a trobar bars per veure els partits del Barça allà on siguis."
       ]
     },
     "instagram-catradio": {
       "title": "frolesti a Catalunya Ràdio",
       "kicker": "Mitjans",
       "updates": [
-        "<strong>Reel destacat al perfil oficial de Catalunya Ràdio</strong> a Instagram",
-        "Una mica de visibilitat extra per als projectes amb vocació social",
-        "Gràcies a l'equip de Catalunya Ràdio per l'altaveu"
+        "<strong>Aparició al perfil oficial d'Instagram de Catalunya Ràdio</strong>, parlant dels projectes amb vocació social.",
+        "Una mica de visibilitat extra per a les eines digitals en català.",
+        "Pots veure la publicació aquí: <a href=\"https://www.instagram.com/p/DX1siD2NbXa/\" style=\"color:#c75530;\">instagram.com/p/DX1siD2NbXa</a>."
+      ]
+    },
+    "curs-emprenedoria": {
+      "title": "Curs d'emprenedoria · Cambra de Comerç de Terrassa",
+      "kicker": "Formació",
+      "updates": [
+        "He <strong>acabat el curs d'emprenedoria</strong> de la Cambra de Comerç de Terrassa.",
+        "Eines noves per estructurar millor els projectes com a negoci sostenible.",
+        "Una bona excusa per repensar el model de cada producte de l'organització."
       ]
     },
     "aixeta-agents-base": {
-      "title": "Repositori base amb agents",
+      "title": "Repositori base amb agents preinstal·lats",
       "kicker": "Eines de desenvolupament",
       "updates": [
-        "Nou repositori plantilla per crear projectes amb <strong>agents d'IA preinstal·lats</strong>",
-        "Configuració llesta per a Copilot/Claude amb les nostres convencions",
-        "Accelera el setup inicial de qualsevol projecte nou de l'organització"
+        "Hem dissenyat un <strong>repositori completament configurat amb Claude</strong>, llest per crear projectes des de zero.",
+        "Conté instruccions, capacitats i agents ja preparats per accelerar la posada en marxa.",
+        "L'objectiu: poder iniciar qualsevol projecte nou de l'organització amb les nostres convencions el primer dia."
       ]
     }
   }
