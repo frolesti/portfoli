@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const gaMeasurementId = window.GA_MEASUREMENT_ID || '';
   const analyticsStorageKey = 'frolesti-analytics-consent';
   let analyticsLoaded = false;
+  let newsletterPopupOpen = false;
+  let analyticsHideTimer = null;
 
   function readAnalyticsConsent() {
     try {
@@ -92,8 +94,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (analyticsBanner) {
-      analyticsBanner.hidden = true;
+      analyticsBanner.classList.remove('is-visible');
+      if (analyticsHideTimer) clearTimeout(analyticsHideTimer);
+      analyticsHideTimer = setTimeout(() => {
+        analyticsBanner.hidden = true;
+      }, 260);
     }
+  }
+
+  function showAnalyticsBanner() {
+    if (!analyticsBanner || readAnalyticsConsent() === 'granted' || newsletterPopupOpen) return;
+
+    analyticsBanner.hidden = false;
+    requestAnimationFrame(() => {
+      analyticsBanner.classList.add('is-visible');
+    });
+  }
+
+  function hideAnalyticsBanner() {
+    if (!analyticsBanner) return;
+
+    analyticsBanner.classList.remove('is-visible');
+    if (analyticsHideTimer) clearTimeout(analyticsHideTimer);
+    analyticsHideTimer = setTimeout(() => {
+      analyticsBanner.hidden = true;
+    }, 260);
+  }
+
+  function syncAnalyticsBanner() {
+    if (readAnalyticsConsent() === 'granted' || newsletterPopupOpen) {
+      hideAnalyticsBanner();
+      return;
+    }
+
+    showAnalyticsBanner();
   }
 
   function trackGoogleEvent(eventName, params = {}) {
@@ -105,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (storedConsent === 'granted') {
     loadGoogleAnalytics();
   } else if (analyticsBanner) {
-    analyticsBanner.hidden = false;
+    syncAnalyticsBanner();
   }
 
   analyticsAcceptBtn?.addEventListener('click', () => setAnalyticsConsent('granted'));
@@ -915,11 +949,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
     };
     const hidePopup = () => {
+      newsletterPopupOpen = false;
       nlPopupBackdrop.classList.remove('is-visible');
       setTimeout(() => { nlPopupBackdrop.hidden = true; }, 300);
       markSeen();
+      syncAnalyticsBanner();
     };
     const showPopup = () => {
+      newsletterPopupOpen = true;
+      hideAnalyticsBanner();
       nlPopupBackdrop.hidden = false;
       requestAnimationFrame(() => nlPopupBackdrop.classList.add('is-visible'));
       trackGoatEvent('newsletter-popup-shown', 'Newsletter popup shown');

@@ -2476,10 +2476,20 @@ a.browser-link:hover {
   box-shadow: 0 18px 40px rgba(0,0,0,0.18);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
 }
 
 .analytics-banner[hidden] {
   display: none;
+}
+
+.analytics-banner.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .analytics-banner__content {
