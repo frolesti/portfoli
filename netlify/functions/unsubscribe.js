@@ -59,7 +59,7 @@ function htmlPage(title, heading, message, color) {
     <div class="icon">${heading}</div>
     <h1>${title}</h1>
     <p>${message}</p>
-    <a class="back" href="https://frolesti-saas.netlify.app">Tornar al portafolis</a>
+    <a class="back" href="https://frolesti.cat">Tornar al portafolis</a>
   </div>
 </body>
 </html>`;

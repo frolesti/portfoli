@@ -1,9 +1,10 @@
 name: Butlletí Mensual
 
+# ⚠️ Enviament automàtic DESACTIVAT a propòsit.
+# El butlletí només s'envia manualment des de la pestanya "Actions" de GitHub
+# (botó "Run workflow") o via `npm run newsletter:send` en local,
+# després d'haver revisat el contingut del mes.
 on:
-  schedule:
-    # Cada dilluns a les 9:00 AM UTC — el workflow comprova si és l'últim dilluns del mes
-    - cron: '0 9 * * 1'
   workflow_dispatch:
 
 jobs:
