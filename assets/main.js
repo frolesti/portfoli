@@ -1,7 +1,7 @@
 /* ================================================
-   FROLESTI — main.js
-   Nav scroll · Mobile menu · Carousel · Scroll reveal · Form
-   ================================================ */
+  FROLESTI — main.js
+  Nav scroll · Mobile menu · Scroll reveal · Form
+  ================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -145,100 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
   analyticsAcceptBtn?.addEventListener('click', () => setAnalyticsConsent('granted'));
   analyticsRejectBtn?.addEventListener('click', () => setAnalyticsConsent('denied'));
 
-  // ---------- CAROUSEL ----------
-  const track = document.querySelector('.carousel-track');
-  const cards = track ? Array.from(track.children) : [];
-  const prevBtn = document.querySelector('.carousel-prev');
-  const nextBtn = document.querySelector('.carousel-next');
-  const dotsContainer = document.getElementById('carouselDots');
-
-  if (track && cards.length > 0) {
-    let currentPage = 0;
-
-    function getCardsPerView() {
-      const w = window.innerWidth;
-      if (w <= 640) return 1;
-      if (w <= 900) return 2;
-      return Math.min(3, cards.length);
-    }
-
-    function getTotalPages() {
-      const perView = getCardsPerView();
-      return Math.max(1, cards.length - perView + 1);
-    }
-
-    function wrapPage(page) {
-      const totalPages = getTotalPages();
-      if (totalPages <= 1) return 0;
-      return ((page % totalPages) + totalPages) % totalPages;
-    }
-
-    function updateCarousel() {
-      const perView = getCardsPerView();
-      const totalPages = getTotalPages();
-      currentPage = wrapPage(currentPage);
-
-      // Calculate offset
-      const gap = 20;
-      const containerWidth = track.parentElement.offsetWidth;
-      const cardWidth = (containerWidth - gap * (perView - 1)) / perView;
-
-      // Set card widths
-      cards.forEach(card => {
-        card.style.minWidth = cardWidth + 'px';
-        card.style.maxWidth = cardWidth + 'px';
-      });
-
-      const offset = currentPage * (cardWidth + gap);
-      track.style.transform = `translateX(-${offset}px)`;
-
-      // Buttons — always enabled for infinite carousel
-      if (prevBtn) prevBtn.disabled = false;
-      if (nextBtn) nextBtn.disabled = false;
-
-      // Show/hide nav when not needed
-      const showNav = cards.length > perView;
-      if (prevBtn) prevBtn.style.display = showNav ? '' : 'none';
-      if (nextBtn) nextBtn.style.display = showNav ? '' : 'none';
-      if (dotsContainer) dotsContainer.style.display = showNav ? '' : 'none';
-
-      // Dots
-      if (dotsContainer) {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalPages; i++) {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot' + (i === currentPage ? ' active' : '');
-          dot.setAttribute('aria-label', `Pàgina ${i + 1}`);
-          dot.addEventListener('click', () => { currentPage = i; updateCarousel(); });
-          dotsContainer.appendChild(dot);
-        }
-      }
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', () => { currentPage = wrapPage(currentPage - 1); updateCarousel(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { currentPage = wrapPage(currentPage + 1); updateCarousel(); });
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) { currentPage = wrapPage(currentPage + 1); }
-        else { currentPage = wrapPage(currentPage - 1); }
-        updateCarousel();
-      }
-    }, { passive: true });
-
-    updateCarousel();
-    window.addEventListener('resize', () => { updateCarousel(); });
-  }
-
   // ---------- SCROLL REVEAL ----------
   const revealElements = document.querySelectorAll(
-    '.featured, .project-detail, .about-grid, .footer-aixeta, .contact-unified, .sidebar-card, .section-header'
+    '.project-detail, .about-grid, .footer-aixeta, .contact-unified, .sidebar-card, .section-header'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
