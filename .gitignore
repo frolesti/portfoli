@@ -11,3 +11,12 @@ newsletter/scripts/subscribers.json
 # OS
 Thumbs.db
 .DS_Store
+
+# Personal docs (local-only)
+admin/pla-empresa.html
+admin/pla-empresa.md
+admin/pressupost-model-frolesti.html
+admin/pressupost-model-frolesti.csv
+admin/contracte-serveis-frolesti.html
+admin/targeta-visita.html
+assets/img/brand/frolesti.cat-qr.svg
