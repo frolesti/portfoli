@@ -232,29 +232,29 @@
             <span class="terminal-title">aesso · calculadora g_tot</span>
           </div>
           <div class="aesso-mockup" aria-hidden="true">
-            <div class="aesso-title">Calculadora de protecció solar</div>
+            <div class="aesso-title" data-i18n="proj.aesso.visual.title">Calculadora de protecció solar</div>
             <div class="aesso-simple-list">
               <div class="aesso-simple-item">
-                <span>Dades del vidre</span>
-                <span class="aesso-simple-tag">completat</span>
+                <span data-i18n="proj.aesso.visual.step1">Dades del vidre</span>
+                <span class="aesso-simple-tag" data-i18n="proj.aesso.visual.done">completat</span>
               </div>
               <div class="aesso-simple-item">
-                <span>Dades de la protecció solar</span>
-                <span class="aesso-simple-tag">completat</span>
+                <span data-i18n="proj.aesso.visual.step2">Dades de la protecció solar</span>
+                <span class="aesso-simple-tag" data-i18n="proj.aesso.visual.done">completat</span>
               </div>
               <div class="aesso-simple-item">
-                <span>Informe final</span>
-                <span class="aesso-simple-tag">preparat</span>
+                <span data-i18n="proj.aesso.visual.step3">Informe final</span>
+                <span class="aesso-simple-tag" data-i18n="proj.aesso.visual.ready">preparat</span>
               </div>
             </div>
             <div class="aesso-result">
-              <span class="aesso-result-label">Resultat final</span>
+              <span class="aesso-result-label" data-i18n="proj.aesso.visual.resultLabel">Resultat final</span>
               <span class="aesso-result-value">0,10</span>
-              <span class="aesso-result-tag">✓ llest per exportar</span>
+              <span class="aesso-result-tag" data-i18n="proj.aesso.visual.resultTag">✓ llest per exportar</span>
             </div>
             <div class="aesso-actions">
-              <span class="aesso-btn aesso-btn-primary">Descarregar informe PDF</span>
-              <span class="aesso-btn aesso-btn-outline">Editar dades</span>
+              <span class="aesso-btn aesso-btn-primary" data-i18n="proj.aesso.visual.btn1">Descarregar informe PDF</span>
+              <span class="aesso-btn aesso-btn-outline" data-i18n="proj.aesso.visual.btn2">Editar dades</span>
             </div>
           </div>
         </div>`
