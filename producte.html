@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca" data-profile="professional">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article de producte · frolesti</title>
+  <meta name="robots" content="noindex, follow">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('frolesti-profile');
+        var profile = stored === 'social' ? 'social' : 'professional';
+        document.documentElement.setAttribute('data-profile', profile);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=20260610">
+</head>
+<body data-profile="professional" class="product-page">
+
+  <header class="product-topbar">
+    <div class="container product-topbar-inner">
+      <a href="index.html" class="product-back-link" id="backToPortfolio">
+        <span>Torna al portfoli</span>
+      </a>
+      <a href="index.html" class="product-brand">frolesti</a>
+    </div>
+  </header>
+
+  <main class="product-main">
+
+    <section class="product-hero">
+      <div class="container product-hero-grid">
+        <div class="product-hero-text">
+          <span class="product-tag" id="productTag"></span>
+          <h1 id="productTitle">Carregant projecte...</h1>
+          <p class="product-lead" id="productLead"></p>
+          <div class="product-cta-row" id="productCtaRow"></div>
+        </div>
+        <div class="product-hero-visual" id="productVisual"></div>
+      </div>
+    </section>
+
+    <section class="product-sections container" id="productSections"></section>
+
+    <section class="product-features-section container" id="productFeaturesSection" hidden>
+      <div class="product-features-grid" id="productFeatures"></div>
+    </section>
+
+    <section class="product-stack-section container" id="productStackSection" hidden>
+      <ul class="product-tech" id="productStack"></ul>
+    </section>
+
+    <section class="product-images-section container" id="productImagesSection" hidden>
+      <div class="product-images-grid" id="productImages"></div>
+    </section>
+
+    <section class="product-cta-footer container" id="productCtaFooter" hidden>
+      <h2 class="product-section-heading">Vols veure-ho en directe?</h2>
+      <div class="product-cta-row" id="productCtaFooterRow"></div>
+    </section>
+
+  </main>
+
+  <footer class="product-footer">
+    <div class="container product-footer-inner">
+      <a href="index.html" class="product-back-link" id="backToPortfolioBottom">
+        <span>Torna al portfoli</span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="assets/project-visuals.js?v=20260610"></script>
+  <script src="assets/project-articles.js?v=20260610c"></script>
+  <script src="assets/product-page.js?v=20260610"></script>
+</body>
+</html>

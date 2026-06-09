@@ -5,6 +5,291 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Popula els visual mockups des de project-visuals.js (única font de veritat).
+  // Ha d'executar-se ABANS de collectOriginals() perquè els data-i18n dels visuals es recollecten.
+  if (window.PROJECT_VISUALS) {
+    Object.keys(window.PROJECT_VISUALS).forEach(id => {
+      const article = document.getElementById(id);
+      if (!article) return;
+      const container = article.querySelector('.project-visual');
+      if (!container || container.children.length > 0) return;
+      container.innerHTML = window.PROJECT_VISUALS[id].html;
+    });
+  }
+
+  // ---------- PROFILE (social / professional) ----------
+  // Es mostra una pantalla d'entrada la primera visita per triar perfil.
+  // Es recorda a localStorage i es pot canviar des de la nav.
+  const PROFILE_KEY = 'frolesti-profile';
+  const PROFILE_LABELS = { social: 'Social', professional: 'Professional' };
+  const profileSplash = document.getElementById('profileSplash');
+  const profileSwitchValue = document.getElementById('profileSwitchValue');
+  const profileSwitchBtn = document.getElementById('profileSwitchBtn');
+  const profileSwitchBtnMobile = document.getElementById('profileSwitchBtnMobile');
+  const PROJECT_RETURN_KEY = 'portfolio-return-state';
+
+  const profileCopyTargets = {
+    heroTag: document.getElementById('heroTag'),
+    heroDescription: document.getElementById('heroDescription'),
+    projectsSubtitle: document.getElementById('projectsSubtitle'),
+    newsletterBandTitle: document.getElementById('newsletterBandTitle'),
+    newsletterBandDesc: document.getElementById('newsletterBandDesc'),
+    nlPopupTitle: document.getElementById('nlPopupTitle'),
+    nlPopupDesc: document.getElementById('nlPopupDesc'),
+    aboutTitle: document.getElementById('aboutTitle'),
+    aboutP1: document.getElementById('aboutP1'),
+    aboutP2: document.getElementById('aboutP2'),
+    aboutValues: document.getElementById('aboutValues'),
+    aboutQuote: document.querySelector('.about-quote'),
+    aboutSkills: document.querySelector('.skills-cloud'),
+  };
+
+  const profileCopy = {
+    professional: {
+      heroTag: 'Desenvolupador freelance · SaaS · Producte digital',
+      heroDescription: "Ajudo a empreses i entitats a convertir necessitats de negoci en <strong>productes digitals pràctics</strong>. Dissenyo i desenvolupo solucions SaaS (Software as a Service), automatitzacions i eines internes personalitzades enfocades a <strong>l'anàlisi de dades, l'optimització de processos i la millora de l'experiència d'usuari</strong>.",
+      projectsSubtitle: 'Aquests són els projectes orientats a negoci: es tracta de productes validats, que ja estan en producció per clients reals i que testifiquen la nostra implicació i la nostra manera de fer.',
+      newsletterTitle: 'Butlletí mensual',
+      newsletterDesc: 'Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.',
+      aboutTitle: 'Producte digital amb impacte real en el negoci',
+      aboutP1: "Sóc desenvolupador freelance especialitzat en <strong>SaaS, automatitzacions, integracions, plugins i eines internes a mida</strong>. Treballo amb equips petits que necessiten anar ràpid: dissenyo, construeixo i desplego solucions <strong>end-to-end</strong>, des del primer prototip fins al manteniment en producció.",
+      aboutP2: "Penso en termes de <strong>negoci</strong>: cada decisió tècnica busca reduir costos operatius, alliberar hores a l'equip o obrir nous canals d'ingressos.",
+      aboutQuote: '«La millor tecnologia és la que converteix objectius de negoci en resultats mesurables.»',
+      aboutSkills: ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'Docker', 'AWS', 'Supabase', 'CI/CD', 'APIs REST', 'Arquitectura SaaS', 'Integracions'],
+      aboutValues: [
+        { icon: '◆', title: 'End-to-end', desc: 'Producte, codi, infraestructura i manteniment, sense haver de coordinar diversos proveïdors.' },
+        { icon: '◆', title: 'Orientat a resultats', desc: 'Cada projecte es justifica en hores estalviades, ingressos generats o riscos reduïts.' },
+        { icon: '◆', title: 'Cost operatiu baix', desc: 'Arquitectures pensades per oferir experiència premium sense factures impossibles de mantenir.' }
+      ],
+    },
+    social: {
+      heroTag: 'Desenvolupador autònom · Software social · Llengua i drets digitals',
+      heroDescription: "Creo i comparteixo eines digitals amb <strong>vocació social</strong> per fer tecnologia més accessible, útil i arrelada al territori. Aquest espai és sobretot d'<strong>exposició de projectes</strong> amb impacte en comunitat, llengua i drets digitals.",
+      projectsSubtitle: "Projectes socials i oberts que neixen de necessitats reals de la comunitat: experiments, prototips i eines que volen aportar valor públic.",
+      newsletterTitle: 'Butlletí mensual',
+      newsletterDesc: 'Rep cada mes les novetats dels meus projectes. Sense spam, un sol correu.',
+      aboutTitle: 'Software amb propòsit',
+      aboutP1: "Crec que la tecnologia ha de servir per <strong>millorar la vida de totes les persones</strong> i no només de les que s'ho poden permetre. És per això que dedico bona part del meu temps a construir eines que tenen sentit per a la meva comunitat: <strong>eines per protegir la llengua, els drets digitals i que puguin garantir l'accés a serveis públics</strong>.",
+      aboutP2: "Treballo com a desenvolupador autònom, prioritzant projectes <strong>de codi obert</strong>, sostenibles i amb impacte mesurable més enllà del compte de resultats. Quan una idea pot fer fàcil el que avui és difícil per a molta gent, val la pena dedicar-hi temps.",
+      aboutQuote: '«La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.»',
+      aboutSkills: ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'React Native', 'Firebase', 'Open source', 'Accessibilitat', 'Dades públiques', 'APIs REST', 'Docker'],
+      aboutValues: [
+        { icon: '◆', title: 'Vocació social', desc: 'Llengua, drets digitals i accés a serveis públics com a eixos del que faig.' },
+        { icon: '◆', title: 'Autonomia', desc: 'Eines independents, fàcils de fer servir i gratuïtes.' },
+        { icon: '◆', title: 'Productes sòlids', desc: 'Es tracta de projectes autocontinguts, mantinguts periòdicament i amb un impacte mesurable.' }
+      ],
+    }
+  };
+
+  function readProfile() {
+    try { return localStorage.getItem(PROFILE_KEY); } catch { return null; }
+  }
+  function writeProfile(value) {
+    try { localStorage.setItem(PROFILE_KEY, value); } catch {}
+  }
+  function getActiveProfile() {
+    const currentBody = document.body.getAttribute('data-profile');
+    if (currentBody === 'social' || currentBody === 'professional') return currentBody;
+    const currentHtml = document.documentElement.getAttribute('data-profile');
+    return (currentHtml === 'social' || currentHtml === 'professional') ? currentHtml : 'professional';
+  }
+  function applyProfileCopy(profile) {
+    const copy = profileCopy[profile];
+    if (!copy) return;
+    if (profileCopyTargets.heroTag) profileCopyTargets.heroTag.textContent = copy.heroTag;
+    if (profileCopyTargets.heroDescription) profileCopyTargets.heroDescription.innerHTML = copy.heroDescription;
+    if (profileCopyTargets.projectsSubtitle) profileCopyTargets.projectsSubtitle.textContent = copy.projectsSubtitle;
+    if (profileCopyTargets.newsletterBandTitle) profileCopyTargets.newsletterBandTitle.textContent = copy.newsletterTitle;
+    if (profileCopyTargets.newsletterBandDesc) profileCopyTargets.newsletterBandDesc.textContent = copy.newsletterDesc;
+    if (profileCopyTargets.nlPopupTitle) profileCopyTargets.nlPopupTitle.textContent = copy.newsletterTitle;
+    if (profileCopyTargets.nlPopupDesc) profileCopyTargets.nlPopupDesc.textContent = copy.newsletterDesc;
+    if (profileCopyTargets.aboutTitle) profileCopyTargets.aboutTitle.textContent = copy.aboutTitle;
+    if (profileCopyTargets.aboutP1) profileCopyTargets.aboutP1.innerHTML = copy.aboutP1;
+    if (profileCopyTargets.aboutP2) profileCopyTargets.aboutP2.innerHTML = copy.aboutP2;
+    if (profileCopyTargets.aboutQuote && copy.aboutQuote) {
+      profileCopyTargets.aboutQuote.textContent = copy.aboutQuote;
+    }
+    if (profileCopyTargets.aboutSkills && Array.isArray(copy.aboutSkills)) {
+      profileCopyTargets.aboutSkills.innerHTML = copy.aboutSkills
+        .map((skill) => '<span>' + skill + '</span>')
+        .join('');
+    }
+    if (profileCopyTargets.aboutValues && Array.isArray(copy.aboutValues)) {
+      profileCopyTargets.aboutValues.innerHTML = copy.aboutValues
+        .map((v) => (
+          '<div class="value-item">' +
+            '<span class="value-icon">' + (v.icon || '◆') + '</span>' +
+            '<div>' +
+              '<strong>' + v.title + '</strong>' +
+              '<p>' + v.desc + '</p>' +
+            '</div>' +
+          '</div>'
+        ))
+        .join('');
+    }
+  }
+  function applyProfile(profile) {
+    if (profile !== 'social' && profile !== 'professional') return;
+    document.documentElement.setAttribute('data-profile', profile);
+    document.body.setAttribute('data-profile', profile);
+    if (profileSwitchValue) profileSwitchValue.textContent = PROFILE_LABELS[profile];
+    if (profileSwitchBtn) {
+      profileSwitchBtn.title = profile === 'professional' ? 'Canviar a perfil social' : 'Canviar a perfil professional';
+    }
+    applyProfileCopy(profile);
+  }
+  function hideSplash() {
+    if (!profileSplash) return;
+    profileSplash.classList.remove('is-visible');
+    setTimeout(() => { profileSplash.hidden = true; }, 400);
+  }
+  function showSplash() {
+    if (!profileSplash) return;
+    profileSplash.hidden = false;
+    requestAnimationFrame(() => profileSplash.classList.add('is-visible'));
+  }
+
+  const storedProfile = readProfile();
+  if (storedProfile === 'social' || storedProfile === 'professional') {
+    applyProfile(storedProfile);
+  } else {
+    // Perfil per defecte: professional. El modal només es mostra a la primera visita.
+    applyProfile('professional');
+    showSplash();
+  }
+
+  if (profileSplash) {
+    profileSplash.querySelectorAll('[data-profile-choice]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const choice = btn.getAttribute('data-profile-choice');
+        if (choice !== 'social' && choice !== 'professional') return;
+        writeProfile(choice);
+        applyProfile(choice);
+        hideSplash();
+        if (typeof trackGoatEvent === 'function') {
+          trackGoatEvent('profile-selected-' + choice, 'Profile selected ' + choice);
+        }
+      });
+    });
+  }
+
+  const triggerSwitch = () => {
+    const nextProfile = getActiveProfile() === 'professional' ? 'social' : 'professional';
+    writeProfile(nextProfile);
+    applyProfile(nextProfile);
+    if (typeof trackGoatEvent === 'function') {
+      trackGoatEvent('profile-toggled-' + nextProfile, 'Profile toggled ' + nextProfile);
+    }
+  };
+  profileSwitchBtn?.addEventListener('click', triggerSwitch);
+  profileSwitchBtnMobile?.addEventListener('click', () => {
+    // Close mobile menu first
+    document.getElementById('mobileMenu')?.classList.remove('open');
+    document.querySelector('.nav-toggle')?.classList.remove('active');
+    triggerSwitch();
+  });
+
+  function saveProjectReturnState(projectId) {
+    try {
+      const state = {
+        projectId,
+        scrollY: window.scrollY,
+        profile: getActiveProfile(),
+        ts: Date.now(),
+      };
+      sessionStorage.setItem(PROJECT_RETURN_KEY, JSON.stringify(state));
+    } catch {
+      // ignore storage failures
+    }
+  }
+
+  function makeProjectVisualsClickable() {
+    const data = window.PROJECT_ARTICLES || {};
+    const entries = Object.keys(data);
+    if (!entries.length) return;
+
+    entries.forEach((projectId) => {
+      const article = document.getElementById(projectId);
+      if (!article) return;
+
+      const visual = article.querySelector('.project-visual');
+      if (!visual) return;
+      if (visual.classList.contains('is-clickable')) return;
+
+      visual.classList.add('is-clickable');
+      visual.setAttribute('role', 'link');
+      visual.setAttribute('tabindex', '0');
+      const url = 'producte.html?project=' + encodeURIComponent(projectId);
+      visual.setAttribute('aria-label', "Veure article complet del projecte");
+
+      // A extensions, l'overlay només ha d'afectar la finestra superior
+      // i no la graella d'enllaços de sota.
+      const overlayHost = visual.classList.contains('pv-extensions')
+        ? (visual.querySelector('.browser-mockup') || visual)
+        : visual;
+      overlayHost.classList.add('project-overlay-host');
+
+      if (!overlayHost.querySelector('.project-visual-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'project-visual-overlay';
+        overlay.innerHTML = '<span class="project-visual-overlay-text">Veure article complet <span aria-hidden="true"></span></span>';
+        overlayHost.appendChild(overlay);
+      }
+
+      const go = () => {
+        saveProjectReturnState(projectId);
+        window.location.href = url;
+      };
+
+      visual.addEventListener('click', (ev) => {
+        // Permet seguir enllaços interns del mockup (per exemple, ext-links-grid)
+        // o interactuar amb demos com el selector d'idioma.
+        if (ev.target.closest('a, button, .lang-switcher-demo, .browser-icon-links')) return;
+        ev.preventDefault();
+        go();
+      });
+
+      visual.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          go();
+        }
+      });
+    });
+  }
+
+  function restoreProjectReturnStateIfNeeded() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('restore') !== '1') return;
+
+    try {
+      const raw = sessionStorage.getItem(PROJECT_RETURN_KEY);
+      if (!raw) return;
+
+      const state = JSON.parse(raw);
+      if (!state || typeof state.scrollY !== 'number') return;
+
+      if (state.profile === 'social' || state.profile === 'professional') {
+        applyProfile(state.profile);
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: state.scrollY, left: 0, behavior: 'auto' });
+
+        const target = state.projectId ? document.getElementById(state.projectId) : null;
+        if (target) {
+          target.classList.add('is-return-target');
+          setTimeout(() => target.classList.remove('is-return-target'), 1800);
+        }
+      });
+    } catch {
+      // ignore malformed payload
+    }
+  }
+
+  makeProjectVisualsClickable();
+  restoreProjectReturnStateIfNeeded();
+
   // ---------- NAVBAR SCROLL ----------
   const navbar = document.getElementById('navbar');
   const onScroll = () => {
@@ -103,7 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showAnalyticsBanner() {
-    if (!analyticsBanner || readAnalyticsConsent() === 'granted' || newsletterPopupOpen) return;
+    const consent = readAnalyticsConsent();
+    if (!analyticsBanner || consent === 'granted' || consent === 'denied' || newsletterPopupOpen) return;
 
     analyticsBanner.hidden = false;
     requestAnimationFrame(() => {
@@ -122,7 +408,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function syncAnalyticsBanner() {
-    if (readAnalyticsConsent() === 'granted' || newsletterPopupOpen) {
+    const consent = readAnalyticsConsent();
+    if (consent === 'granted' || consent === 'denied' || newsletterPopupOpen) {
       hideAnalyticsBanner();
       return;
     }
@@ -237,13 +524,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.ext.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (eta beste Chromium nabigatzaileetan), <strong>Firefox</strong> eta <strong>Edge</strong> nabigatzaileetan erabilgarri. Laster <strong>Safari</strong> eta nabigatzaile gehiagotan.',
       // Project: SEPE
       'proj.sepe.desc': 'Bot batek <strong>Estatuko Enplegu Zerbitzu Publikoarekin (SEPE)</strong> kudeaketa aspergarrienak automatizatzen ditu. Burokrazia digital opaku eta motel batean nabigatu behar duten milaka pertsonen frustrazioak sortua. Tresna honek prozesuak errazten ditu eta denbora eta buruhausteak aurrezten ditu.',
-      'proj.sepe.btn': 'Ikusi proiektua ↗',
+      'proj.sepe.btn': 'Ikusi proiektua',
       'proj.sepe.t1': 'Saioa hasitzen...',
       'proj.sepe.t2': 'Hitzordu erabilgarriak kontsultatzen...',
       'proj.sepe.t3': 'Hitzordua erreservatua: 2026/03/24, 10:30',
       // Project: troBar
       'proj.bars.desc': '<strong>troBar</strong>-ek laguntzen dizu <strong>FC Barcelona</strong>ren partidak ikusteko tabernak aurkitzen zure inguruan, non bizi zaren berdin. Barçari jarraitzea hobe delako laguntzarekin, giro onarekin eta garagardo on batekin. Zuzeneko partiduen informazioa, mapa interaktiboa eta kokapenaren araberako iragazkiak biltzen ditu.',
-      'proj.bars.btn': 'Landing page ↗',
+      'proj.bars.btn': 'Landing page',
       'proj.bars.search': 'Non ikusi nahi duzu partida?',
       'proj.bars.match': 'Hurrengo partida · lr., apirilak 4, 21:00',
       'proj.bars.nav1': 'Partidak',
@@ -257,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.skills.title': 'Base Skills Repo',
       'proj.skills.desc1': '<strong>Base Skills Repo</strong> hasierako biltegi bat da proiektuak <strong>GitHub Copilot</strong> ondo konfiguratuta abiatzeko. Ezagutza geruzetan antolatzen du (jarraibideak, gaitasunak, aginduak, txat-moduak eta repo memoria), agenteak zeregin bakoitzean dagokion testuingurua bakarrik karga dezan.',
       'proj.skills.note': '<strong>Hasierako abioko</strong> mekanismoa dakar: oinarri teknologikoa detektatzen du edo galdetzen du, pakete egokiak aktibatzen ditu eta repoa prest uzten du zehaztasun handiagoz eta token kostu txikiagoarekin lan egiteko.',
-      'proj.skills.btn': 'GitHub ↗',
+      'proj.skills.btn': 'GitHub',
       'proj.skills.t1': 'Oinarri teknologikoa eta lehentasunak detektatzen...',
       'proj.skills.t2': 'Jarraibide, gaitasun eta agindu garrantzitsuak aktibatzen...',
       'proj.skills.t3': 'Repo prest: testuinguru doitua eta token kostu murriztua.',
@@ -267,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.stremio.desc': 'Katalanezko filmen eta serieen katalogoa streaming plataforma guztietan.',
       'proj.stremio.title': 'Stremio Katalanez',
       'proj.stremio.desc': '<strong>Stremio</strong>rako gehigarria, streaming plataforma nagusietan <strong>katalanez eskuragarri dauden film eta serieen</strong> katalogo osoa eskaintzen duena: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ eta gehiago. Ikus-entzunezko edukiaz bere hizkuntzan gozatu nahi duen ororentzat pentsatua.',
-      'proj.stremio.btn': 'Gehigarria instalatu ↗',
+      'proj.stremio.btn': 'Gehigarria instalatu',
       // Project: Alerta Desnona
       'fc.alerta.label': 'Gizarte-justizia',
       'fc.alerta.title': 'Alerta Desnona',
@@ -275,13 +562,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.alerta.title': 'Alerta Desnona',
       'proj.alerta.desc': '<strong>Kaleratze-alerten</strong> aplikazioa Iberiar Penintsulari buruz. BOEn argitaratutako enkante eta kaleratzeak denbora errealean erakusten dituen <strong>mapa interaktibo</strong> batekin, herritarrek eta etxebizitza-plataformek egoera hauen aurrean antolatu eta jarduteko aukera emanez.',
       'proj.alerta.note': 'Push jakinarazpenak, posta elektronikoz alertak eta eremu geografikoaren araberako iragazki-sistema bat biltzen ditu.',
-      'proj.alerta.btn': 'Beta ikusi ↗',
+      'proj.alerta.btn': 'Beta ikusi',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma klinikoa',
       'fc.odc.desc': 'Kode irekiko plataforma datu klinikoen etengabeko bilketarako.',
       'proj.odc.desc': '<strong>Kode irekiko</strong> web plataforma <strong>datu klinikoen</strong> etengabeko bilketarako diseinatua. Tresna klinikoak urrunetik eta presentzialki administratzeko aukera ematen du, tresnak sortzeko sistema malgua, datuen bistaratzea eta eskariaren araberako esportazioa barne.',
       'proj.odc.note': '<strong>Douglas Neuroinformatics Platform</strong>eko proiektu baterako ekarpena. Eleaniztuna, lehenespenez segurua JWT autentifikazioarekin eta baimen granularrekin.',
-      'proj.odc.btn': 'Proiektuaren weba ↗',
+      'proj.odc.btn': 'Proiektuaren weba',
       // Newsletter
       'newsletter.title': 'Hileko buletina',
       'newsletter.desc.short': 'Jaso hilero nire proiektuen berritasunak. Spamik gabe, posta bat bakarrik.',
@@ -365,13 +652,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.ext.note': 'Dispoñibles para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (e outros navegadores Chromium), <strong>Firefox</strong> e <strong>Edge</strong>. Proximamente para <strong>Safari</strong> e máis navegadores.',
       // Project: SEPE
       'proj.sepe.desc': 'Un bot que automatiza as xestións máis tediosas co <strong>Servizo Público de Emprego Estatal (SEPE)</strong>. Nacido da frustración compartida por miles de persoas que teñen que navegar por unha burocracia dixital opaca e lenta. Esta ferramenta facilita procesos e aforra tempo e dores de cabeza.',
-      'proj.sepe.btn': 'Ver proxecto ↗',
+      'proj.sepe.btn': 'Ver proxecto',
       'proj.sepe.t1': 'Iniciando sesión...',
       'proj.sepe.t2': 'Consultando citas dispoñibles...',
       'proj.sepe.t3': 'Cita reservada: 24/03/2026, 10:30h',
       // Project: troBar
       'proj.bars.desc': '<strong>troBar</strong> axúdache a atopar bares onde ver os partidos do <strong>FC Barcelona</strong> preto de ti, vivas onde vivas. Porque seguir o Barça é mellor en compaña, cun bo ambiente e unha boa cervexa. Inclúe info de partidos en tempo real, mapa interactivo e filtros por ubicación.',
-      'proj.bars.btn': 'Landing page ↗',
+      'proj.bars.btn': 'Landing page',
       'proj.bars.search': 'Onde queres ver o partido?',
       'proj.bars.match': 'Próximo partido · sáb., 4 de abr., 21:00',
       'proj.bars.nav1': 'Partidos',
@@ -385,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.skills.title': 'Base Skills Repo',
       'proj.skills.desc1': '<strong>Base Skills Repo</strong> é un repositorio base para iniciar proxectos con <strong>GitHub Copilot</strong> ben configurado desde o primeiro día. Organiza o coñecemento por capas (instrucións, capacidades, ordes, modos de conversa e memoria de repo) para que o axente cargue só o contexto relevante en cada tarefa.',
       'proj.skills.note': 'Inclúe un mecanismo de <strong>arranque inicial</strong> que detecta a base tecnolóxica ou a pregunta, activa os paquetes axeitados e deixa o repo preparado para traballar con máis precisión e menor custo de tokens.',
-      'proj.skills.btn': 'GitHub ↗',
+      'proj.skills.btn': 'GitHub',
       'proj.skills.t1': 'Detectando base tecnolóxica e preferencias...',
       'proj.skills.t2': 'Activando instrucións, capacidades e ordes relevantes...',
       'proj.skills.t3': 'Repo listo: contexto afinado e custo de tokens reducido.',
@@ -395,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.stremio.desc': 'Catálogo de películas e series en catalán en tódalas plataformas de streaming.',
       'proj.stremio.title': 'Stremio en Catalán',
       'proj.stremio.desc': 'Un complemento para <strong>Stremio</strong> que ofrece un catálogo completo de <strong>películas e series dispoñibles en catalán</strong> nas principais plataformas de streaming: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ e máis. Pensado para todos os que queiran gozar de contido audiovisual na súa lingua.',
-      'proj.stremio.btn': 'Instalar complemento ↗',
+      'proj.stremio.btn': 'Instalar complemento',
       // Project: Alerta Desnona
       'fc.alerta.label': 'Xustiza social',
       'fc.alerta.title': 'Alerta Desnona',
@@ -403,13 +690,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.alerta.title': 'Alerta Desnona',
       'proj.alerta.desc': 'Unha aplicación de <strong>alertas de desafiuzamentos</strong> na Península Ibérica. Cun <strong>mapa interactivo</strong> que amosa en tempo real as póxas e desafiuzamentos publicados no BOE, permitindo á cidadanía e ás plataformas de vivenda organizarse e actuar ante estas situacións.',
       'proj.alerta.note': 'Inclúe notificacións push, alertas por correo electrónico e un sistema de filtraxe por zona xeográfica.',
-      'proj.alerta.btn': 'Ver beta ↗',
+      'proj.alerta.btn': 'Ver beta',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma clínica',
       'fc.odc.desc': 'Plataforma de código aberto para a recollida continua de datos clínicos.',
       'proj.odc.desc': 'Plataforma web de <strong>código aberto</strong> deseñada para a recollida continua de <strong>datos clínicos</strong>. Permite administrar instrumentos clínicos de forma remota e presencial, cun sistema flexible de creación de instrumentos, visualización de datos e exportación baixo demanda.',
       'proj.odc.note': 'Contribución a un proxecto do <strong>Douglas Neuroinformatics Platform</strong>. Multilingue, seguro por defecto con autenticación JWT e permisos granulares.',
-      'proj.odc.btn': 'Web do proxecto ↗',
+      'proj.odc.btn': 'Web do proxecto',
       // Newsletter
       'newsletter.title': 'Boletín mensual',
       'newsletter.desc.short': 'Recibe cada mes as novidades dos meus proxectos. Sen spam, só un correo.',
@@ -496,6 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
           el.placeholder = originals.get(key);
         }
       });
+      applyProfile(getActiveProfile());
       return;
     }
 
@@ -517,6 +805,9 @@ document.addEventListener('DOMContentLoaded', () => {
         el.placeholder = dict[key];
       }
     });
+
+    // Reaplica textos de perfil per mantenir el focus social/professional.
+    applyProfile(getActiveProfile());
   }
 
   if (langs.length) {

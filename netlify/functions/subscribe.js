@@ -90,8 +90,10 @@ exports.handler = async (event) => {
     const fileContent = gist.data.files['subscribers.json']?.content;
     const subscribers = fileContent ? JSON.parse(fileContent) : [];
 
-    // 2. Comprovar duplicats
-    if (subscribers.some((s) => s.email.toLowerCase() === email.toLowerCase())) {
+    // 2. Comprovar duplicats per email (llista única)
+    const emailLower = email.toLowerCase();
+    const isDuplicate = subscribers.some((s) => s.email.toLowerCase() === emailLower);
+    if (isDuplicate) {
       return {
         statusCode: 409,
         headers: CORS_HEADERS,
@@ -102,7 +104,7 @@ exports.handler = async (event) => {
     // 3. Afegir nou subscriptor
     subscribers.push({
       name: name.trim(),
-      email: email.trim().toLowerCase(),
+      email: emailLower.trim(),
       subscriptionDate: new Date().toISOString().split('T')[0]
     });
 
