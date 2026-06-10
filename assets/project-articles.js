@@ -16,13 +16,18 @@
       lead: "Conjunt d'extensions que detecten automàticament la versió en català, euskera o gallec d'una pàgina i t'hi redirigeixen sense fricció.",
       visualHtml: vis('projecte-extensions'),
       articleHtml:
-        "<p>Moltes webs multilingües ofereixen versió en català, euskera o gallec, però el navegador acostuma a obrir sempre una llengua majoritària per defecte. En el dia a dia, això ens força a repetir els mateixos passos una vegada i una altra per tal de canviar l'idioma.</p>" +
-        "<p>L'objectiu d'aquesta extensió és garantir que l'usuari pugui mantenir la seva llengua a internet, navegant de manera </p>" +
-        "<p>L'extensió detecta etiquetes <strong>alternate hreflang</strong>, patrons d'URL coneguts i estructures específiques de webs complexes per identificar quina és la versió correcta segons la llengua configurada.</p>" +
-        "<p>Quan existeix alternativa vàlida, hi redirigeix de forma transparent. Quan no existeix, no interfereix i deixa la pàgina tal com està. D'aquesta manera no penalitza l'experiència ni genera falses redireccions.</p>" +
-        "<p>El resultat pràctic és una navegació coherent en la llengua de l'usuari i una reducció clara de passos repetitius.</p>" +
-        "<ol><li>Es parteix d'un únic codi base que es compila en tres variants (català, euskera i gallec).</li><li>Quan visites una URL, el procés en segon pla consulta hreflang i regles de domini conegudes.</li><li>Si troba una alternativa vàlida, redirigeix abans que la pàgina es mostri del tot.</li><li>Inclou heurístiques per evitar confusions habituals, com identificar malament <code>/ca</code> de Canadà com si fos català.</li></ol>" +
-        "<p>El manteniment es fa amb flux de compilació automatitzat i publicació separada per navegador. L'arquitectura se sosté sobre <strong>WebExtensions API</strong> i Manifest V3, sense recollida de dades personals.</p>",
+        "<h3>Context operatiu</h3>" +
+        "<p>Moltes webs multilingues tenen versió en català, euskera o gallec, però l'entrada per defecte acostuma a ser una llengua majoritària. Això obliga l'usuari a repetir sempre la mateixa microtasca: detectar selector, canviar idioma i tornar al punt on era.</p>" +
+        "<p>El projecte resol aquest cost invisible de navegació i converteix la llengua preferida en comportament per defecte.</p>" +
+        "<h3>Arquitectura de detecció</h3>" +
+        "<p>La lògica combina senyals estàndard (<strong>alternate hreflang</strong>) amb patrons de domini i rutes conegudes. El flux té tres capes: descoberta, validació i redirecció.</p>" +
+        "<dl><dt>Descoberta</dt><dd>Llegeix metadades i variants d'URL publicades per la mateixa web.</dd><dt>Validació</dt><dd>Comprova que la variant detectada correspon realment a la llengua configurada.</dd><dt>Redirecció</dt><dd>Només s'aplica quan la correspondència és robusta; en cas contrari, no intervé.</dd></dl>" +
+        "<h4>Criteris de robustesa</h4>" +
+        "<ol><li>Evita falsos positius en codis ambigus com <code>/ca</code> (català vs Canadà).</li><li>Respecta webs sense estructura multilingue clara.</li><li>No degrada rendiment: opera en punts de decisió curts i evita recàrregues innecessàries.</li></ol>" +
+        "<p class='article-note'><strong>Garantia d'experiència:</strong> si no hi ha evidència suficient, l'extensió no toca la pàgina. El principi base és preservar el context de navegació de l'usuari.</p>" +
+        "<h3>Operació i manteniment</h3>" +
+        "<p>Es parteix d'un únic codi base i es publiquen tres variants (català, euskera i gallec). El pipeline de compilació i publicació separa configuració, metadades i regles de domini, cosa que simplifica actualitzacions i auditories.</p>" +
+        "<p>Resultat: navegació coherent en la llengua de l'usuari, menys fricció diària i zero recollida de dades personals.</p>",
       features: [
         { title: 'Multillengua de sèrie', desc: 'Català, euskera i gallec des d’un únic nucli de codi.' },
         { title: 'Compatibilitat ampla', desc: 'Funciona en diversos navegadors amb manteniment centralitzat.' },
@@ -30,11 +35,7 @@
         { title: 'Regles robustes', desc: 'Combina hreflang i heurístiques per minimitzar errors.' }
       ],
       stack: ['JavaScript', 'WebExtensions API', 'Manifest V3', 'Flux de compilació PowerShell', 'Internacionalització', 'Chrome / Firefox / Edge'],
-      links: [
-        { label: 'En català, si us plau (Chrome)', url: 'https://chromewebstore.google.com/detail/en-catal%C3%A0-si-us-plau/fljkmgniiajdaefnomebclfbpfdgjplc', variant: 'primary' },
-        { label: 'Euskaraz, mesedez (Chrome)', url: 'https://chromewebstore.google.com/detail/euskaraz-mesedez/kniinbeidggpjlfnmobaomcfnflochlc', variant: 'outline' },
-        { label: 'En galego, por favor (Chrome)', url: 'https://chromewebstore.google.com/detail/en-galego-por-favor/cbgecchlojjjkhjfahebknmpiodmlnll', variant: 'outline' }
-      ]
+      links: []
     },
 
     'projecte-sepe': {
@@ -44,12 +45,16 @@
       lead: "Eina automatitzada que cerca cites prèvies al SEPE de manera contínua, amb panell local, filtres i avisos quan apareix una cita compatible.",
       visualHtml: vis('projecte-sepe'),
       articleHtml:
-        "<p>Demanar cita al <strong>Servei Públic d'Ocupació Estatal</strong> és, per a molta gent, un procés lent i frustrant: finestres d'hores molt petites, disponibilitat irregular i necessitat de revisar la mateixa pantalla repetidament.</p>" +
-        "<p>El projecte neix per estalviar aquest desgast. No substitueix l'usuari en la decisió final, però sí que elimina la part mecànica de comprovació constant.</p>" +
-        "<p>Disposa d'un panell local senzill on introdueixes DNI, codi postal i correu electrònic. A partir d'aquí, l'eina consulta el sistema oficial de cita prèvia, filtra per modalitat <strong>presencial o telefònica</strong> i avisa quan detecta una opció vàlida.</p>" +
-        "<p>Si la configuració de correu està activa, l'avís arriba automàticament. Això permet reaccionar de seguida quan apareixen franges amb disponibilitat real.</p>" +
-        "<p>La solució funciona amb Python i Selenium dins d'un contenidor Docker. S'organitza en dos processos coordinats (<strong>web + treballador</strong>) gestionats amb supervisord. Per simplicitat i privacitat, l'estat principal es manté en memòria i no requereix base de dades per operar.</p>" +
-        "<p>L'impacte real no és tècnic: és temps recuperat. La persona deixa de recarregar pàgines durant hores i només actua quan hi ha una oportunitat real de cita.</p>",
+        "<h3>Problema real que resol</h3>" +
+        "<p>Demanar cita al <strong>SEPE</strong> té una fricció molt alta: finestres curtes, disponibilitat irregular i necessitat de comprovar la mateixa pantalla repetidament. El projecte neix per automatitzar aquesta part mecànica, no per substituir la decisió de la persona.</p>" +
+        "<h3>Disseny funcional</h3>" +
+        "<p>L'usuari configura DNI, codi postal, contacte i tipus de cita. A partir d'aquí, el sistema executa consultes periòdiques, filtra resultats no útils i genera avis quan detecta coincidències vàlides.</p>" +
+        "<dl><dt>Entrada</dt><dd>Dades mínimes de context per delimitar la cerca.</dd><dt>Motor de comprovació</dt><dd>Consultes cícliques amb intervals controlats per evitar comportament agressiu.</dd><dt>Sortida</dt><dd>Avís immediat per correu i visualització d'estat al panell.</dd></dl>" +
+        "<h4>Arquitectura d'execució</h4>" +
+        "<p>La solució es desplega en contenidor i separa dos processos: <strong>web</strong> (panell i configuració) i <strong>worker</strong> (automatització Selenium). Aquesta separació facilita monitoratge, reinici selectiu i escalat progressiu.</p>" +
+        "<p class='article-note'><strong>Principi d'operació segura:</strong> intervals, retries i validacions de resultat per evitar soroll i falses alarmes.</p>" +
+        "<h3>Impacte mesurable</h3>" +
+        "<p>El guany principal és temps: la persona deixa de fer recàrregues manuals constants i passa a actuar només quan hi ha una opció real de cita.</p>",
       features: [
         { title: 'Panell local', desc: 'Configuració simple des de localhost, sense passos innecessaris.' },
         { title: 'Filtrat útil', desc: 'Distingeix entre cita presencial i telefònica segons el cas.' },
@@ -69,11 +74,15 @@
       lead: "Aplicació per trobar locals on veure partits, amb mapa, context del pròxim encontre i filtres. Base preparada per evolucionar com a producte de negoci.",
       visualHtml: vis('projecte-bars'),
       articleHtml:
-        "<p>troBar resol una necessitat quotidiana i molt clara de l'aficionat: <strong>on veure el partit avui, a prop i amb bon ambient</strong>. Uneix informació de partits amb un mapa local i filtres per equip o competició.</p>" +
-        "<p>La proposta no és només informar, sinó ajudar a decidir ràpid en el moment en què la persona vol sortir de casa.</p>" +
-        "<p>Inclou visualització cartogràfica, fitxa de partit proper, filtres rellevants i detall de local amb horaris i ruta. L'autenticació amb Firebase permet personalització progressiva i obre la porta a funcionalitats de fidelització.</p>" +
-        "<p>Per als locals, ser visible just quan l'usuari decideix on anar té valor comercial directe. A partir d'aquí es pot construir model de subscripció per presències destacades, acords de patrocini en partits clau o campanyes amb marques.</p>" +
-        "<p>El plantejament inicial té molt bon encaix a Barcelona, però la lògica és reproduïble a altres ciutats i esports.</p>",
+        "<h3>Hipòtesi de producte</h3>" +
+        "<p>troBar parteix d'una pregunta concreta: <strong>on puc veure el partit avui, a prop, sense perdre temps?</strong> El producte combina context esportiu i context geogràfic en una sola pantalla de decisió.</p>" +
+        "<blockquote>La clau no és mostrar molts bars; és ordenar opcions útils en el moment de triar.</blockquote>" +
+        "<h3>Disseny de l'experiència</h3>" +
+        "<p>El flux està pensat en tres passes: veure quin partit interessa, descobrir locals propers i obrir ruta. Aquesta seqüència redueix fricció i evita salts entre apps.</p>" +
+        "<dl><dt>Capa de partit</dt><dd>Context temporal del pròxim encontre i estat de la jornada.</dd><dt>Capa de mapa</dt><dd>Pinning i priorització de locals segons proximitat i filtre actiu.</dd><dt>Capa de conversió</dt><dd>Fitxa final amb horaris, ubicació i acció de navegació.</dd></dl>" +
+        "<h4>Base tècnica i escalabilitat</h4>" +
+        "<p>React Native permet una base compartida per iOS, Android i web. Firebase cobreix autenticació i persistència inicial, i deixa oberta l'evolució cap a recomanació personalitzada i mecàniques de fidelització.</p>" +
+        "<p class='article-note'><strong>Visió de negoci:</strong> el valor per als locals és aparèixer exactament quan l'usuari està a punt de decidir on anar.</p>",
       features: [
         { title: 'Multiplataforma', desc: 'Una base de codi per iOS, Android i web.' },
         { title: 'Mapa orientat a decisió', desc: 'Dissenyat per triar ràpid on anar.' },
@@ -91,11 +100,14 @@
       lead: "Complement per a Stremio amb catàleg curat de cinema i sèries disponibles en català a diferents plataformes.",
       visualHtml: vis('projecte-stremio'),
       articleHtml:
-        "<p>El contingut en català existeix, però sovint està dispers entre plataformes i catàlegs poc homogenis. A la pràctica, trobar què es pot veure en català implica cercar en molts llocs i perdre temps.</p>" +
-        "<p>El projecte resol aquesta fragmentació i converteix la descoberta de contingut en una experiència més directa.</p>" +
-        "<p>Ofereix un catàleg específic en català dins de Stremio, amb metadades útils (sinopsi, any, popularitat i imatge). Així l'usuari no ha de sortir de l'entorn habitual per trobar contingut en la seva llengua.</p>" +
-        "<p>Desenvolupat amb Node.js i l'SDK oficial de Stremio, amb organització modular per gestors de catàleg, metadades i reproducció. Aquesta separació simplifica afegir noves fonts sense afectar la resta del sistema.</p>" +
-        "<p>Més enllà de la part tècnica, el valor principal és cultural: facilita accedir a contingut en català de manera normalitzada i redueix la sensació de dispersió de l'oferta audiovisual.</p>",
+        "<h3>Problema de descoberta</h3>" +
+        "<p>El contingut en català existeix, però està fragmentat entre plataformes i catàlegs amb criteris diferents. Per a l'usuari final, això es tradueix en una cerca lenta i poc fiable.</p>" +
+        "<h3>Model de catàleg</h3>" +
+        "<p>El complement crea una capa unificada dins de Stremio: metadades consistents, filtre lingüístic i fonts heterogènies sota una mateixa experiència d'ús.</p>" +
+        "<dl><dt>Ingesta</dt><dd>Recull referències de contingut des de fonts compatibles.</dd><dt>Normalització</dt><dd>Unifica camps clau: títol, any, sinopsi, imatge i disponibilitat.</dd><dt>Publicació</dt><dd>Exposa el catàleg en format consumible per l'SDK de Stremio.</dd></dl>" +
+        "<h4>Manteniment evolutiu</h4>" +
+        "<p>L'arquitectura modular separa connectors de font, capa de metadades i lògica de presentació. Això facilita incorporar noves plataformes sense reescriure el sistema.</p>" +
+        "<p class='article-note'><strong>Impacte:</strong> el valor no és només tècnic; és cultural i d'accessibilitat lingüística.</p>",
       features: [
         { title: 'Catàleg curat', desc: 'Selecció en català amb criteri i coherència.' },
         { title: 'Integració natural', desc: 'Funciona dins l’experiència habitual de Stremio.' },
@@ -115,11 +127,13 @@
       lead: "Plataforma ciutadana de seguiment de desnonaments i subhastes judicials amb mapa, avisos i resum periòdic.",
       visualHtml: vis('projecte-alerta'),
       articleHtml:
-        "<p>Les dades de desnonaments publicades oficialment són públiques, però difícils d'entendre i d'aprofitar per a l'acció comunitària. Alerta Desnona transforma aquesta informació en un format consultable, territorial i accionable.</p>" +
-        "<p>La finalitat és facilitar organització ciutadana i resposta coordinada amb millor anticipació.</p>" +
-        "<p>Inclou mapa interactiu amb agrupació de casos, fitxa detallada per cada procediment, estadístiques territorials i filtres per zona. És multillengua i instal·lable com a aplicació web progressiva.</p>" +
-        "<p>Els avisos es distribueixen per notificacions web, notificacions natives i correu electrònic resumit.</p>" +
-        "<ol><li>Extracció periòdica de casos publicats.</li><li>Normalització d'adreces i camps rellevants.</li><li>Geocodificació per representar cada punt al mapa.</li><li>Actualització diària amb automatització de processos i entorns separats.</li></ol>",
+        "<h3>Objectiu públic</h3>" +
+        "<p>Les dades oficials de desnonaments són públiques, però sovint inaccessibles per al treball comunitari. Alerta Desnona converteix aquesta informació en una eina territorial i accionable.</p>" +
+        "<h3>Pipeline de dades</h3>" +
+        "<ol><li><strong>Extracció:</strong> captura periòdica de registres publicats.</li><li><strong>Normalització:</strong> neteja de camps, unificació de formats i deduplicació.</li><li><strong>Geocodificació:</strong> conversió d'adreces a coordenades amb control de qualitat.</li><li><strong>Publicació:</strong> actualització de mapa, fitxes i estadístiques.</li></ol>" +
+        "<h4>Sistema d'alertes</h4>" +
+        "<p>La distribució combina notificacions web, notificacions natives i resum per correu. Cada canal cobreix un tipus de necessitat diferent: immediatesa, seguiment mòbil i monitoratge periòdic.</p>" +
+        "<dl><dt>Mapa</dt><dd>Vista agregada per evitar saturació en zones d'alta densitat.</dd><dt>Fitxa de cas</dt><dd>Detall mínim per interpretar urgència i context.</dd><dt>Filtres</dt><dd>Segmentació per territori i tipus de procediment.</dd></dl>",
       features: [
         { title: 'Mapa operatiu', desc: 'Visualitza molts casos sense saturació.' },
         { title: 'Avisos multicanal', desc: 'Notificacions web, natives i resum per correu.' },
@@ -139,10 +153,13 @@
       lead: "Plataforma de codi obert per a recollida contínua de dades clíniques, administració d'instruments i explotació segura de resultats.",
       visualHtml: vis('projecte-odc'),
       articleHtml:
-        "<p>Open Data Capture és una iniciativa del Douglas Neuroinformatics Platform per simplificar la captura de dades en recerca clínica i seguiment de pacients.</p>" +
-        "<p>La contribució principal en aquest projecte ha estat de producte i interfície: facilitar la creació d'instruments, l'administració remota o presencial i la sortida de dades en formats útils.</p>" +
-        "<p>Permet definir instruments de forma flexible, gestionar sessions de resposta, visualitzar dades i exportar resultats sota demanda. La seguretat s'aplica per defecte amb autenticació i permisos granulars.</p>" +
-        "<p>La naturalesa de codi obert evita bloqueig de proveïdor i permet evolució a mida en entorns exigents.</p>",
+        "<h3>Entorn i necessitat</h3>" +
+        "<p>Open Data Capture s'utilitza en context clínic i de recerca, on la qualitat de dada i la traçabilitat són tan importants com la velocitat de treball. El repte no és només recollir respostes: és fer-ho amb criteri, seguretat i interoperabilitat.</p>" +
+        "<h3>Model funcional</h3>" +
+        "<dl><dt>Definició d'instruments</dt><dd>Creació de formularis clínics flexibles amb estructura versionada.</dd><dt>Administració</dt><dd>Execució remota o presencial amb control de sessió i estat.</dd><dt>Explotació</dt><dd>Visualització i exportació en formats consumibles per anàlisi.</dd></dl>" +
+        "<h4>Criteris de governança de dades</h4>" +
+        "<p>La plataforma aplica permisos granulars, autenticació robusta i separació clara de rols. Aquest disseny minimitza errors operatius i facilita compliment normatiu en entorns sensibles.</p>" +
+        "<p class='article-note'><strong>Avantatge estratègic:</strong> en ser codi obert, els equips eviten lock-in i poden adaptar el sistema a protocols propis.</p>",
       features: [
         { title: 'Codi obert', desc: 'Auditable, extensible i sense dependència tancada.' },
         { title: 'Seguretat integrada', desc: 'Permisos granulars i autenticació robusta.' },
@@ -164,10 +181,13 @@
       lead: "Plataforma per a fotògrafs: àlbums compartits per codi, descàrrega en qualitat original, donatius opcionals i panell de control professional.",
       visualHtml: vis('projecte-aparador'),
       articleHtml:
-        "<p>Molts fotògrafs acaben lliurant material per canals dispersos (enviaments temporals, carpetes genèriques o serveis sense identitat pròpia). El resultat és una experiència poc professional per al client i poc eficient per al professional.</p>" +
-        "<p>Aparador transforma aquesta entrega en una experiència ordenada i amb marca pròpia: cada àlbum s'obre amb un codi curt, la navegació és fluida i la descàrrega es fa en qualitat original amb enllaços signats.</p>" +
-        "<p>A més, incorpora donatiu opcional per facilitar un model de monetització no invasiu i sostenible.</p>" +
-        "<p>El panell de control concentra les tasques clau: crear àlbums, pujar lots de fotos, generar derivades de visualització, consultar estat i compartir codis.</p>",
+        "<h3>Problema de distribució</h3>" +
+        "<p>Molts professionals de fotografia entreguen material amb eines genèriques i fluxos dispersos. Això penalitza imatge de marca, control de qualitat i eficiència de gestió.</p>" +
+        "<h3>Arquitectura de servei</h3>" +
+        "<p>Aparador separa clarament dos espais: experiència de client (accés per codi i galeria) i operativa professional (panell de control).</p>" +
+        "<dl><dt>Publicació</dt><dd>Pujada de lots, processament de derivades i indexació d'actius.</dd><dt>Consum</dt><dd>Navegació fluida i descàrrega en qualitat original amb URL signada.</dd><dt>Negoci</dt><dd>Donatiu opcional i base per a funcionalitats premium.</dd></dl>" +
+        "<h4>Escalabilitat i costos</h4>" +
+        "<p>L'emmagatzematge d'objectes i la generació de miniatures permeten separar pes de fitxers i experiència de visualització. Això redueix costos operatius i manté rendiment en col·leccions grans.</p>",
       features: [
         { title: 'Accés per codi', desc: 'Compartició simple i controlada per cada àlbum.' },
         { title: 'Galeria fluida', desc: 'Navegació ràpida i visor ampliat de fotografies.' },
@@ -187,10 +207,13 @@
       lead: "Calculadora del factor solar total g_tot segons EN ISO 52022-1: prototip web i connector WordPress amb control d'accés i informe en PDF.",
       visualHtml: vis('projecte-aesso'),
       articleHtml:
-        "<p>L'Associació Espanyola de la Protecció Solar necessitava una eina tècnica integrada al seu web per calcular <strong>g<sub>tot</sub></strong> segons norma, amb resultat fiable i documentable.</p>" +
-        "<p>A més, l'accés havia d'estar restringit a empreses associades sense desplegar un sistema d'usuaris nou des de zero.</p>" +
-        "<p>S'ha lliurat un prototip web autocontingut i un connector instal·lable a WordPress amb codi curt <code>[aesso_calculadora]</code>. La part matemàtica implementa les fórmules exigides per la norma i prepara impressió directa a PDF.</p>" +
-        "<p>El càlcul s'ha contrastat amb valors de referència i retorna <strong>g<sub>tot</sub> = 0,10</strong> en l'exemple validat.</p>" +
+        "<h3>Objectiu de la solució</h3>" +
+        "<p>AESSO necessitava una calculadora fiable per obtenir el <strong>g<sub>tot</sub></strong> d'un sistema de protecció solar segons norma. La clau era combinar precisió tècnica amb una experiència d'ús clara per a personal no desenvolupador.</p>" +
+        "<h3>Implementació aplicada</h3>" +
+        "<p>Es va lliurar un prototip web i un connector WordPress instal·lable amb codi curt <code>[aesso_calculadora]</code>. Això permet publicar la calculadora dins del web corporatiu sense desplegaments complexos.</p>" +
+        "<dl><dt>Accés</dt><dd>Validació d'empreses associades amb sessió signada.</dd><dt>Càlcul</dt><dd>Execució de fórmules normatives amb control de valors d'entrada.</dd><dt>Sortida</dt><dd>Resultat i informe PDF imprimible per arxiu tècnic.</dd></dl>" +
+        "<h4>Validació numèrica</h4>" +
+        "<p>El càlcul es va contrastar amb casos de referència i retorna <strong>g<sub>tot</sub> = 0,10</strong> en l'escenari validat. La traçabilitat de dades queda reflectida a la taula de resultat.</p>" +
         "<table class='product-table'><tbody><tr><td>τ<sub>e</sub></td><td>0,05</td></tr><tr><td>ρ<sub>e</sub></td><td>0,21</td></tr><tr><td>α<sub>e</sub></td><td>0,74</td></tr><tr><td>U<sub>g</sub></td><td>1,2 W/m²·K</td></tr><tr><td>g</td><td>0,59</td></tr><tr><td><strong>g<sub>tot</sub></strong></td><td><strong>0,10</strong></td></tr></tbody></table>",
       features: [
         { title: 'Prototip i connector', desc: 'Lliurament en dues vies per validar i operar.' },
@@ -199,7 +222,9 @@
         { title: 'Informe integrat', desc: 'Exportació a PDF sense serveis externs.' }
       ],
       stack: ['HTML / CSS / JavaScript', 'WordPress', 'PHP', 'API REST', 'Brevo API', 'Cookies HMAC', '@media print'],
-      links: []
+      links: [
+        { label: 'Veure calculadora en directe', url: 'https://aes-so.org/recursos/calculadora-del-factor-solar/', variant: 'primary' }
+      ]
     },
 
     'projecte-base-skills': {
@@ -209,10 +234,13 @@
       lead: "Repositori plantilla per treballar amb GitHub Copilot amb més precisió i menys consum de context, fins i tot en equips no experts en IA.",
       visualHtml: vis('projecte-base-skills'),
       articleHtml:
-        "<p>Quan tota la guia d'un projecte es concentra en un únic fitxer immens, cada interacció amb l'agent es torna cara i menys precisa. Aquesta plantilla proposa distribuir coneixement en capes per carregar només el que toca en cada tasca.</p>" +
-        "<p>La proposta combina instruccions globals curtes, regles per tipus de fitxer, habilitats sota demanda, modes de conversa especialitzats i memòria de repositori.</p>" +
-        "<p>Quan s'inicia un projecte nou, la plantilla detecta artefactes tècnics disponibles o pregunta el mínim necessari per activar paquets pertinents. La resta queda latent fins que sigui realment necessari.</p>" +
-        "<p>No cal ser especialista en IA per aprofitar agents de desenvolupament amb qualitat. Amb un marc clar, l'equip pot treballar amb més seguretat, menys improvisació i millor traçabilitat de decisions.</p>",
+        "<h3>Problema de context en desenvolupament assistit</h3>" +
+        "<p>Quan tota la guia d'un projecte viu en un sol fitxer llarg, cada interacció amb l'agent consumeix context de manera poc eficient i baixa la qualitat de resposta.</p>" +
+        "<h3>Patró de capes</h3>" +
+        "<dl><dt>Instruccions base</dt><dd>Normes globals estables i de baix soroll.</dd><dt>Regles específiques</dt><dd>Comportament per llenguatge, carpeta o tipus de fitxer.</dd><dt>Skills sota demanda</dt><dd>Coneixement especialitzat que només es carrega quan cal.</dd><dt>Memòria de repo</dt><dd>Fets validats i decisions persistents entre sessions.</dd></dl>" +
+        "<h4>Impacte en equips</h4>" +
+        "<p>La plantilla redueix improvisació, millora consistència de canvis i facilita revisió tècnica perquè les decisions queden documentades en el flux de treball.</p>" +
+        "<p class='article-note'><strong>Objectiu pràctic:</strong> més precisió de resposta amb menys cost de context i menys dependència de coneixement tàcit.</p>",
       features: [
         { title: 'Context per capes', desc: 'Cada bloc de coneixement es carrega quan toca.' },
         { title: 'Arrencada adaptativa', desc: 'Activa només els paquets rellevants al stack real.' },
