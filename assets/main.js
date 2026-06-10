@@ -583,6 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aesso.visual.resultTag': '✓ esportatzeko prest',
       'proj.aesso.visual.btn1': 'PDF txostena deskargatu',
       'proj.aesso.visual.btn2': 'Datuak editatu',
+      'proj.aesso.btn': 'Ikusi kalkulagailua',
       // Newsletter
       'newsletter.title': 'Hileko buletina',
       'newsletter.desc.short': 'Jaso hilero nire proiektuen berritasunak. Spamik gabe, posta bat bakarrik.',
@@ -725,6 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.aesso.visual.resultTag': '✓ listo para exportar',
       'proj.aesso.visual.btn1': 'Descargar informe PDF',
       'proj.aesso.visual.btn2': 'Editar datos',
+      'proj.aesso.btn': 'Ver calculadora',
       // Newsletter
       'newsletter.title': 'Boletín mensual',
       'newsletter.desc.short': 'Recibe cada mes as novidades dos meus proxectos. Sen spam, só un correo.',
