@@ -2715,71 +2715,19 @@ body[data-profile="professional"] .nl-popup {
 .project-visual.is-clickable {
   cursor: pointer;
   position: relative;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
   outline: none;
 }
 
-.project-overlay-host {
-  position: relative;
-}
-
 .project-visual.is-clickable:focus-visible {
-  box-shadow: 0 0 0 3px var(--accent-1);
+  outline: 3px solid var(--accent-1);
+  outline-offset: 4px;
   border-radius: var(--radius);
 }
 
-.project-visual.is-clickable:hover,
-.project-visual.is-clickable:focus-visible {
-  transform: translateY(-6px);
-  filter: drop-shadow(0 22px 28px rgba(0,0,0,0.12));
-}
-
+/* Overlay fosc i CTA "Veure article complet" desactivats:
+   sortien fora del dibuix. No es mostren mai. */
 .project-visual-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  border-radius: inherit;
-  background: rgba(0,0,0,0.32);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 5;
-}
-
-.project-visual.is-clickable:hover .project-visual-overlay,
-.project-visual.is-clickable:focus-visible .project-visual-overlay {
-  opacity: 1;
-}
-
-/* A extensions, el CTA no ha de tapar els botons CA/EU/GL. */
-.pv-extensions .project-visual-overlay {
-  align-items: flex-end;
-  padding-bottom: 24px;
-}
-
-.project-visual-overlay-text {
-  background: var(--accent-1);
-  color: #fff;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  padding: 10px 18px;
-  border-radius: 999px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transform: scale(0.92);
-  transition: transform 0.3s ease;
-}
-
-.project-visual.is-clickable:hover .project-visual-overlay-text,
-.project-visual.is-clickable:focus-visible .project-visual-overlay-text {
-  transform: scale(1);
+  display: none !important;
 }
 
 /* ---------- AESSO MOCKUP ---------- */
