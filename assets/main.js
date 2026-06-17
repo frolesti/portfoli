@@ -264,10 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- AIXETA DONATION POPUP ----------
   (function initAixetaPopup() {
+    const backdrop = document.getElementById('aixetaPopupBackdrop');
     const popup    = document.getElementById('aixetaPopup');
     const closeBtn = document.getElementById('aixetaPopupClose');
     const banner   = document.getElementById('aixetaBanner');
-    if (!popup || !banner) return;
+    if (!backdrop || !popup || !banner) return;
 
     const STORAGE_KEY = 'aixeta-popup-dismissed';
     let shown = false;
@@ -276,17 +277,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (shown) return;
       try { if (sessionStorage.getItem(STORAGE_KEY)) return; } catch {}
       shown = true;
-      popup.hidden = false;
-      requestAnimationFrame(() => popup.classList.add('is-visible'));
+      backdrop.hidden = false;
+      requestAnimationFrame(() => backdrop.classList.add('is-visible'));
+      document.body.style.overflow = 'hidden';
     }
 
     function hidePopup() {
-      popup.classList.remove('is-visible');
-      setTimeout(() => { popup.hidden = true; }, 200);
+      backdrop.classList.remove('is-visible');
+      setTimeout(() => { backdrop.hidden = true; }, 350);
+      document.body.style.overflow = '';
       try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch {}
     }
 
     closeBtn.addEventListener('click', hidePopup);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) hidePopup();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !backdrop.hidden) hidePopup();
+    });
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
