@@ -5,18 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Popula els visual mockups des de project-visuals.js (única font de veritat).
-  // Ha d'executar-se ABANS de collectOriginals() perquè els data-i18n dels visuals es recollecten.
-  if (window.PROJECT_VISUALS) {
-    Object.keys(window.PROJECT_VISUALS).forEach(id => {
-      const article = document.getElementById(id);
-      if (!article) return;
-      const container = article.querySelector('.project-visual');
-      if (!container || container.children.length > 0) return;
-      container.innerHTML = window.PROJECT_VISUALS[id].html;
-    });
-  }
-
   // ---------- PROFILE (social / professional) ----------
   // Es mostra una pantalla d'entrada la primera visita per triar perfil.
   // Es recorda a localStorage i es pot canviar des de la nav.
@@ -204,15 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function makeProjectVisualsClickable() {
-    const data = window.PROJECT_ARTICLES || {};
-    const entries = Object.keys(data);
-    if (!entries.length) return;
+    const visuals = document.querySelectorAll('.project-detail[id] .project-visual');
+    if (!visuals.length) return;
 
-    entries.forEach((projectId) => {
-      const article = document.getElementById(projectId);
-      if (!article) return;
-
-      const visual = article.querySelector('.project-visual');
+    visuals.forEach((visual) => {
+      const article = visual.closest('.project-detail[id]');
+      const projectId = article?.id;
+      if (!projectId) return;
       if (!visual) return;
       if (visual.classList.contains('is-clickable')) return;
 
@@ -221,20 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
       visual.setAttribute('tabindex', '0');
       const url = 'producte.html?project=' + encodeURIComponent(projectId);
       visual.setAttribute('aria-label', "Veure article complet del projecte");
-
-      // A extensions, l'overlay només ha d'afectar la finestra superior
-      // i no la graella d'enllaços de sota.
-      const overlayHost = visual.classList.contains('pv-extensions')
-        ? (visual.querySelector('.browser-mockup') || visual)
-        : visual;
-      overlayHost.classList.add('project-overlay-host');
-
-      if (!overlayHost.querySelector('.project-visual-overlay')) {
-        const overlay = document.createElement('div');
-        overlay.className = 'project-visual-overlay';
-        overlay.innerHTML = '<span class="project-visual-overlay-text">Veure article complet <span aria-hidden="true"></span></span>';
-        overlayHost.appendChild(overlay);
-      }
 
       const go = () => {
         saveProjectReturnState(projectId);
@@ -289,6 +261,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   makeProjectVisualsClickable();
   restoreProjectReturnStateIfNeeded();
+
+  // ---------- AIXETA DONATION POPUP ----------
+  (function initAixetaPopup() {
+    const popup    = document.getElementById('aixetaPopup');
+    const closeBtn = document.getElementById('aixetaPopupClose');
+    const banner   = document.getElementById('aixetaBanner');
+    if (!popup || !banner) return;
+
+    const STORAGE_KEY = 'aixeta-popup-dismissed';
+    let shown = false;
+
+    function showPopup() {
+      if (shown) return;
+      try { if (sessionStorage.getItem(STORAGE_KEY)) return; } catch {}
+      shown = true;
+      popup.hidden = false;
+      requestAnimationFrame(() => popup.classList.add('is-visible'));
+    }
+
+    function hidePopup() {
+      popup.classList.remove('is-visible');
+      setTimeout(() => { popup.hidden = true; }, 200);
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch {}
+    }
+
+    closeBtn.addEventListener('click', hidePopup);
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setTimeout(showPopup, 600);
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+
+    observer.observe(banner);
+  })();
 
   // ---------- NAVBAR SCROLL ----------
   const navbar = document.getElementById('navbar');
@@ -836,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Reaplica textos de perfil per mantenir el focus social/professional.
+    // Manté només estat visual de perfil (cards, accent i etiqueta).
     applyProfile(getActiveProfile());
   }
 
