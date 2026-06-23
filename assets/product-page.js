@@ -15,8 +15,7 @@
   var stackEl = document.getElementById('productStack');
   var imagesSectionEl = document.getElementById('productImagesSection');
   var imagesEl = document.getElementById('productImages');
-  var ctaFooterEl = document.getElementById('productCtaFooter');
-  var ctaFooterRowEl = document.getElementById('productCtaFooterRow');
+  var visitBtnEl = document.getElementById('productVisitBtn');
   var backTop = document.getElementById('backToPortfolio');
   var backBottom = document.getElementById('backToPortfolioBottom');
 
@@ -83,7 +82,7 @@
     featuresSectionEl.hidden = true;
     stackSectionEl.hidden = true;
     imagesSectionEl.hidden = true;
-    ctaFooterEl.hidden = true;
+    if (visitBtnEl) visitBtnEl.hidden = true;
   }
 
   function renderArticle(item) {
@@ -173,10 +172,24 @@
     }
 
     if (item.links && item.links.length) {
-      renderLinks(ctaFooterRowEl, item.links);
-      ctaFooterEl.hidden = false;
-    } else {
-      ctaFooterEl.hidden = true;
+      var primary = null;
+      for (var i = 0; i < item.links.length; i++) {
+        if (item.links[i].variant !== 'outline' && item.links[i].url) {
+          primary = item.links[i];
+          break;
+        }
+      }
+      if (!primary) {
+        primary = item.links.find(function (l) { return !!l.url; }) || null;
+      }
+      if (primary && visitBtnEl) {
+        visitBtnEl.href = primary.url;
+        visitBtnEl.hidden = false;
+      } else if (visitBtnEl) {
+        visitBtnEl.hidden = true;
+      }
+    } else if (visitBtnEl) {
+      visitBtnEl.hidden = true;
     }
   }
 
