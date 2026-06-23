@@ -200,6 +200,35 @@
       ]
     },
 
+    'projecte-inspecciona': {
+      tag: 'Extensió de navegador',
+      title: 'Inspecciona — corrector per al català',
+      profile: 'social',
+      lead: "Extensió que afegeix un corrector ortogràfic, gramatical i tipogràfic per al català a qualsevol camp de text del navegador, amb sinònims i autocompletar.",
+      visualHtml: vis('projecte-inspecciona'),
+      articleHtml:
+        "<h3>Necessitat real</h3>" +
+        "<p>Qui escriu en català al navegador rarament té un corrector tan precís com a un editor d'escriptori. Les eines genèriques no entenen variants ni preferències, i sovint només marquen errors evidents. <strong>Inspecciona</strong> porta la qualitat de revisió de <strong>Softcatalà</strong> directament dins el flux de navegació.</p>" +
+        "<h3>Funcionalitats actuals</h3>" +
+        "<dl><dt>Corrector ortogràfic i gramatical</dt><dd>Sobre text lliure, amb suggeriments i suport de variants (general, valencià, balear).</dd><dt>Cerca de sinònims</dt><dd>Consulta directa contra el diccionari de sinònims de Softcatalà.</dd><dt>Autocompletar</dt><dd>Suggeriments de paraules a partir d'un prefix mentre escrius.</dd></dl>" +
+        "<h4>Arquitectura</h4>" +
+        "<p>Extensió <strong>Manifest V3</strong> amb <em>service worker</em> que fa les crides a l'API pública d'<code>api.softcatala.org</code>. La lògica d'UI s'injecta com a content script i no envia cap dada més enllà del text que es revisa.</p>" +
+        "<ul><li><code>POST /corrector/v2/check</code> per a revisió de text.</li><li><code>GET /sinonims/v1/api/search/{paraula}</code> per a sinònims.</li><li><code>GET /sinonims/v1/api/autocomplete/{prefix}</code> per a autocompletar.</li></ul>" +
+        "<p class='article-note'><strong>Privacitat per defecte:</strong> sense rastreig, sense compte d'usuari i només es transmet el text quan l'usuari demana explícitament la revisió.</p>" +
+        "<h3>Estat i evolució</h3>" +
+        "<p>Primera versió publicada a la Chrome Web Store. La base de codi ja està preparada per empaquetar-se per a <strong>Firefox</strong>, <strong>Edge</strong>, <strong>Opera</strong> i altres navegadors Chromium en pròximes versions.</p>",
+      features: [
+        { title: 'Català de qualitat', desc: 'Revisió ortogràfica, gramatical i tipogràfica feta amb Softcatalà.' },
+        { title: 'Sinònims integrats', desc: 'Consulta de sinònims sense sortir del camp de text.' },
+        { title: 'Autocompletar', desc: 'Suggeriments de paraules a mesura que s’escriu.' },
+        { title: 'Privacitat per defecte', desc: 'Sense rastreig ni comptes: només es revisa el text que demanes.' }
+      ],
+      stack: ['JavaScript', 'WebExtensions API', 'Manifest V3', 'Service worker', 'API Softcatalà', 'PowerShell (packaging)'],
+      links: [
+        { label: 'Instal·lar a Chrome', url: 'https://chromewebstore.google.com/detail/inspecciona/hldpogfjccnfnjljahaeaieoankmiicg', variant: 'primary' }
+      ]
+    },
+
     'projecte-aesso': {
       tag: 'Eina tècnica i connector WordPress',
       title: 'Calculadora g_tot per a AESSO',

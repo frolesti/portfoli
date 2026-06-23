@@ -529,6 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Aurkitu Barçaren partidak ikusteko tabernak zure inguruan, non bizi zaren berdin.',
       'fc.aparador.label': 'Argazki-biltegia',
       'fc.aparador.desc': 'Argazkilarientzako album pribatuak, sarbide kodearekin, jatorrizko deskargekin eta aukerako dohaintzekin.',
+      'fc.inspecciona.label': 'Nabigatzaile-luzapena',
+      'fc.inspecciona.desc': 'Katalanezko zuzentzaile ortografikoa, gramatikala eta tipografikoa zure nabigatzailean.',
       'fc.skills.label': 'IA ingeniaritzako txantiloia',
       'fc.skills.title': 'Base Skills Repo',
       'fc.skills.desc': 'Copilot optimizatuarekin biltegiak abiatzeko gaitasun, agindu eta agentez osatutako oinarri berrerabilgarria.',
@@ -539,6 +541,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.ext.title': 'Hizkuntza aldaketarako luzapenak',
       'proj.ext.desc1': 'Hiru luzapen — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> eta <strong>En galego, por favor</strong> — nabigatzailea bisitatzen ari garen web orriaren hizkuntza gutxitu hauetako bat duen bertsiora birbideratzeko aukera ematen dutenak klik bakar batez. Katalanez, euskaraz eta galegoz hitz egiten dutenentzat pentsatua, Interneten beren hizkuntzan erabat nabigatu nahi dutenentzat.',
       'proj.ext.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (eta beste Chromium nabigatzaileetan), <strong>Firefox</strong> eta <strong>Edge</strong> nabigatzaileetan erabilgarri. Laster <strong>Safari</strong> eta nabigatzaile gehiagotan.',
+      // Project: Inspecciona
+      'proj.inspecciona.title': 'Inspecciona — katalanerako zuzentzailea',
+      'proj.inspecciona.desc1': 'Luzapen bat <strong>katalanez</strong> idatzitako edozein testu eremu zuzentzeko nabigatzailean. <strong>Softcatalà</strong>ren APIa erabiltzen du akats ortografikoak, gramatikalak eta tipografikoak detektatzeko, eta sinonimoen bilaketa eta autoosatzea ere eskaintzen ditu.',
+      'proj.inspecciona.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> eta beste Chromium nabigatzaileetan eskuragarri. Laster <strong>Firefox</strong>, <strong>Edge</strong> eta <strong>Safari</strong> nabigatzaileetan.',
       // Project: SEPE
       'proj.sepe.desc': 'Bot batek <strong>Estatuko Enplegu Zerbitzu Publikoarekin (SEPE)</strong> kudeaketa aspergarrienak automatizatzen ditu. Burokrazia digital opaku eta motel batean nabigatu behar duten milaka pertsonen frustrazioak sortua. Tresna honek prozesuak errazten ditu eta denbora eta buruhausteak aurrezten ditu.',
       'proj.sepe.btn': 'Ikusi proiektua',
@@ -672,6 +678,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.bars.desc': 'Atopa bares onde ver os partidos do Barça preto de ti, vivas onde vivas.',
       'fc.aparador.label': 'Repositorio fotográfico',
       'fc.aparador.desc': 'Álbums privados para fotógrafos con acceso por código, descarga orixinal e donativos opcionais.',
+      'fc.inspecciona.label': 'Extensión de navegador',
+      'fc.inspecciona.desc': 'Corrector ortográfico, gramatical e tipográfico para o catalán no teu navegador.',
       'fc.skills.label': 'Plantilla de enxeñaría con IA',
       'fc.skills.title': 'Base Skills Repo',
       'fc.skills.desc': 'Base reutilizable con capacidades, ordes e axentes para iniciar repositorios con Copilot optimizado.',
@@ -682,6 +690,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'proj.ext.title': 'Extensións de cambio de idioma',
       'proj.ext.desc1': 'Tres extensións — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> e <strong>En galego, por favor</strong> — que permiten redirixir o navegador á versión da páxina web que esteamos visitando que conteña algunha destas linguas minorizadas cun só clic. Pensadas para falantes de catalán, éuscaro e galego que queren navegar por Internet plenamente na súa lingua.',
       'proj.ext.note': 'Dispoñibles para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (e outros navegadores Chromium), <strong>Firefox</strong> e <strong>Edge</strong>. Proximamente para <strong>Safari</strong> e máis navegadores.',
+      // Project: Inspecciona
+      'proj.inspecciona.title': 'Inspecciona — corrector para o catalán',
+      'proj.inspecciona.desc1': 'Unha extensión para corrixir calquera campo de texto en <strong>catalán</strong> no navegador. Utiliza a API de <strong>Softcatalà</strong> para detectar erros ortográficos, gramaticais e tipográficos, e tamén incúe busca de sinónimos e autocompletar.',
+      'proj.inspecciona.note': 'Dispoñible para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> e outros navegadores Chromium. Proximamente para <strong>Firefox</strong>, <strong>Edge</strong> e <strong>Safari</strong>.',
       // Project: SEPE
       'proj.sepe.desc': 'Un bot que automatiza as xestións máis tediosas co <strong>Servizo Público de Emprego Estatal (SEPE)</strong>. Nacido da frustración compartida por miles de persoas que teñen que navegar por unha burocracia dixital opaca e lenta. Esta ferramenta facilita procesos e aforra tempo e dores de cabeza.',
       'proj.sepe.btn': 'Ver proxecto',

@@ -53,6 +53,45 @@
         </div>`
     },
 
+    'projecte-inspecciona': {
+      cls: 'pv-extensions',
+      html: `
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="browser-content" style="padding:28px 24px;align-items:stretch;gap:14px;">
+            <p style="margin:0;font-family:var(--font-body);font-size:0.95rem;line-height:1.6;color:var(--text);text-align:left;">
+              Aquesta tarda <span style="text-decoration:underline wavy #d33;text-decoration-thickness:2px;text-underline-offset:3px;">anire</span> a comprar pa al forn del costat.
+            </p>
+            <div style="background:var(--bg);border:1px solid rgba(0,0,0,0.08);border-radius:10px;padding:10px 12px;box-shadow:0 6px 16px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <img src="assets/img/extensions/ext-inspecciona.png" alt="" aria-hidden="true" style="width:18px;height:18px;border-radius:4px;">
+                <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-dim);">Inspecciona · Softcatalà</span>
+              </div>
+              <p style="margin:0;font-family:var(--font-body);font-size:0.85rem;color:var(--text);">
+                <span style="color:#d33;text-decoration:line-through;">anire</span>
+                &nbsp;→&nbsp;
+                <strong style="color:var(--accent-2);">aniré</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ext-links-grid">
+          <div class="ext-row">
+            <p class="ext-links-label"><img src="assets/img/extensions/ext-inspecciona.png" alt="Inspecciona" class="ext-icon"> Inspecciona</p>
+            <div class="browser-icon-links" aria-label="Navegadors disponibles per a Inspecciona">
+              <a href="https://chromewebstore.google.com/detail/inspecciona/hldpogfjccnfnjljahaeaieoankmiicg" target="_blank" rel="noopener" class="browser-link" data-tooltip="Chrome / Brave / Ecosia" aria-label="Chrome / Brave / Ecosia" data-goatcounter-click="ext-inspecciona-chrome"><img src="assets/img/extensions/browser-chrome.png" alt="" aria-hidden="true"></a>
+              <span class="browser-link is-disabled" data-tooltip="Firefox (pròximament)" aria-label="Firefox (pròximament)"><img src="assets/img/extensions/browser-firefox.png" alt="" aria-hidden="true"></span>
+              <span class="browser-link is-disabled" data-tooltip="Edge (pròximament)" aria-label="Edge (pròximament)"><img src="assets/img/extensions/browser-edge.png" alt="" aria-hidden="true"></span>
+              <span class="browser-link is-disabled" data-tooltip="Safari (pròximament)" aria-label="Safari (pròximament)"><img src="assets/img/extensions/browser-safari.png" alt="" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>`
+    },
+
     'projecte-sepe': {
       cls: 'pv-sepe',
       html: `
