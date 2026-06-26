@@ -71,18 +71,16 @@
       tag: 'Aplicació mòbil i web',
       title: 'troBar',
       profile: 'professional',
-      lead: "Aplicació per trobar locals on veure partits, amb mapa, context del pròxim encontre i filtres. Base preparada per evolucionar com a producte de negoci.",
+      lead: "Aplicació per trobar locals on veure partits del FC Barcelona, amb mapa, context del pròxim encontre i filtres. Base preparada per evolucionar com a producte de negoci.",
       visualHtml: vis('projecte-bars'),
       articleHtml:
-        "<h3>Hipòtesi de producte</h3>" +
-        "<p>troBar parteix d'una pregunta concreta: <strong>on puc veure el partit avui, a prop, sense perdre temps?</strong> El producte combina context esportiu i context geogràfic en una sola pantalla de decisió.</p>" +
-        "<blockquote>La clau no és mostrar molts bars; és ordenar opcions útils en el moment de triar.</blockquote>" +
-        "<h3>Disseny de l'experiència</h3>" +
-        "<p>El flux està pensat en tres passes: veure quin partit interessa, descobrir locals propers i obrir ruta. Aquesta seqüència redueix fricció i evita salts entre apps.</p>" +
-        "<dl><dt>Capa de partit</dt><dd>Context temporal del pròxim encontre i estat de la jornada.</dd><dt>Capa de mapa</dt><dd>Pinning i priorització de locals segons proximitat i filtre actiu.</dd><dt>Capa de conversió</dt><dd>Fitxa final amb horaris, ubicació i acció de navegació.</dd></dl>" +
-        "<h4>Base tècnica i escalabilitat</h4>" +
-        "<p>React Native permet una base compartida per iOS, Android i web. Firebase cobreix autenticació i persistència inicial, i deixa oberta l'evolució cap a recomanació personalitzada i mecàniques de fidelització.</p>" +
-        "<p class='article-note'><strong>Visió de negoci:</strong> el valor per als locals és aparèixer exactament quan l'usuari està a punt de decidir on anar.</p>",
+        "<h3>Què resol troBar</h3>" +
+        "<p>Quan vols veure un partit del <strong>FC Barcelona</strong> fora de casa, sempre passa el mateix: obrir mapes, revisar ressenyes, mirar horaris i acabar improvisant. <strong>troBar</strong> ho simplifica en una sola experiència: t'ensenya el pròxim partit del Barça i et proposa locals propers on el pots veure.</p>" +
+        "<h3>Com funciona, en simple</h3>" +
+        "<p>Primer tries el partit del Barça. Després veus un mapa amb opcions a prop teu. Finalment entres a la fitxa del local i decideixes on anar. Tot seguit, sense salts entre aplicacions ni passos innecessaris.</p>" +
+        "<dl><dt>Partit</dt><dd>Informació clara del pròxim enfrontament i hora.</dd><dt>Mapa</dt><dd>Locals ordenats per proximitat amb filtres útils.</dd><dt>Decisió</dt><dd>Detall del local i acció ràpida per obrir ruta.</dd></dl>" +
+        "<h4>Per què és útil com a producte</h4>" +
+        "<p>Per a l'usuari, estalvia temps i evita dubtes. Per als locals, és una oportunitat d'aparèixer en el moment exacte en què una persona està decidint on anar. És una base sòlida per créixer amb noves funcionalitats i col·laboracions.</p>",
       features: [
         { title: 'Multiplataforma', desc: 'Una base de codi per iOS, Android i web.' },
         { title: 'Mapa orientat a decisió', desc: 'Dissenyat per triar ràpid on anar.' },
@@ -90,7 +88,9 @@
         { title: 'Escalable', desc: 'Preparat per créixer en funcionalitats i mercats.' }
       ],
       stack: ['React Native', 'Expo', 'TypeScript', 'React Navigation', 'Firebase', 'Firestore', 'Google Maps API'],
-      links: []
+      links: [
+        { label: 'Visitar troBar', url: 'https://www.trobar.cat/', variant: 'primary' }
+      ]
     },
 
     'projecte-stremio': {
@@ -230,23 +230,22 @@
     },
 
     'projecte-aesso': {
-      tag: 'Eina tècnica i connector WordPress',
-      title: 'Calculadora g_tot per a AESSO',
+      tag: 'Eina web i connector WordPress',
+      title: 'Calculadora de protecció solar per a AESSO',
       profile: 'professional',
-      lead: "Calculadora del factor solar total g_tot segons EN ISO 52022-1: prototip web i connector WordPress amb control d'accés i informe en PDF.",
+      lead: "Eina perquè les empreses associades d'AESSO puguin obtenir un resultat fiable de protecció solar en pocs passos, amb accés restringit i informe en PDF.",
       visualHtml: vis('projecte-aesso'),
       articleHtml:
-        "<h3>Objectiu de la solució</h3>" +
-        "<p>AESSO necessitava una calculadora fiable per obtenir el <strong>g<sub>tot</sub></strong> d'un sistema de protecció solar segons norma. La clau era combinar precisió tècnica amb una experiència d'ús clara per a personal no desenvolupador.</p>" +
-        "<h3>Implementació aplicada</h3>" +
-        "<p>Es va lliurar un prototip web i un connector WordPress instal·lable amb codi curt <code>[aesso_calculadora]</code>. Això permet publicar la calculadora dins del web corporatiu sense desplegaments complexos.</p>" +
-        "<dl><dt>Accés</dt><dd>Validació d'empreses associades amb sessió signada.</dd><dt>Càlcul</dt><dd>Execució de fórmules normatives amb control de valors d'entrada.</dd><dt>Sortida</dt><dd>Resultat i informe PDF imprimible per arxiu tècnic.</dd></dl>" +
-        "<h4>Validació numèrica</h4>" +
-        "<p>El càlcul es va contrastar amb casos de referència i retorna <strong>g<sub>tot</sub> = 0,10</strong> en l'escenari validat. La traçabilitat de dades queda reflectida a la taula de resultat.</p>" +
-        "<table class='product-table'><tbody><tr><td>τ<sub>e</sub></td><td>0,05</td></tr><tr><td>ρ<sub>e</sub></td><td>0,21</td></tr><tr><td>α<sub>e</sub></td><td>0,74</td></tr><tr><td>U<sub>g</sub></td><td>1,2 W/m²·K</td></tr><tr><td>g</td><td>0,59</td></tr><tr><td><strong>g<sub>tot</sub></strong></td><td><strong>0,10</strong></td></tr></tbody></table>",
+        "<h3>Quina necessitat cobreix</h3>" +
+        "<p>AESSO necessitava una eina perquè les empreses associades poguessin fer aquest càlcul de manera ràpida i segura, sense dependre de fulls de càlcul ni de processos manuals difícils de revisar.</p>" +
+        "<h3>Què es va construir</h3>" +
+        "<p>Es va crear una versió web i un connector de WordPress perquè la calculadora quedés integrada dins del seu propi web. Això permet tenir una única porta d'entrada, mantenir el control d'accés i facilitar l'ús a qualsevol perfil professional.</p>" +
+        "<dl><dt>Accés controlat</dt><dd>Només hi entren empreses associades autoritzades.</dd><dt>Procés guiat</dt><dd>L'usuari introdueix dades en un formulari clar, pas a pas.</dd><dt>Resultat útil</dt><dd>Es mostra el resultat final i es pot descarregar un informe PDF per compartir-lo.</dd></dl>" +
+        "<h4>Resultat del projecte</h4>" +
+        "<p>El flux és més simple, la informació queda unificada i les empreses poden obtenir l'informe final en minuts. El valor principal és que transforma un procés tècnic en una experiència entenedora i operativa per al dia a dia.</p>",
       features: [
         { title: 'Prototip i connector', desc: 'Lliurament en dues vies per validar i operar.' },
-        { title: 'Norma implementada', desc: 'Càlcul verificat segons EN ISO 52022-1.' },
+        { title: 'Resultat fiable', desc: 'Procés validat perquè l’equip treballi amb confiança.' },
         { title: 'Accés controlat', desc: 'Validació amb CRM existent i cookie signada.' },
         { title: 'Informe integrat', desc: 'Exportació a PDF sense serveis externs.' }
       ],

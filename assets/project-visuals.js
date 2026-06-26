@@ -268,7 +268,7 @@
             <span class="dot red"></span>
             <span class="dot yellow"></span>
             <span class="dot green"></span>
-            <span class="terminal-title">aesso · calculadora g_tot</span>
+            <span class="terminal-title">aesso · calculadora solar</span>
           </div>
           <div class="aesso-mockup" aria-hidden="true">
             <div class="aesso-title" data-i18n="proj.aesso.visual.title">Calculadora de protecció solar</div>
