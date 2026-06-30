@@ -1,0 +1,57 @@
+{
+  "slug": "juny-2026-carulla-crida-idees",
+  "date": "2026-06-18",
+  "month": "2026-06",
+  "kicker": "Opinió",
+  "title": "Crida d'idees de Fundació Carulla: no m'han agafat.",
+  "summary": "Em vaig presentar a aquesta crida d'idees per a fomentar l'ús social del català. La meva proposta, <strong>Àdhuc</strong> (atenció amb el nom, ho copsareu més endavant) no ha estat seleccionada i us explico el perquè (no entenc que no hagi entrat entre les 20 (!!!) de les 114 presentades).",
+  "tags": ["Opinió", "Català a la xarxa", "Convocatòria", "Decepció", "Fracàs"],
+  "newsletter": {
+    "placement": "featured",
+    "lede": "Em vaig presentar a la Crida d'idees pel català de Fundació Carulla amb una proposta que jo crec que tenia tot el sentit del món aferrant-nos únicament a la descripció de la convocatòria: <strong>fomentar l'ús social del català</strong>",
+    "updates": [
+      "Vam plantejar una idea <strong>aterrable en poques setmanes</strong>, amb mètriques d'ús des del primer dia.",
+      "La selecció final ens deixa sensació de <strong>poca ambició digital</strong>: projectes interessants però amb poc recorregut d'ús real.",
+      "Seguim treballant: <strong>producte útil per defecte</strong> i mesurable, no només idees boniques de presentar."
+    ],
+    "cta": { "url": "https://fundaciocarulla.cat/premis/crida-didees-culturals-pel-catala/", "text": "Veure la crida" }
+  },
+  "cover": {
+    "type": "gradient",
+    "palette": "terracota",
+    "image": "assets/img/blog/carulla-portada.png",
+    "eyebrow": "Crida d'idees · Fundació Carulla",
+    "subtitle": "La veritat sobre tot plegat"
+  },
+  "lede": "Em vaig presentar a la <a href=\"https://fundaciocarulla.cat/premis/crida-didees-culturals-pel-catala/\" target=\"_blank\" rel=\"noopener\">Crida d'idees culturals pel català</a> de Fundació Carulla amb una <strong>proposta concreta, aplicable i orientada a impacte real</strong>. La candidatura no ha estat seleccionada i crec que val la pena explicar el procés i la meva lectura.",
+  "body": [
+    {
+      "type": "image",
+      "src": "assets/img/blog/carulla-crida-idees.png",
+      "alt": "Crida d'idees culturals pel català de Fundació Carulla",
+      "caption": "Imatge de la convocatòria de la Crida d'idees culturals pel català."
+    },
+    { "type": "h2", "text": "La meva ideia" },
+    { "type": "p", "text": "La meva proposta era l'<strong>Àdhuc</strong>, una aplicació mòbil, web i per a escriptori que et permet apendre català de manera gamificada de la mateixa manera que ho faria el <strong>Duolingo</strong> (una app molt famosa per apendre idiomes) sense les traves que aquesta mateixa aplicació presenta. Qui no ha fet servir Duolingo pensant-se que apendrà francés o italià en qüestió de setmanes i s'ha trobat, dos anys després, amb una ratxa de <strong>110 setmanes</strong> sense ser capaç de mantenir una conversa de més de 5 minuts amb un parlant nadiu? Doncs bé, la idea d'<strong>Àdhuc</strong> era (dic \"era\" perquè no sé si la tiraré endavant) passar de tot el contingut gamificat i ultra-addictiu d'aquesta arxi-coneguda aplicació i centrar-nos en la part que més ens preocupa: <strong>l'aprenentatge</strong>. És per això que la plataforma que ens proposava la fundació Carulla era prou interessant, ja que a més de proporcionar-nos un guiatge de mans d'experts, oferia una contribució econòmica suficientment interessant que m'hagués permès contractar un/a <strong>dissenyador/a</strong> i un/a <strong>lingüista</strong>." },
+    { "type": "p", "text": "<strong>Àdhuc</strong> hagués tingut un <strong>seguiment diari o setmanal</strong> de les sessions d'aprenentatge adaptades a un nivell concret (A1, B2, etc)  i, amb l'ajuda d'aquest/a lingüista, haguéssim construït un <strong>itinerari efectiu</strong> per tal d'acomplir aquest objectiu de manera comprobable, amb <strong>proves de nivell i examinacions</strong>." },
+    { "type": "p", "text": "L'aplicació també hagués gaudit d'una plataforma per posar en contacte l'alumnat (és a dir, l'usuari) amb les <strong>comunitats de catalano-parlants</strong> més properes a nivell geogràfic, per tal de poder posar en pràctica el que has après dins de l'aplicació, de la mateixa manera que també proporcionaria una plataforma per a professors que s'hi volguessin publicitar per tal de saltar a un <strong>aprenentatge d'u a u</strong> amb els usuaris que això ho desitgessin." },
+    { "type": "h2", "text": "Vídeo explicatiu de com seria Àdhuc" },
+    { "type": "video", "url": "https://youtu.be/OSNdMoyfReA", "title": "Tour de l'aplicació Àdhuc", "caption": "Petit resum de com seria l'aplicació, ja no estava massa motivat quan vaig grabar la veu..." },
+    { "type": "p", "text": "Se m'oblida el més important! El tipus d'usuari que volem abarcar dins d'aquest projecte. Recapitulant i tornant a la frase promocional d'aquesta crida, <em>fomentar l'ús social del català</em>, el perfil de potencials usuaris d'aquesta aplicació està ben clar:" },
+    { "type": "note", "text": "Per a qui estava pensat realment aquest projecte?" },
+    { "type": "ul", "items": [
+      "Persones nouvingudes a la cua d'espera dels cursos oficials de català de la Generalitat, que fa mesos que estan plenes.",
+      "Expats que s'han adonat que xapurrejant quatre paraules de català de cop la gent és una mica més simpàtica.",
+      "Les persones que no han rotulat els seus negocis en català o les que tenen problemes per traduïr la carta del seu restaurant.",
+      "Els fans de la selecció espanyola de futbol (Ugh) que tenen interès en pronunciar correctament Xavi Hernández o Cesc Fàbregas (les dues o tres que deuen existir).",
+      "Qualsevol altra persona interessada en la cultura i la llengua catalanes."
+    ]},
+    { "type": "h2", "text": "Les ideies escollides" },
+    { "type": "p", "text": "Entre les idees escollides (de moment només en coneixem el nom), hi podem trobar <strong>Adhesius pel català</strong> -suposem que es tracta d'stickers per a Whatsapp i similars-, <strong>BRESSOLANT EN CATALÀ</strong> -cançons de bressol en català, imagino?-, <strong>IndieCAT</strong> -diria que hi ha 4 programes d'iCat que es diuen igual-, <strong>REBOST</strong>, <strong>RUSC</strong>, <strong>SENY</strong> o <strong>EXPLICA'M UN RAP</strong> -rap en català(?)-. Sé que estic sonant ràbies però quan vaig llegir les idees triades, he de reconèixer que em vaig picar. Ara ja he tingut temps per a reflexionar i, partint d'un desconeixement absolut de sobre què tracten la majoria dels projectes, reconec que hi ha opcions força interessants i espero que fructifiquin, encara que no acabin sent les idees definitives (crec que no hi havia dit però l'idea guanyadora és pot endur fins a <strong>20.000€</strong>, d'aquí el meu pique). En fi... La vida són dos dies i la meitat te la passes dormint." },
+    { "type": "h2", "text": "I ara què faig?" },
+    { "type": "p", "text": "Doncs mira, és una bona pregunta. Me la faig cada dia realment. La idea em sembla interessant i que li podria donar una continuïtat, però és un projecte extremadament exigent tant en l'aspecte de temps com en l'aspecte econòmic, és una empresa que no puc empendre sol. Així que, si estàs llegint això i ets lingüista o dissenyador web, o formes part d'alguna organització que vetlli per la salut del català i et sembla un projecte interessant, posa't en contacte amb mi i mirarem què hi podem fer" },
+    { "type": "quote", "text": "Se m'oblidava! El mot <strong>àdhuc</strong> en català antic vol dir \"fins i tot\" o \"encara\". L'he triat perquè és un mot indefectiblement català i que sona a la primera part de la paraula Educació jeje. Divertit, oi? Això pensava jo però sembla que no els ho ha semblat als jutges de la Crida. Què hi farem... (També em recorda al Montilla del Polònia, malaguanyat Sergi Mas)." },
+    { "type": "cta", "url": "https://fundaciocarulla.cat/premis/crida-didees-culturals-pel-catala/", "text": "Llegir la crida d'idees" }
+  ],
+  "related": []
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>frolesti — Maig del 2026</title>
+  <title>frolesti — Juny del 2026</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Georgia,'Times New Roman',Times,serif;background:#f2f0eb;color:#1a1a1a;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -32,6 +32,7 @@
     .featured-article{padding:30px 40px;border-bottom:1px solid #e0ddd5}
     .featured-article .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c75530;font-weight:600;margin-bottom:8px}
     .featured-article h2{font-family:Georgia,serif;font-size:28px;font-weight:700;line-height:1.15;letter-spacing:-.3px;margin-bottom:16px;color:#1a1a1a}
+    .newsletter-featured-image{display:block;width:100%;height:auto;border:1px solid #e0ddd5;margin:0 0 14px}
     .featured-article .lede{font-size:17px;line-height:1.6;color:#333;margin-bottom:18px;font-style:italic}
     .featured-article ul{list-style:none;padding:0;margin:0}
     .featured-article li{position:relative;padding:8px 0 8px 16px;font-size:15px;line-height:1.55;color:#444;border-bottom:1px dotted #e0ddd5}
@@ -47,6 +48,8 @@
     .column+.column{border-left:1px solid #e0ddd5}
     .column .kicker{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;font-weight:600;margin-bottom:6px}
     .column h3{font-family:Georgia,serif;font-size:18px;font-weight:700;line-height:1.2;margin-bottom:10px;color:#1a1a1a}
+    .newsletter-column-image{display:block;width:100%;height:auto;border:1px solid #e0ddd5;margin:0 0 10px}
+    .column p{font-size:13px;line-height:1.6;color:#555}
     .column ul{list-style:none;padding:0;margin:0}
     .column li{font-size:13px;line-height:1.5;color:#555;padding:4px 0;border-bottom:1px dotted #eae7e0}
     .column li:last-child{border-bottom:none}
@@ -85,7 +88,7 @@
     <div class="masthead">
       <span class="masthead-rule"></span>
       <div class="masthead-title">frolesti</div>
-      <div class="masthead-date">Maig del 2026</div>
+      <div class="masthead-date">Juny del 2026</div>
       <div class="masthead-edition">Butlletí mensual · Software amb vocació social</div>
     </div>
 
@@ -108,58 +111,40 @@
       <!-- FEATURED -->
       
       <div class="featured-article">
-        <div class="kicker">Cas d'èxit</div>
-        <h2>Aparador en acció: el casament d'Adrià i Marita</h2>
-        <p class="lede">Aquest mes Aparador ha passat la primera prova real en un escenari de veritat: el casament d'Adrià i Marita. Els convidats han pogut accedir a l'àlbum complet amb un sol codi i descarregar les fotos en qualitat original.</p>
-        <img src="https://www.frolesti.cat/assets/img/projects/aparador-album-1.png" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">
-        <img src="https://www.frolesti.cat/assets/img/projects/aparador-album-2.png" alt="Imatge del projecte" style="display:block; max-width:100%; height:auto; margin:16px 0; border:1px solid #ddd; border-radius:4px;">
-        <ul>
-          <li>S'han pujat <strong>122 fotos a resolució original</strong> gairebé a l'instant des del panell de control.</li>
-          <li>Els convidats han pogut entrar a la galeria amb un codi i descarregar les imatges <strong>sense la pèrdua de qualitat típica de WhatsApp</strong>.</li>
-          <li>El flux de navegació entre àlbums i fotos s'ha demostrat intuïtiu i ràpid, també des de mòbil.</li>
-          <li>Pròxims passos: seguir polint la UX i acabar la integració de pagaments per als fotògrafs.</li>
-        </ul>
-        <a href="https://aparador.vercel.app" class="featured-cta" target="_blank" rel="noopener">Prova la beta d'Aparador</a>
+        <div class="kicker">Opinió</div>
+        <h2>Crida d'idees de Fundació Carulla: no m'han agafat.</h2>
+        <img src="https://www.frolesti.cat/assets/img/blog/carulla-crida-idees.png" alt="Crida d'idees de Fundació Carulla: no m'han agafat." class="newsletter-featured-image">
+        <p class="lede">Em vaig presentar a la <a href="https://fundaciocarulla.cat/premis/crida-didees-culturals-pel-catala/" target="_blank" rel="noopener">Crida d'idees culturals pel català</a> de Fundació Carulla amb una <strong>proposta concreta, aplicable i orientada a impacte real</strong>. La candidatura no ha estat seleccionada i crec que val la pena explicar el procés i la meva lectura.</p>
+        <ul><li>La meva proposta era l'<strong>Àdhuc</strong>, una aplicació mòbil, web i per a escriptori que et permet apendre català de manera gamificada de la mateixa manera que ho faria el <strong>Duolingo</strong> (una app molt famosa per apendre idiomes) sense les traves que aquesta mateixa aplicació presenta. Qui no ha fet servir Duolingo pensant-se que apendrà francés o italià en qüestió de setmanes i s'ha trobat, dos anys després, amb una ratxa de <strong>110 setmanes</strong> sense ser capaç de mantenir una conversa de més de 5 minuts amb un parlant nadiu? Doncs bé, la idea d'<strong>Àdhuc</strong> era (dic "era" perquè no sé si la tiraré endavant) passar de tot el contingut gamificat i ultra-addictiu d'aquesta arxi-coneguda aplicació i centrar-nos en la part que més ens preocupa: <strong>l'aprenentatge</strong>. És per això que la plataforma que ens proposava la fundació Carulla era prou interessant, ja que a més de proporcionar-nos un guiatge de mans d'experts, oferia una contribució econòmica suficientment interessant que m'hagués permès contractar un/a <strong>dissenyador/a</strong> i un/a <strong>lingüista</strong>.</li><li><strong>Àdhuc</strong> hagués tingut un <strong>seguiment diari o setmanal</strong> de les sessions d'aprenentatge adaptades a un nivell concret (A1, B2, etc)  i, amb l'ajuda d'aquest/a lingüista, haguéssim construït un <strong>itinerari efectiu</strong> per tal d'acomplir aquest objectiu de manera comprobable, amb <strong>proves de nivell i examinacions</strong>.</li></ul>
+        <a href="https://fundaciocarulla.cat/premis/crida-didees-culturals-pel-catala/" class="featured-cta" target="_blank" rel="noopener">Veure la crida</a>
+        <p style="margin-top:18px;font-size:13px;"><a href="https://www.frolesti.cat/blog/juny-2026-carulla-crida-idees.html" style="color:#c75530;">Llegir l'entrada al bloc →</a></p>
       </div>
 
       <!-- COLUMNS -->
+      
       <div class="columns">
         <div class="column">
-          <div class="kicker">Producte</div>
-          <h3>troBar — disseny definitiu</h3>
-          <ul>
-            <li><strong>Disseny visual definitiu</strong> de l'aplicació, llest per a la implementació final.</li>
-            <li>Nova <strong>animació d'entrada</strong> que comunica millor el to del producte.</li>
-            <li>L'aplicació segueix orientada a trobar bars per veure els partits del Barça allà on siguis.</li>
-          </ul>
+          <div class="kicker">Col·laboració</div>
+          <h3>A punt de tancar col·laboració amb Configura.cat per a l'extensió En Català, si us plau</h3>
+          <img src="https://www.frolesti.cat/assets/img/blog/configura-cat.png" alt="A punt de tancar col·laboració amb Configura.cat per a l'extensió En Català, si us plau" class="newsletter-column-image">
+          <p>Després d'uns quants mesos de creuar mails, he arribat a un acord amb la gent de l'Associació per la Presència del Català als mitjans digitals (Configura.cat) per integrar completament l'extensió &quot;En Català, si us plau&quot; a la seva campanya de conscienciació per a la presència d...</p>
+          <p style="margin-top:10px;font-size:12px;"><a href="https://www.frolesti.cat/blog/juny-2026-configura-colaboracio.html" style="color:#c75530;">Llegir l'entrada →</a></p>
         </div>
         <div class="column">
-          <div class="kicker">Mitjans</div>
-          <h3>frolesti a Catalunya Ràdio</h3>
-          <ul>
-            <li><strong>Aparició al perfil oficial d'Instagram de Catalunya Ràdio</strong>, parlant dels projectes amb vocació social.</li>
-            <li>Una mica de visibilitat extra per a les eines digitals en català.</li>
-            <li>Pots veure la publicació aquí: <a href="https://www.instagram.com/p/DX1siD2NbXa/" style="color:#c75530;">instagram.com/p/DX1siD2NbXa</a>.</li>
-          </ul>
-        </div></div><div class="columns">
-        <div class="column">
-          <div class="kicker">Formació</div>
-          <h3>Curs d'emprenedoria · Cambra de Comerç de Terrassa</h3>
-          <ul>
-            <li>He <strong>acabat el curs d'emprenedoria</strong> de la Cambra de Comerç de Terrassa.</li>
-            <li>Eines noves per estructurar millor els projectes com a negoci sostenible.</li>
-            <li>Una bona excusa per repensar el model de cada producte de l'organització.</li>
-          </ul>
-        </div>
-        <div class="column">
-          <div class="kicker">Eines de desenvolupament</div>
-          <h3>Repositori base amb agents preinstal·lats</h3>
-          <ul>
-            <li>Hem dissenyat un <strong>repositori completament configurat amb Claude</strong>, llest per crear projectes des de zero.</li>
-            <li>Conté instruccions, capacitats i agents ja preparats per accelerar la posada en marxa.</li>
-            <li>L'objectiu: poder iniciar qualsevol projecte nou de l'organització amb les nostres convencions el primer dia.</li>
-          </ul>
+          <div class="kicker">Llançament</div>
+          <h3>Inspecciona: una nova extensió per corregir texts en català dins el navegador</h3>
+          <img src="https://www.frolesti.cat/assets/img/blog/inspecciona.png" alt="Inspecciona: una nova extensió per corregir texts en català dins el navegador" class="newsletter-column-image">
+          <p>Aquesta extensió neix de la necessitat de la Maria Sanz , una amiga meva mestra que em va fer veure la necessitat d'una eina que, tenint com a referència el corrector de Softcatalà , et permetés corregir els textos des de dins mateix del navegador enlloc de copiar i enganxar-l...</p>
+          <p style="margin-top:10px;font-size:12px;"><a href="https://www.frolesti.cat/blog/juny-2026-inspecciona-llancament.html" style="color:#c75530;">Llegir l'entrada →</a></p>
         </div></div>
+      <div class="columns">
+        <div class="column">
+          <div class="kicker">Cas d'èxit</div>
+          <h3>Publicació de la calculadora del factor solar per a AESSO: segon client satisfet</h3>
+          <img src="https://www.frolesti.cat/assets/img/blog/aesso.png" alt="Publicació de la calculadora del factor solar per a AESSO: segon client satisfet" class="newsletter-column-image">
+          <p>Aquest juny he tancat un altre projecte d'AESSO i sembla que això comença a agafar forma: he aprés a injectar codi pur com si fos un plugin de WordPress, cosa que obre força la perspectiva a l'hora de treballar amb aquesta plataforma i també he aprés a implementar una API de C...</p>
+          <p style="margin-top:10px;font-size:12px;"><a href="https://www.frolesti.cat/blog/juny-2026-aesso-segon-client.html" style="color:#c75530;">Llegir l'entrada →</a></p>
+        </div><div class="column" aria-hidden="true"></div></div>
 
       <!-- PULLQUOTE -->
       <div class="pullquote">
@@ -169,8 +154,8 @@
 
       <!-- CTA -->
       <div class="cta-section">
-        <p>Si t'agraden els meus projectes, comparteix el meu portafolis amb la teva xarxa. Cada difusió compta.</p>
-        <a href="https://frolesti.cat" class="cta-btn" target="_blank" rel="noopener noreferrer">Veure el portafolis</a>
+        <p>Si t'ha agradat aquest resum, comparteix el butlletí amb la teva xarxa. Cada difusió compta.</p>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.frolesti.cat%2Fnewsletter%2Foutput%2Fnewsletter-2026-06.html" class="cta-btn" target="_blank" rel="noopener noreferrer">Compartir el butlletí</a>
       </div>
 
     </div>
@@ -184,7 +169,7 @@
         <span style="color:#ccc;">·</span>
         <a href="https://www.linkedin.com/in/frolesti/" style="color:#666;text-decoration:none;margin:0 8px;">LinkedIn</a>
         <span style="color:#ccc;">·</span>
-        <a href="https://x.com/frolesti" style="color:#666;text-decoration:none;margin:0 8px;">X</a>
+        <a href="https://x.com/frolesti" style="color:#666;text-decoration:none;margin:0 8px;">Twitter</a>
         <span style="color:#ccc;">·</span>
         <a href="https://www.instagram.com/frolesti/" style="color:#666;text-decoration:none;margin:0 8px;">Instagram</a>
       </p>

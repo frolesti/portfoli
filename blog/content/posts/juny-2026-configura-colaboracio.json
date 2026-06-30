@@ -1,0 +1,52 @@
+{
+  "slug": "juny-2026-configura-colaboracio",
+  "date": "2026-06-29",
+  "month": "2026-06",
+  "kicker": "Col·laboració",
+  "title": "A punt de tancar col·laboració amb Configura.cat per a l'extensió En Català, si us plau",
+  "summary": "Fa setmanes que es comenta pertot arreu però ara ja és definitiu: a partir del mes de juliol, l'extensió <em>En Català, si us plau</em> s'integrarà a la campanya de conscienciació per a la presència del català a les xarxes Configura.cat.",
+  "tags": ["Extensió", "Col·laboració", "en", "català", "si", "us", "plau", "Google Chrome", "Configura.cat", "Rolling Stones"],
+  "newsletter": {
+    "placement": "column",
+    "updates": [
+      "Negociació <strong>tancada</strong> amb Configura.cat.",
+      "Objectiu compartit: <strong>fer que el català sigui la base a l'hora de navegar per les xarxes</strong>.",
+      "Què esperem: <strong>una campanya publicitària de l'extensió més extensa, una adopció més alta i una base sòlida per integrar noves funcionalitats</strong>."
+    ]
+  },
+  "cover": {
+    "type": "gradient",
+    "palette": "verd",
+    "image": "assets/img/blog/configura-portada.png",
+    "eyebrow": "Col·laboració · Configura.cat",
+    "subtitle": "Ampliar l'ús del català al web"
+  },
+  "lede": "Després d'uns quants mesos de creuar mails, he arribat a un acord amb la gent de l'Associació per la Presència del Català als mitjans digitals (Configura.cat) per integrar completament l'extensió \"En Català, si us plau\" a la seva campanya de conscienciació per a la presència del català a les xarxes.",
+  "body": [
+    {
+      "type": "image",
+      "src": "assets/img/blog/configura-cat.png",
+      "alt": "Imatge de la pàgina web de Configura.cat",
+      "caption": "Una instantània de la campanya de Configura.cat dins la seva pàgina web."
+    },
+    { "type": "h2", "text": "Com ha quedat la cosa?" },
+    { "type": "p", "text": "Aquesta adapatació, per això, comporta un rentat de cara absolut. De fet, l'extensió passarà a dir-se <strong>Mostra</strong>, per estar en consonància amb altres eines de la campanya. També canviarà el logo i la identitat visual per tal d'adaptar-se a la paleta de colors i tipografia de Configura.cat. <br> Aquí podeu veure com quedaria:" },
+    {
+      "type": "image",
+      "src": "assets/img/blog/mostra-extensio.png",
+      "alt": "Imatge de l'extensió Mostra dins d'un navegador Chrome",
+      "caption": "Aqui podeu veure com quedarà l'extensió Mostra dins d'un navegador Chrome."
+    },
+    { "type": "p", "text": "Com podeu veure, ens hem carregat el <strong>logo de la llengua dels Rolling</strong> (es veu que s'ha fet servir a moltes altres campanyes pel català i que aquí es buscava una <em>identitat més pròpia</em>) i hem adoptat els <strong>colors lila i groc</strong> de la paleta de <a href=\"https://www.configura.cat/\" target=\"_blank\" rel=\"noopener\">Configura.cat</a>. <br> A nivell de funcionalitat, també tenim canvis. L'extensió ara pot <strong>detectar l'idioma</strong> en què tens configurat el navegador i t'ho notifica dintre d'aquest menú. Et proporciona dos links: un que et porta a la pàgina del teu navegador on es determinen les <a href=\"https://support.google.com/chrome/answer/173424?hl=ca\" target=\"_blank\" rel=\"noopener\">preferències d'idioma de Chrome</a> i un altre que et porta a la pàgina de <a href=\"https://www.configura.cat/\" target=\"_blank\" rel=\"noopener\">Configura.cat</a> per obtenir més informació. També tindrà una altra notificació per ajudar-te a <strong>configurar en català</strong> el teu compte d'usuari del navegador en qüestió. En el cas de Chrome, et redirigeix a la configuració del teu compte perquè tota la interacció que tinguis amb Google sigui <em>preferiblement en català</em>." },
+    { "type": "h2", "text": "A partir d'ara" },
+    { "type" : "p", "text": "Amb l'ajuda d'aquest conglomerat d'organitzacions que conformen l'<strong>Aliança per la presència digital del català</strong>, impulsada per <a href=\"https://accentobert.cat/\" target=\"_blank\" rel=\"noopener\">Accent Obert</a>, <a href=\"https://www.omnium.cat/\" target=\"_blank\" rel=\"noopener\">Òmnium</a>, <a href=\"https://www.plataforma-llengua.cat/\" target=\"_blank\" rel=\"noopener\">Plataforma per la Llengua</a> i <a href=\"https://www.softcatala.org/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>, esperem que l'extensió torni a tenir un moment de <strong>viralitat</strong> i arribi a encara més usuaris. L'objectiu és que el màxim de gent possible tingui en tot moment la garantia de poder <em>navegar en el seu idioma de preferència</em>, en català en aquest cas, i que en la mida del que sigui possible s'enviï el missatge als motors de cerca que el català és un idioma amb <strong>presència, ús i pes digital</strong>. <br> Busquem:"},
+    { "type": "ul", "items": [
+      "<strong>Més visibilitat</strong> de l'eina en comunitats digitals en català.",
+      "<strong>Una millor adopció</strong> de les noves funcionalitats.",
+      "<strong>Mantenir una comunicació clara i directa</strong> amb els usuaris per tal de facilitar i assegurar l'accés a l'extensió."
+    ]},
+    { "type": "h2", "text": "Quan estarà disponible?" },
+    { "type": "p", "text": "<strong>A mitjan juliol</strong>, l'extensió <strong>Mostra</strong> estarà disponible a tot arreu (encara ens manca una data exacta) per a tots els usuaris interessats. Si ja teniu l'extensió, l'<strong>actualització serà automàtica</strong>, així que no haureu de fer cap acció extra. <br> En breus, treurem un <em>video explicatiu</em> sobre totes les funcionalitats, les noves i les velles, perquè tothom pugui aprofitar al màxim el potencial de l'extensió (encara avui hi ha gent que no s'ha adonat que es poden <strong>el·lidir dominis</strong> dintre de l'aplicació; si ets una d'aquestes persones, estigues atenta a l'estrena d'aquest video). <br> <em>Moltes ganes que això surti ja</em>, un dia més un dia menys." }
+  ],
+  "related": ["projecte-extensions"]
+}

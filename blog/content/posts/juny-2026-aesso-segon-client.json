@@ -1,0 +1,46 @@
+{
+  "slug": "juny-2026-aesso-segon-client",
+  "date": "2026-06-12",
+  "month": "2026-06",
+  "kicker": "Cas d'èxit",
+  "title": "Publicació de la calculadora del factor solar per a AESSO: segon client satisfet",
+  "summary": "He desenvolupat una calculadora del factor solar, una eina que fan servir els arquitectes per a mesurar la quantitat de llum solar que pot entrar a un edifici en funció dels materials que s'emprin en finestrals i façanes.",
+  "tags": ["AESSO", "Producte", "WordPress", "Ombra", "Calculadora", "1+1=2", "Construïm junts"],
+  "newsletter": {
+    "placement": "column",
+    "updates": [
+      "<strong>Asociación Española de Sombreado y Control Solar Dinámico (AESSO)</strong> ha sigut el meu segon benefactor. La veritat és que tot ha sortit molt bé, dintre dels terminis i amb una relació fluida i directa amb el client. Què més vols demanar?",
+      "Esperem poder tornar a col·laborar en un futur proper."
+    ],
+    "cta": { "url": "https://aes-so.org/recursos/calculadora-del-factor-solar/", "text": "Veure la calculadora" }
+  },
+  "cover": {
+    "type": "gradient",
+    "palette": "mostassa",
+    "image": "assets/img/blog/aesso-portada.png",
+    "eyebrow": "Cas d'èxit · AESSO",
+    "subtitle": "Vine a provar la calculadora!"
+  },
+  "lede": "Aquest juny he tancat un altre projecte d'AESSO i sembla que això comença a agafar forma: he aprés a injectar codi pur com si fos un plugin de WordPress, cosa que obre força la perspectiva a l'hora de treballar amb aquesta plataforma i també he aprés a implementar una API de CRM en aquest codi i treballar-hi de manera efectiva. Ha estat força estimulant, ho tornaria a fer.",
+  "body": [
+    {
+      "type": "image",
+      "src": "assets/img/blog/aesso.png",
+      "alt": "Identitat visual d'AESSO",
+      "caption": "Identitat visual d'AESSO, client del projecte de calculadora solar."
+    },
+    { "type": "h2", "text": "La calculadora de factor solar és per a tu?" },
+    { "type": "p", "text": "Si estàs fent reformes a casa i vols conèixer quina quantitat de llum solar entrarà a les habitacions a mi no em miris, jo només he fet el codi. Però sí que li pots passar això al teu arquitecte i ell ja s'apanyarà amb la informació que n'extregui." },
+    { "type": "h2", "text": "Què està funcionant de veritat" },
+    { "type": "ul", "items": [
+      "<strong>Procés d'ús més curt</strong> i fàcil d'explicar internament.",
+      "<strong>Resultat final</strong> llest per compartir amb clients i equips.",
+      "<strong>Integració neta</strong> al seu entorn web habitual."
+    ]},
+    { "type": "note", "text": "Que hi hagi un segon client satisfet no és només una bona notícia: és la prova que no era flor d'un dia. La solució aguanta contextos diferents i manté el valor." },
+    { "type": "h2", "text": "I ara què" },
+    { "type": "p", "text": "Ara toca continuar picant pedra: polir l'experiència, ampliar casos d'ús i fer que la calculadora sigui encara més robusta. No em preocupa fer soroll; em preocupa que serveixi i que la gent la vulgui continuar utilitzant." },
+    { "type": "cta", "url": "https://aes-so.org/recursos/calculadora-del-factor-solar/", "text": "Veure la calculadora" }
+  ],
+  "related": ["projecte-aesso"]
+}

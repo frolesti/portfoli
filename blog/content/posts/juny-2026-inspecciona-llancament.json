@@ -1,0 +1,43 @@
+{
+  "slug": "juny-2026-inspecciona-llancament",
+  "date": "2026-06-24",
+  "month": "2026-06",
+  "kicker": "Llançament",
+  "title": "Inspecciona: una nova extensió per corregir texts en català dins el navegador",
+  "summary": "Aquesta extensió neix de la necessitat de la <strong>Maria Sanz</strong>, una amiga meva mestra que em va fer veure la necessitat d'una eina que, tenint com a referència el corrector de <a href=\"https://www.softcatala.org/corrector/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>, et permetés corregir els textos des de dins mateix del navegador enlloc de copiar i enganxar-los a la pàgina de torn.",
+  "tags": ["Inspecciona", "Extensió", "Català", "Docents en vaga", "visca les professores", "correcció", "Inspector Clouseau", "Softcatalà"],
+  "newsletter": {
+    "placement": "column",
+    "updates": [
+      "Nova extensió <strong>Inspecciona</strong> per corregir textos en català.",
+      "S'integra al <strong>flux real d'escriptura</strong> dins del navegador.",
+      "Disponible a Chrome i Chromium; més navegadors en pròximes iteracions."
+    ],
+    "cta": { "url": "https://chromewebstore.google.com/detail/inspecciona/hldpogfjccnfnjljahaeaieoankmiicg", "text": "Instal·lar Inspecciona" }
+  },
+  "cover": {
+    "type": "gradient",
+    "palette": "lila",
+    "image": "assets/img/blog/inspecciona-portada.png",
+    "eyebrow": "Llançament · Inspecciona",
+    "subtitle": "Corregeix el català mentre escrius al navegador"
+  },
+  "lede": "Aquesta extensió neix de la necessitat de la <strong>Maria Sanz</strong>, una amiga meva mestra que em va fer veure la necessitat d'una eina que, tenint com a referència el corrector de <a href=\"https://www.softcatala.org/corrector/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>, et permetés corregir els textos des de dins mateix del navegador enlloc de copiar i enganxar-los a la pàgina de torn.",
+  "body": [
+    {"type": "h2", "text": "Què és Inspecciona?"},
+    {"type": "p", "text": "Us presento <strong>Inspecciona</strong>, una nova extensió per a navegadors que et permet corregir textos en català a <strong>temps real</strong>, sense que els hagis de copiar i enganxar constantment a un corrector en línia. Simplement, escriu dintre del teu navegador i, un cop estigui l'extensió instal·lada, selecciona el text que vulguis comprovar. L'extensió automàticament et mostrarà els errors que detecta i et proposarà correccions. <br> Inspecciona fa servir els repositoris de codi de <a href=\"https://www.softcatala.org/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a> per tal d'oferir les correccions, el que significa que les correccions seran equivalents a les que t'oferiria el corrector de la pàgina oficial del <a href=\"https://www.softcatala.org/corrector/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>, pàgina de referència entre la gent que encara es dedica a escriure (en català) i no ho deixa tot a l'albir del <em>ChatGepeté</em>."},
+    {
+      "type": "image",
+      "src": "assets/img/blog/inspecciona.png",
+      "alt": "Captura d'Inspecciona",
+      "caption": "Vista d'Inspecciona en ús dins del navegador."
+    },
+    { "type": "h2", "text": "Sobre l'extensió" },
+    { "type": "p", "text": "El logo està inspirat en l'inspector Cloiseau (és més aviat un manlleu que una inspiració però que em denuncïi algú), un referent que la gent de la meva generació és probable que reconegui. <strong>Vigila que no t'enxampi fent faltes!</strong><br><br> També us vull comentar que conté una funcionalitat prou interessant que és el <strong>buscador de sinònims</strong>. Quan seleccionis una paraula sola, l'extensió t'oferirà l'opció de trobar sinònims, alimentada altra vegada pels repositoris web de <a href=\"https://www.softcatala.org/sinonims/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>. Una altra funcionalitat que pot resultar interessant a la gent que encara escriu." },
+    { "type": "note", "text": "Em mantinc en la recerca d'eines que et puguin facilitar el dia a dia. Tens alguna ideia que t'agradaria posar en pràctica? No dubtis a posar-te en contacte i veuré què hi puc fer!" },
+    { "type": "h2", "text": "Quan estarà disponible?" },
+    { "type": "p", "text": "Actualment, estic en converses amb la gent de <a href=\"https://www.softcatala.org/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a> per veure si podem col·laborar d'alguna manera, ja que seria interessant poder integrar al <strong>100%</strong> l'extensió amb la seva API, així podrà estar al dia amb els canvis que hi puguin fer per part seva. De moment, per això, estic instal·lant els repositoris oberts de <a href=\"https://github.com/Softcatala\" target=\"_blank\" rel=\"noopener\">Softcatalà</a> en un servei en línia per tal de  poder replicar-ne la última versió i tenir una base estable per distribuïr un primer model de l'extensió. L'únic problema és que això costarà calers, així que estic investigant alternatives per tal de finançar aquests serveis. Si se t'acut alguna cosa, no dubtis en posar-te en contacte, i, en cas que vulguis col·laborar amb un petit donatiu, et deixo la meva <a href=\"https://www.aixeta.cat/ca/users/frolesti\" target=\"_blank\" rel=\"noopener\">pàgina de l'Aixeta</a> per tal de que et puguis fer mecenes i contribuir." },
+    { "type": "cta", "url": "https://chromewebstore.google.com/detail/inspecciona/hldpogfjccnfnjljahaeaieoankmiicg", "text": "Instal·lar a Chrome" }
+  ],
+  "related": ["projecte-inspecciona"]
+}

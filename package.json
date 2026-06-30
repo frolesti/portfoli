@@ -4,6 +4,7 @@
   "description": "Portafolis de frolesti amb sistema de butlletí mensual integrat",
   "private": true,
   "scripts": {
+    "blog:build": "node blog/scripts/build-blog.js",
     "newsletter:generate": "node newsletter/scripts/generate-newsletter.js",
     "newsletter:send": "node newsletter/scripts/send-emails.js",
     "newsletter:test": "node newsletter/scripts/test-template.js",

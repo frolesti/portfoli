@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-06-30T21:27:50.307Z",
+  "generatedFrom": "blog/content/posts/*.json",
+  "isGeneratedFile": true,
+  "posts": [
+    {
+      "slug": "juny-2026-configura-colaboracio",
+      "date": "2026-06-29",
+      "month": "2026-06",
+      "kicker": "Col·laboració",
+      "title": "A punt de tancar col·laboració amb Configura.cat per a l'extensió En Català, si us plau",
+      "summary": "Fa setmanes que es comenta pertot arreu però ara ja és definitiu: a partir del mes de juliol, l'extensió <em>En Català, si us plau</em> s'integrarà a la campanya de conscienciació per a la presència del català a les xarxes Configura.cat.",
+      "cover": {
+        "type": "gradient",
+        "palette": "verd",
+        "image": "assets/img/blog/configura-portada.png",
+        "eyebrow": "Col·laboració · Configura.cat",
+        "subtitle": "Ampliar l'ús del català al web"
+      },
+      "tags": [
+        "Extensió",
+        "Col·laboració",
+        "en",
+        "català",
+        "si",
+        "us",
+        "plau",
+        "Google Chrome",
+        "Configura.cat",
+        "Rolling Stones"
+      ]
+    },
+    {
+      "slug": "juny-2026-inspecciona-llancament",
+      "date": "2026-06-24",
+      "month": "2026-06",
+      "kicker": "Llançament",
+      "title": "Inspecciona: una nova extensió per corregir texts en català dins el navegador",
+      "summary": "Aquesta extensió neix de la necessitat de la <strong>Maria Sanz</strong>, una amiga meva mestra que em va fer veure la necessitat d'una eina que, tenint com a referència el corrector de <a href=\"https://www.softcatala.org/corrector/\" target=\"_blank\" rel=\"noopener\">Softcatalà</a>, et permetés corregir els textos des de dins mateix del navegador enlloc de copiar i enganxar-los a la pàgina de torn.",
+      "cover": {
+        "type": "gradient",
+        "palette": "lila",
+        "image": "assets/img/blog/inspecciona-portada.png",
+        "eyebrow": "Llançament · Inspecciona",
+        "subtitle": "Corregeix el català mentre escrius al navegador"
+      },
+      "tags": [
+        "Inspecciona",
+        "Extensió",
+        "Català",
+        "Docents en vaga",
+        "visca les professores",
+        "correcció",
+        "Inspector Clouseau",
+        "Softcatalà"
+      ]
+    },
+    {
+      "slug": "juny-2026-carulla-crida-idees",
+      "date": "2026-06-18",
+      "month": "2026-06",
+      "kicker": "Opinió",
+      "title": "Crida d'idees de Fundació Carulla: no m'han agafat.",
+      "summary": "Em vaig presentar a aquesta crida d'idees per a fomentar l'ús social del català. La meva proposta, <strong>Àdhuc</strong> (atenció amb el nom, ho copsareu més endavant) no ha estat seleccionada i us explico el perquè (no entenc que no hagi entrat entre les 20 (!!!) de les 114 presentades).",
+      "cover": {
+        "type": "gradient",
+        "palette": "terracota",
+        "image": "assets/img/blog/carulla-portada.png",
+        "eyebrow": "Crida d'idees · Fundació Carulla",
+        "subtitle": "La veritat sobre tot plegat"
+      },
+      "tags": [
+        "Opinió",
+        "Català a la xarxa",
+        "Convocatòria",
+        "Decepció",
+        "Fracàs"
+      ]
+    },
+    {
+      "slug": "juny-2026-aesso-segon-client",
+      "date": "2026-06-12",
+      "month": "2026-06",
+      "kicker": "Cas d'èxit",
+      "title": "Publicació de la calculadora del factor solar per a AESSO: segon client satisfet",
+      "summary": "He desenvolupat una calculadora del factor solar, una eina que fan servir els arquitectes per a mesurar la quantitat de llum solar que pot entrar a un edifici en funció dels materials que s'emprin en finestrals i façanes.",
+      "cover": {
+        "type": "gradient",
+        "palette": "mostassa",
+        "image": "assets/img/blog/aesso-portada.png",
+        "eyebrow": "Cas d'èxit · AESSO",
+        "subtitle": "Vine a provar la calculadora!"
+      },
+      "tags": [
+        "AESSO",
+        "Producte",
+        "WordPress",
+        "Ombra",
+        "Calculadora",
+        "1+1=2",
+        "Construïm junts"
+      ]
+    }
+  ]
+}
