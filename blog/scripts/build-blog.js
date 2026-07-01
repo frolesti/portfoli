@@ -20,6 +20,7 @@ const POSTS_DIR = path.join(ROOT, 'blog', 'content', 'posts');
 const BLOG_OUT = path.join(ROOT, 'blog');
 const NL_OUT = path.join(ROOT, 'newsletter', 'output');
 const NL_TPL = path.join(ROOT, 'newsletter', 'templates', 'newsletter-template.html');
+const NL_MONTHLY_CONTENT = path.join(ROOT, 'newsletter', 'content', 'monthly-content.json');
 
 const SITE_URL = 'https://www.frolesti.cat';
 const DEFAULT_OG = '/assets/img/seo/og-preview.png';
@@ -90,6 +91,15 @@ function readPosts() {
       return JSON.parse(raw);
     })
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+}
+
+function readMonthlyContent() {
+  if (!fs.existsSync(NL_MONTHLY_CONTENT)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(NL_MONTHLY_CONTENT, 'utf8'));
+  } catch {
+    return {};
+  }
 }
 
 /* ---------------- BLOG POST PAGE ---------------- */
@@ -324,6 +334,7 @@ function renderBlogIndex(posts) {
 
 function renderNewsletterForMonth(monthKey, posts) {
   const tpl = fs.readFileSync(NL_TPL, 'utf8');
+  const monthlyContent = readMonthlyContent();
   const monthPosts = posts.filter(p => p.month === monthKey);
   if (!monthPosts.length) return null;
 
@@ -355,6 +366,13 @@ function renderNewsletterForMonth(monthKey, posts) {
         </div>`;
   }
 
+  function renderMonthlyChronicle() {
+    const monthData = monthlyContent[monthKey] || {};
+    const chronicle = monthData._chronicle || monthData._monthlyComment || '';
+    if (!chronicle) return '';
+    return `<div class="monthly-chronicle"><div class="kicker">Aquest mes de juny</div><p>${chronicle}</p></div>`;
+  }
+
   // Pair all posts into rows of 2 columns with equal prominence
   let columnsHtml = '';
   for (let i = 0; i < monthPosts.length; i += 2) {
@@ -367,7 +385,7 @@ function renderNewsletterForMonth(monthKey, posts) {
     .replace(/\{\{MONTH_YEAR\}\}/g, monthLabel)
     .replace(/\{\{YEAR\}\}/g, year)
     .replace(/\{\{FEATURED_CONTENT\}\}/g, '')
-    .replace(/\{\{MONTHLY_CHRONICLE\}\}/g, '')
+    .replace(/\{\{MONTHLY_CHRONICLE\}\}/g, renderMonthlyChronicle())
     .replace(/\{\{COLUMNS_CONTENT\}\}/g, columnsHtml || '');
 
   const newsletterUrl = `${SITE_URL}/newsletter/output/newsletter-${monthKey}.html`;
