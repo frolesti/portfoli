@@ -41,6 +41,13 @@ jobs:
         if: steps.check_date.outputs.skip != 'true'
         id: check_content
         run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "has_content=true" >> $GITHUB_OUTPUT
+            echo "month_key=manual" >> $GITHUB_OUTPUT
+            echo "🔧 Execució manual — s'enviarà l'última newsletter disponible"
+            exit 0
+          fi
+
           MONTH_KEY=$(date +%Y-%m)
           echo "month_key=$MONTH_KEY" >> $GITHUB_OUTPUT
 
