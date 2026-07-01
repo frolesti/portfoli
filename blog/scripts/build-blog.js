@@ -330,12 +330,6 @@ function renderNewsletterForMonth(monthKey, posts) {
   const [year, mm] = monthKey.split('-');
   const monthLabel = `${MONTH_LABELS[mm]} del ${year}`;
 
-  // First post with placement=featured is the featured story
-  const featured = monthPosts.find(p => p.newsletter && p.newsletter.placement === 'featured') || monthPosts[0];
-  const others = monthPosts.filter(p => p.slug !== featured.slug);
-
-  const nl = (p) => p.newsletter || {};
-
   function toAbsoluteAssetUrl(assetPath) {
     if (!assetPath) return '';
     if (/^(https?:)?\/\//i.test(assetPath)) return assetPath;
@@ -344,68 +338,36 @@ function renderNewsletterForMonth(monthKey, posts) {
   }
 
   function getPostImage(p) {
-    const bodyImage = (p.body || []).find(b => b && b.type === 'image' && b.src);
-    if (bodyImage && bodyImage.src) return toAbsoluteAssetUrl(bodyImage.src);
     if (p.cover && p.cover.image) return toAbsoluteAssetUrl(p.cover.image);
     return '';
   }
 
-  function getBodyParagraphs(p, maxCount) {
-    return (p.body || [])
-      .filter(b => b && b.type === 'p' && b.text)
-      .slice(0, maxCount)
-      .map(b => b.text);
-  }
-
-  function renderFeatured(p) {
-    const n = nl(p);
-    const imageUrl = getPostImage(p);
-    const ledeHtml = p.lede || n.lede || (p.summary ? p.summary : '');
-    const bodyParagraphs = getBodyParagraphs(p, 2);
-    const updates = bodyParagraphs.map(u => `<li>${u}</li>`).join('');
-    const cta = n.cta && n.cta.url
-      ? `<a href="${escapeAttr(n.cta.url)}" class="featured-cta" target="_blank" rel="noopener">${escapeHtml(n.cta.text || 'Llegir més')}</a>`
-      : '';
-    return `
-      <div class="featured-article">
-        <div class="kicker">${escapeHtml(p.kicker || 'Destacat')}</div>
-        <h2>${escapeHtml(p.title)}</h2>
-        ${imageUrl ? `<img src="${escapeAttr(imageUrl)}" alt="${escapeAttr(p.title)}" class="newsletter-featured-image">` : ''}
-        ${ledeHtml ? `<p class="lede">${ledeHtml}</p>` : ''}
-        ${updates ? `<ul>${updates}</ul>` : ''}
-        ${cta}
-        <p style="margin-top:18px;font-size:13px;"><a href="${SITE_URL}/blog/${p.slug}.html" style="color:#c75530;">Llegir l'entrada al bloc →</a></p>
-      </div>`;
-  }
-
   function renderColumn(p) {
-    const n = nl(p);
     const imageUrl = getPostImage(p);
-    const ledeHtml = p.lede || n.lede || (p.summary || '');
-    const shortText = stripHtml(ledeHtml);
-    const shortTextClamped = shortText.length > 280 ? `${shortText.slice(0, 277)}...` : shortText;
+    const ledeHtml = p.lede || p.summary || '';
     return `
         <div class="column">
           <div class="kicker">${escapeHtml(p.kicker || '')}</div>
           <h3>${escapeHtml(p.title)}</h3>
           ${imageUrl ? `<img src="${escapeAttr(imageUrl)}" alt="${escapeAttr(p.title)}" class="newsletter-column-image">` : ''}
-          ${shortTextClamped ? `<p>${escapeHtml(shortTextClamped)}</p>` : ''}
-          <p style="margin-top:10px;font-size:12px;"><a href="${SITE_URL}/blog/${p.slug}.html" style="color:#c75530;">Llegir l'entrada →</a></p>
+          ${ledeHtml ? `<p>${ledeHtml}</p>` : ''}
+          <p style="margin-top:10px;font-size:12px;"><a href="${SITE_URL}/blog/${p.slug}.html" style="color:#c75530;">Ves a l'article</a></p>
         </div>`;
   }
 
-  // Pair others into rows of 2 columns
+  // Pair all posts into rows of 2 columns with equal prominence
   let columnsHtml = '';
-  for (let i = 0; i < others.length; i += 2) {
-    const left = others[i];
-    const right = others[i + 1];
+  for (let i = 0; i < monthPosts.length; i += 2) {
+    const left = monthPosts[i];
+    const right = monthPosts[i + 1];
     columnsHtml += `\n      <div class="columns">${renderColumn(left)}${right ? renderColumn(right) : '<div class="column" aria-hidden="true"></div>'}</div>`;
   }
 
   let html = tpl
     .replace(/\{\{MONTH_YEAR\}\}/g, monthLabel)
     .replace(/\{\{YEAR\}\}/g, year)
-    .replace(/\{\{FEATURED_CONTENT\}\}/g, renderFeatured(featured))
+    .replace(/\{\{FEATURED_CONTENT\}\}/g, '')
+    .replace(/\{\{MONTHLY_CHRONICLE\}\}/g, '')
     .replace(/\{\{COLUMNS_CONTENT\}\}/g, columnsHtml || '');
 
   const newsletterUrl = `${SITE_URL}/newsletter/output/newsletter-${monthKey}.html`;
