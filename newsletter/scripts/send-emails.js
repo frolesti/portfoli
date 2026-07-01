@@ -32,6 +32,41 @@ function createTransporter() {
   });
 }
 
+function getLatestNewsletterFile() {
+  const outputDir = path.join(__dirname, '../output');
+  if (!fs.existsSync(outputDir)) {
+    console.error('❌ Carpeta newsletter/output no trobada!');
+    process.exit(1);
+  }
+
+  const files = fs.readdirSync(outputDir)
+    .filter((f) => /^newsletter-\d{4}-\d{2}\.html$/.test(f))
+    .sort((a, b) => b.localeCompare(a));
+
+  if (!files.length) {
+    console.error('❌ No s\'ha trobat cap newsletter generada!');
+    console.log('💡 Executa primer: npm run blog:build');
+    process.exit(1);
+  }
+
+  return files[0];
+}
+
+function monthLabelFromFile(filename) {
+  const match = filename.match(/^newsletter-(\d{4})-(\d{2})\.html$/);
+  if (!match) return filename;
+
+  const year = match[1];
+  const month = match[2];
+  const labels = {
+    '01': 'gener', '02': 'febrer', '03': 'marc', '04': 'abril',
+    '05': 'maig', '06': 'juny', '07': 'juliol', '08': 'agost',
+    '09': 'setembre', '10': 'octubre', '11': 'novembre', '12': 'desembre'
+  };
+
+  return `${labels[month] || month} ${year}`;
+}
+
 // Enviar email a un subscriptor
 async function sendEmail(transporter, subscriber, htmlTemplate, subject) {
   try {
@@ -68,28 +103,21 @@ async function main() {
     const subscribers = loadSubscribers();
     console.log(`📋 ${subscribers.length} subscriptors carregats\n`);
 
-    // Llegir l'HTML generat del mes actual
-    const date = new Date();
-    const monthName = date.toLocaleDateString('ca-ES', { month: 'long' });
-    const year = date.getFullYear();
-    const filename = `newsletter-${monthName}-${year}.html`;
+    // Llegir l'ultima newsletter generada (format newsletter-YYYY-MM.html)
+    const filename = getLatestNewsletterFile();
     const htmlPath = path.join(__dirname, `../output/${filename}`);
     
     if (!fs.existsSync(htmlPath)) {
       console.error('❌ Butlletí no trobat!');
-      console.log(`💡 Executa primer: npm run generate`);
+      console.log(`💡 Executa primer: npm run blog:build`);
       console.log(`🔍 Buscant: ${filename}`);
       process.exit(1);
     }
 
     const html = fs.readFileSync(htmlPath, 'utf8');
 
-    // Crear subject amb la data actual
-    const monthYear = date.toLocaleDateString('ca-ES', { 
-      month: 'long', 
-      year: 'numeric' 
-    });
-    const subject = `🗞️ Butlletí - ${monthYear}`;
+    // Crear subject a partir del fitxer seleccionat
+    const subject = `🗞️ Butlleti - ${monthLabelFromFile(filename)}`;
 
     // Configurar transporter
     const transporter = createTransporter();

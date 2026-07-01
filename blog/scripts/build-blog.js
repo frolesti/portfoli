@@ -266,6 +266,14 @@ function renderCardMarkup(post, basePath = '') {
 
 function renderBlogIndex(posts) {
   const featured = posts[0];
+  const featuredSummary = featured ? stripHtml(featured.lede || featured.summary || '') : '';
+  const featuredDesc = featuredSummary || 'Entrades del bloc de frolesti: novetats dels projectes, decisions de producte i actualitat del mes.';
+  const featuredImage = (featured && featured.cover && featured.cover.image)
+    ? `${SITE_URL}/${String(featured.cover.image).replace(/^\/+/, '')}`
+    : `${SITE_URL}${DEFAULT_OG}`;
+  const ogTitle = featured
+    ? `${featured.title} · Bloc frolesti`
+    : 'Bloc · frolesti';
   const featuredArt = featured ? `
     <div class="blog-hero__art cover-${(featured.cover && featured.cover.palette) || 'terracota'}${(featured.cover && featured.cover.image) ? ' has-image' : ''}"${coverInlineStyle(featured.cover || {})}>
       <div class="blog-hero__art-content">
@@ -280,17 +288,17 @@ function renderBlogIndex(posts) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bloc · frolesti</title>
-  <meta name="description" content="Entrades del bloc de frolesti: novetats dels projectes, decisions de producte i actualitat del mes.">
+  <meta name="description" content="${escapeAttr(featuredDesc)}">
   <link rel="canonical" href="${SITE_URL}/blog/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Bloc · frolesti">
-  <meta property="og:description" content="Entrades del bloc de frolesti: novetats dels projectes, decisions de producte i actualitat del mes.">
+  <meta property="og:title" content="${escapeAttr(ogTitle)}">
+  <meta property="og:description" content="${escapeAttr(featuredDesc)}">
   <meta property="og:url" content="${SITE_URL}/blog/">
-  <meta property="og:image" content="${SITE_URL}${DEFAULT_OG}">
+  <meta property="og:image" content="${escapeAttr(featuredImage)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bloc · frolesti">
-  <meta name="twitter:description" content="Entrades del bloc de frolesti.">
-  <meta name="twitter:image" content="${SITE_URL}${DEFAULT_OG}">
+  <meta name="twitter:title" content="${escapeAttr(ogTitle)}">
+  <meta name="twitter:description" content="${escapeAttr(featuredDesc)}">
+  <meta name="twitter:image" content="${escapeAttr(featuredImage)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -370,7 +378,7 @@ function renderNewsletterForMonth(monthKey, posts) {
     const monthData = monthlyContent[monthKey] || {};
     const chronicle = monthData._chronicle || monthData._monthlyComment || '';
     if (!chronicle) return '';
-    return `<div class="monthly-chronicle"><div class="kicker">Aquest mes de juny</div><p>${chronicle}</p></div>`;
+    return `<div class="monthly-chronicle"><div class="kicker">Cronica del mes</div><p>${chronicle}</p></div>`;
   }
 
   // Pair all posts into rows of 2 columns with equal prominence

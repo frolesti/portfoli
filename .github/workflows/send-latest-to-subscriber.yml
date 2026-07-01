@@ -1,0 +1,52 @@
+name: Send Latest Newsletter To Subscriber
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: Target subscriber email
+        required: true
+        type: string
+      name:
+        description: Subscriber name
+        required: false
+        default: amic
+        type: string
+  repository_dispatch:
+    types: [subscriber_signup]
+
+jobs:
+  send-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build latest blog/newsletter artifacts
+        run: npm run blog:build
+
+      - name: Resolve subscriber payload
+        id: payload
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "email=${{ github.event.inputs.email }}" >> $GITHUB_OUTPUT
+            echo "name=${{ github.event.inputs.name }}" >> $GITHUB_OUTPUT
+          else
+            echo "email=${{ github.event.client_payload.email }}" >> $GITHUB_OUTPUT
+            echo "name=${{ github.event.client_payload.name }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send latest newsletter to one subscriber
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: node newsletter/scripts/send-single.js "${{ steps.payload.outputs.email }}" "${{ steps.payload.outputs.name }}"

@@ -12,14 +12,15 @@ const CORS_HEADERS = {
 
 // ── helpers ──────────────────────────────────────────────
 
-function ghRequest(method, path, body) {
+function ghRequest(method, path, body, tokenOverride) {
   return new Promise((resolve, reject) => {
+    const token = tokenOverride || process.env.GH_PAT;
     const options = {
       hostname: 'api.github.com',
       path,
       method,
       headers: {
-        'Authorization': `Bearer ${process.env.GH_PAT}`,
+        'Authorization': `Bearer ${token}`,
         'User-Agent': 'frolesti-newsletter',
         'Accept': 'application/vnd.github+json',
         'Content-Type': 'application/json'
@@ -46,6 +47,46 @@ function ghRequest(method, path, body) {
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+async function dispatchWelcomeEmailWorkflow(name, email) {
+  const token = process.env.GH_ACTIONS_TOKEN || process.env.GH_PAT;
+  const repo = process.env.GH_REPO || 'frolesti/portfoli';
+  const workflowId = process.env.GH_WELCOME_WORKFLOW_ID || 'send-latest-to-subscriber.yml';
+  const ref = process.env.GH_WELCOME_WORKFLOW_REF || 'main';
+
+  if (!token) {
+    return { dispatched: false, reason: 'missing_actions_token' };
+  }
+
+  const [owner, repoName] = repo.split('/');
+  if (!owner || !repoName) {
+    return { dispatched: false, reason: 'invalid_repo' };
+  }
+
+  const dispatch = await ghRequest(
+    'POST',
+    `/repos/${owner}/${repoName}/actions/workflows/${workflowId}/dispatches`,
+    {
+      ref,
+      inputs: {
+        name: name.trim(),
+        email: email.trim().toLowerCase()
+      }
+    },
+    token
+  );
+
+  if (dispatch.status !== 204) {
+    return {
+      dispatched: false,
+      reason: 'dispatch_failed',
+      status: dispatch.status,
+      details: dispatch.data
+    };
+  }
+
+  return { dispatched: true, workflowId, repo };
 }
 
 // ── handler ──────────────────────────────────────────────
@@ -123,10 +164,27 @@ exports.handler = async (event) => {
 
     console.log(`✅ Nou subscriptor: ${name} (${email}). Total: ${subscribers.length}`);
 
+    let welcomeResult = { dispatched: false, reason: 'not_attempted' };
+    try {
+      welcomeResult = await dispatchWelcomeEmailWorkflow(name.trim(), emailLower.trim());
+      if (welcomeResult.dispatched) {
+        console.log(`🚀 Workflow de benvinguda llançat per a ${emailLower}`);
+      } else {
+        console.warn(`⚠️ Alta correcta pero sense dispatch de workflow (${welcomeResult.reason})`);
+      }
+    } catch (workflowErr) {
+      console.error('⚠️ Alta correcta pero error disparant workflow de benvinguda:', workflowErr.message);
+      welcomeResult = { dispatched: false, reason: 'dispatch_exception' };
+    }
+
     return {
       statusCode: 200,
       headers: CORS_HEADERS,
-      body: JSON.stringify({ success: true, message: 'Subscripció confirmada!' })
+      body: JSON.stringify({
+        success: true,
+        message: 'Subscripcio confirmada!',
+        welcomeEmailDispatch: welcomeResult
+      })
     };
 
   } catch (err) {
