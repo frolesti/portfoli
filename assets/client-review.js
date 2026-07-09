@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const matches = !!client && token === client.token;
 
   if (!matches) {
-    setError('Aquest enllaç no és vàlid. Demana un enllaç nou i t’ho passo en un moment.');
+    setError('Aquest enllaç no és vàlid. Demana que se\'t regeneri un enllaç nou i de seguida te\'l reenvio.');
     if (form) form.hidden = true;
     if (title) title.textContent = 'Enllaç no vàlid';
     if (lead) lead.textContent = 'No puc obrir el formulari perquè aquest enllaç no està associat a cap client actiu.';
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.setProperty('--client-bg-1', client.bg1 || '#eef4f1');
   document.documentElement.style.setProperty('--client-bg-2', client.bg2 || '#efe7f4');
 
-  if (title) title.textContent = `Un comentari ràpid de ${client.name}`;
-  if (lead) lead.textContent = 'Si et va bé, deixa una frase breu sobre la col·laboració. Ho reviso i ho publico al web.';
+  if (title) title.textContent = `Introdueix el teu comentari sobre la feina que ha fet frolesti per a ${client.name}`;
+  if (lead) lead.textContent = 'Aquest comentari ha de reflexar la teva experiència real amb el servei rebut i perquè recomanaries a frolesti a altres empreses o projectes.';
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="client-review-brand">
           <strong>${client.name}</strong>
-          <span>El comentari quedarà vinculat automàticament a aquesta empresa.</span>
+          <span>El teu comentari quedarà vinculat automàticament dins de l'apartat de Clients de la <a href="/#clients">pàgina web</a>.</span>
         </div>
       </div>
     `;
