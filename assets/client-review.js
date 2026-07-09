@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const context = document.getElementById('clientReviewContext');
   const errorBox = document.getElementById('clientReviewError');
   const form = document.getElementById('clientReviewForm');
-  const note = document.getElementById('clientReviewNote');
   const status = document.getElementById('clientReviewStatus');
+  const nameInput = document.getElementById('rv-name');
   const companyIdInput = document.getElementById('rv-company-id');
   const companyNameInput = document.getElementById('rv-company-name');
   const clientTokenInput = document.getElementById('rv-client-token');
@@ -96,12 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">
-        <img class="client-review-logo" src="${client.logo}" alt="${client.name}">
+        <div class="client-review-logo-wrap">
+          <img class="client-review-logo" src="${client.logo}" alt="${client.name}">
+        </div>
         <div class="client-review-brand">
           <strong>${client.name}</strong>
-          <span>formulari privat</span>
+          <span>El comentari quedarà vinculat automàticament a aquesta empresa.</span>
         </div>
-        <p>Aquest comentari quedarà vinculat automàticament a l'empresa.</p>
       </div>
     `;
   }
@@ -109,11 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (companyIdInput) companyIdInput.value = clientId;
   if (companyNameInput) companyNameInput.value = client.name;
   if (clientTokenInput) clientTokenInput.value = token;
-  if (note) {
-    note.textContent = `Perfecte, el comentari es publicarà sota ${client.name}.`;
-    note.hidden = false;
-    note.classList.add('review-form-context');
-  }
   if (form) form.hidden = false;
 
   form?.addEventListener('submit', async (e) => {
@@ -146,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       form.reset();
+      if (companyIdInput) companyIdInput.value = clientId;
+      if (companyNameInput) companyNameInput.value = client.name;
+      if (clientTokenInput) clientTokenInput.value = token;
+      if (nameInput) nameInput.value = '';
       setStatus(status, data.message || 'Comentari rebut. Gràcies!', 'ok');
     } catch (err) {
       setStatus(status, err?.message || 'Ara mateix no s\'ha pogut enviar. Torna-ho a provar en un moment.', 'error');

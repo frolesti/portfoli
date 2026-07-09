@@ -49,20 +49,35 @@
       max-width: 60ch;
     }
     .client-review-note {
-      padding: 12px 14px;
+      padding: 14px;
       border-radius: 16px;
       background: color-mix(in srgb, var(--client-accent, #2a7a6e) 10%, white);
       margin-bottom: 20px;
       color: var(--text-main);
       line-height: 1.5;
+      border: 1px solid color-mix(in srgb, var(--client-accent, #2a7a6e) 26%, white);
+      display: grid;
+      grid-template-columns: minmax(120px, 170px) 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .client-review-logo-wrap {
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      min-height: 72px;
     }
     .client-review-logo {
-      width: auto;
-      max-width: 220px;
-      max-height: 54px;
+      width: 100%;
+      max-width: 150px;
+      max-height: 48px;
       object-fit: contain;
       display: block;
-      margin-bottom: 14px;
+      margin: 0 auto;
     }
     .client-review-error {
       padding: 12px 14px;
@@ -73,10 +88,8 @@
       line-height: 1.5;
     }
     .client-review-brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
+      display: grid;
+      gap: 4px;
     }
     .client-review-brand strong {
       font-size: 1rem;
@@ -84,6 +97,17 @@
     .client-review-brand span {
       color: var(--text-muted);
       font-size: 0.92rem;
+    }
+    @media (max-width: 740px) {
+      .client-review-note {
+        grid-template-columns: 1fr;
+      }
+      .client-review-logo-wrap {
+        min-height: 64px;
+      }
+      .client-review-logo {
+        max-width: 170px;
+      }
     }
     @media (max-width: 600px) {
       .client-review-shell { padding: 22px; border-radius: 22px; }
@@ -101,7 +125,10 @@
       <div id="clientReviewError" class="client-review-error" hidden></div>
 
       <form class="review-form" id="clientReviewForm" hidden>
-        <input type="hidden" id="rv-name" name="name" value="Representant">
+        <div class="form-group">
+          <label for="rv-name">Nom del representant</label>
+          <input type="text" id="rv-name" name="name" placeholder="Nom i cognoms" maxlength="80" autocomplete="name" required>
+        </div>
         <div class="form-group">
           <label for="rv-message">Comentari</label>
           <textarea id="rv-message" name="message" rows="6" placeholder="Escriu aquí el comentari que vols compartir..." required maxlength="1000"></textarea>
@@ -112,7 +139,6 @@
         <div class="review-form-footer">
           <button type="submit" class="btn btn-primary">Enviar comentari</button>
         </div>
-        <p class="review-form-note" id="clientReviewNote" hidden></p>
         <p class="review-form-status" id="clientReviewStatus" hidden></p>
       </form>
     </div>
