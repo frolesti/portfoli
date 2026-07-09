@@ -1,0 +1,68 @@
+{
+  "slug": "juliol-2026-alta-autonom",
+  "date": "2026-07-08",
+  "month": "2026-07",
+  "kicker": "Nova etapa",
+  "title": "Ja estic donat d'alta com a autònom: nova etapa professional en marxa",
+  "summary": "Des d'avui ja estic oficialment donat d'alta com a autònom. Faig aquest pas per consolidar projectes digitals propis, treballar amb clients amb més estructura i continuar construint productes que aportin valor real.",
+  "tags": [
+    "Autònom",
+    "Nova etapa",
+    "Projectes digitals",
+    "Serveis",
+    "frolesti"
+  ],
+  "newsletter": {
+    "placement": "column",
+    "updates": [
+      "Alta d'<strong>autònom</strong> formalitzada.",
+      "Nou marc per assumir <strong>projectes amb clients</strong> i donar continuïtat als productes propis.",
+      "Proper objectiu: créixer amb col·laboracions de llarg recorregut i processos més sòlids."
+    ]
+  },
+  "cover": {
+    "type": "gradient",
+    "palette": "terracota",
+    "eyebrow": "Nova etapa · Autònom",
+    "subtitle": "Més estructura per a projectes amb impacte"
+  },
+  "lede": "Avui faig oficial un pas que em feia especial il·lusió: ja estic donat d'alta com a autònom. És un canvi administratiu, sí, però sobretot és una declaració d'intencions sobre com vull treballar a partir d'ara.",
+  "body": [
+    {
+      "type": "h2",
+      "text": "Què implica aquest pas"
+    },
+    {
+      "type": "p",
+      "text": "Per mi, donar-me d'alta com a autònom significa professionalitzar encara més la manera de treballar: pressupostos clars, calendaris realistes, seguiment de projectes i una relació transparent amb cada client des del primer dia."
+    },
+    {
+      "type": "h2",
+      "text": "On posaré el focus"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Desenvolupament web i eines digitals</strong> orientades a resultats concrets.",
+        "<strong>Projectes propis</strong> que combinin producte, automatització i utilitat real.",
+        "<strong>Col·laboracions amb equips i entitats</strong> que tinguin una visió clara i ganes de fer feina ben feta."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Gràcies per la confiança"
+    },
+    {
+      "type": "p",
+      "text": "Aquest pas també és possible gràcies a totes les persones que heu confiat en mi fins ara. Continuo amb la mateixa energia de sempre, però amb una base més sòlida per créixer i assumir projectes cada cop més ambiciosos."
+    },
+    {
+      "type": "cta",
+      "url": "https://www.frolesti.cat/index.html#contacte",
+      "text": "Parlem del teu projecte"
+    }
+  ],
+  "related": [
+    "projecte-serveis"
+  ]
+}

@@ -1,8 +1,53 @@
 {
-  "generatedAt": "2026-07-01T15:30:33.388Z",
+  "generatedAt": "2026-07-09T08:04:54.522Z",
   "generatedFrom": "blog/content/posts/*.json",
   "isGeneratedFile": true,
   "posts": [
+    {
+      "slug": "juliol-2026-alta-autonom",
+      "date": "2026-07-08",
+      "month": "2026-07",
+      "kicker": "Nova etapa",
+      "title": "Ja estic donat d'alta com a autònom: nova etapa professional en marxa",
+      "summary": "Des d'avui ja estic oficialment donat d'alta com a autònom. Faig aquest pas per consolidar projectes digitals propis, treballar amb clients amb més estructura i continuar construint productes que aportin valor real.",
+      "cover": {
+        "type": "gradient",
+        "palette": "terracota",
+        "eyebrow": "Nova etapa · Autònom",
+        "subtitle": "Més estructura per a projectes amb impacte"
+      },
+      "tags": [
+        "Autònom",
+        "Nova etapa",
+        "Projectes digitals",
+        "Serveis",
+        "frolesti"
+      ]
+    },
+    {
+      "slug": "juliol-2026-posada-punt-mostra",
+      "date": "2026-07-06",
+      "month": "2026-07",
+      "kicker": "Posada a punt",
+      "title": "Mostra entra en fase final: l'extensió que substituirà En Català, si us plau",
+      "summary": "Comencem la posada a punt final de <strong>Mostra</strong>, la nova extensió que substituirà <em>En Català, si us plau</em> amb una base tècnica més sòlida i un desplegament coordinat amb Configura.cat i l'Aliança per la presència del català als mitjans digitals.",
+      "cover": {
+        "type": "gradient",
+        "palette": "lila",
+        "image": "assets/img/blog/mostra-extensio.png",
+        "eyebrow": "Posada a punt · Mostra",
+        "subtitle": "Substitució progressiva i nou impuls de difusió"
+      },
+      "tags": [
+        "Mostra",
+        "Extensió",
+        "Català",
+        "Configura.cat",
+        "Aliança",
+        "Posada a punt",
+        "Llançament"
+      ]
+    },
     {
       "slug": "juny-2026-configura-colaboracio",
       "date": "2026-06-29",
