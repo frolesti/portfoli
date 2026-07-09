@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     aboutTitle: document.getElementById('aboutTitle'),
     aboutP1: document.getElementById('aboutP1'),
     aboutP2: document.getElementById('aboutP2'),
-    aboutValues: document.getElementById('aboutValues'),
     aboutQuote: document.querySelector('.about-quote'),
     aboutSkills: document.querySelector('.skills-cloud'),
   };
@@ -41,14 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
       newsletterDesc: 'Rep cada mes les novetats dels meus projectes.',
       aboutTitle: 'Producte digital amb impacte real en el negoci',
       aboutP1: "Sóc desenvolupador freelance especialitzat en <strong>SaaS, automatitzacions, integracions, plugins i eines internes a mida</strong>. Treballo amb equips petits que necessiten anar ràpid: dissenyo, construeixo i desplego solucions <strong>end-to-end</strong>, des del primer prototip fins al manteniment en producció.",
-      aboutP2: "Penso en termes de <strong>negoci</strong>: cada decisió tècnica busca reduir costos operatius, alliberar hores a l'equip o obrir nous canals d'ingressos.",
+      aboutP2: "Penso en termes de <strong>negoci</strong>: cada decisió tècnica busca reduir costos operatius, alliberar hores a l'equip o obrir nous canals d'ingressos. Treballo <strong>end-to-end</strong> (producte, codi, infraestructura i manteniment), amb enfocament clar a resultats mesurables i arquitectures eficients de cost.",
       aboutQuote: '«La millor tecnologia és la que converteix objectius de negoci en resultats mesurables.»',
-      aboutSkills: ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'Docker', 'AWS', 'Supabase', 'CI/CD', 'APIs REST', 'Arquitectura SaaS', 'Integracions'],
-      aboutValues: [
-        { icon: '◆', title: 'End-to-end', desc: 'Producte, codi, infraestructura i manteniment, sense haver de coordinar diversos proveïdors.' },
-        { icon: '◆', title: 'Orientat a resultats', desc: 'Cada projecte es justifica en hores estalviades, ingressos generats o riscos reduïts.' },
-        { icon: '◆', title: 'Cost operatiu baix', desc: 'Arquitectures pensades per oferir experiència premium sense factures impossibles de mantenir.' }
-      ],
+      aboutSkills: ['TypeScript', 'JavaScript', 'Node.js', 'React', 'Next.js', 'Python', 'PostgreSQL', 'Supabase', 'Docker', 'AWS', 'Netlify', 'GitHub Actions', 'CI/CD', 'APIs REST'],
     },
     social: {
       heroTag: 'Desenvolupador autònom · Software social · Llengua i drets digitals',
@@ -58,14 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
       newsletterDesc: 'Rep cada mes les novetats dels meus projectes.',
       aboutTitle: 'Software amb propòsit',
       aboutP1: "Crec que la tecnologia ha de servir per <strong>millorar la vida de totes les persones</strong> i no només de les que s'ho poden permetre. És per això que dedico bona part del meu temps a construir eines que tenen sentit per a la meva comunitat: <strong>eines per protegir la llengua, els drets digitals i que puguin garantir l'accés a serveis públics</strong>.",
-      aboutP2: "Treballo com a desenvolupador autònom, prioritzant projectes <strong>de codi obert</strong>, sostenibles i amb impacte mesurable més enllà del compte de resultats. Quan una idea pot fer fàcil el que avui és difícil per a molta gent, val la pena dedicar-hi temps.",
+      aboutP2: "Treballo com a desenvolupador autònom, prioritzant projectes <strong>de codi obert</strong>, sostenibles i amb impacte mesurable més enllà del compte de resultats. Ho faig també amb una mirada end-to-end, autonomia tècnica i manteniment sostingut perquè cada projecte no sigui flor d'un dia.",
       aboutQuote: '«La millor tecnologia és la que fa la vida més fàcil a qui més ho necessita.»',
-      aboutSkills: ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'React Native', 'Firebase', 'Open source', 'Accessibilitat', 'Dades públiques', 'APIs REST', 'Docker'],
-      aboutValues: [
-        { icon: '◆', title: 'Vocació social', desc: 'Llengua, drets digitals i accés a serveis públics com a eixos del que faig.' },
-        { icon: '◆', title: 'Autonomia', desc: 'Eines independents, fàcils de fer servir i gratuïtes.' },
-        { icon: '◆', title: 'Productes sòlids', desc: 'Es tracta de projectes autocontinguts, mantinguts periòdicament i amb un impacte mesurable.' }
-      ],
+      aboutSkills: ['JavaScript', 'TypeScript', 'Python', 'Node.js', 'React', 'React Native', 'Firebase', 'Supabase', 'Docker', 'APIs REST', 'Open source', 'Accessibilitat'],
     }
   };
 
@@ -102,19 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .map((skill) => '<span>' + skill + '</span>')
         .join('');
     }
-    if (profileCopyTargets.aboutValues && Array.isArray(copy.aboutValues)) {
-      profileCopyTargets.aboutValues.innerHTML = copy.aboutValues
-        .map((v) => (
-          '<div class="value-item">' +
-            '<span class="value-icon">' + (v.icon || '◆') + '</span>' +
-            '<div>' +
-              '<strong>' + v.title + '</strong>' +
-              '<p>' + v.desc + '</p>' +
-            '</div>' +
-          '</div>'
-        ))
-        .join('');
-    }
   }
   function applyProfile(profile) {
     if (profile !== 'social' && profile !== 'professional') return;
@@ -126,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     applyProfileCopy(profile);
   }
+
   function hideSplash() {
     if (!profileSplash) return;
     profileSplash.classList.remove('is-visible');
@@ -1000,12 +977,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------- REVIEWS ----------
-  const reviewsList    = document.getElementById('reviewsList');
-  const reviewsLoading = document.getElementById('reviewsLoading');
-  const reviewForm     = document.getElementById('reviewForm');
-  const reviewStatus   = document.getElementById('reviewFormStatus');
-  const starBtns       = document.querySelectorAll('.star-rating .star');
-  const ratingInput    = document.getElementById('rv-rating');
+  const clientReviewSlots = document.querySelectorAll('[data-client-reviews]');
 
   async function safeJson(res) {
     try {
@@ -1015,129 +987,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function starsHtml(n) {
-    return '★'.repeat(n) + '☆'.repeat(5 - n);
-  }
-
   function formatDate(iso) {
     try {
       return new Date(iso).toLocaleDateString('ca-ES', { year: 'numeric', month: 'short', day: 'numeric' });
     } catch { return ''; }
   }
 
-  function renderReviews(reviews) {
-    if (!reviewsList) return;
-    reviewsList.innerHTML = '';
-    if (!reviews.length) return;
-    reviews.forEach((r) => {
-      const card = document.createElement('div');
-      card.className = 'review-card';
-      card.innerHTML = `
-        <div class="review-card-header">
-          <div>
-            <p class="review-author">${r.name || 'Anònim'}</p>
-          </div>
-          <span class="review-stars" title="${r.rating} de 5">${starsHtml(r.rating)}</span>
-        </div>
-        <p class="review-message">${r.message}</p>
-        <p class="review-date">${formatDate(r.date)}</p>
-      `;
-      reviewsList.appendChild(card);
-    });
+  function starsHtml(n) {
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
   }
 
-  async function loadReviews() {
-    try {
-      const res = await fetch('/.netlify/functions/reviews');
-      const data = await safeJson(res);
-      if (!res.ok) {
-        console.warn('No s\'han pogut carregar els comentaris:', data?.message || data?.error || res.status);
+  function renderClientReviewCard(review) {
+    const card = document.createElement('article');
+    card.className = 'client-review-card';
+    card.innerHTML = `
+      <div class="client-review-card__top">
+        <strong>${review.name || 'Anònim'}</strong>
+        <span class="review-stars" title="${review.rating} de 5">${starsHtml(review.rating)}</span>
+      </div>
+      <p class="client-review-card__message">${review.message || ''}</p>
+      <p class="client-review-card__date">${formatDate(review.date)}</p>
+    `;
+    return card;
+  }
+
+  async function loadClientReviews() {
+    const slots = Array.from(clientReviewSlots || []);
+    if (!slots.length) return;
+
+    const res = await fetch('/.netlify/functions/reviews');
+    const reviews = await safeJson(res);
+    if (!res.ok || !Array.isArray(reviews)) {
+      throw new Error('No s\'han pogut carregar les ressenyes.');
+    }
+    const reviewsByClient = reviews.reduce((acc, review) => {
+      const key = review.companyId || '';
+      if (!key) return acc;
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(review);
+      return acc;
+    }, {});
+
+    slots.forEach((slot) => {
+      const clientId = slot.getAttribute('data-client-reviews');
+      const clientReviews = reviewsByClient[clientId] || [];
+
+      slot.innerHTML = '';
+      if (!clientReviews.length) {
+        const empty = document.createElement('p');
+        empty.className = 'client-review-empty';
+        empty.textContent = 'Encara no hi ha ressenyes publicades.';
+        slot.appendChild(empty);
         return;
       }
-      renderReviews(data);
-    } catch (err) {
-      console.warn('Error carregant comentaris:', err?.message || err);
-    }
+
+      clientReviews.slice(0, 3).forEach((review) => {
+        slot.appendChild(renderClientReviewCard(review));
+      });
+    });
   }
 
-  if (reviewsList) loadReviews();
-
-  // Star rating UI
-  let selectedRating = 0;
-  const reviewSubmitBtn = reviewForm?.querySelector('[type="submit"]');
-  const updateSubmitState = () => {
-    if (reviewSubmitBtn) reviewSubmitBtn.disabled = selectedRating < 1;
-  };
-  updateSubmitState();
-  starBtns.forEach((btn) => {
-    btn.addEventListener('mouseover', () => {
-      const v = parseInt(btn.dataset.value, 10);
-      starBtns.forEach((b) => b.classList.toggle('hover', parseInt(b.dataset.value, 10) <= v));
-    });
-    btn.addEventListener('mouseout', () => {
-      starBtns.forEach((b) => b.classList.remove('hover'));
-    });
-    btn.addEventListener('click', () => {
-      selectedRating = parseInt(btn.dataset.value, 10);
-      if (ratingInput) ratingInput.value = selectedRating;
-      starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= selectedRating));
-      updateSubmitState();
-    });
+  loadClientReviews().catch((err) => {
+    console.warn('Error carregant ressenyes de clients:', err?.message || err);
   });
-
-  if (reviewForm) {
-    reviewForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(reviewForm);
-      const rating = parseInt(fd.get('rating') || '0', 10);
-      if (!rating || rating < 1) return;
-      const payload = {
-        name:    fd.get('name') || '',
-        rating:  rating,
-        message: fd.get('message') || ''
-      };
-
-      const submitBtn = reviewForm.querySelector('[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Publicant…';
-      if (reviewStatus) { reviewStatus.hidden = true; reviewStatus.className = 'review-form-status'; }
-
-      try {
-        const res = await fetch('/.netlify/functions/reviews', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await safeJson(res);
-
-        if (res.ok) {
-          reviewForm.reset();
-          selectedRating = 0;
-          if (ratingInput) ratingInput.value = 0;
-          starBtns.forEach((b) => b.classList.remove('active'));
-          if (reviewStatus) {
-            reviewStatus.textContent = data.message || 'Comentari rebut. El revisaré abans de publicar-lo.';
-            reviewStatus.className = 'review-form-status ok';
-            reviewStatus.hidden = false;
-          }
-          trackGoatEvent('review-submit-success', 'Review submitted');
-          await loadReviews();
-        } else {
-          throw new Error(data.message || 'No s\'ha pogut publicar el comentari.');
-        }
-      } catch (err) {
-        if (reviewStatus) {
-          reviewStatus.textContent = err?.message || 'No s\'ha pogut publicar el comentari. Torna-ho a intentar.';
-          reviewStatus.className = 'review-form-status error';
-          reviewStatus.hidden = false;
-        }
-        trackGoatEvent('review-submit-error', 'Review submit error');
-      } finally {
-        submitBtn.textContent = 'Publicar comentari';
-        updateSubmitState();
-      }
-    });
-  }
 
   // ---------- NEWSLETTER FORM (Netlify Function → GitHub Gist) ----------
   const nlForm = document.getElementById('newsletterForm');

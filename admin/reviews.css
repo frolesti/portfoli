@@ -177,6 +177,57 @@ input {
   gap: 12px;
 }
 
+.invite-panel {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.invite-panel__header h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.invite-list {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.invite-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.invite-card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.invite-url {
+  margin: 0;
+  word-break: break-all;
+}
+
+.invite-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.invite-actions .btn {
+  white-space: nowrap;
+}
+
 .review-card {
   border: 1px solid var(--line);
   border-radius: 12px;

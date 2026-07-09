@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   const API_URL = '/.netlify/functions/reviews-admin';
   const STORAGE_KEY = 'reviews_admin_key';
+  const CLIENTS = {
+    'alta-medical-services': {
+      name: 'ALTA medical services',
+      token: 'alta-7c5d2f41b9'
+    },
+    aesso: {
+      name: 'AESSO',
+      token: 'aesso-3d9a8c7e21'
+    },
+    'configura-cat': {
+      name: 'Configura.cat',
+      token: 'configura-4f2a6d81ce'
+    },
+    'alianca-digital-cat': {
+      name: 'Aliança per la presència digital del català',
+      token: 'alianca-8b1c5d3e74'
+    }
+  };
 
   const authPanel = document.getElementById('authPanel');
   const dashboard = document.getElementById('dashboard');
@@ -11,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stats = document.getElementById('stats');
   const refreshBtn = document.getElementById('refreshBtn');
   const logoutBtn = document.getElementById('logoutBtn');
+  const inviteCards = document.querySelectorAll('.invite-card');
 
   let adminKey = sessionStorage.getItem(STORAGE_KEY) || '';
 
@@ -44,6 +63,45 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch {
       return '';
     }
+  }
+
+  function buildInviteUrl(clientId) {
+    const client = CLIENTS[clientId];
+    if (!client) return '';
+    const url = new URL('../review.html', window.location.href);
+    url.searchParams.set('client', clientId);
+    url.searchParams.set('token', client.token);
+    return url.toString();
+  }
+
+  function syncInviteCards() {
+    inviteCards.forEach((card) => {
+      const clientId = card.getAttribute('data-client-id');
+      const client = clientId ? CLIENTS[clientId] : null;
+      const inviteUrl = buildInviteUrl(clientId || '');
+      const urlNode = card.querySelector('[data-invite-url]');
+      const copyBtn = card.querySelector('[data-copy-invite]');
+      const openBtn = card.querySelector('[data-open-invite]');
+
+      if (urlNode) urlNode.textContent = inviteUrl;
+      if (openBtn) {
+        openBtn.href = inviteUrl || '#';
+        openBtn.hidden = !inviteUrl;
+      }
+
+      copyBtn?.addEventListener('click', async () => {
+        if (!inviteUrl) return;
+        try {
+          await navigator.clipboard.writeText(inviteUrl);
+          const original = copyBtn.textContent;
+          copyBtn.textContent = 'Copiat';
+          setTimeout(() => { copyBtn.textContent = original; }, 1500);
+        } catch {
+          const fallback = window.prompt('Copia aquest enllaç:', inviteUrl);
+          if (fallback === null) return;
+        }
+      });
+    });
   }
 
   async function apiCall(method, body) {
@@ -115,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <strong>${review.name || 'Anonim'}</strong>
           <span class="review-meta">${starsHtml(review.rating)} · ${formatDate(review.date)}</span>
         </div>
+        ${review.companyName ? `<p class="review-meta">${review.companyName}${review.companyRole ? ' · ' + review.companyRole : ''}</p>` : ''}
         <p class="review-message">${review.message || ''}</p>
         <div class="review-actions">
           <button type="button" class="btn btn-ok" data-action="approve">Aprovar</button>
@@ -229,4 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     showLogin();
   }
+
+  syncInviteCards();
 });

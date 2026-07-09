@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deixa la teva ressenya · frolesti</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eef4f1 0%, #f9f6f2 48%, #efe7f4 100%);
+    }
+    .client-review-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+    .client-review-shell {
+      width: min(760px, 100%);
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(20, 30, 50, 0.12);
+      padding: 34px;
+      backdrop-filter: blur(12px);
+    }
+    .client-review-eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .client-review-title {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 12px;
+    }
+    .client-review-lead {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0 0 28px;
+      max-width: 60ch;
+    }
+    .client-review-note {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(42, 122, 110, 0.08);
+      margin-bottom: 20px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+    .client-review-error {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(220, 53, 69, 0.08);
+      color: #a23434;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .client-review-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .client-review-brand strong {
+      font-size: 1rem;
+    }
+    .client-review-brand span {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+    @media (max-width: 600px) {
+      .client-review-shell { padding: 22px; border-radius: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="client-review-page">
+    <div class="client-review-shell">
+      <div class="client-review-eyebrow">Ressenya privada</div>
+      <h1 class="client-review-title" id="clientReviewTitle">Deixa la teva ressenya</h1>
+      <p class="client-review-lead" id="clientReviewLead">Aquest enllaç és privat i està pensat perquè puguis deixar la teva opinió com a representant de l'empresa corresponent.</p>
+
+      <div id="clientReviewContext"></div>
+      <div id="clientReviewError" class="client-review-error" hidden></div>
+
+      <form class="review-form" id="clientReviewForm" hidden>
+        <div class="form-group">
+          <label for="rv-name">Nom de la persona representant</label>
+          <input type="text" id="rv-name" name="name" placeholder="Nom i cognoms" maxlength="80" autocomplete="name">
+        </div>
+        <input type="hidden" id="rv-company-id" name="companyId" value="">
+        <input type="hidden" id="rv-company-name" name="companyName" value="">
+        <input type="hidden" id="rv-client-token" name="clientToken" value="">
+        <div class="form-group">
+          <label>Valoració <span class="required">*</span></label>
+          <div class="star-rating" id="starRating" role="radiogroup" aria-label="Valoració">
+            <button type="button" class="star" data-value="1" aria-label="1 estrella">★</button>
+            <button type="button" class="star" data-value="2" aria-label="2 estrelles">★</button>
+            <button type="button" class="star" data-value="3" aria-label="3 estrelles">★</button>
+            <button type="button" class="star" data-value="4" aria-label="4 estrelles">★</button>
+            <button type="button" class="star" data-value="5" aria-label="5 estrelles">★</button>
+          </div>
+          <input type="hidden" id="rv-rating" name="rating" value="0">
+        </div>
+        <div class="form-group">
+          <label for="rv-message">Missatge <span class="required">*</span></label>
+          <textarea id="rv-message" name="message" rows="5" placeholder="Explica la teva experiència..." required maxlength="1000"></textarea>
+        </div>
+        <div class="review-form-footer">
+          <button type="submit" class="btn btn-primary">Publicar ressenya</button>
+        </div>
+        <p class="review-form-note" id="clientReviewNote" hidden></p>
+        <p class="review-form-status" id="clientReviewStatus" hidden></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="assets/client-review.js" defer></script>
+</body>
+</html>

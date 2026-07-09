@@ -735,31 +735,8 @@
             Sóc desenvolupador freelance especialitzat en <strong>SaaS, automatitzacions, integracions, plugins i eines internes a mida</strong>. Treballo amb equips petits que necessiten anar ràpid: dissenyo, construeixo i desplego solucions <strong>end-to-end</strong>, des del primer prototip fins al manteniment en producció.
           </p>
           <p id="aboutP2" data-i18n="about.p2">
-            Penso en termes de <strong>negoci</strong>: cada decisió tècnica busca reduir costos operatius, alliberar hores a l'equip o obrir nous canals d'ingressos.
+            Penso en termes de <strong>negoci</strong>: cada decisió tècnica busca reduir costos operatius, alliberar hores a l'equip o obrir nous canals d'ingressos. Treballo <strong>end-to-end</strong> (producte, codi, infraestructura i manteniment), amb enfocament clar a resultats mesurables i arquitectures eficients de cost. <br><br>
           </p>
-          <div class="about-values" id="aboutValues">
-            <div class="value-item">
-              <span class="value-icon">◆</span>
-              <div>
-                <strong data-i18n="about.v1.title">End-to-end</strong>
-                <p data-i18n="about.v1.desc">Producte, codi, infraestructura i manteniment, sense haver de coordinar diversos proveïdors.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <span class="value-icon">◆</span>
-              <div>
-                <strong data-i18n="about.v2.title">Orientat a resultats</strong>
-                <p data-i18n="about.v2.desc">Cada projecte es justifica en hores estalviades, ingressos generats o riscos reduïts.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <span class="value-icon">◆</span>
-              <div>
-                <strong data-i18n="about.v3.title">Cost operatiu baix</strong>
-                <p data-i18n="about.v3.desc">Arquitectures pensades per oferir experiència premium sense factures impossibles de mantenir.</p>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="about-visual">
           <div class="about-card">
@@ -767,64 +744,66 @@
               «La millor tecnologia és la que converteix objectius de negoci en resultats mesurables.»
             </p>
           </div>
-          <div class="skills-cloud">
+          <div class="skills-cloud" id="aboutSkills">
             <span>TypeScript</span>
+            <span>JavaScript</span>
             <span>Node.js</span>
             <span>React</span>
             <span>Next.js</span>
+            <span>Python</span>
             <span>PostgreSQL</span>
+            <span>Supabase</span>
             <span>Docker</span>
             <span>AWS</span>
-            <span>Supabase</span>
+            <span>Netlify</span>
+            <span>GitHub Actions</span>
             <span>CI/CD</span>
             <span>APIs REST</span>
-            <span>Arquitectura SaaS</span>
-            <span>Integracions</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS (amagat de moment — es gestionarà més endavant) -->
-  <section id="testimonis" class="reviews-section" hidden style="display:none">
+  <!-- CLIENTS / ENTITATS COL·LABORADORES -->
+  <section id="clients" class="clients-section" aria-labelledby="clientsTitle">
     <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="reviews.title">Què diuen els clients</h2>
-        <p class="section-subtitle" data-i18n="reviews.subtitle">Comentaris reals de persones i organitzacions amb qui he treballat, revisats abans de publicar.</p>
+      <div class="section-header clients-header">
+        <h2 id="clientsTitle">Clients i entitats amb qui he col·laborat</h2>
+        <p class="section-subtitle">
+          Aquí podeu veure una mostra dels clients amb qui he treballat o col·laborat. Si tu també t'hi vols afegir, baixa una mica més per posar-te en contacte amb mi i veurem què hi podem fer.
+        </p>
       </div>
 
-      <!-- Llista de comentaris -->
-      <div class="reviews-list" id="reviewsList"></div>
-
-      <!-- Formulari nou comentari -->
-      <div class="review-form-wrap">
-        <h3 class="review-form-title" data-i18n="reviews.form.title">Deixa la teva opinió</h3>
-        <form class="review-form" id="reviewForm" novalidate>
-          <div class="form-group">
-            <label for="rv-name" data-i18n="reviews.form.name">Nom (opcional)</label>
-            <input type="text" id="rv-name" name="name" placeholder="El teu nom o empresa" data-i18n-ph="reviews.form.name.ph" maxlength="80" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label data-i18n="reviews.form.rating">Valoració <span class="required">*</span></label>
-            <div class="star-rating" id="starRating" role="radiogroup" aria-label="Valoració">
-              <button type="button" class="star" data-value="1" aria-label="1 estrella">★</button>
-              <button type="button" class="star" data-value="2" aria-label="2 estrelles">★</button>
-              <button type="button" class="star" data-value="3" aria-label="3 estrelles">★</button>
-              <button type="button" class="star" data-value="4" aria-label="4 estrelles">★</button>
-              <button type="button" class="star" data-value="5" aria-label="5 estrelles">★</button>
-            </div>
-            <input type="hidden" id="rv-rating" name="rating" value="0">
-          </div>
-          <div class="form-group">
-            <label for="rv-message" data-i18n="reviews.form.message">Missatge <span class="required">*</span></label>
-            <textarea id="rv-message" name="message" rows="4" placeholder="Explica la teva experiència..." data-i18n-ph="reviews.form.message.ph" required maxlength="1000"></textarea>
-          </div>
-          <div class="review-form-footer">
-            <button type="submit" class="btn btn-primary" data-i18n="reviews.form.submit">Publicar comentari</button>
-          </div>
-          <p class="review-form-status" id="reviewFormStatus" hidden></p>
-        </form>
+      <div class="clients-grid" role="list" aria-label="Logos de clients i entitats col·laboradores">
+        <article class="client-logo-card" role="listitem" aria-label="ALTA medical services" data-client-id="alta-medical-services">
+          <a class="client-logo-link" href="https://www.altamedicalservices.com/en/home.php" target="_blank" rel="noopener" aria-label="Visitar el web d'ALTA medical services">
+            <img src="assets/img/clients/alta-medical-services.png" alt="ALTA medical services" loading="lazy" decoding="async">
+          </a>
+          <p class="client-logo-name">ALTA medical services</p>
+          <div class="client-reviews" data-client-reviews="alta-medical-services" aria-label="Ressenyes d'ALTA medical services"></div>
+        </article>
+        <article class="client-logo-card" role="listitem" aria-label="AESSO" data-client-id="aesso">
+          <a class="client-logo-link" href="https://aes-so.org/" target="_blank" rel="noopener" aria-label="Visitar el web d'AESSO">
+            <img src="assets/img/clients/aesso.png" alt="AESSO · Asociación Española de Sombreado y Control Solar Dinámico" loading="lazy" decoding="async">
+          </a>
+          <p class="client-logo-name">AESSO</p>
+          <div class="client-reviews" data-client-reviews="aesso" aria-label="Ressenyes d'AESSO"></div>
+        </article>
+        <article class="client-logo-card" role="listitem" aria-label="Configura.cat" data-client-id="configura-cat">
+          <a class="client-logo-link" href="https://www.configura.cat/" target="_blank" rel="noopener" aria-label="Visitar el web de Configura.cat">
+            <img src="assets/img/clients/configura.png" alt="Configura.cat" loading="lazy" decoding="async">
+          </a>
+          <p class="client-logo-name">Configura.cat</p>
+          <div class="client-reviews" data-client-reviews="configura-cat" aria-label="Ressenyes de Configura.cat"></div>
+        </article>
+        <article class="client-logo-card" role="listitem" aria-label="Aliança per la presència digital del català" data-client-id="alianca-digital-cat">
+          <a class="client-logo-link" href="https://xn--alianadigital-mgb.cat/" target="_blank" rel="noopener" aria-label="Visitar el web de l'Aliança per la presència digital del català">
+            <img src="assets/img/clients/aliança.png" alt="Aliança per la presència digital del català" loading="lazy" decoding="async">
+          </a>
+          <p class="client-logo-name">Aliança per la presència digital del català</p>
+          <div class="client-reviews" data-client-reviews="alianca-digital-cat" aria-label="Ressenyes de l'Aliança per la presència digital del català"></div>
+        </article>
       </div>
     </div>
   </section>

@@ -13,6 +13,24 @@ const CORS_HEADERS = {
 
 const MAX_MESSAGE_LENGTH = 1000;
 const MAX_NAME_LENGTH = 80;
+const CLIENT_INVITES = {
+  'alta-medical-services': {
+    name: 'ALTA medical services',
+    token: 'alta-7c5d2f41b9'
+  },
+  aesso: {
+    name: 'AESSO',
+    token: 'aesso-3d9a8c7e21'
+  },
+  'configura-cat': {
+    name: 'Configura.cat',
+    token: 'configura-4f2a6d81ce'
+  },
+  'alianca-digital-cat': {
+    name: 'Aliança per la presència digital del català',
+    token: 'alianca-8b1c5d3e74'
+  }
+};
 
 // ── helpers ──────────────────────────────────────────────
 
@@ -65,6 +83,13 @@ function isPubliclyVisible(review) {
   if (review.approved === false) return false;
 
   return true;
+}
+
+function getClientInvite(clientId, token) {
+  const invite = CLIENT_INVITES[clientId];
+  if (!invite) return null;
+  if (!token || token !== invite.token) return null;
+  return invite;
 }
 
 // ── handler ──────────────────────────────────────────────
@@ -123,7 +148,20 @@ exports.handler = async (event) => {
 
     const name    = sanitize(body.name || 'Anònim').slice(0, MAX_NAME_LENGTH) || 'Anònim';
     const message = sanitize(body.message || '').slice(0, MAX_MESSAGE_LENGTH);
-    const project = sanitize(body.project || '').slice(0, 80);
+    const companyId = sanitize(body.companyId || '').slice(0, 80);
+    const companyNameInput = sanitize(body.companyName || '').slice(0, 120);
+    const clientToken = sanitize(body.clientToken || '').slice(0, 120);
+    const invite = companyId ? getClientInvite(companyId, clientToken) : null;
+    const companyName = invite ? invite.name : companyNameInput;
+
+    if (companyId && !invite) {
+      return {
+        statusCode: 403,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'invalid_client_token', message: "L'enllaç del client no és vàlid o ha caducat." })
+      };
+    }
+
     const rating  = Math.min(5, Math.max(1, parseInt(body.rating, 10) || 5));
 
     if (!message || message.length < 5) {
@@ -153,7 +191,9 @@ exports.handler = async (event) => {
     reviews.unshift({
       id: Date.now(),
       name,
-      project,
+      companyId: invite ? companyId : '',
+      companyName: invite ? companyName : '',
+      companyRole: invite ? `Representant de ${companyName}` : '',
       rating,
       message,
       date: new Date().toISOString(),
