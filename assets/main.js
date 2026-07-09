@@ -1010,6 +1010,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const slots = Array.from(clientReviewSlots || []);
     if (!slots.length) return;
 
+    // Always clear slots first so stale placeholder text is never shown.
+    slots.forEach((slot) => {
+      slot.innerHTML = '';
+    });
+
     const res = await fetch('/.netlify/functions/reviews');
     const reviews = await safeJson(res);
     if (!res.ok || !Array.isArray(reviews)) {
@@ -1027,7 +1032,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const clientId = slot.getAttribute('data-client-reviews');
       const clientReviews = reviewsByClient[clientId] || [];
 
-      slot.innerHTML = '';
       if (!clientReviews.length) {
         return;
       }
