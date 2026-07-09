@@ -39,8 +39,9 @@
     .client-review-title {
       font-family: var(--font-heading);
       font-weight: 400;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.85rem);
       margin: 0 0 12px;
+      line-height: 1.25;
     }
     .client-review-lead {
       color: var(--text-muted);
@@ -57,23 +58,19 @@
       line-height: 1.5;
       border: 1px solid color-mix(in srgb, var(--client-accent, #2a7a6e) 26%, white);
       display: grid;
-      grid-template-columns: minmax(120px, 170px) 1fr;
+      grid-template-columns: minmax(96px, 150px) 1fr;
       gap: 14px;
       align-items: center;
     }
     .client-review-logo-wrap {
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 12px;
-      min-height: 72px;
+      min-height: 58px;
     }
     .client-review-logo {
       width: 100%;
-      max-width: 150px;
+      max-width: 142px;
       max-height: 48px;
       object-fit: contain;
       display: block;
@@ -98,19 +95,37 @@
       color: var(--text-muted);
       font-size: 0.92rem;
     }
+    .client-review-brand a {
+      color: var(--client-accent, var(--accent-1));
+      font-weight: 600;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 2px;
+    }
+    .client-review-brand a:hover {
+      opacity: 0.88;
+    }
     @media (max-width: 740px) {
+      .client-review-shell {
+        padding: 24px 18px;
+      }
       .client-review-note {
         grid-template-columns: 1fr;
+        gap: 8px;
       }
       .client-review-logo-wrap {
-        min-height: 64px;
+        justify-content: flex-start;
+        min-height: 50px;
       }
       .client-review-logo {
-        max-width: 170px;
+        margin: 0;
+        max-width: 148px;
       }
     }
     @media (max-width: 600px) {
-      .client-review-shell { padding: 22px; border-radius: 22px; }
+      .client-review-shell { padding: 18px 14px; border-radius: 18px; }
+      .client-review-title { font-size: clamp(1.5rem, 8vw, 2rem); }
+      .client-review-lead { margin-bottom: 18px; }
+      .review-form .form-group textarea { min-height: 140px; }
     }
   </style>
 </head>

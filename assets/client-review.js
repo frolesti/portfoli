@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bg2: '#ecebff'
     },
     aesso: {
-      name: 'AESSO',
+      name: 'AESSO (Asociación Española de Sombreado Solar)',
       token: 'aesso-3d9a8c7e21',
       logo: 'assets/img/clients/aesso.png',
       accent: '#25b2aa',
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.setProperty('--client-bg-2', client.bg2 || '#efe7f4');
 
   if (title) title.textContent = `Introdueix el teu comentari sobre la feina que ha fet frolesti per a ${client.name}`;
-  if (lead) lead.textContent = 'Aquest comentari ha de reflexar la teva experiència real amb el servei rebut i perquè recomanaries a frolesti a altres empreses o projectes.';
+  if (lead) lead.textContent = 'Aquest comentari ha de reflectir la teva experiència real amb el servei rebut i per què recomanaries frolesti a altres empreses o projectes.';
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">

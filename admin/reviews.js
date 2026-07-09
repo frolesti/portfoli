@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       accent: '#7f7be8'
     },
     aesso: {
-      name: 'AESSO',
+      name: 'AESSO (Asociación Española de Sombreado Solar)',
       token: 'aesso-3d9a8c7e21',
       accent: '#25b2aa'
     },

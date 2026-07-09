@@ -19,7 +19,7 @@ const CLIENT_INVITES = {
     token: 'alta-7c5d2f41b9'
   },
   aesso: {
-    name: 'AESSO',
+    name: 'AESSO (Asociación Española de Sombreado Solar)',
     token: 'aesso-3d9a8c7e21'
   },
   'configura-cat': {

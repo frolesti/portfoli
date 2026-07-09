@@ -1029,10 +1029,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       slot.innerHTML = '';
       if (!clientReviews.length) {
-        const empty = document.createElement('p');
-        empty.className = 'client-review-empty';
-        empty.textContent = 'Encara no hi ha ressenyes publicades.';
-        slot.appendChild(empty);
         return;
       }
 
