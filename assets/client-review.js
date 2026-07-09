@@ -2,19 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const CLIENTS = {
     'alta-medical-services': {
       name: 'ALTA medical services',
-      token: 'alta-7c5d2f41b9'
+      token: 'alta-7c5d2f41b9',
+      logo: 'assets/img/clients/alta-medical-services.png',
+      accent: '#7f7be8',
+      bg1: '#f2f0ff',
+      bg2: '#ecebff'
     },
     aesso: {
       name: 'AESSO',
-      token: 'aesso-3d9a8c7e21'
+      token: 'aesso-3d9a8c7e21',
+      logo: 'assets/img/clients/aesso.png',
+      accent: '#25b2aa',
+      bg1: '#eaf9f7',
+      bg2: '#e9f7ff'
     },
     'configura-cat': {
       name: 'Configura.cat',
-      token: 'configura-4f2a6d81ce'
+      token: 'configura-4f2a6d81ce',
+      logo: 'assets/img/clients/configura.png',
+      accent: '#6f57d2',
+      bg1: '#f0ecff',
+      bg2: '#f4efff'
     },
     'alianca-digital-cat': {
       name: 'Aliança per la presència digital del català',
-      token: 'alianca-8b1c5d3e74'
+      token: 'alianca-8b1c5d3e74',
+      logo: 'assets/img/clients/aliança.png',
+      accent: '#e18a21',
+      bg1: '#fff5e8',
+      bg2: '#fff0de'
     }
   };
 
@@ -25,16 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('clientReviewForm');
   const note = document.getElementById('clientReviewNote');
   const status = document.getElementById('clientReviewStatus');
-  const starBtns = document.querySelectorAll('.star-rating .star');
-  const ratingInput = document.getElementById('rv-rating');
   const companyIdInput = document.getElementById('rv-company-id');
   const companyNameInput = document.getElementById('rv-company-name');
   const clientTokenInput = document.getElementById('rv-client-token');
-  const nameInput = document.getElementById('rv-name');
-
-  function starsHtml(n) {
-    return '★'.repeat(n) + '☆'.repeat(5 - n);
-  }
 
   function setStatus(node, text, kind) {
     if (!node) return;
@@ -71,23 +80,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const matches = !!client && token === client.token;
 
   if (!matches) {
-    setError('Aquest enllaç no és vàlid o ha caducat. Demana un enllaç nou a Frolesti.');
+    setError('Aquest enllaç no és vàlid. Demana un enllaç nou i t’ho passo en un moment.');
     if (form) form.hidden = true;
     if (title) title.textContent = 'Enllaç no vàlid';
-    if (lead) lead.textContent = 'No puc mostrar el formulari perquè l’enllaç no correspon a cap client autoritzat.';
+    if (lead) lead.textContent = 'No puc obrir el formulari perquè aquest enllaç no està associat a cap client actiu.';
     return;
   }
 
-  if (title) title.textContent = `Deixa la teva ressenya com a representant de ${client.name}`;
-  if (lead) lead.textContent = `Aquest formulari és privat i està associat a ${client.name}. Quan l’enviïs, la ressenya apareixerà sota el seu client corresponent.`;
+  document.documentElement.style.setProperty('--client-accent', client.accent || '#2a7a6e');
+  document.documentElement.style.setProperty('--client-bg-1', client.bg1 || '#eef4f1');
+  document.documentElement.style.setProperty('--client-bg-2', client.bg2 || '#efe7f4');
+
+  if (title) title.textContent = `Un comentari ràpid de ${client.name}`;
+  if (lead) lead.textContent = 'Si et va bé, deixa una frase breu sobre la col·laboració. Ho reviso i ho publico al web.';
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">
+        <img class="client-review-logo" src="${client.logo}" alt="${client.name}">
         <div class="client-review-brand">
           <strong>${client.name}</strong>
-          <span>${starsHtml(5)} avaluació privada</span>
+          <span>formulari privat</span>
         </div>
-        <p>Estàs enviant una ressenya en nom de l'empresa. Si no ets la persona correcta, tanca aquesta pàgina i demana un altre enllaç.</p>
+        <p>Aquest comentari quedarà vinculat automàticament a l'empresa.</p>
       </div>
     `;
   }
@@ -96,45 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (companyNameInput) companyNameInput.value = client.name;
   if (clientTokenInput) clientTokenInput.value = token;
   if (note) {
-    note.textContent = `Aquesta ressenya s'associarà a ${client.name}.`;
+    note.textContent = `Perfecte, el comentari es publicarà sota ${client.name}.`;
     note.hidden = false;
     note.classList.add('review-form-context');
   }
   if (form) form.hidden = false;
 
-  let selectedRating = 0;
-  const updateSubmitState = () => {
-    const submitBtn = form?.querySelector('[type="submit"]');
-    if (submitBtn) submitBtn.disabled = selectedRating < 1;
-  };
-
-  updateSubmitState();
-
-  starBtns.forEach((btn) => {
-    btn.addEventListener('mouseover', () => {
-      const v = parseInt(btn.dataset.value, 10);
-      starBtns.forEach((b) => b.classList.toggle('hover', parseInt(b.dataset.value, 10) <= v));
-    });
-    btn.addEventListener('mouseout', () => {
-      starBtns.forEach((b) => b.classList.remove('hover'));
-    });
-    btn.addEventListener('click', () => {
-      selectedRating = parseInt(btn.dataset.value, 10);
-      if (ratingInput) ratingInput.value = selectedRating;
-      starBtns.forEach((b) => b.classList.toggle('active', parseInt(b.dataset.value, 10) <= selectedRating));
-      updateSubmitState();
-    });
-  });
-
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const fd = new FormData(form);
-    const rating = parseInt(fd.get('rating') || '0', 10);
-    if (!rating || rating < 1) return;
 
     const payload = {
       name: fd.get('name') || '',
-      rating,
       message: fd.get('message') || '',
       companyId: fd.get('companyId') || '',
       companyName: fd.get('companyName') || '',
@@ -159,15 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       form.reset();
-      selectedRating = 0;
-      if (ratingInput) ratingInput.value = 0;
-      starBtns.forEach((b) => b.classList.remove('active'));
-      setStatus(status, data.message || 'Ressenya rebuda. La revisaré abans de publicar-la.', 'ok');
+      setStatus(status, data.message || 'Comentari rebut. Gràcies!', 'ok');
     } catch (err) {
-      setStatus(status, err?.message || 'No s\'ha pogut publicar la ressenya. Torna-ho a intentar.', 'error');
+      setStatus(status, err?.message || 'Ara mateix no s\'ha pogut enviar. Torna-ho a provar en un moment.', 'error');
     } finally {
-      submitBtn.textContent = 'Publicar ressenya';
-      updateSubmitState();
+      submitBtn.textContent = 'Enviar comentari';
+      submitBtn.disabled = false;
     }
   });
 });

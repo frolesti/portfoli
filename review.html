@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deixa la teva ressenya · frolesti</title>
+  <title>Deixa el teu comentari · frolesti</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   <style>
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #eef4f1 0%, #f9f6f2 48%, #efe7f4 100%);
+      background: linear-gradient(135deg, var(--client-bg-1, #eef4f1) 0%, #f9f6f2 48%, var(--client-bg-2, #efe7f4) 100%);
     }
     .client-review-page {
       min-height: 100vh;
@@ -51,10 +51,18 @@
     .client-review-note {
       padding: 12px 14px;
       border-radius: 16px;
-      background: rgba(42, 122, 110, 0.08);
+      background: color-mix(in srgb, var(--client-accent, #2a7a6e) 10%, white);
       margin-bottom: 20px;
       color: var(--text-main);
       line-height: 1.5;
+    }
+    .client-review-logo {
+      width: auto;
+      max-width: 220px;
+      max-height: 54px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 14px;
     }
     .client-review-error {
       padding: 12px 14px;
@@ -85,38 +93,24 @@
 <body>
   <main class="client-review-page">
     <div class="client-review-shell">
-      <div class="client-review-eyebrow">Ressenya privada</div>
-      <h1 class="client-review-title" id="clientReviewTitle">Deixa la teva ressenya</h1>
-      <p class="client-review-lead" id="clientReviewLead">Aquest enllaç és privat i està pensat perquè puguis deixar la teva opinió com a representant de l'empresa corresponent.</p>
+      <div class="client-review-eyebrow">Comentari de client</div>
+      <h1 class="client-review-title" id="clientReviewTitle">Deixa el teu comentari</h1>
+      <p class="client-review-lead" id="clientReviewLead">Comparteix en una frase com ha anat la col·laboració i jo m'encarrego de la resta.</p>
 
       <div id="clientReviewContext"></div>
       <div id="clientReviewError" class="client-review-error" hidden></div>
 
       <form class="review-form" id="clientReviewForm" hidden>
+        <input type="hidden" id="rv-name" name="name" value="Representant">
         <div class="form-group">
-          <label for="rv-name">Nom de la persona representant</label>
-          <input type="text" id="rv-name" name="name" placeholder="Nom i cognoms" maxlength="80" autocomplete="name">
+          <label for="rv-message">Comentari</label>
+          <textarea id="rv-message" name="message" rows="6" placeholder="Escriu aquí el comentari que vols compartir..." required maxlength="1000"></textarea>
         </div>
         <input type="hidden" id="rv-company-id" name="companyId" value="">
         <input type="hidden" id="rv-company-name" name="companyName" value="">
         <input type="hidden" id="rv-client-token" name="clientToken" value="">
-        <div class="form-group">
-          <label>Valoració <span class="required">*</span></label>
-          <div class="star-rating" id="starRating" role="radiogroup" aria-label="Valoració">
-            <button type="button" class="star" data-value="1" aria-label="1 estrella">★</button>
-            <button type="button" class="star" data-value="2" aria-label="2 estrelles">★</button>
-            <button type="button" class="star" data-value="3" aria-label="3 estrelles">★</button>
-            <button type="button" class="star" data-value="4" aria-label="4 estrelles">★</button>
-            <button type="button" class="star" data-value="5" aria-label="5 estrelles">★</button>
-          </div>
-          <input type="hidden" id="rv-rating" name="rating" value="0">
-        </div>
-        <div class="form-group">
-          <label for="rv-message">Missatge <span class="required">*</span></label>
-          <textarea id="rv-message" name="message" rows="5" placeholder="Explica la teva experiència..." required maxlength="1000"></textarea>
-        </div>
         <div class="review-form-footer">
-          <button type="submit" class="btn btn-primary">Publicar ressenya</button>
+          <button type="submit" class="btn btn-primary">Enviar comentari</button>
         </div>
         <p class="review-form-note" id="clientReviewNote" hidden></p>
         <p class="review-form-status" id="clientReviewStatus" hidden></p>

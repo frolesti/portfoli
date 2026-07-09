@@ -162,8 +162,6 @@ exports.handler = async (event) => {
       };
     }
 
-    const rating  = Math.min(5, Math.max(1, parseInt(body.rating, 10) || 5));
-
     if (!message || message.length < 5) {
       return {
         statusCode: 400,
@@ -194,7 +192,6 @@ exports.handler = async (event) => {
       companyId: invite ? companyId : '',
       companyName: invite ? companyName : '',
       companyRole: invite ? `Representant de ${companyName}` : '',
-      rating,
       message,
       date: new Date().toISOString(),
       approved: false,

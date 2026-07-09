@@ -4,19 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const CLIENTS = {
     'alta-medical-services': {
       name: 'ALTA medical services',
-      token: 'alta-7c5d2f41b9'
+      token: 'alta-7c5d2f41b9',
+      accent: '#7f7be8'
     },
     aesso: {
       name: 'AESSO',
-      token: 'aesso-3d9a8c7e21'
+      token: 'aesso-3d9a8c7e21',
+      accent: '#25b2aa'
     },
     'configura-cat': {
       name: 'Configura.cat',
-      token: 'configura-4f2a6d81ce'
+      token: 'configura-4f2a6d81ce',
+      accent: '#6f57d2'
     },
     'alianca-digital-cat': {
       name: 'Aliança per la presència digital del català',
-      token: 'alianca-8b1c5d3e74'
+      token: 'alianca-8b1c5d3e74',
+      accent: '#e18a21'
     }
   };
 
@@ -44,11 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     node.hidden = false;
     node.className = `status ${kind || ''}`.trim();
     node.textContent = text;
-  }
-
-  function starsHtml(n) {
-    const value = Math.min(5, Math.max(1, Number(n) || 0));
-    return '★'.repeat(value) + '☆'.repeat(5 - value);
   }
 
   function formatDate(iso) {
@@ -82,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const urlNode = card.querySelector('[data-invite-url]');
       const copyBtn = card.querySelector('[data-copy-invite]');
       const openBtn = card.querySelector('[data-open-invite]');
+
+      if (client?.accent) {
+        card.style.setProperty('--client-accent', client.accent);
+      }
 
       if (urlNode) urlNode.textContent = inviteUrl;
       if (openBtn) {
@@ -171,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <article class="review-card" data-id="${Number(review.id)}">
         <div class="review-top">
           <strong>${review.name || 'Anonim'}</strong>
-          <span class="review-meta">${starsHtml(review.rating)} · ${formatDate(review.date)}</span>
+          <span class="review-meta">${formatDate(review.date)}</span>
         </div>
         ${review.companyName ? `<p class="review-meta">${review.companyName}${review.companyRole ? ' · ' + review.companyRole : ''}</p>` : ''}
         <p class="review-message">${review.message || ''}</p>

@@ -993,20 +993,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch { return ''; }
   }
 
-  function starsHtml(n) {
-    return '★'.repeat(n) + '☆'.repeat(5 - n);
-  }
-
   function renderClientReviewCard(review) {
     const card = document.createElement('article');
     card.className = 'client-review-card';
     card.innerHTML = `
       <div class="client-review-card__top">
         <strong>${review.name || 'Anònim'}</strong>
-        <span class="review-stars" title="${review.rating} de 5">${starsHtml(review.rating)}</span>
+        <span class="client-review-card__date">${formatDate(review.date)}</span>
       </div>
       <p class="client-review-card__message">${review.message || ''}</p>
-      <p class="client-review-card__date">${formatDate(review.date)}</p>
     `;
     return card;
   }

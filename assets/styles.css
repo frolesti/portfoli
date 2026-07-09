@@ -2236,7 +2236,7 @@ a.browser-link:hover {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .client-review-card__top strong {
@@ -2252,7 +2252,7 @@ a.browser-link:hover {
 
 .client-review-card__date,
 .client-review-empty {
-  margin: 8px 0 0;
+  margin: 0;
   font-size: 0.72rem;
   color: var(--text-dim);
 }
