@@ -606,6 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Gizarte-bokaziodun software garapena',
       'footer.inici': 'Hasiera',
       'footer.contacte': 'Kontaktua',
+      'contact.book': 'Erreserbatu 30 minutuko bilera',
       'footer.newsletter': 'Buletina',
       'footer.privacy': 'Webgune honek Google Analytics erabiltzen du consentimentuz, esperientzia hobetzeko.',
     },
@@ -755,6 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Desenvolvemento de software con vocación social',
       'footer.inici': 'Inicio',
       'footer.contacte': 'Contacto',
+      'contact.book': 'Reserva unha reunión de 30 minutos',
       'footer.newsletter': 'Boletín',
       'footer.privacy': 'Esta páxina utiliza Google Analytics con consentimento para mellorar a experiencia.',
     }
