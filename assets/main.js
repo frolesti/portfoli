@@ -593,8 +593,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'aixeta.desc.short': 'Nire proiektuak gustuko badituzu, eman laguntza Aixetan. Tanta bakoitzak badu garrantzia!',
       // Contact
       'contact.title': 'Jarri harremanetan',
-      'contact.book': 'Aukeratu une bat',
-      'contact.meeting.title': 'Ahoz hitz egingo dugu?',
+      'contact.book': 'Antolatu bilera bat Calendly-rekin',
+      'contact.meeting.title': 'Bilera bat hitzartu nahi duzu?',
       'contact.meeting.desc': 'Eman diezaiogun ordu erdi zure ideiari.',
       'contact.desc': 'Ideia edo erronka digital bat duzu? Hitz egin dezagun nola aurrera eraman.',
       // Form
@@ -745,8 +745,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'aixeta.desc.short': 'Se che gustan os meus proxectos, dáme apoio na Aixeta. Cada gota conta!',
       // Contact
       'contact.title': 'Contacta comigo',
-      'contact.book': 'Atopa un momento',
-      'contact.meeting.title': 'Falámolo de viva voz?',
+      'contact.book': 'Axenda unha reunión con Calendly',
+      'contact.meeting.title': 'Queres concertar unha reunión?',
       'contact.meeting.desc': 'Dediquemos 30 minutos á túa idea.',
       'contact.desc': 'Tes unha idea ou un reto dixital? Falemos de como facelo avanzar.',
       // Form
