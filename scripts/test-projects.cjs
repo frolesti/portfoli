@@ -54,3 +54,20 @@ test('project scripts are valid JavaScript and are loaded in dependency order', 
     previous = position;
   }
 });
+
+test('public project content names the client without identifying the study', () => {
+  for (const file of ['index.html', 'assets/project-articles.js', 'assets/project-visuals.js']) {
+    assert.doesNotMatch(read(file), /orion/i);
+  }
+  assert.match(projects['projecte-odc'].lead, /Alta Health Services/);
+});
+
+test('project screenshots exist and include meaningful alternative text', () => {
+  assert.equal(projects['projecte-aparador'].images.length, 2);
+  for (const project of Object.values(projects)) {
+    for (const image of project.images || []) {
+      assert.ok(fs.existsSync(path.join(root, image.src)), image.src);
+      assert.ok(image.alt.length > 15);
+    }
+  }
+});

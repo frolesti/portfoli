@@ -3,7 +3,7 @@
     'projecte-extensions': {
       tag: 'Extensions de navegador',
       title: "Extensions de canvi d'idioma",
-      lead: 'En català, si us plau; Euskaraz, mesedez; i En galego, por favor: tres variants per prioritzar la llengua de navegació.',
+      lead: 'Obre els webs en català, euskera o gallec automàticament, quan hi ha una versió disponible en la teva llengua.',
       status: 'Extensions per a Chromium i Firefox; altres empaquetats disponibles al projecte.',
       features: [
         { title: 'Detecció', desc: 'Metadades alternate hreflang i regles específiques de webs multilingües.' },
@@ -18,7 +18,7 @@
     },
     'projecte-sepe': {
       tag: 'Automatització de consultes', title: 'Bot Cita SEPE',
-      lead: 'Eina web per configurar cerques de disponibilitat de cita prèvia i reduir les comprovacions manuals.',
+      lead: 'Consulta la disponibilitat de cita al SEPE sense haver de repetir la cerca manualment i rep avisos per correu.',
       status: 'Eina web dependent del servei de cita prèvia del SEPE.',
       features: [
         { title: 'Filtres', desc: 'Document, codi postal, tràmit i modalitat de cita.' },
@@ -33,7 +33,7 @@
     },
     'projecte-alerta': {
       tag: 'Dades públiques i habitatge', title: 'Alerta Desnona',
-      lead: 'Consulta ciutadana de publicacions del BOE relacionades amb subhastes i procediments d’habitatge, amb mapa i avisos.',
+      lead: 'Situa en un mapa les publicacions del BOE sobre subhastes i habitatge, amb filtres i avisos de novetats.',
       status: 'Projecte pilot amb integració mòbil Capacitor. Demo anterior no disponible en la revisió; codi públic consultable.',
       features: [
         { title: 'Mapa', desc: 'Leaflet amb agrupació de punts, filtres territorials i detall dels registres.' },
@@ -64,14 +64,14 @@
     },
     'projecte-odc': {
       tag: 'Plataforma clínica de codi obert', title: 'Open Data Capture',
-      lead: 'Adaptació d’Open Data Capture a l’estudi ORION, en col·laboració amb Alta Health Services.',
+      lead: 'Adaptem la recollida i el seguiment de dades clíniques a les necessitats d’Alta Health Services.',
       role: 'Adaptació sobre el projecte de Douglas Neuroinformatics Platform; no autoria de la plataforma original.',
       status: 'Col·laboració en curs; demo pública independent de l’entorn clínic.',
       features: [
         { title: 'Instruments', desc: 'Formularis i tasques interactives per a recollida de dades clíniques.' },
         { title: 'Administració', desc: 'Avaluacions presencials i assignacions remotes a través d’un gateway.' },
         { title: 'Explotació', desc: 'Visualització i exportació de dades sota demanda.' },
-        { title: 'ORION', desc: 'Adaptacions de formularis, validacions, seguiments i presentació de dades.' }
+        { title: 'Adaptació al client', desc: 'Formularis, validacions, seguiments i presentació de dades per a Alta Health Services.' }
       ],
       stack: ['TypeScript', 'React', 'Node.js', 'Docker Compose', 'WebAssembly', 'JWT', 'API REST'],
       architecture: ['Aplicació web, API i gateway per a assignacions remotes.', 'Construcció d’instruments al navegador amb WebAssembly i runtime d’instruments.', 'Projecte original sota llicència Apache-2.0.'],
@@ -81,7 +81,7 @@
     },
     'projecte-aesso': {
       tag: 'Calculadora web i connector WordPress', title: 'Calculadora de protecció solar per a AESSO',
-      lead: 'Càlcul del factor solar total g_tot segons EN ISO 52022-1, integrat a WordPress amb accés per a empreses associades.',
+      lead: 'Ajuda les empreses associades a AESSO a calcular la protecció solar d’un vidre i generar un informe del resultat.',
       status: 'Integrada al web d’AESSO amb control d’accés.',
       features: [
         { title: 'Càlcul', desc: 'Paràmetres del vidre i de la protecció solar i aplicació de les fórmules implementades.' },
@@ -112,7 +112,11 @@
     },
     'projecte-aparador': {
       tag: 'Plataforma fotogràfica', title: 'Aparador',
-      lead: 'Àlbums per codi, galeria, descàrregues originals i panell professional amb donatius opcionals.',
+      lead: 'Comparteix un àlbum amb un codi, deixa descarregar les fotos originals i rep donatius opcionals.',
+      images: [
+        { src: 'assets/img/projects/aparador-album-1.png', alt: 'Aparador: vista de la galeria d’un àlbum.' },
+        { src: 'assets/img/projects/aparador-album-2.png', alt: 'Aparador: segona captura de l’àlbum.' }
+      ],
       status: 'Versió pilot web en evolució.',
       features: [
         { title: 'Àlbums', desc: 'Compartició per codi d’accés, visor i descàrrega original.' },
@@ -130,7 +134,7 @@
     },
     'projecte-base-skills': {
       tag: 'Plantilla de desenvolupament assistit', title: 'Base Skills Repo',
-      lead: 'Organització del context de GitHub Copilot en instruccions, skills, prompts, agents i memòria.',
+      lead: 'Una base per treballar amb GitHub Copilot amb les regles, el context i els fluxos de cada projecte ben organitzats.',
       status: 'Repositori plantilla.',
       features: [
         { title: 'Context per capes', desc: 'Instruccions globals breus i regles per llenguatge o carpeta.' },
@@ -161,7 +165,7 @@
     },
     'projecte-cookie-guard': {
       tag: 'Privadesa · Extensió de navegador', title: 'CookieBlocker',
-      lead: 'Automatització del rebuig de cookies opcionals als avisos compatibles i revisió d’observacions locals.',
+      lead: 'Rebutja les cookies opcionals als avisos compatibles i gestiona les excepcions des del navegador.',
       status: 'Desenvolupament 0.1.0; anteriorment Cookie Guard.',
       features: [
         { title: 'Rebuig', desc: 'AutoConsent amb regles DOM, fluxos de categories opcionals i alternativa textual conservadora.' },

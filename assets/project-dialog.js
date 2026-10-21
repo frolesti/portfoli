@@ -18,10 +18,10 @@
     return node;
   }
 
-  function section(title) {
-    const node = element('section');
+  function section(parent, title, className) {
+    const node = element('section', null, className);
     node.appendChild(element('h3', title));
-    content.appendChild(node);
+    parent.appendChild(node);
     return node;
   }
 
@@ -36,69 +36,134 @@
     content.appendChild(title);
     content.appendChild(element('p', item.lead, 'project-dialog-lead'));
 
-    const summary = element('dl', null, 'project-dialog-summary');
-    for (const [label, value] of [['Estat', item.status], ['Participació', item.role], ['Revisió de la fitxa', item.reviewed]]) {
-      if (!value) continue;
-      const row = element('div');
-      row.append(element('dt', label), element('dd', value));
-      summary.appendChild(row);
-    }
-    content.appendChild(summary);
-
-    if (item.articleHtml) {
-      const body = element('div', null, 'project-dialog-article');
-      body.innerHTML = item.articleHtml;
-      content.appendChild(body);
-    }
-
-    if (item.features?.length) {
-      const features = section('Funcionalitats');
-      const list = element('dl', null, 'project-dialog-features');
-      item.features.forEach((feature) => {
-        list.append(element('dt', feature.title), element('dd', feature.desc));
+    const tabs = element('div', null, 'project-dialog-tabs');
+    tabs.setAttribute('role', 'tablist');
+    tabs.setAttribute('aria-label', 'Contingut del projecte');
+    const panels = ['Projecte', 'Detalls tècnics'].map((label, index) => {
+      const tab = element('button', label);
+      tab.type = 'button';
+      tab.id = 'projectDialogTab' + index;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', 'projectDialogPanel' + index);
+      tabs.appendChild(tab);
+      const panel = element('div', null, 'project-dialog-panel');
+      panel.id = 'projectDialogPanel' + index;
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tab.id);
+      panel.tabIndex = 0;
+      return panel;
+    });
+    const selectTab = (index) => {
+      Array.from(tabs.children).forEach((tab, position) => {
+        tab.setAttribute('aria-selected', String(position === index));
+        tab.tabIndex = position === index ? 0 : -1;
+        panels[position].hidden = position !== index;
       });
-      features.appendChild(list);
-    }
+      dialog.scrollTop = 0;
+    };
+    Array.from(tabs.children).forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(index));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : 1 - index;
+        selectTab(next);
+        tabs.children[next].focus({ preventScroll: true });
+      });
+    });
+    content.append(tabs, ...panels);
+    selectTab(0);
+    const [overview, technical] = panels;
+    overview.classList.add('project-dialog-overview');
 
-    if (item.stack?.length) {
-      const stack = section('Tecnologies i integracions');
-      const list = element('ul', null, 'project-tech');
-      item.stack.forEach((tech) => list.appendChild(element('li', tech)));
-      stack.appendChild(list);
-    }
-
-    for (const [title, values] of [['Arquitectura i desplegament', item.architecture], ['Dades i privacitat', item.privacy], ['Abast i limitacions', item.limits]]) {
-      if (!values?.length) continue;
-      const list = element('ul', null, 'project-dialog-list');
-      values.forEach((value) => list.appendChild(element('li', value)));
-      section(title).appendChild(list);
-    }
-
+    const media = element('figure', null, 'project-dialog-media');
     if (item.images?.length) {
-      const gallery = section('Captures del projecte');
-      item.images.forEach((src) => {
-        const image = element('img');
-        image.src = src;
-        image.alt = item.title;
-        image.loading = 'lazy';
-        gallery.appendChild(image);
+      const image = element('img', null, 'project-dialog-screenshot');
+      image.src = item.images[0].src;
+      image.alt = item.images[0].alt;
+      image.decoding = 'async';
+      const caption = element('figcaption', item.images[0].alt);
+      const thumbnails = element('div', null, 'project-dialog-thumbnails');
+      thumbnails.setAttribute('role', 'group');
+      thumbnails.setAttribute('aria-label', 'Captures del projecte');
+      item.images.forEach((capture, index) => {
+        const button = element('button');
+        button.type = 'button';
+        button.setAttribute('aria-label', capture.alt);
+        button.setAttribute('aria-pressed', String(index === 0));
+        const thumbnail = element('img');
+        thumbnail.src = capture.src;
+        thumbnail.alt = '';
+        button.appendChild(thumbnail);
+        button.addEventListener('click', () => {
+          image.src = capture.src;
+          image.alt = capture.alt;
+          caption.textContent = capture.alt;
+          Array.from(thumbnails.children).forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+        });
+        thumbnails.appendChild(button);
       });
+      media.append(image, caption, thumbnails);
+    } else {
+      const source = document.getElementById(projectId)?.querySelector('.project-visual');
+      if (source) {
+        const visual = source.cloneNode(true);
+        visual.classList.remove('is-clickable');
+        for (const node of [visual, ...visual.querySelectorAll('*')]) {
+          for (const attribute of ['id', 'tabindex', 'role', 'aria-controls', 'aria-haspopup', 'title', 'data-i18n']) node.removeAttribute(attribute);
+        }
+        visual.inert = true;
+        visual.setAttribute('aria-hidden', 'true');
+        media.append(visual, element('figcaption', projectId === 'projecte-odc' ? 'Maqueta il·lustrativa amb dades simulades.' : 'Representació il·lustrativa del projecte.'));
+      }
     }
+    overview.appendChild(media);
+
+    const context = element('div', null, 'project-dialog-context');
+    context.append(element('span', 'Estat del projecte'), element('p', item.status));
+    overview.appendChild(context);
 
     if (item.links?.length) {
-      const links = section('Enllaços del projecte');
-      const list = element('ul', null, 'project-dialog-list');
-      item.links.forEach((link) => {
-        const anchor = element('a', link.label);
+      const links = element('nav', null, 'project-dialog-links');
+      links.setAttribute('aria-label', 'Enllaços del projecte');
+      item.links.forEach((link, index) => {
+        const anchor = element('a', link.label, 'btn btn-small ' + (index === 0 ? 'btn-primary' : 'btn-outline'));
         anchor.href = link.url;
         anchor.target = '_blank';
         anchor.rel = 'noopener noreferrer';
-        const row = element('li');
-        row.appendChild(anchor);
-        list.appendChild(row);
+        links.appendChild(anchor);
       });
-      links.appendChild(list);
+      overview.appendChild(links);
     }
+
+    const features = section(overview, 'Què permet fer?', 'project-dialog-capabilities');
+    const featureGrid = element('div', null, 'project-dialog-features');
+    item.features.forEach((feature, index) => {
+      const featureBlock = element('div');
+      featureBlock.append(element('span', String(index + 1).padStart(2, '0'), 'project-dialog-number'), element('h4', feature.title), element('p', feature.desc));
+      featureGrid.appendChild(featureBlock);
+    });
+    features.appendChild(featureGrid);
+    if (item.role) {
+      const contribution = section(overview, 'La meva participació', 'project-dialog-contribution');
+      contribution.appendChild(element('p', item.role));
+    }
+
+    const stack = section(technical, 'Tecnologies i integracions', 'project-dialog-stack');
+    const technologies = element('ul', null, 'project-tech');
+    item.stack.forEach((tech) => technologies.appendChild(element('li', tech)));
+    stack.appendChild(technologies);
+
+    for (const [heading, values] of [['Arquitectura i desplegament', item.architecture], ['Dades i privacitat', item.privacy], ['Abast i limitacions', item.limits]]) {
+      const details = element('details', null, 'project-dialog-details');
+      details.open = heading === 'Arquitectura i desplegament';
+      details.appendChild(element('summary', heading));
+      const body = element('div', null, 'project-dialog-facts');
+      values.forEach((value) => body.appendChild(element('p', value)));
+      details.appendChild(body);
+      technical.appendChild(details);
+    }
+    technical.appendChild(element('p', 'Fitxa revisada el ' + item.reviewed, 'project-dialog-reviewed'));
 
     previousOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';

@@ -3144,13 +3144,13 @@ body[data-profile="professional"] .nl-popup {
 }
 
 .project-dialog {
-  width: min(920px, calc(100% - 32px));
+  width: min(1040px, calc(100% - 32px));
   max-height: calc(100dvh - 32px);
   margin: auto;
   padding: 0;
   color: var(--text);
   background: var(--bg-card);
-  border: 1px solid var(--text-dim);
+  border: 1px solid var(--surface);
   border-radius: 8px;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
@@ -3163,14 +3163,14 @@ body[data-profile="professional"] .nl-popup {
 .project-dialog-header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 12px 24px;
   background: var(--bg-card);
-  border-bottom: 1px solid var(--text-dim);
+  border-bottom: 1px solid var(--surface);
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -3197,7 +3197,7 @@ body[data-profile="professional"] .nl-popup {
 }
 
 .project-dialog-content {
-  padding: 28px 32px 40px;
+  padding: 28px 40px 40px;
   overflow-wrap: anywhere;
 }
 
@@ -3213,66 +3213,226 @@ body[data-profile="professional"] .nl-popup {
   font-size: 2rem;
   line-height: 1.2;
   letter-spacing: 0;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 .project-dialog-lead {
   color: var(--text-muted);
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 70ch;
+  margin-bottom: 24px;
 }
 
-.project-dialog-summary {
-  display: grid;
-  gap: 16px;
-  padding: 24px 0;
-  margin: 24px 0;
-  border-top: 1px solid var(--text-dim);
-  border-bottom: 1px solid var(--text-dim);
+.project-dialog-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--surface);
+  margin-bottom: 24px;
 }
 
-.project-dialog-summary > div {
-  display: grid;
-  grid-template-columns: 160px minmax(0, 1fr);
-  gap: 8px 20px;
-}
-
-.project-dialog dt {
-  font-weight: 600;
-}
-
-.project-dialog dd {
-  margin: 0;
+.project-dialog-tabs button {
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: none;
   color: var(--text-muted);
-  line-height: 1.7;
+  font: 600 0.95rem var(--font-body);
+  cursor: pointer;
 }
+
+.project-dialog-tabs [aria-selected="true"] {
+  color: var(--accent-1);
+  border-bottom-color: var(--accent-1);
+}
+
+.project-dialog-panel[hidden] { display: none; }
+
+.project-dialog-media {
+  margin: 0;
+  background: var(--bg);
+}
+
+.project-dialog-media > .project-visual {
+  min-height: 340px;
+  padding: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.project-dialog-media .browser-mockup,
+.project-dialog-media .terminal-mockup,
+.project-dialog-media .map-mockup,
+.project-dialog-media .streaming-mockup {
+  width: 100%;
+  max-width: 520px;
+}
+
+.project-dialog-media .ext-links-grid { max-width: 340px; }
+.project-dialog-media .project-visual-overlay { display: none; }
+.project-dialog-media .term-line { opacity: 1; animation: none; }
+
+.project-dialog-media figcaption {
+  padding: 10px 16px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.project-dialog-screenshot {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+}
+
+.project-dialog-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.project-dialog-thumbnails button {
+  width: 80px;
+  height: 56px;
+  padding: 3px;
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.project-dialog-thumbnails [aria-pressed="true"] { border-color: var(--accent-1); }
+.project-dialog-thumbnails img { width: 100%; height: 100%; object-fit: cover; }
+
+.project-dialog-context {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 8px 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--surface);
+  font-size: 0.85rem;
+}
+
+.project-dialog-context > span { font-weight: 600; }
+.project-dialog-context p { margin: 0; color: var(--text-muted); }
+
+.project-dialog-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 32px;
+}
+
+.project-dialog .project-dialog-links a { text-decoration: none; }
+.project-dialog .project-dialog-links .btn-primary { color: #fff; }
 
 .project-dialog h3 {
-  margin: 28px 0 12px;
-  font-size: 1.15rem;
+  margin: 28px 0 20px;
+  font-size: 1.2rem;
   letter-spacing: 0;
 }
 
+.project-dialog-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 36px;
+}
+
+.project-dialog-features > div {
+  padding-left: 16px;
+  border-left: 2px solid var(--surface);
+}
+
+.project-dialog-number {
+  font: 500 0.75rem var(--font-mono);
+  color: var(--accent-1);
+}
+
 .project-dialog h4 {
-  margin: 20px 0 10px;
+  margin: 6px 0;
+  font-size: 1rem;
 }
 
-.project-dialog p,
-.project-dialog li {
-  line-height: 1.75;
+.project-dialog-features p,
+.project-dialog-contribution p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-.project-dialog-features dd {
-  margin: 4px 0 16px;
+.project-dialog-contribution {
+  margin-top: 32px;
+  padding-top: 4px;
+  border-top: 1px solid var(--surface);
 }
 
-.project-dialog-list,
-.project-dialog-article ul,
-.project-dialog-article ol {
-  padding-left: 22px;
+.project-dialog-stack { margin: 0 0 32px; }
+.project-dialog-stack h3 { margin-top: 0; }
+.project-dialog-stack .project-tech { margin-bottom: 0; gap: 8px; }
+.project-dialog-stack .project-tech li { border-radius: 4px; }
+
+.project-dialog-details { border-top: 1px solid var(--surface); }
+.project-dialog-details:last-of-type { border-bottom: 1px solid var(--surface); }
+
+.project-dialog-details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.project-dialog-list li + li {
-  margin-top: 8px;
+.project-dialog-details summary::-webkit-details-marker { display: none; }
+.project-dialog-details summary::after { content: '+'; font-size: 1.5rem; font-weight: 400; }
+.project-dialog-details[open] summary::after { transform: rotate(45deg); }
+
+.project-dialog-facts {
+  display: grid;
+  gap: 16px;
+  padding: 0 0 24px;
+  max-width: 72ch;
+}
+
+.project-dialog-facts p {
+  border-left: 2px solid var(--surface);
+  margin: 0;
+  padding-left: 16px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.project-dialog-reviewed {
+  margin: 24px 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 1000px) {
+  .project-dialog-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+  .project-dialog-overview > :not(.project-dialog-media) { grid-column: 1; }
+  .project-dialog-overview > .project-dialog-media {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    position: sticky;
+    top: 88px;
+  }
+  .project-dialog-overview .project-dialog-features { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .project-dialog-overview .project-dialog-capabilities h3 { margin-top: 0; }
+  .project-dialog-overview .project-dialog-media > .project-visual { padding: 24px 16px; }
 }
 
 .project-dialog a {
@@ -3280,16 +3440,23 @@ body[data-profile="professional"] .nl-popup {
   text-underline-offset: 3px;
 }
 
-.project-dialog img {
-  width: 100%;
-  height: auto;
+@media (max-width: 999px) {
+  .project-dialog-media .odc-workspace__body { grid-template-columns: minmax(0, 1fr); }
+  .project-dialog-media .odc-workspace__side { display: none; }
 }
 
 @media (max-width: 600px) {
-  .project-dialog-content { padding: 24px 20px 32px; }
-  .project-dialog-header { padding: 8px 16px; }
+  .project-dialog { width: calc(100% - 16px); max-height: calc(100dvh - 16px); }
+  .project-dialog-content { padding: 20px 20px 28px; }
+  .project-dialog-header { padding: 4px 16px; }
   .project-dialog h2 { font-size: 1.6rem; }
-  .project-dialog-summary > div { grid-template-columns: minmax(0, 1fr); }
+  .project-dialog-lead { font-size: 0.95rem; }
+  .project-dialog-tabs { gap: 20px; }
+  .project-dialog-media > .project-visual { min-height: 240px; padding: 20px 12px; }
+  .project-dialog-context { grid-template-columns: minmax(0, 1fr); }
+  .project-dialog-features { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .project-dialog-media .odc-workspace__main { padding: 14px; }
+  .project-dialog-media .terminal-content { padding: 20px 12px; }
 }
 
 /* ---------- PRODUCT ARTICLE PAGE ---------- */

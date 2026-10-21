@@ -193,13 +193,13 @@
       cls: 'pv-odc',
       html: `
         <div class="browser-mockup odc-workspace">
-          <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Open Data Capture · ORION</span></div>
+          <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Open Data Capture</span></div>
           <div class="odc-workspace__body">
             <aside class="odc-workspace__side"><span class="is-current">Instruments</span><span>Participants</span><span>Follow-ups</span><span>Exports</span></aside>
             <div class="odc-workspace__main">
               <div class="odc-workspace__heading"><span>Study workflow</span><span class="odc-workspace__badge">Alta Health Services</span></div>
               <div class="odc-workspace__progress"><span></span><span></span><span></span><span></span></div>
-              <div class="odc-workspace__field"><b>Participant code</b><span>OR-024</span></div>
+              <div class="odc-workspace__field"><b>Participant code</b><span>DEMO-024</span></div>
               <div class="odc-workspace__field"><b>Follow-up window</b><span>Validated</span></div>
               <div class="odc-workspace__field odc-workspace__field--select"><b>Assessment status</b><span>In progress <i></i></span></div>
               <div class="odc-workspace__actions"><span>Save draft</span><strong>Continue</strong></div>
