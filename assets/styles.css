@@ -2318,6 +2318,52 @@ a.browser-link:hover {
   margin: 0 auto;
 }
 
+.contact-meeting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--text-dim);
+}
+
+.contact-meeting h3 {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.contact-meeting p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-meeting-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  max-width: 100%;
+  color: var(--accent-1);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.contact-meeting-link:hover {
+  color: var(--text);
+}
+
+.contact-meeting-link:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 5px;
+}
+
 .inline-link {
   color: var(--accent-1);
   text-decoration: none;

@@ -593,7 +593,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'aixeta.desc.short': 'Nire proiektuak gustuko badituzu, eman laguntza Aixetan. Tanta bakoitzak badu garrantzia!',
       // Contact
       'contact.title': 'Jarri harremanetan',
-      'contact.desc': 'Proiekturen bat buruan duzu? Ideia baten inguruan hitz egin nahi duzu? Bete formularioa eta ahalik eta lasterren erantzungo dizut.',
+      'contact.book': 'Aukeratu une bat',
+      'contact.meeting.title': 'Ahoz hitz egingo dugu?',
+      'contact.meeting.desc': 'Eman diezaiogun ordu erdi zure ideiari.',
+      'contact.desc': 'Ideia edo erronka digital bat duzu? Hitz egin dezagun nola aurrera eraman.',
       // Form
       'form.name': 'Izena',
       'form.email': 'Posta elektronikoa',
@@ -606,7 +609,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Gizarte-bokaziodun software garapena',
       'footer.inici': 'Hasiera',
       'footer.contacte': 'Kontaktua',
-      'contact.book': 'Erreserbatu 30 minutuko bilera',
       'footer.newsletter': 'Buletina',
       'footer.privacy': 'Webgune honek Google Analytics erabiltzen du consentimentuz, esperientzia hobetzeko.',
     },
@@ -743,7 +745,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'aixeta.desc.short': 'Se che gustan os meus proxectos, dáme apoio na Aixeta. Cada gota conta!',
       // Contact
       'contact.title': 'Contacta comigo',
-      'contact.desc': 'Tes un proxecto en mente? Queres falar sobre unha idea? Enche o formulario e respondereiche canto antes.',
+      'contact.book': 'Atopa un momento',
+      'contact.meeting.title': 'Falámolo de viva voz?',
+      'contact.meeting.desc': 'Dediquemos 30 minutos á túa idea.',
+      'contact.desc': 'Tes unha idea ou un reto dixital? Falemos de como facelo avanzar.',
       // Form
       'form.name': 'Nome',
       'form.email': 'Correo electrónico',
@@ -756,7 +761,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'footer.copy': 'Desenvolvemento de software con vocación social',
       'footer.inici': 'Inicio',
       'footer.contacte': 'Contacto',
-      'contact.book': 'Reserva unha reunión de 30 minutos',
       'footer.newsletter': 'Boletín',
       'footer.privacy': 'Esta páxina utiliza Google Analytics con consentimento para mellorar a experiencia.',
     }
