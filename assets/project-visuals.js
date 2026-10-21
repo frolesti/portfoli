@@ -1,6 +1,4 @@
 // project-visuals.js — ÚNICA FONT DE VERITAT per als mockups CSS dels projectes.
-// Tant index.html (via main.js) com producte.html (via product-page.js)
-// llegeixen d'aquí. Cap visual no s'escriu a cap altra banda.
 (function (global) {
   global.PROJECT_VISUALS = {
 
@@ -125,28 +123,12 @@
             </div>
             <div class="trobar-match">
               <p class="trobar-match-label" data-i18n="proj.bars.match">Proper partit · ds., 4 d'abr., 21:00</p>
-              <div class="trobar-match-teams">
-                <span class="trobar-team">ATM</span>
-                <span class="trobar-vs">vs</span>
-                <span class="trobar-team trobar-barca">FCB</span>
-              </div>
+              <div class="trobar-match-teams"><span class="trobar-team">ATM</span><span class="trobar-vs">vs</span><span class="trobar-team trobar-barca">FCB</span></div>
             </div>
             <div class="trobar-map">
-              <div class="trobar-pin" style="top:18%;left:42%">📍</div>
-              <div class="trobar-pin" style="top:30%;left:55%">📍</div>
-              <div class="trobar-pin" style="top:25%;left:38%">📍</div>
-              <div class="trobar-pin" style="top:45%;left:30%">📍</div>
-              <div class="trobar-pin" style="top:40%;left:62%">📍</div>
-              <div class="trobar-pin" style="top:55%;left:48%">📍</div>
-              <div class="trobar-pin" style="top:65%;left:25%">📍</div>
-              <div class="trobar-pin" style="top:35%;left:70%">📍</div>
-              <div class="trobar-dot"></div>
+              <div class="trobar-pin" style="top:18%;left:42%">📍</div><div class="trobar-pin" style="top:30%;left:55%">📍</div><div class="trobar-pin" style="top:25%;left:38%">📍</div><div class="trobar-pin" style="top:45%;left:30%">📍</div><div class="trobar-pin" style="top:40%;left:62%">📍</div><div class="trobar-pin" style="top:55%;left:48%">📍</div><div class="trobar-pin" style="top:65%;left:25%">📍</div><div class="trobar-pin" style="top:35%;left:70%">📍</div><div class="trobar-dot"></div>
             </div>
-            <div class="trobar-nav">
-              <div class="trobar-nav-item">📅<span data-i18n="proj.bars.nav1">Partits</span></div>
-              <div class="trobar-nav-item active"><span class="trobar-nav-pin">📍</span><span data-i18n="proj.bars.nav2">Mapa</span></div>
-              <div class="trobar-nav-item">👤<span data-i18n="proj.bars.nav3">Perfil</span></div>
-            </div>
+            <div class="trobar-nav"><div class="trobar-nav-item">📅<span data-i18n="proj.bars.nav1">Partits</span></div><div class="trobar-nav-item active"><span class="trobar-nav-pin">📍</span><span data-i18n="proj.bars.nav2">Mapa</span></div><div class="trobar-nav-item">👤<span data-i18n="proj.bars.nav3">Perfil</span></div></div>
           </div>
         </div>`
     },
@@ -210,26 +192,56 @@
     'projecte-odc': {
       cls: 'pv-odc',
       html: `
-        <div class="odc-mockup">
-          <div class="browser-bar">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <div class="odc-content">
-            <div class="odc-sidebar">
-              <div class="odc-nav-item active">📋 Instruments</div>
-              <div class="odc-nav-item">👥 Subjects</div>
-              <div class="odc-nav-item">📊 Data</div>
-              <div class="odc-nav-item">⚙ Settings</div>
-            </div>
-            <div class="odc-main">
-              <div class="odc-form-field"></div>
-              <div class="odc-form-field short"></div>
-              <div class="odc-form-field"></div>
-              <div class="odc-form-btn"></div>
+        <div class="browser-mockup odc-workspace">
+          <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Open Data Capture · ORION</span></div>
+          <div class="odc-workspace__body">
+            <aside class="odc-workspace__side"><span class="is-current">Instruments</span><span>Participants</span><span>Follow-ups</span><span>Exports</span></aside>
+            <div class="odc-workspace__main">
+              <div class="odc-workspace__heading"><span>Study workflow</span><span class="odc-workspace__badge">Alta Health Services</span></div>
+              <div class="odc-workspace__progress"><span></span><span></span><span></span><span></span></div>
+              <div class="odc-workspace__field"><b>Participant code</b><span>OR-024</span></div>
+              <div class="odc-workspace__field"><b>Follow-up window</b><span>Validated</span></div>
+              <div class="odc-workspace__field odc-workspace__field--select"><b>Assessment status</b><span>In progress <i></i></span></div>
+              <div class="odc-workspace__actions"><span>Save draft</span><strong>Continue</strong></div>
             </div>
           </div>
+        </div>`
+    },
+
+    'projecte-cookie-guard': {
+      cls: 'pv-cookie-guard',
+      html: `
+        <div class="browser-mockup cookie-guard-mockup">
+          <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Extensió de navegador</span></div>
+          <div class="cookie-guard__panel">
+            <div class="cookie-guard__head"><span class="cookie-guard__mark">C</span><span><b>CookieBlocker</b><small>Rebuig de cookies</small></span><i class="cookie-guard__toggle"></i></div>
+            <div class="cookie-guard__site"><small>EXEMPLE DE WEB</small><strong>exemple.cat</strong><span>Control de consentiment</span></div>
+            <div class="cookie-guard__row"><span>Rebuig compatible</span><b>Actiu</b></div>
+            <div class="cookie-guard__row"><span>Observacions locals</span><b>Opcional</b></div>
+            <div class="cookie-guard__footer"><span>Les dades no surten del navegador</span><span>Exporta registre ↓</span></div>
+          </div>
+        </div>`
+    },
+
+    'projecte-spirit': {
+      cls: 'pv-spirit',
+      html: `
+        <div class="spirit-visual" aria-label="Diagrama conceptual del smartphone modular SPIRIT">
+          <div class="spirit-visual__top"><span>PROJECTE COMUNITARI</span><span>RPI CM5</span></div>
+          <div class="spirit-device">
+            <div class="spirit-device__screen"><div class="spirit-screen__camera"></div><div class="spirit-screen__time">09:41</div><div class="spirit-screen__date">Obert · modular · reparable</div><div class="spirit-screen__apps"><i></i><i></i><i></i><i></i></div></div>
+            <div class="spirit-device__side spirit-device__side--left"></div><div class="spirit-device__side spirit-device__side--right"></div>
+          </div>
+          <div class="spirit-visual__labels"><span><i></i>Privadesa</span><span><i></i>Maquinari obert</span><span><i></i>Reparabilitat</span></div>
+        </div>`
+    },
+
+    'projecte-ai-blocker': {
+      cls: 'pv-ai-blocker',
+      html: `
+        <div class="ai-blocker-visual" aria-label="Representació conceptual d'AI-Blocker en desenvolupament">
+          <div class="ai-blocker-visual__bar"><span class="ai-blocker-visual__brand"><i></i> AI-BLOCKER</span><span class="ai-blocker-visual__status">EN DESENVOLUPAMENT</span></div>
+          <div class="ai-blocker-visual__body"><span class="ai-blocker-visual__eyebrow">CAPA DE CONTROL</span><strong>Tu decideixes<br>què deixes passar.</strong><div class="ai-blocker-visual__rule"><span>Google</span><b>Mode web</b></div><div class="ai-blocker-visual__rule"><span>Classificador local</span><b>Experimental</b></div><small>Representació conceptual · no és una captura del producte</small></div>
         </div>`
     },
 

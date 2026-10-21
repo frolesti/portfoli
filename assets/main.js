@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROFILE_LABELS = { social: 'Social', professional: 'Professional' };
   const profileSwitchBtn = document.getElementById('profileSwitchBtn');
   const profileSwitchBtnMobile = document.getElementById('profileSwitchBtnMobile');
-  const PROJECT_RETURN_KEY = 'portfolio-return-state';
 
   const profileCopyTargets = {
     heroTag: document.getElementById('heroTag'),
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     professional: {
       heroTag: 'Desenvolupador freelance · SaaS · Producte digital',
       heroDescription: "Ajudo a empreses i entitats a convertir necessitats de negoci en <strong>productes digitals pràctics</strong>. Dissenyo i desenvolupo solucions SaaS (Software as a Service), automatitzacions i eines internes personalitzades enfocades a <strong>l'anàlisi de dades, l'optimització de processos i la millora de l'experiència d'usuari</strong>.",
-      projectsSubtitle: 'Aquests són els projectes orientats a negoci: es tracta de productes validats, que ja estan en producció per clients reals i que testifiquen la nostra implicació i la nostra manera de fer.',
+      projectsSubtitle: 'Projectes orientats a negoci: eines per a clients, col·laboracions i productes en desenvolupament. Cada fitxa en detalla l’estat i l’abast.',
       newsletterTitle: 'Butlletí mensual',
       newsletterDesc: 'Rep cada mes les novetats dels meus projectes.',
       aboutTitle: 'Producte digital amb impacte real en el negoci',
@@ -132,18 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function saveProjectReturnState(projectId) {
-    try {
-      const state = {
-        projectId,
-        scrollY: window.scrollY,
-        profile: getActiveProfile(),
-        ts: Date.now(),
-      };
-      sessionStorage.setItem(PROJECT_RETURN_KEY, JSON.stringify(state));
-    } catch {
-      // ignore storage failures
-    }
+  function hydrateProjectVisuals() {
+    const visuals = window.PROJECT_VISUALS;
+    if (!visuals) return;
+
+    Object.entries(visuals).forEach(([projectId, visual]) => {
+      const slot = document.querySelector(`#${projectId} .project-visual`);
+      if (!slot || slot.childElementCount) return;
+      slot.classList.add(...visual.cls.split(/\s+/).filter(Boolean));
+      slot.innerHTML = visual.html;
+    });
   }
 
   function makeProjectVisualsClickable() {
@@ -153,19 +150,22 @@ document.addEventListener('DOMContentLoaded', () => {
     visuals.forEach((visual) => {
       const article = visual.closest('.project-detail[id]');
       const projectId = article?.id;
-      if (!projectId) return;
+      if (!projectId || !window.PROJECT_ARTICLES?.[projectId]) return;
       if (!visual) return;
       if (visual.classList.contains('is-clickable')) return;
 
       visual.classList.add('is-clickable');
-      visual.setAttribute('role', 'link');
-      visual.setAttribute('tabindex', '0');
-      const url = 'producte.html?project=' + encodeURIComponent(projectId);
-      visual.setAttribute('aria-label', "Veure article complet del projecte");
+      visual.title = 'Fitxa tècnica: ' + window.PROJECT_ARTICLES[projectId].title;
+      if (!visual.querySelector('a, button, [tabindex], .lang-switcher-demo')) {
+        visual.setAttribute('role', 'button');
+        visual.setAttribute('tabindex', '0');
+        visual.setAttribute('aria-haspopup', 'dialog');
+        visual.setAttribute('aria-controls', 'projectDialog');
+        visual.setAttribute('aria-label', visual.title);
+      }
 
       const go = () => {
-        saveProjectReturnState(projectId);
-        window.location.href = url;
+        window.openProjectDialog(projectId);
       };
 
       visual.addEventListener('click', (ev) => {
@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       visual.addEventListener('keydown', (ev) => {
+        if (ev.target !== visual) return;
         if (ev.key === 'Enter' || ev.key === ' ') {
           ev.preventDefault();
           go();
@@ -185,37 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function restoreProjectReturnStateIfNeeded() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('restore') !== '1') return;
-
-    try {
-      const raw = sessionStorage.getItem(PROJECT_RETURN_KEY);
-      if (!raw) return;
-
-      const state = JSON.parse(raw);
-      if (!state || typeof state.scrollY !== 'number') return;
-
-      if (state.profile === 'social' || state.profile === 'professional') {
-        applyProfile(state.profile);
-      }
-
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: state.scrollY, left: 0, behavior: 'auto' });
-
-        const target = state.projectId ? document.getElementById(state.projectId) : null;
-        if (target) {
-          target.classList.add('is-return-target');
-          setTimeout(() => target.classList.remove('is-return-target'), 1800);
-        }
-      });
-    } catch {
-      // ignore malformed payload
-    }
-  }
-
+  hydrateProjectVisuals();
   makeProjectVisualsClickable();
-  restoreProjectReturnStateIfNeeded();
 
   // ---------- AIXETA DONATION POPUP ----------
   (function initAixetaPopup() {
@@ -495,29 +467,29 @@ document.addEventListener('DOMContentLoaded', () => {
       // Project: Extensions
       'proj.ext.title': 'Hizkuntza aldaketarako luzapenak',
       'proj.ext.desc1': 'Hiru luzapen — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> eta <strong>En galego, por favor</strong> — nabigatzailea bisitatzen ari garen web orriaren hizkuntza gutxitu hauetako bat duen bertsiora birbideratzeko aukera ematen dutenak klik bakar batez. Katalanez, euskaraz eta galegoz hitz egiten dutenentzat pentsatua, Interneten beren hizkuntzan erabat nabigatu nahi dutenentzat.',
-      'proj.ext.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (eta beste Chromium nabigatzaileetan), <strong>Firefox</strong> eta <strong>Edge</strong> nabigatzaileetan erabilgarri. Laster <strong>Safari</strong> eta nabigatzaile gehiagotan.',
+      'proj.ext.note': 'Chromium eta Firefox bertsioak, hizkuntza-aldaeraren arabera. Kontsultatu instalazio-estekak; beste nabigatzaileentzako paketeek ez dute dendan argitaratzea ziurtatzen.',
       // Project: Inspecciona
       'proj.inspecciona.title': 'Inspecciona — katalanerako zuzentzailea',
-      'proj.inspecciona.desc1': 'Luzapen bat <strong>katalanez</strong> idatzitako edozein testu eremu zuzentzeko nabigatzailean. <strong>Softcatalà</strong>ren APIa erabiltzen du akats ortografikoak, gramatikalak eta tipografikoak detektatzeko, eta sinonimoen bilaketa eta autoosatzea ere eskaintzen ditu.',
-      'proj.inspecciona.note': '<strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> eta beste Chromium nabigatzaileetan eskuragarri. Laster <strong>Firefox</strong>, <strong>Edge</strong> eta <strong>Safari</strong> nabigatzaileetan.',
+      'proj.inspecciona.desc1': 'Katalanezko ortografia, gramatika eta tipografia berrikusten ditu idatzi ahala, zerbitzu propioekin eta Softcatalà eta LanguageTool baliabideekin. Sinonimoak, definizioak eta autoosatzea eskaintzen ditu. Testua zuzenketa-zerbitzura bidaltzen da.',
+      'proj.inspecciona.note': 'Chrome, Brave, Ecosia eta beste Chromium nabigatzaileetarako, berrikuspen-aukerak eta hizkuntza-aldaerak konfiguratuta. Beste paketeek ez dute dendetan argitaratzea ziurtatzen.',
       // Project: SEPE
       'proj.sepe.desc': 'Bot batek <strong>Estatuko Enplegu Zerbitzu Publikoarekin (SEPE)</strong> kudeaketa aspergarrienak automatizatzen ditu. Burokrazia digital opaku eta motel batean nabigatu behar duten milaka pertsonen frustrazioak sortua. Tresna honek prozesuak errazten ditu eta denbora eta buruhausteak aurrezten ditu.',
       'proj.sepe.btn': 'Ikusi proiektua',
       'proj.sepe.t1': 'Saioa hasitzen...',
       'proj.sepe.t2': 'Hitzordu erabilgarriak kontsultatzen...',
-      'proj.sepe.t3': 'Hitzordua erreservatua: 2026/03/24, 10:30',
+      'proj.sepe.t3': 'Adibidea: hitzordu erabilgarriak detektatu dira',
       // Project: troBar
-      'proj.bars.desc': '<strong>troBar</strong>-ek laguntzen dizu <strong>FC Barcelona</strong>ren partidak ikusteko tabernak aurkitzen zure inguruan, non bizi zaren berdin. Barçari jarraitzea hobe delako laguntzarekin, giro onarekin eta garagardo on batekin. Zuzeneko partiduen informazioa, mapa interaktiboa eta kokapenaren araberako iragazkiak biltzen ditu.',
+      'proj.bars.desc': '<strong>troBar</strong> FC Barcelonaren partidak ikusteko tabernak aurkitzeko garatzen ari den aplikazioa da, partiduen informazioarekin, maparekin eta kokapen-iragazkiekin.',
       'proj.bars.btn': 'Landing page',
       'proj.bars.search': 'Non ikusi nahi duzu partida?',
-      'proj.bars.match': 'Hurrengo partida · lr., apirilak 4, 21:00',
+      'proj.bars.match': 'Partidaren adibidea',
       'proj.bars.nav1': 'Partidak',
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Profila',
       // Project: Aparador
       'proj.aparador.desc': '<strong>Aparador</strong> web plataforma bat da, <strong>argazkilariek</strong> beren albumak beren <strong>ikusleekin</strong> sarbide-kodeen bidez partekatu ahal izateko sortua. Ikusleek eroso nabigatu dezakete, argazkiak galerian ikusi eta jatorrizko bereizmenean deskargatu.',
       'proj.aparador.note': 'Stripe bidezko aukerako dohaintzak, albumak eta argazki igoerak kudeatzeko dashboard bat, eta kostuak baxu mantentzeko arkitektura arina biltzen ditu.',
-      'proj.aparador.btn': 'Laster…',
+      'proj.aparador.btn': 'Beta probatu',
       // Project: Base Skills Repo
       'proj.skills.title': 'Base Skills Repo',
       'proj.skills.desc1': '<strong>Base Skills Repo</strong> hasierako biltegi bat da proiektuak <strong>GitHub Copilot</strong> ondo konfiguratuta abiatzeko. Ezagutza geruzetan antolatzen du (jarraibideak, gaitasunak, aginduak, txat-moduak eta repo memoria), agenteak zeregin bakoitzean dagokion testuingurua bakarrik karga dezan.',
@@ -531,16 +503,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.stremio.title': 'Stremio Katalanez',
       'fc.stremio.desc': 'Katalanezko filmen eta serieen katalogoa streaming plataforma guztietan.',
       'proj.stremio.title': 'Stremio Katalanez',
-      'proj.stremio.desc': '<strong>Stremio</strong>rako gehigarria, streaming plataforma nagusietan <strong>katalanez eskuragarri dauden film eta serieen</strong> katalogo osoa eskaintzen duena: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ eta gehiago. Ikus-entzunezko edukiaz bere hizkuntzan gozatu nahi duen ororentzat pentsatua.',
+      'proj.stremio.desc': '<strong>Stremio</strong>rako gehigarria, katalanezko film eta serieen katalogoa eta plataformetako eskuragarritasun-erreferentziak eskaintzen dituena. Ez du katalogo osoa edo beti eguneratua bermatzen.',
       'proj.stremio.btn': 'Gehigarria instalatu',
       // Project: Alerta Desnona
       'fc.alerta.label': 'Gizarte-justizia',
       'fc.alerta.title': 'Alerta Desnona',
       'fc.alerta.desc': 'Iberiar Penintsulako kaleratze-alertei buruzko mapa interaktiboa.',
       'proj.alerta.title': 'Alerta Desnona',
-      'proj.alerta.desc': '<strong>Kaleratze-alerten</strong> aplikazioa Iberiar Penintsulari buruz. BOEn argitaratutako enkante eta kaleratzeak denbora errealean erakusten dituen <strong>mapa interaktibo</strong> batekin, herritarrek eta etxebizitza-plataformek egoera hauen aurrean antolatu eta jarduteko aukera emanez.',
+      'proj.alerta.desc': 'BOEko enkante eta etxebizitza-prozeduren argitalpenak kontsultatzeko herritarren plataforma, mapa eta abisuekin. Datuak aldizka eguneratzen dira; enkante bat ez da nahitaez kaleratze baieztatua, eta kokapena gutxi gorabeherakoa izan daiteke.',
       'proj.alerta.note': 'Push jakinarazpenak, posta elektronikoz alertak eta eremu geografikoaren araberako iragazki-sistema bat biltzen ditu.',
-      'proj.alerta.btn': 'Beta ikusi',
+      'proj.alerta.btn': 'Kodea ikusi',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma klinikoa',
       'fc.odc.desc': 'Kode irekiko plataforma datu klinikoen etengabeko bilketarako.',
@@ -647,29 +619,29 @@ document.addEventListener('DOMContentLoaded', () => {
       // Project: Extensions
       'proj.ext.title': 'Extensións de cambio de idioma',
       'proj.ext.desc1': 'Tres extensións — <strong>En català, si us plau</strong>, <strong>Euskaraz, mesedez</strong> e <strong>En galego, por favor</strong> — que permiten redirixir o navegador á versión da páxina web que esteamos visitando que conteña algunha destas linguas minorizadas cun só clic. Pensadas para falantes de catalán, éuscaro e galego que queren navegar por Internet plenamente na súa lingua.',
-      'proj.ext.note': 'Dispoñibles para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> (e outros navegadores Chromium), <strong>Firefox</strong> e <strong>Edge</strong>. Proximamente para <strong>Safari</strong> e máis navegadores.',
+      'proj.ext.note': 'Versións Chromium e Firefox segundo a variante lingüística. Consulta as ligazóns de instalación; un paquete para outro navegador non acredita publicación na súa tenda.',
       // Project: Inspecciona
       'proj.inspecciona.title': 'Inspecciona — corrector para o catalán',
-      'proj.inspecciona.desc1': 'Unha extensión para corrixir calquera campo de texto en <strong>catalán</strong> no navegador. Utiliza a API de <strong>Softcatalà</strong> para detectar erros ortográficos, gramaticais e tipográficos, e tamén incúe busca de sinónimos e autocompletar.',
-      'proj.inspecciona.note': 'Dispoñible para <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong> e outros navegadores Chromium. Proximamente para <strong>Firefox</strong>, <strong>Edge</strong> e <strong>Safari</strong>.',
+      'proj.inspecciona.desc1': 'Revisa ortografía, gramática e tipografía en catalán mentres escribes, con servizos propios baseados en Softcatalà e LanguageTool. Inclúe sinónimos, definicións e autocompletar. O texto envíase ao servizo de corrección.',
+      'proj.inspecciona.note': 'Para Chrome, Brave, Ecosia e outros navegadores Chromium, con opcións de revisión e variantes lingüísticas. Os paquetes doutros navegadores non acreditan publicación nas súas tendas.',
       // Project: SEPE
       'proj.sepe.desc': 'Un bot que automatiza as xestións máis tediosas co <strong>Servizo Público de Emprego Estatal (SEPE)</strong>. Nacido da frustración compartida por miles de persoas que teñen que navegar por unha burocracia dixital opaca e lenta. Esta ferramenta facilita procesos e aforra tempo e dores de cabeza.',
       'proj.sepe.btn': 'Ver proxecto',
       'proj.sepe.t1': 'Iniciando sesión...',
       'proj.sepe.t2': 'Consultando citas dispoñibles...',
-      'proj.sepe.t3': 'Cita reservada: 24/03/2026, 10:30h',
+      'proj.sepe.t3': 'Exemplo: dispoñibilidade detectada',
       // Project: troBar
-      'proj.bars.desc': '<strong>troBar</strong> axúdache a atopar bares onde ver os partidos do <strong>FC Barcelona</strong> preto de ti, vivas onde vivas. Porque seguir o Barça é mellor en compaña, cun bo ambiente e unha boa cervexa. Inclúe info de partidos en tempo real, mapa interactivo e filtros por ubicación.',
+      'proj.bars.desc': '<strong>troBar</strong> é unha aplicación en desenvolvemento para atopar bares onde ver os partidos do FC Barcelona, con información de partidos, mapa e filtros por localización.',
       'proj.bars.btn': 'Landing page',
       'proj.bars.search': 'Onde queres ver o partido?',
-      'proj.bars.match': 'Próximo partido · sáb., 4 de abr., 21:00',
+      'proj.bars.match': 'Exemplo de partido',
       'proj.bars.nav1': 'Partidos',
       'proj.bars.nav2': 'Mapa',
       'proj.bars.nav3': 'Perfil',
       // Project: Aparador
       'proj.aparador.desc': '<strong>Aparador</strong> é unha plataforma web pensada para que os <strong>fotógrafos</strong> poidan compartir álbums co seu <strong>público</strong> mediante <strong>códigos de acceso</strong>. O público pode navegar con comodidade, ver as fotos en galería e descargalas na súa resolución orixinal.',
       'proj.aparador.note': 'Inclúe donativos opcionais vía Stripe, un panel para xestionar álbums e subidas de fotos, e unha arquitectura lixeira para manter os custos baixos.',
-      'proj.aparador.btn': 'Proximamente…',
+      'proj.aparador.btn': 'Probar a beta',
       // Project: Base Skills Repo
       'proj.skills.title': 'Base Skills Repo',
       'proj.skills.desc1': '<strong>Base Skills Repo</strong> é un repositorio base para iniciar proxectos con <strong>GitHub Copilot</strong> ben configurado desde o primeiro día. Organiza o coñecemento por capas (instrucións, capacidades, ordes, modos de conversa e memoria de repo) para que o axente cargue só o contexto relevante en cada tarefa.',
@@ -683,16 +655,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'fc.stremio.title': 'Stremio en Catalán',
       'fc.stremio.desc': 'Catálogo de películas e series en catalán en tódalas plataformas de streaming.',
       'proj.stremio.title': 'Stremio en Catalán',
-      'proj.stremio.desc': 'Un complemento para <strong>Stremio</strong> que ofrece un catálogo completo de <strong>películas e series dispoñibles en catalán</strong> nas principais plataformas de streaming: 3Cat, Filmin, Netflix, Prime Video, Disney+, Max, Movistar+ e máis. Pensado para todos os que queiran gozar de contido audiovisual na súa lingua.',
+      'proj.stremio.desc': 'Un complemento para <strong>Stremio</strong> cun catálogo de películas e series en catalán e referencias de dispoñibilidade en plataformas. Non garante un catálogo exhaustivo nin sempre actualizado.',
       'proj.stremio.btn': 'Instalar complemento',
       // Project: Alerta Desnona
       'fc.alerta.label': 'Xustiza social',
       'fc.alerta.title': 'Alerta Desnona',
       'fc.alerta.desc': 'Mapa interactivo de alertas de desafiuzamentos na Península Ibérica.',
       'proj.alerta.title': 'Alerta Desnona',
-      'proj.alerta.desc': 'Unha aplicación de <strong>alertas de desafiuzamentos</strong> na Península Ibérica. Cun <strong>mapa interactivo</strong> que amosa en tempo real as póxas e desafiuzamentos publicados no BOE, permitindo á cidadanía e ás plataformas de vivenda organizarse e actuar ante estas situacións.',
+      'proj.alerta.desc': 'Plataforma cidadá con mapa e avisos sobre publicacións do BOE relacionadas con poxas e procedementos de vivenda. Os datos actualízanse periodicamente; unha poxa non equivale a un desafiuzamento confirmado e a localización pode ser aproximada.',
       'proj.alerta.note': 'Inclúe notificacións push, alertas por correo electrónico e un sistema de filtraxe por zona xeográfica.',
-      'proj.alerta.btn': 'Ver beta',
+      'proj.alerta.btn': 'Ver o código',
       // Project: Open Data Capture
       'fc.odc.label': 'Plataforma clínica',
       'fc.odc.desc': 'Plataforma de código aberto para a recollida continua de datos clínicos.',

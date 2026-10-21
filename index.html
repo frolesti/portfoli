@@ -46,7 +46,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/img/seo/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/styles.css?v=20261021-contact">
+  <link rel="stylesheet" href="assets/styles.css?v=20261021-projects">
   <link rel="stylesheet" href="assets/blog.css?v=20260627">
   <script type="application/ld+json">
   {
@@ -240,7 +240,8 @@
           </p>
           <ul class="project-tech">
             <li>Python</li>
-            <li>Selenium</li>
+            <li>Flask</li>
+            <li>requests</li>
             <li>Automatització</li>
             <li>UX Social</li>
           </ul>
@@ -257,10 +258,10 @@
               <span class="terminal-title">sepe-bot</span>
             </div>
             <div class="terminal-content">
-              <p class="term-line" style="--line-index:0"><span class="t-green">$</span> python sepe_bot.py</p>
+              <p class="term-line" style="--line-index:0"><span class="t-green">$</span> python run.py</p>
               <p class="term-line" style="--line-index:1"><span class="t-dim">→</span> <span data-i18n="proj.sepe.t1">Iniciant sessió...</span></p>
               <p class="term-line" style="--line-index:2"><span class="t-dim">→</span> <span data-i18n="proj.sepe.t2">Consultant cites disponibles...</span></p>
-              <p class="term-line" style="--line-index:3"><span class="t-green">✓</span> <span data-i18n="proj.sepe.t3">Cita reservada: 24/03/2026, 10:30h</span></p>
+              <p class="term-line" style="--line-index:3"><span class="t-green">✓</span> <span data-i18n="proj.sepe.t3">Exemple: disponibilitat detectada</span></p>
               <p class="term-line t-cursor" style="--line-index:4">█</p>
             </div>
           </div>
@@ -273,10 +274,9 @@
           <span class="project-tag" data-i18n="fc.alerta.label">Justícia social</span>
           <h3 data-i18n="proj.alerta.title">Alerta Desnona</h3>
           <p data-i18n="proj.alerta.desc">
-            Una aplicació d'<strong>alertes de desnonaments</strong> a la Península Ibèrica. 
-            Amb un <strong>mapa interactiu</strong> que mostra en temps real les subhastes 
-            i desnonaments publicats al BOE, permetent a la ciutadania i les plataformes 
-            d'habitatge organitzar-se i actuar davant d'aquestes situacions. En un futur, la idea és fer-ne una eina de denúncia i pressió política per a la reforma de les lleis d'habitatge.
+            Plataforma ciutadana amb <strong>mapa interactiu</strong> i avisos sobre publicacions
+            del BOE relacionades amb subhastes i procediments d'habitatge. Les dades s'actualitzen
+            periòdicament: una subhasta no equival a un desnonament confirmat i la ubicació pot ser aproximada.
           </p>
           <p class="project-note" data-i18n="proj.alerta.note">
             Inclou notificacions push, alertes per correu electrònic i un sistema de 
@@ -292,7 +292,7 @@
             <li>Web Push</li>
           </ul>
           <div class="project-links">
-            <a href="https://alerta-desnona-production.up.railway.app/" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-alerta-desnona" data-i18n="proj.alerta.btn">Ves a la beta</a>
+            <a href="https://github.com/frolesti/alerta-desnona" target="_blank" rel="noopener" class="btn btn-small btn-primary" data-goatcounter-click="proj-alerta-desnona" data-i18n="proj.alerta.btn">Veure el codi</a>
           </div>
         </div>
         <div class="project-visual pv-alerta">
@@ -327,7 +327,7 @@
           <span class="project-tag" data-i18n="fc.stremio.label">Addon d'Stremio</span>
           <h3 data-i18n="proj.stremio.title">Stremio en Català</h3>
           <p data-i18n="proj.stremio.desc">
-            Un addon per a <strong>Stremio</strong> que ofereix un catàleg complet de 
+            Un addon per a <strong>Stremio</strong> que ofereix un catàleg de
             <strong>pel·lícules i sèries disponibles en català</strong> a les principals 
             plataformes d'streaming: 3Cat, Filmin, Netflix, Prime Video, Disney+, 
             Movistar+ i més. Pensat per als usuaris d'Stremio que troben a faltar contingut d'stríming en català.
@@ -382,10 +382,14 @@
             clínics de forma remota i presencial, amb un sistema flexible de creació 
             d'instruments, visualització de dades i exportació sota demanda.
           </p>
+          <p>
+            En col·laboració amb <strong>Alta Health Services</strong>, estem adaptant la plataforma a les necessitats de l'estudi <strong>ORION</strong>. La pròrroga del projecte ens permet continuar polint el flux de formularis, les validacions, els seguiments i la presentació de dades.
+          </p>
           <p class="project-note" data-i18n="proj.odc.note">
             Contribució a un projecte del <strong>Douglas Neuroinformatics Platform</strong>. 
             Multilingüe, segur per defecte amb autenticació JWT i permisos granulars.
           </p>
+          <p class="project-note">La informació clínica i els detalls interns de l'estudi no es mostren en aquest portafolis.</p>
           <ul class="project-tech">
             <li>TypeScript</li>
             <li>React</li>
@@ -400,29 +404,7 @@
             <a href="https://github.com/DouglasNeuroInformatics/OpenDataCapture" target="_blank" rel="noopener" class="btn btn-small btn-outline" data-goatcounter-click="proj-odc-github">GitHub</a>
           </div>
         </div>
-        <div class="project-visual pv-odc">
-          <div class="odc-mockup">
-            <div class="browser-bar">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <div class="odc-content">
-              <div class="odc-sidebar">
-                <div class="odc-nav-item active">📋 Instruments</div>
-                <div class="odc-nav-item">👥 Subjects</div>
-                <div class="odc-nav-item">📊 Data</div>
-                <div class="odc-nav-item">⚙ Settings</div>
-              </div>
-              <div class="odc-main">
-                <div class="odc-form-field"></div>
-                <div class="odc-form-field short"></div>
-                <div class="odc-form-field"></div>
-                <div class="odc-form-btn"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="project-visual pv-odc"></div>
       </article>
 
             <!-- Project: AESSO Calculadora -->
@@ -495,7 +477,7 @@
             <strong>troBar</strong> t'ajuda a trobar bars on veure els partits del 
             <strong>FC Barcelona</strong> a prop teu, visquis on visquis. Perquè seguir 
             el Barça és millor en companyia, amb un bon ambient i una bona cervesa. 
-            Inclou info de partits en temps real, mapa interactiu i filtres per ubicació.
+            En desenvolupament, amb informació de partits, mapa interactiu i filtres per ubicació.
           </p>
           <ul class="project-tech">
             <li>React Native</li>
@@ -517,7 +499,7 @@
                 <span class="trobar-filter-icon">⚙</span>
               </div>
               <div class="trobar-match">
-                <p class="trobar-match-label" data-i18n="proj.bars.match">Proper partit · ds., 4 d'abr., 21:00</p>
+                <p class="trobar-match-label" data-i18n="proj.bars.match">Exemple de partit</p>
                 <div class="trobar-match-teams">
                   <span class="trobar-team">ATM</span>
                   <span class="trobar-vs">vs</span>
@@ -644,20 +626,21 @@
           <h3 data-i18n="proj.inspecciona.title">Inspecciona — corrector per al català</h3>
           <p data-i18n="proj.inspecciona.desc1">
             Una extensió que afegeix un <strong>corrector ortogràfic, gramatical i tipogràfic</strong>
-            per al <strong>català</strong> a qualsevol camp de text del navegador. Fa servir l'API
-            de <strong>Softcatalà</strong> per detectar errors i suggerir correccions, amb suport
-            també per a cerca de sinònims i autocompletar.
+            per al <strong>català</strong> als camps de text del navegador. Revisa mentre escrius
+            amb serveis propis basats en recursos de <strong>Softcatalà</strong> i LanguageTool,
+            i ofereix sinònims, definicions i autocompletar. La revisió envia text al servei de correcció.
           </p>
           <p class="project-note" data-i18n="proj.inspecciona.note">
             Disponible per a <strong>Chrome</strong>, <strong>Brave</strong>, <strong>Ecosia</strong>
-            i altres navegadors Chromium. Pròximament per a <strong>Firefox</strong>,
-            <strong>Edge</strong> i <strong>Safari</strong>.
+            i altres navegadors Chromium. L'extensió permet ajustar variants dialectals i criteris
+            ortotipogràfics, i continua rebent millores d'estabilitat i d'experiència de correcció.
           </p>
           <ul class="project-tech">
             <li>JavaScript</li>
             <li>WebExtensions API</li>
             <li>Manifest V3</li>
-            <li>API de Softcatalà</li>
+            <li>LanguageTool</li>
+            <li>Docker</li>
           </ul>
         </div>
         <div class="project-visual pv-extensions">
@@ -696,6 +679,73 @@
             </div>
           </div>
         </div>
+      </article>
+
+      <!-- Project: Cookie Guard -->
+      <article id="projecte-cookie-guard" class="project-detail" data-profile="social">
+        <div class="project-info">
+          <span class="project-tag">Privadesa · Extensió de navegador</span>
+          <h3>CookieBlocker</h3>
+          <p>
+            Una extensió que automatitza el rebuig de cookies opcionals als avisos compatibles,
+            amb regles locals d'AutoConsent i control per web. <strong>No accepta cookies opcionals.</strong>
+          </p>
+          <p class="project-note">Observacions locals i neteja de cookies opcionals, desactivades per defecte. Rebutjar un avís no garanteix bloquejar el rastreig. Versió en desenvolupament.</p>
+          <ul class="project-tech">
+            <li>TypeScript</li>
+            <li>WebExtensions</li>
+            <li>WXT</li>
+            <li>AutoConsent</li>
+            <li>Firefox</li>
+            <li>Privadesa local</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/frolesti/cookie-guard" target="_blank" rel="noopener" class="btn btn-small btn-outline">GitHub</a>
+          </div>
+        </div>
+        <div class="project-visual pv-cookie-guard"></div>
+      </article>
+
+      <!-- Project: SPIRIT community contribution -->
+      <article id="projecte-spirit" class="project-detail reverse" data-profile="social">
+        <div class="project-info">
+          <span class="project-tag">Codi obert · Maquinari i mòbil</span>
+          <h3>SPIRIT · Smartphone obert i reparable</h3>
+          <p>
+            SPIRIT és un projecte comunitari que explora un smartphone basat en components disponibles, inclòs el <strong>Raspberry Pi Compute Module 5</strong>, amb èmfasi en el control de l'usuari, la privadesa i la reparabilitat.
+          </p>
+          <p class="project-note">El projecte és en desenvolupament obert. Segueixo i exploro aquesta iniciativa comunitària i les seves possibilitats de contribució.</p>
+          <ul class="project-tech">
+            <li>Open source</li>
+            <li>Raspberry Pi CM5</li>
+            <li>Privadesa</li>
+            <li>Reparabilitat</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/SPIRIT-org/SPIRIT" target="_blank" rel="noopener" class="btn btn-small btn-outline">Projecte a GitHub</a>
+          </div>
+        </div>
+        <div class="project-visual pv-spirit"></div>
+      </article>
+
+      <!-- Project: AI-Blocker -->
+      <article id="projecte-ai-blocker" class="project-detail" data-profile="social">
+        <div class="project-info">
+          <span class="project-tag">Projecte en desenvolupament</span>
+          <h3>AI-Blocker</h3>
+          <p>
+            Extensió per reduir respostes generades amb IA als cercadors: mode web a Google,
+            ocultació de blocs compatibles i filtres opcionals de resultats.
+          </p>
+          <p class="project-note">Inclou un classificador local d'imatges experimental i voluntari en Chromium. No és SynthID ni prova de procedència; els indicadors ambientals són estimacions.</p>
+          <ul class="project-tech">
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>WXT</li>
+            <li>ONNX</li>
+          </ul>
+        </div>
+        <div class="project-visual pv-ai-blocker"></div>
       </article>
 
     </div>
@@ -946,6 +996,9 @@
     </div>
   </div>
 
-  <script src="assets/main.js?v=20260709-1"></script>
+  <script src="assets/project-visuals.js?v=20261021-projects"></script>
+  <script src="assets/project-articles.js?v=20261021-projects"></script>
+  <script src="assets/project-dialog.js?v=20261021-projects"></script>
+  <script src="assets/main.js?v=20261021-projects"></script>
 </body>
 </html>
