@@ -85,10 +85,10 @@
   <nav id="navbar">
     <a href="#top" class="nav-logo">frolesti</a>
     <div class="nav-links">
-      <button type="button" class="nav-profile-switch" id="profileSwitchBtn" aria-label="Canviar perfil">
-        <span class="nav-profile-switch__label">Perfil:</span>
-        <span class="nav-profile-switch__value" id="profileSwitchValue">—</span>
-      </button>
+      <div class="nav-profile-switch" id="profileSwitchBtn" role="group" aria-label="Perfil">
+        <button type="button" class="profile-option" data-profile-option="social" aria-pressed="false">Social</button>
+        <button type="button" class="profile-option" data-profile-option="professional" aria-pressed="true">Professional</button>
+      </div>
       <a href="#projectes" data-i18n="nav.projectes">Projectes</a>
       <a href="blog/index.html">Bloc</a>
       <a href="#sobre" data-i18n="nav.sobre">Sobre mi</a>
@@ -109,7 +109,10 @@
     <!-- <a href="#testimonis" data-i18n="nav.testimonis">Testimonis</a> -->
     <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
     <a href="#contacte" data-i18n="nav.contacta">Contacta'm</a>
-    <button type="button" class="mobile-profile-switch" id="profileSwitchBtnMobile">Canviar perfil</button>
+    <div class="mobile-profile-switch" id="profileSwitchBtnMobile" role="group" aria-label="Perfil">
+      <button type="button" class="profile-option" data-profile-option="social" aria-pressed="false">Social</button>
+      <button type="button" class="profile-option" data-profile-option="professional" aria-pressed="true">Professional</button>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -917,29 +920,6 @@
         <input type="email" name="email" placeholder="hola@exemple.cat" data-i18n-ph="newsletter.email.ph" required>
         <button type="submit" class="btn btn-primary newsletter-btn" data-i18n="newsletter.btn">Subscriu-me</button>
       </form>
-    </div>
-  </div>
-
-  <!-- Profile selection splash (first visit / explicit re-trigger) -->
-  <div class="profile-splash" id="profileSplash" hidden>
-    <div class="profile-splash__card" role="dialog" aria-modal="true" aria-labelledby="profileSplashTitle">
-      <p class="profile-splash__eyebrow">Benvingut/da al meu portfoli</p>
-      <h2 id="profileSplashTitle">Quins projectes t'interessen?</h2>
-      <p class="profile-splash__desc">
-        Per a projectes pensats per a empreses i entitats, tria
-        <button type="button" class="profile-inline-choice" data-profile-choice="professional"><strong>Projectes professionals</strong></button>.
-        Si busques eines amb impacte social, llengua i drets digitals, tria
-        <button type="button" class="profile-inline-choice" data-profile-choice="social"><strong>Projectes socials</strong></button>.
-        A partir d'aquí, podràs canviar de perfil en qualsevol moment amb el botó <strong>Perfil</strong>.
-      </p>
-      <div class="profile-splash__options">
-        <button type="button" class="profile-splash__option" data-profile-choice="professional">
-          <span class="profile-splash__option-title">Projectes professionals</span>
-        </button>
-        <button type="button" class="profile-splash__option" data-profile-choice="social">
-          <span class="profile-splash__option-title">Projectes socials</span>
-        </button>
-      </div>
     </div>
   </div>
 

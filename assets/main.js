@@ -6,12 +6,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- PROFILE (social / professional) ----------
-  // Es mostra una pantalla d'entrada la primera visita per triar perfil.
   // Es recorda a localStorage i es pot canviar des de la nav.
   const PROFILE_KEY = 'frolesti-profile';
   const PROFILE_LABELS = { social: 'Social', professional: 'Professional' };
-  const profileSplash = document.getElementById('profileSplash');
-  const profileSwitchValue = document.getElementById('profileSwitchValue');
   const profileSwitchBtn = document.getElementById('profileSwitchBtn');
   const profileSwitchBtnMobile = document.getElementById('profileSwitchBtnMobile');
   const PROJECT_RETURN_KEY = 'portfolio-return-state';
@@ -96,62 +93,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (profile !== 'social' && profile !== 'professional') return;
     document.documentElement.setAttribute('data-profile', profile);
     document.body.setAttribute('data-profile', profile);
-    if (profileSwitchValue) profileSwitchValue.textContent = PROFILE_LABELS[profile];
-    if (profileSwitchBtn) {
-      profileSwitchBtn.title = profile === 'professional' ? 'Canviar a perfil social' : 'Canviar a perfil professional';
-    }
+    [profileSwitchBtn, profileSwitchBtnMobile].forEach((group) => {
+      group?.querySelectorAll('[data-profile-option]').forEach((option) => {
+        const selected = option.getAttribute('data-profile-option') === profile;
+        option.setAttribute('aria-pressed', String(selected));
+        option.title = selected ? `${PROFILE_LABELS[profile]}: perfil seleccionat` : `Canviar a ${PROFILE_LABELS[option.getAttribute('data-profile-option')]}`;
+      });
+    });
     applyProfileCopy(profile);
-  }
-
-  function hideSplash() {
-    if (!profileSplash) return;
-    profileSplash.classList.remove('is-visible');
-    setTimeout(() => { profileSplash.hidden = true; }, 400);
-  }
-  function showSplash() {
-    if (!profileSplash) return;
-    profileSplash.hidden = false;
-    requestAnimationFrame(() => profileSplash.classList.add('is-visible'));
   }
 
   const storedProfile = readProfile();
   if (storedProfile === 'social' || storedProfile === 'professional') {
     applyProfile(storedProfile);
   } else {
-    // Perfil per defecte: professional. El modal només es mostra a la primera visita.
+    // La primera visita entra directament al perfil professional.
     applyProfile('professional');
-    showSplash();
   }
 
-  if (profileSplash) {
-    profileSplash.querySelectorAll('[data-profile-choice]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const choice = btn.getAttribute('data-profile-choice');
-        if (choice !== 'social' && choice !== 'professional') return;
-        writeProfile(choice);
-        applyProfile(choice);
-        hideSplash();
-        if (typeof trackGoatEvent === 'function') {
-          trackGoatEvent('profile-selected-' + choice, 'Profile selected ' + choice);
-        }
-      });
-    });
-  }
-
-  const triggerSwitch = () => {
-    const nextProfile = getActiveProfile() === 'professional' ? 'social' : 'professional';
-    writeProfile(nextProfile);
-    applyProfile(nextProfile);
+  function selectProfile(profile) {
+    if (profile !== 'social' && profile !== 'professional') return;
+    if (profile === getActiveProfile()) return;
+    writeProfile(profile);
+    applyProfile(profile);
     if (typeof trackGoatEvent === 'function') {
-      trackGoatEvent('profile-toggled-' + nextProfile, 'Profile toggled ' + nextProfile);
+      trackGoatEvent('profile-selected-' + profile, 'Profile selected ' + profile);
     }
-  };
-  profileSwitchBtn?.addEventListener('click', triggerSwitch);
-  profileSwitchBtnMobile?.addEventListener('click', () => {
-    // Close mobile menu first
-    document.getElementById('mobileMenu')?.classList.remove('open');
-    document.querySelector('.nav-toggle')?.classList.remove('active');
-    triggerSwitch();
+  }
+  [profileSwitchBtn, profileSwitchBtnMobile].forEach((group) => {
+    group?.addEventListener('click', (event) => {
+      const option = event.target.closest('[data-profile-option]');
+      if (!option || !group.contains(option)) return;
+      selectProfile(option.getAttribute('data-profile-option'));
+      if (group === profileSwitchBtnMobile) {
+        document.getElementById('mobileMenu')?.classList.remove('open');
+        document.querySelector('.nav-toggle')?.classList.remove('active');
+      }
+    });
   });
 
   function saveProjectReturnState(projectId) {
