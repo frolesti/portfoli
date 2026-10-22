@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorBox = document.getElementById('clientReviewError');
   const form = document.getElementById('clientReviewForm');
   const status = document.getElementById('clientReviewStatus');
-  const nameInput = document.getElementById('rv-name');
   const companyIdInput = document.getElementById('rv-company-id');
   const companyNameInput = document.getElementById('rv-company-name');
   const clientTokenInput = document.getElementById('rv-client-token');
@@ -112,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (companyIdInput) companyIdInput.value = clientId;
   if (companyNameInput) companyNameInput.value = client.name;
   if (clientTokenInput) clientTokenInput.value = token;
-  if (form) form.hidden = false;
 
   const projects = window.REVIEW_PROJECTS[clientId] || [];
   const requestedProject = projects.find((project) => project.id === params.get('project'));
@@ -130,8 +128,31 @@ document.addEventListener('DOMContentLoaded', () => {
     context.querySelector('.client-review-brand').appendChild(projectName);
   }
 
+  const receiptKey = 'client-review-sent:' + JSON.stringify([clientId, token, initialProject]);
+  let submitted = false;
+  let sending = false;
+
+  function showConfirmation() {
+    submitted = true;
+    form.hidden = true;
+    form.querySelector('[type="submit"]').disabled = true;
+    if (lead) lead.hidden = true;
+    setStatus(status, 'S\'ha enviat correctament!', 'ok');
+  }
+
+  try {
+    if (localStorage.getItem(receiptKey) === 'sent') showConfirmation();
+  } catch {}
+  if (!submitted) form.hidden = false;
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === receiptKey && event.newValue === 'sent') showConfirmation();
+  });
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitted || sending) return;
+    sending = true;
     const fd = new FormData(form);
 
     const payload = {
@@ -161,17 +182,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       form.reset();
-      if (companyIdInput) companyIdInput.value = clientId;
-      if (companyNameInput) companyNameInput.value = client.name;
-      if (clientTokenInput) clientTokenInput.value = token;
-      if (nameInput) nameInput.value = '';
-      projectInput.value = initialProject;
-      setStatus(status, data.message || 'Comentari rebut. Gràcies!', 'ok');
+      try { localStorage.setItem(receiptKey, 'sent'); } catch {}
+      showConfirmation();
     } catch (err) {
       setStatus(status, err?.message || 'Ara mateix no s\'ha pogut enviar. Torna-ho a provar en un moment.', 'error');
     } finally {
+      sending = false;
       submitBtn.textContent = 'Enviar comentari';
-      submitBtn.disabled = false;
+      submitBtn.disabled = submitted;
     }
   });
 });

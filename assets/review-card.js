@@ -15,6 +15,12 @@
     message.textContent = review.message || '';
     top.append(name, date);
     card.appendChild(top);
+    if (review.companyName) {
+      const company = document.createElement('p');
+      company.className = 'client-review-card__company';
+      company.textContent = review.companyName;
+      card.appendChild(company);
+    }
     if (review.projectName) {
       const project = document.createElement('p');
       project.className = 'client-review-card__project';

@@ -16,6 +16,12 @@ test('every homepage project has exactly one technical dossier', () => {
   assert.deepEqual(Object.keys(projects).sort(), ids.sort());
 });
 
+test('unapproved projects are absent from the public homepage and dossiers', () => {
+  for (const file of ['index.html', 'assets/project-articles.js', 'assets/project-visuals.js']) {
+    assert.doesNotMatch(read(file), /projecte-cookie-guard|projecte-ai-blocker|projecte-spirit/);
+  }
+});
+
 for (const [id, project] of Object.entries(projects)) {
   test(id + ' includes implementation, privacy and scope details', () => {
     for (const field of ['title', 'lead', 'status', 'reviewed']) {

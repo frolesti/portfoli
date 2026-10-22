@@ -208,43 +208,6 @@
         </div>`
     },
 
-    'projecte-cookie-guard': {
-      cls: 'pv-cookie-guard',
-      html: `
-        <div class="browser-mockup cookie-guard-mockup">
-          <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Extensió de navegador</span></div>
-          <div class="cookie-guard__panel">
-            <div class="cookie-guard__head"><span class="cookie-guard__mark">C</span><span><b>CookieBlocker</b><small>Rebuig de cookies</small></span><i class="cookie-guard__toggle"></i></div>
-            <div class="cookie-guard__site"><small>EXEMPLE DE WEB</small><strong>exemple.cat</strong><span>Control de consentiment</span></div>
-            <div class="cookie-guard__row"><span>Rebuig compatible</span><b>Actiu</b></div>
-            <div class="cookie-guard__row"><span>Observacions locals</span><b>Opcional</b></div>
-            <div class="cookie-guard__footer"><span>Les dades no surten del navegador</span><span>Exporta registre ↓</span></div>
-          </div>
-        </div>`
-    },
-
-    'projecte-spirit': {
-      cls: 'pv-spirit',
-      html: `
-        <div class="spirit-visual" aria-label="Diagrama conceptual del smartphone modular SPIRIT">
-          <div class="spirit-visual__top"><span>PROJECTE COMUNITARI</span><span>RPI CM5</span></div>
-          <div class="spirit-device">
-            <div class="spirit-device__screen"><div class="spirit-screen__camera"></div><div class="spirit-screen__time">09:41</div><div class="spirit-screen__date">Obert · modular · reparable</div><div class="spirit-screen__apps"><i></i><i></i><i></i><i></i></div></div>
-            <div class="spirit-device__side spirit-device__side--left"></div><div class="spirit-device__side spirit-device__side--right"></div>
-          </div>
-          <div class="spirit-visual__labels"><span><i></i>Privadesa</span><span><i></i>Maquinari obert</span><span><i></i>Reparabilitat</span></div>
-        </div>`
-    },
-
-    'projecte-ai-blocker': {
-      cls: 'pv-ai-blocker',
-      html: `
-        <div class="ai-blocker-visual" aria-label="Representació conceptual d'AI-Blocker en desenvolupament">
-          <div class="ai-blocker-visual__bar"><span class="ai-blocker-visual__brand"><i></i> AI-BLOCKER</span><span class="ai-blocker-visual__status">EN DESENVOLUPAMENT</span></div>
-          <div class="ai-blocker-visual__body"><span class="ai-blocker-visual__eyebrow">CAPA DE CONTROL</span><strong>Tu decideixes<br>què deixes passar.</strong><div class="ai-blocker-visual__rule"><span>Google</span><b>Mode web</b></div><div class="ai-blocker-visual__rule"><span>Classificador local</span><b>Experimental</b></div><small>Representació conceptual · no és una captura del producte</small></div>
-        </div>`
-    },
-
     'projecte-aparador': {
       cls: 'pv-aparador',
       html: `

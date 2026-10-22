@@ -121,6 +121,16 @@ test('client form has no logo, preview component or project selector', () => {
   assert.match(html, /type="hidden" id="rv-project"/);
 });
 
+test('testimonials are separate from company logos and Configura uses its working domain', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /<section id="clientTestimonials"[^>]*aria-labelledby="testimonialsTitle"/);
+  for (const match of html.matchAll(/<article class="client-logo-card"[\s\S]*?<\/article>/g)) {
+    assert.doesNotMatch(match[0], /data-client-reviews/);
+  }
+  assert.match(html, /href="https:\/\/configura\.cat\/"/);
+  assert.doesNotMatch(html, /https:\/\/www\.configura\.cat/);
+});
+
 test('local review simulation is disabled on the public website', () => {
   const context = { window: {}, location: { protocol: 'https:', search: '?preview=reviews' } };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'assets/review-preview.js'), 'utf8'), context);
@@ -167,6 +177,29 @@ test('a project from another client cannot be attached or published', async () =
   assert.equal(result.statusCode, 400);
   assert.equal(JSON.parse(result.body).error, 'invalid_project');
   assert.equal(api.records().length, 0);
+});
+
+test('identical repeated submissions are acknowledged without storing another review', async () => {
+  const api = service();
+  const body = { companyId: 'alta-medical-services', clientToken: 'alta-7c5d2f41b9', projectId: 'projecte-odc', name: 'Anna', message: 'Una molt bona col.laboracio.' };
+  assert.equal((await api.public(event('POST', body))).statusCode, 201);
+  const original = api.records()[0];
+  const repeated = await api.public(event('POST', { ...body, message: ' Una  molt bona col.laboracio.\n' }));
+  assert.equal(repeated.statusCode, 200);
+  assert.equal(JSON.parse(repeated.body).duplicate, true);
+  assert.equal(JSON.parse(repeated.body).published, true);
+  assert.equal(api.records().length, 1);
+  assert.equal(api.records()[0].id, original.id);
+  assert.equal((await api.public(event('POST', { ...body, message: 'Una altra opinio diferent.' }))).statusCode, 201);
+  assert.equal(api.records().length, 2);
+});
+
+test('historical duplicate reviews appear only once without merging distinct authors or projects', async () => {
+  const review = { id: 1, companyId: 'alta-medical-services', projectId: 'projecte-odc', name: 'Anna', message: 'Una bona experiencia.', approved: true };
+  const api = service([review, { ...review, id: 2 }, { ...review, id: 3, name: 'Una altra persona' }, { ...review, id: 4, projectId: 'un-altre-projecte' }]);
+  const visible = JSON.parse((await api.public(event('GET'))).body);
+  assert.deepEqual(visible.map((item) => item.id), [1, 3, 4]);
+  assert.equal(api.records().length, 4);
 });
 
 test('invitations match the approved drafts and only the two approved recipients', () => {

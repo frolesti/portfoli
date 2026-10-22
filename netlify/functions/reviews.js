@@ -91,6 +91,20 @@ function isPubliclyVisible(review) {
   return true;
 }
 
+function reviewKey(review) {
+  return JSON.stringify([review.companyId, review.projectId, review.name, review.message].map((value) => sanitize(value).normalize('NFC').replace(/\s+/g, ' ')));
+}
+
+function uniqueReviews(reviews) {
+  const seen = new Set();
+  return reviews.filter((review) => {
+    const key = reviewKey(review);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function getClientInvite(clientId, token) {
   const invite = CLIENT_INVITES[clientId];
   if (!invite) return null;
@@ -132,7 +146,7 @@ exports.handler = async (event) => {
     }
 
     const raw = res.data.files?.['reviews.json']?.content || '[]';
-    const reviews = parseReviews(raw).filter(isPubliclyVisible);
+    const reviews = uniqueReviews(parseReviews(raw).filter(isPubliclyVisible));
 
     return {
       statusCode: 200,
@@ -203,6 +217,16 @@ exports.handler = async (event) => {
     let reviews = parseReviews(raw);
 
     const isTest = companyId === 'prova-interna';
+    const key = reviewKey({ companyId, projectId: project?.id || '', name, message });
+    const existing = reviews.find((review) => reviewKey(review) === key);
+    if (existing) {
+      const published = isPubliclyVisible(existing);
+      return {
+        statusCode: 200,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ ok: true, duplicate: true, pending: existing.status === 'pending', published, message: published ? 'La teva ressenya ja estava publicada. Gràcies!' : 'Aquesta ressenya ja s’havia rebut.' })
+      };
+    }
     reviews.unshift({
       id: Date.now(),
       name,

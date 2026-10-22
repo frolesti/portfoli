@@ -162,54 +162,6 @@
       privacy: ['La revisió automàtica envia text al servei de correcció després de la pausa d’escriptura.', 'Les consultes lèxiques també necessiten connexió; no es presenta com a correcció íntegrament local.', 'El servei de diccionari documenta el seguiment de consultes desactivat.'],
       limits: ['Depèn de la disponibilitat del backend.', 'Les formes flexionades no cobreixen totes les irregularitats.', 'Els empaquetats no acrediten publicació a totes les botigues.'],
       links: [{ label: 'Inspecciona a Chrome Web Store', url: 'https://chromewebstore.google.com/detail/inspecciona/hldpogfjccnfnjljahaeaieoankmiicg' }]
-    },
-    'projecte-cookie-guard': {
-      tag: 'Privadesa · Extensió de navegador', title: 'CookieBlocker',
-      lead: 'Rebutja les cookies opcionals als avisos compatibles i gestiona les excepcions des del navegador.',
-      status: 'Desenvolupament 0.1.0; anteriorment Cookie Guard.',
-      features: [
-        { title: 'Rebuig', desc: 'AutoConsent amb regles DOM, fluxos de categories opcionals i alternativa textual conservadora.' },
-        { title: 'Control per web', desc: 'Excepcions, pausa reversible i reintent.' },
-        { title: 'Observacions', desc: 'Registre opcional, revisió manual, notes i exportació de dossier o JSON.' },
-        { title: 'Neteja', desc: 'Eliminació periòdica fora de la llista de confiança, desactivada per defecte.' }
-      ],
-      stack: ['TypeScript', 'WXT', 'WebExtensions', 'AutoConsent 16.57.0', 'Driver.js', 'Node.js test runner', 'jsdom'],
-      architecture: ['Regles locals empaquetades, sense codi remot.', 'Builds Chromium i Firefox i empaquetat Safari que requereix eines Apple.'],
-      privacy: ['Observacions voluntàries i locals, sense registre compartit ni reclamacions automàtiques.', 'La neteja de cookies pot tancar sessions i fer reaparèixer avisos.'],
-      limits: ['Rebutjar un avís no equival a bloquejar trànsit.', 'No implementa encara bloqueig preventiu de xarxa ni auditoria posterior al rebuig.', 'Els registres no certifiquen infraccions ni venda de dades.', 'La cobertura depèn de regles compatibles i límits del navegador.'],
-      links: [{ label: 'Repositori del projecte', url: 'https://github.com/frolesti/cookie-guard' }]
-    },
-    'projecte-spirit': {
-      tag: 'Maquinari obert · Projecte comunitari', title: 'SPIRIT — smartphone obert i reparable',
-      lead: 'Iniciativa comunitària amb components disponibles i documentació oberta, orientada al control, la reparabilitat i la privadesa.',
-      role: 'Seguiment i exploració de contribucions; no s’atribueix el disseny del maquinari.',
-      status: 'Projecte comunitari en desenvolupament.',
-      features: [
-        { title: 'Disseny obert', desc: 'Documentació d’electrònica, mecànica i sistema operatiu.' },
-        { title: 'Reparabilitat', desc: 'Exploració d’una arquitectura amb components accessibles.' },
-        { title: 'Comunitat', desc: 'Guia i canals de discussió de contribucions.' }
-      ],
-      stack: ['KiCad', 'Disseny mecànic', 'Raspberry Pi Compute Module', 'Documentació oberta'],
-      architecture: ['Repositori amb esquemes EDA, mecànica i recursos de components.', 'Especificacions d’electrònica i sistema operatiu a la wiki original.'],
-      privacy: ['La privadesa és un objectiu de disseny, no una garantia acreditada de producte final.'],
-      limits: ['No es presenta com un dispositiu acabat, certificat o comercialitzat.', 'Components, costos i especificacions poden canviar.'],
-      links: [{ label: 'Projecte original', url: 'https://github.com/SPIRIT-org/SPIRIT' }, { label: 'Especificacions tècniques', url: 'https://github.com/SPIRIT-org/SPIRIT/wiki/Overview-technical-specs' }]
-    },
-    'projecte-ai-blocker': {
-      tag: 'Control de contingut generat amb IA', title: 'AI-Blocker',
-      lead: 'Extensió per reduir respostes d’IA als cercadors, amb filtres opcionals i classificació local d’imatges experimental.',
-      status: 'Desenvolupament 0.1.0; classificació visual experimental i voluntària.',
-      features: [
-        { title: 'Google', desc: 'Mode web udm=14 amb declarativeNetRequest o content script segons navegador i domini.' },
-        { title: 'Altres cercadors', desc: 'Ocultació de blocs de resposta amb selectors compatibles.' },
-        { title: 'Filtre opcional', desc: 'Llista de dominis OnlyHuman per ocultar resultats, desactivada per defecte.' },
-        { title: 'Classificació local', desc: 'Experiment Chromium amb Transformers.js i ONNX; avís de possible IA sense ocultació automàtica.' }
-      ],
-      stack: ['TypeScript', 'React', 'WXT', 'WebExtensions', 'declarativeNetRequest', 'i18next', 'Transformers.js', 'ONNX Runtime Web', 'WebAssembly', 'Web Worker'],
-      architecture: ['Popup i opcions React; regles i estat gestionats per l’extensió.', 'Document offscreen i worker compartit Chromium amb model empaquetat.', 'Llista opcional descarregada de GitHub i conservada en memòria cau.'],
-      privacy: ['No envia imatges a serveis d’inferència, però pot tornar-les a descarregar del servidor original.', 'El classificador demana permisos addicionals i està desactivat per defecte.', 'Descarregar la llista externa exposa metadades de connexió al proveïdor.'],
-      limits: ['Ocultar respostes no demostra que el servidor no les hagi generat.', 'Els indicadors d’aigua, energia i CO₂ són estimacions, no estalvi mesurat.', 'No és SynthID ni prova de procedència; les taxes d’error en un corpus representatiu són desconegudes.', 'L’experiment visual no funciona a Firefox; els selectors poden quedar obsolets.'],
-      links: []
     }
   };
 

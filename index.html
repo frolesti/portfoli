@@ -46,7 +46,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/img/seo/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/styles.css?v=20261021-project-ux">
+  <link rel="stylesheet" href="assets/styles.css?v=20261022-client-sections">
   <link rel="stylesheet" href="assets/blog.css?v=20260627">
   <script type="application/ld+json">
   {
@@ -681,73 +681,6 @@
         </div>
       </article>
 
-      <!-- Project: Cookie Guard -->
-      <article id="projecte-cookie-guard" class="project-detail" data-profile="social">
-        <div class="project-info">
-          <span class="project-tag">Privadesa · Extensió de navegador</span>
-          <h3>CookieBlocker</h3>
-          <p>
-            Una extensió que automatitza el rebuig de cookies opcionals als avisos compatibles,
-            amb regles locals d'AutoConsent i control per web. <strong>No accepta cookies opcionals.</strong>
-          </p>
-          <p class="project-note">Observacions locals i neteja de cookies opcionals, desactivades per defecte. Rebutjar un avís no garanteix bloquejar el rastreig. Versió en desenvolupament.</p>
-          <ul class="project-tech">
-            <li>TypeScript</li>
-            <li>WebExtensions</li>
-            <li>WXT</li>
-            <li>AutoConsent</li>
-            <li>Firefox</li>
-            <li>Privadesa local</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/frolesti/cookie-guard" target="_blank" rel="noopener" class="btn btn-small btn-outline">GitHub</a>
-          </div>
-        </div>
-        <div class="project-visual pv-cookie-guard"></div>
-      </article>
-
-      <!-- Project: SPIRIT community contribution -->
-      <article id="projecte-spirit" class="project-detail reverse" data-profile="social">
-        <div class="project-info">
-          <span class="project-tag">Codi obert · Maquinari i mòbil</span>
-          <h3>SPIRIT · Smartphone obert i reparable</h3>
-          <p>
-            SPIRIT és un projecte comunitari que explora un smartphone basat en components disponibles, inclòs el <strong>Raspberry Pi Compute Module 5</strong>, amb èmfasi en el control de l'usuari, la privadesa i la reparabilitat.
-          </p>
-          <p class="project-note">El projecte és en desenvolupament obert. Segueixo i exploro aquesta iniciativa comunitària i les seves possibilitats de contribució.</p>
-          <ul class="project-tech">
-            <li>Open source</li>
-            <li>Raspberry Pi CM5</li>
-            <li>Privadesa</li>
-            <li>Reparabilitat</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/SPIRIT-org/SPIRIT" target="_blank" rel="noopener" class="btn btn-small btn-outline">Projecte a GitHub</a>
-          </div>
-        </div>
-        <div class="project-visual pv-spirit"></div>
-      </article>
-
-      <!-- Project: AI-Blocker -->
-      <article id="projecte-ai-blocker" class="project-detail" data-profile="social">
-        <div class="project-info">
-          <span class="project-tag">Projecte en desenvolupament</span>
-          <h3>AI-Blocker</h3>
-          <p>
-            Extensió per reduir respostes generades amb IA als cercadors: mode web a Google,
-            ocultació de blocs compatibles i filtres opcionals de resultats.
-          </p>
-          <p class="project-note">Inclou un classificador local d'imatges experimental i voluntari en Chromium. No és SynthID ni prova de procedència; els indicadors ambientals són estimacions.</p>
-          <ul class="project-tech">
-            <li>TypeScript</li>
-            <li>React</li>
-            <li>WXT</li>
-            <li>ONNX</li>
-          </ul>
-        </div>
-        <div class="project-visual pv-ai-blocker"></div>
-      </article>
-
     </div>
   </section>
 
@@ -822,40 +755,47 @@
   <section id="clients" class="clients-section" aria-labelledby="clientsTitle">
     <div class="container">
       <div class="section-header clients-header">
-        <h2 id="clientsTitle">Clients i entitats amb qui he col·laborat</h2>
+        <h2 id="clientsTitle">Clients i col·laboracions</h2>
         <p class="section-subtitle">
-          Aquí podeu veure una mostra dels clients amb qui he treballat o col·laborat. Si tu també t'hi vols afegir, baixa una mica més per posar-te en contacte amb mi i veurem què hi podem fer.
+          Projectes compartits i experiències de col·laboració.
         </p>
       </div>
 
+      <section id="clientTestimonials" class="client-testimonials" aria-labelledby="testimonialsTitle" hidden>
+        <h3 id="testimonialsTitle" class="clients-subtitle">El que diuen els clients</h3>
+        <div class="testimonials-grid">
+          <div class="client-reviews" data-client-reviews="alta-medical-services" aria-label="Ressenyes d'ALTA medical services"></div>
+          <div class="client-reviews" data-client-reviews="aesso" aria-label="Ressenyes d'AESSO"></div>
+          <div class="client-reviews" data-client-reviews="configura-cat" aria-label="Ressenyes de Configura.cat"></div>
+          <div class="client-reviews" data-client-reviews="alianca-digital-cat" aria-label="Ressenyes de l'Aliança per la presència digital del català"></div>
+        </div>
+      </section>
+
+      <h3 class="clients-subtitle">Empreses i entitats amb qui he col·laborat</h3>
       <div class="clients-grid" role="list" aria-label="Logos de clients i entitats col·laboradores">
         <article class="client-logo-card" role="listitem" aria-label="ALTA medical services" data-client-id="alta-medical-services">
           <a class="client-logo-link" href="https://www.altamedicalservices.com/en/home.php" target="_blank" rel="noopener" aria-label="Visitar el web d'ALTA medical services">
             <img src="assets/img/clients/alta-medical-services.png" alt="ALTA medical services" loading="lazy" decoding="async">
           </a>
           <p class="client-logo-name">ALTA medical services</p>
-          <div class="client-reviews" data-client-reviews="alta-medical-services" aria-label="Ressenyes d'ALTA medical services"></div>
         </article>
         <article class="client-logo-card" role="listitem" aria-label="AESSO (Asociación Española de Sombreado Solar)" data-client-id="aesso">
           <a class="client-logo-link" href="https://aes-so.org/" target="_blank" rel="noopener" aria-label="Visitar el web d'AESSO (Asociación Española de Sombreado Solar)">
             <img src="assets/img/clients/aesso.png" alt="AESSO · Asociación Española de Sombreado y Control Solar Dinámico" loading="lazy" decoding="async">
           </a>
           <p class="client-logo-name">AESSO (Asociación Española de Sombreado Solar)</p>
-          <div class="client-reviews" data-client-reviews="aesso" aria-label="Ressenyes d'AESSO (Asociación Española de Sombreado Solar)"></div>
         </article>
         <article class="client-logo-card" role="listitem" aria-label="Configura.cat" data-client-id="configura-cat">
-          <a class="client-logo-link" href="https://www.configura.cat/" target="_blank" rel="noopener" aria-label="Visitar el web de Configura.cat">
+          <a class="client-logo-link" href="https://configura.cat/" target="_blank" rel="noopener" aria-label="Visitar el web de Configura.cat">
             <img src="assets/img/clients/configura.png" alt="Configura.cat" loading="lazy" decoding="async">
           </a>
           <p class="client-logo-name">Configura.cat</p>
-          <div class="client-reviews" data-client-reviews="configura-cat" aria-label="Ressenyes de Configura.cat"></div>
         </article>
         <article class="client-logo-card" role="listitem" aria-label="Aliança per la presència digital del català" data-client-id="alianca-digital-cat">
           <a class="client-logo-link" href="https://xn--alianadigital-mgb.cat/" target="_blank" rel="noopener" aria-label="Visitar el web de l'Aliança per la presència digital del català">
             <img src="assets/img/clients/aliança.png" alt="Aliança per la presència digital del català" loading="lazy" decoding="async">
           </a>
           <p class="client-logo-name">Aliança per la presència digital del català</p>
-          <div class="client-reviews" data-client-reviews="alianca-digital-cat" aria-label="Ressenyes de l'Aliança per la presència digital del català"></div>
         </article>
       </div>
     </div>
@@ -996,12 +936,12 @@
     </div>
   </div>
 
-  <script src="assets/project-visuals.js?v=20261021-project-ux"></script>
-  <script src="assets/project-articles.js?v=20261021-project-ux"></script>
+  <script src="assets/project-visuals.js?v=20261022-approved-projects"></script>
+  <script src="assets/project-articles.js?v=20261022-approved-projects"></script>
   <script src="assets/project-dialog.js?v=20261021-project-ux"></script>
   <script src="assets/review-projects.js?v=20261022-project-reviews"></script>
-  <script src="assets/review-card.js?v=20261022-project-reviews"></script>
-  <script src="assets/review-preview.js?v=20261022-project-reviews"></script>
-  <script src="assets/main.js?v=20261022-project-reviews"></script>
+  <script src="assets/review-card.js?v=20261022-client-sections"></script>
+  <script src="assets/review-preview.js?v=20261022-client-sections"></script>
+  <script src="assets/main.js?v=20261022-client-sections"></script>
 </body>
 </html>

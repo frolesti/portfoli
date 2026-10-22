@@ -28,7 +28,7 @@
         option.value = project.id;
         option.textContent = project.name + ' · ' + client.querySelector('.client-logo-name').textContent;
         select.appendChild(option);
-        choices.push({ ...project, clientId });
+        choices.push({ ...project, clientId, companyName: client.querySelector('.client-logo-name').textContent });
       }
     }
     const editor = document.createElement('details');
@@ -49,7 +49,7 @@
     message.value = typeof saved.message === 'string' ? saved.message : 'Molt content de la feina, professional i atractiu jeje';
     editor.append(summary, nameLabel, name, messageLabel, message);
     container.append(notice, projectLabel, select, editor);
-    section.querySelector('.clients-grid').before(container);
+    section.querySelector('.client-testimonials').before(container);
     const host = document.createElement('div');
     host.dataset.localReviewPreview = 'review';
     select.value = choices.some((project) => project.id === saved.projectId) ? saved.projectId : choices[0].id;
@@ -58,10 +58,12 @@
       host.replaceChildren(window.createClientReviewCard({
         name: name.value,
         message: message.value,
+        companyName: project.companyName,
         projectName: project.name,
         date: '2026-10-22T09:02:01.192Z'
       }));
       section.querySelector('[data-client-reviews="' + project.clientId + '"]').appendChild(host);
+      section.querySelector('.client-testimonials').hidden = false;
       try { sessionStorage.setItem(storageKey, JSON.stringify({ projectId: project.id, name: name.value, message: message.value })); } catch {}
     }
     container.addEventListener('submit', (event) => event.preventDefault());

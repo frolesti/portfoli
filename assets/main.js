@@ -982,6 +982,8 @@ document.addEventListener('DOMContentLoaded', () => {
         slot.appendChild(window.createClientReviewCard(review));
       });
     });
+    const testimonials = document.getElementById('clientTestimonials');
+    if (testimonials) testimonials.hidden = !slots.some((slot) => slot.childElementCount > 0);
   }
 
   loadClientReviews().catch((err) => {
