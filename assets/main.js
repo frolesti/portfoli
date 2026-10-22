@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- AIXETA DONATION POPUP ----------
   (function initAixetaPopup() {
+    if (window.isLocalReviewPreview) return;
     const backdrop = document.getElementById('aixetaPopupBackdrop');
     const popup    = document.getElementById('aixetaPopup');
     const closeBtn = document.getElementById('aixetaPopupClose');
@@ -292,6 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadGoogleAnalytics() {
+    if (window.isLocalReviewPreview) return;
     if (analyticsLoaded || !gaMeasurementId) return;
     analyticsLoaded = true;
 
@@ -332,6 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showAnalyticsBanner() {
+    if (window.isLocalReviewPreview) return;
     const consent = readAnalyticsConsent();
     if (!analyticsBanner || consent === 'granted' || consent === 'denied' || newsletterPopupOpen) return;
 
@@ -952,6 +955,8 @@ document.addEventListener('DOMContentLoaded', () => {
       slot.innerHTML = '';
     });
 
+    if (window.initLocalReviewPreview?.()) return;
+
     const res = await fetch('/.netlify/functions/reviews');
     const reviews = await safeJson(res);
     if (!res.ok || !Array.isArray(reviews)) {
@@ -1043,7 +1048,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- NEWSLETTER POPUP (first visit, on scroll) ----------
   const nlPopupBackdrop = document.getElementById('nlPopupBackdrop');
   const nlPopup = document.getElementById('nlPopup');
-  if (nlPopupBackdrop && nlPopup) {
+  if (nlPopupBackdrop && nlPopup && !window.isLocalReviewPreview) {
     const STORAGE_KEY = 'nl-popup-seen';
     const closeBtn = document.getElementById('nlPopupClose');
     const popupForm = document.getElementById('nlPopupForm');

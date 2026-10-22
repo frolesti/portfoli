@@ -59,23 +59,8 @@
       line-height: 1.5;
       border: 1px solid color-mix(in srgb, var(--client-accent, #2a7a6e) 26%, white);
       display: grid;
-      grid-template-columns: minmax(96px, 150px) 1fr;
       gap: 14px;
       align-items: center;
-    }
-    .client-review-logo-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 58px;
-    }
-    .client-review-logo {
-      width: 100%;
-      max-width: 142px;
-      max-height: 48px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
     }
     .client-review-error {
       padding: 12px 14px;
@@ -85,9 +70,6 @@
       margin-bottom: 20px;
       line-height: 1.5;
     }
-    .client-review-preview { margin: 20px 0; }
-    .client-review-preview summary { cursor: pointer; font-weight: 600; padding: 12px 0; }
-    .client-review-preview .client-review-card { margin-top: 8px; }
     .client-review-brand {
       display: grid;
       gap: 4px;
@@ -112,18 +94,6 @@
       .client-review-shell {
         padding: 24px 18px;
       }
-      .client-review-note {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .client-review-logo-wrap {
-        justify-content: flex-start;
-        min-height: 50px;
-      }
-      .client-review-logo {
-        margin: 0;
-        max-width: 148px;
-      }
     }
     @media (max-width: 600px) {
       .client-review-shell { padding: 18px 14px; border-radius: 18px; }
@@ -144,6 +114,7 @@
       <div id="clientReviewError" class="client-review-error" hidden></div>
 
       <form class="review-form" id="clientReviewForm" hidden>
+        <input type="hidden" id="rv-project" name="projectId" value="">
         <div class="form-group">
           <label for="rv-name">Nom del o la representant</label>
           <input type="text" id="rv-name" name="name" placeholder="Nom i cognoms" maxlength="80" autocomplete="name" required>
@@ -155,10 +126,6 @@
         <input type="hidden" id="rv-company-id" name="companyId" value="">
         <input type="hidden" id="rv-company-name" name="companyName" value="">
         <input type="hidden" id="rv-client-token" name="clientToken" value="">
-        <details class="client-review-preview">
-          <summary>Previsualitza la ressenya</summary>
-          <div id="clientReviewPreview"></div>
-        </details>
         <div class="review-form-footer">
           <button type="submit" class="btn btn-primary">Enviar comentari</button>
         </div>
@@ -167,7 +134,7 @@
     </div>
   </main>
 
-  <script src="assets/review-card.js?v=20261022-reviews" defer></script>
-  <script src="assets/client-review.js?v=20261022-reviews" defer></script>
+  <script src="assets/review-projects.js?v=20261022-project-reviews" defer></script>
+  <script src="assets/client-review.js?v=20261022-project-reviews" defer></script>
 </body>
 </html>

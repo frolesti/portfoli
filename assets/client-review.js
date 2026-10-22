@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'prova-interna': {
       name: 'Prova interna',
       token: 'prova-interna-20261022',
-      logo: '',
       accent: '#2a7a6e',
       bg1: '#edf7f4',
       bg2: '#edf1f7'
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'alta-medical-services': {
       name: 'ALTA medical services',
       token: 'alta-7c5d2f41b9',
-      logo: 'assets/img/clients/alta-medical-services.png',
       accent: '#7f7be8',
       bg1: '#f2f0ff',
       bg2: '#ecebff'
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     aesso: {
       name: 'AESSO (Asociación Española de Sombreado Solar)',
       token: 'aesso-3d9a8c7e21',
-      logo: 'assets/img/clients/aesso.png',
       accent: '#25b2aa',
       bg1: '#eaf9f7',
       bg2: '#e9f7ff'
@@ -27,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'configura-cat': {
       name: 'Configura.cat',
       token: 'configura-4f2a6d81ce',
-      logo: 'assets/img/clients/configura.png',
       accent: '#6f57d2',
       bg1: '#f0ecff',
       bg2: '#f4efff'
@@ -35,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'alianca-digital-cat': {
       name: 'Aliança per la presència digital del català',
       token: 'alianca-8b1c5d3e74',
-      logo: 'assets/img/clients/aliança.png',
       accent: '#e18a21',
       bg1: '#fff5e8',
       bg2: '#fff0de'
@@ -52,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const companyIdInput = document.getElementById('rv-company-id');
   const companyNameInput = document.getElementById('rv-company-name');
   const clientTokenInput = document.getElementById('rv-client-token');
+  const projectInput = document.getElementById('rv-project');
 
   function setStatus(node, text, kind) {
     if (!node) return;
@@ -101,16 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const isTest = clientId === 'prova-interna';
   if (title) title.textContent = isTest ? 'Prova interna de ressenya' : 'La teva experiència amb frolesti';
-  if (lead) lead.textContent = isTest ? 'Aquest enviament és una prova interna. No és una opinió de cap client i no es publicarà.' : 'Comparteix com ha anat la col·laboració: què ha funcionat bé i què podríem millorar. El teu nom i la teva opinió es publicaran al web després de revisar-los.';
+  if (lead) lead.textContent = isTest ? 'Aquest enviament és una prova interna. No és una opinió de cap client i no es publicarà.' : 'Comparteix com ha anat la col·laboració: què ha funcionat bé i què podríem millorar. En enviar-la, el teu nom, el projecte i la teva opinió es publicaran al web.';
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">
-        ${client.logo ? `<div class="client-review-logo-wrap">
-          <img class="client-review-logo" src="${client.logo}" alt="${client.name}">
-        </div>` : ''}
         <div class="client-review-brand">
           <strong>${client.name}</strong>
-          <span>${isTest ? 'Prova de formulari i moderació, exclosa de la publicació.' : 'La ressenya quedarà vinculada a aquest client, un cop aprovada.'}</span>
+          <span>${isTest ? 'Prova interna, exclosa de la publicació.' : 'La ressenya quedarà vinculada automàticament a aquest client.'}</span>
         </div>
       </div>
     `;
@@ -121,17 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (clientTokenInput) clientTokenInput.value = token;
   if (form) form.hidden = false;
 
-  const messageInput = document.getElementById('rv-message');
-  const preview = document.getElementById('clientReviewPreview');
-  function updatePreview() {
-    preview.replaceChildren(window.createClientReviewCard({
-      name: nameInput.value.trim() || 'El teu nom',
-      message: messageInput.value.trim() || 'La teva ressenya apareixerà aquí.',
-      date: new Date().toISOString()
-    }));
+  const projects = window.REVIEW_PROJECTS[clientId] || [];
+  const requestedProject = projects.find((project) => project.id === params.get('project'));
+  if (params.get('project') && !requestedProject) {
+    setError('El projecte d’aquest enllaç no correspon al client. Demana un enllaç corregit.');
+    form.hidden = true;
+    return;
   }
-  form.addEventListener('input', updatePreview);
-  updatePreview();
+  const initialProject = requestedProject?.id || (projects.length === 1 ? projects[0].id : '');
+  projectInput.value = initialProject;
+  const linkedProject = projects.find((project) => project.id === initialProject);
+  if (linkedProject && context) {
+    const projectName = document.createElement('span');
+    projectName.textContent = linkedProject.name;
+    context.querySelector('.client-review-brand').appendChild(projectName);
+  }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -142,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
       message: fd.get('message') || '',
       companyId: fd.get('companyId') || '',
       companyName: fd.get('companyName') || '',
-      clientToken: fd.get('clientToken') || ''
+      clientToken: fd.get('clientToken') || '',
+      projectId: fd.get('projectId') || ''
     };
 
     const submitBtn = form.querySelector('[type="submit"]');
@@ -167,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (companyNameInput) companyNameInput.value = client.name;
       if (clientTokenInput) clientTokenInput.value = token;
       if (nameInput) nameInput.value = '';
-      updatePreview();
+      projectInput.value = initialProject;
       setStatus(status, data.message || 'Comentari rebut. Gràcies!', 'ok');
     } catch (err) {
       setStatus(status, err?.message || 'Ara mateix no s\'ha pogut enviar. Torna-ho a provar en un moment.', 'error');

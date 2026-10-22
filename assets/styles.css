@@ -2262,6 +2262,43 @@ a.browser-link:hover {
   color: var(--text-dim);
 }
 
+.client-review-card__project {
+  margin: 0 0 8px;
+  color: var(--accent-1);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.local-review-preview {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  margin: 24px 0 32px;
+  padding: 20px 0;
+  border-block: 1px solid var(--surface);
+}
+
+.local-review-notice { margin: 0 0 8px; font-size: 0.8rem; font-weight: 600; color: var(--accent-1); }
+.is-local-review-preview #analyticsBanner { display: none; }
+.local-review-preview label { font-size: 0.9rem; font-weight: 600; }
+.local-review-preview select,
+.local-review-preview input,
+.local-review-preview textarea {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--surface);
+  border-radius: 4px;
+}
+.local-review-preview select { text-overflow: ellipsis; }
+.local-review-preview summary { cursor: pointer; padding: 10px 0; font-size: 0.9rem; }
+.local-review-preview details label { display: block; margin: 12px 0 6px; }
+.local-review-preview :focus-visible { outline: 2px solid var(--accent-1); outline-offset: 3px; }
+
 .client-review-empty {
   padding: 0 2px;
 }

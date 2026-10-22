@@ -1,8 +1,9 @@
 // netlify/functions/reviews.js
 // GET  -> retorna nomes comentaris aprovats
-// POST -> afegeix un comentari pendent de moderacio
+// POST -> publica ressenyes de clients; les proves internes no es publiquen
 
 const https = require('https');
+const REVIEW_PROJECTS = require('../../assets/review-projects');
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -156,14 +157,24 @@ exports.handler = async (event) => {
     const companyId = sanitize(body.companyId || '').slice(0, 80);
     const companyNameInput = sanitize(body.companyName || '').slice(0, 120);
     const clientToken = sanitize(body.clientToken || '').slice(0, 120);
+    const projectId = sanitize(body.projectId || '').slice(0, 80);
     const invite = companyId ? getClientInvite(companyId, clientToken) : null;
     const companyName = invite ? invite.name : companyNameInput;
 
-    if (companyId && !invite) {
+    if (!invite) {
       return {
         statusCode: 403,
         headers: CORS_HEADERS,
         body: JSON.stringify({ error: 'invalid_client_token', message: "L'enllaç del client no és vàlid o ha caducat." })
+      };
+    }
+
+    const project = (REVIEW_PROJECTS[companyId] || []).find((item) => item.id === projectId);
+    if (projectId && !project) {
+      return {
+        statusCode: 400,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'invalid_project', message: 'Aquest projecte no correspon al client de la invitació.' })
       };
     }
 
@@ -191,17 +202,20 @@ exports.handler = async (event) => {
     const raw  = getRes.data.files?.['reviews.json']?.content || '[]';
     let reviews = parseReviews(raw);
 
+    const isTest = companyId === 'prova-interna';
     reviews.unshift({
       id: Date.now(),
       name,
       companyId: invite ? companyId : '',
       companyName: invite ? companyName : '',
       companyRole: invite ? `Representant de ${companyName}` : '',
-      isTest: companyId === 'prova-interna',
+      projectId: project?.id || '',
+      projectName: project?.name || '',
+      isTest,
       message,
       date: new Date().toISOString(),
-      approved: false,
-      status: 'pending',
+      approved: !isTest,
+      status: isTest ? 'pending' : 'approved',
       moderatedAt: null
     });
 
@@ -226,7 +240,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 201,
       headers: CORS_HEADERS,
-      body: JSON.stringify({ ok: true, pending: true, message: 'Comentari rebut. El revisaré abans de publicar-lo.' })
+      body: JSON.stringify({ ok: true, pending: isTest, published: !isTest, message: isTest ? 'Prova rebuda. No es publicarà al web.' : 'Gràcies! La teva ressenya ja està publicada al web.' })
     };
   }
 

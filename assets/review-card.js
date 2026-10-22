@@ -14,7 +14,14 @@
     message.className = 'client-review-card__message';
     message.textContent = review.message || '';
     top.append(name, date);
-    card.append(top, message);
+    card.appendChild(top);
+    if (review.projectName) {
+      const project = document.createElement('p');
+      project.className = 'client-review-card__project';
+      project.textContent = review.projectName;
+      card.appendChild(project);
+    }
+    card.appendChild(message);
     return card;
   };
 })();
