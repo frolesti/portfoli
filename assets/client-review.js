@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const CLIENTS = {
+    'prova-interna': {
+      name: 'Prova interna',
+      token: 'prova-interna-20261022',
+      logo: '',
+      accent: '#2a7a6e',
+      bg1: '#edf7f4',
+      bg2: '#edf1f7'
+    },
     'alta-medical-services': {
       name: 'ALTA medical services',
       token: 'alta-7c5d2f41b9',
@@ -91,17 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.setProperty('--client-bg-1', client.bg1 || '#eef4f1');
   document.documentElement.style.setProperty('--client-bg-2', client.bg2 || '#efe7f4');
 
-  if (title) title.textContent = `Introdueix el teu comentari sobre la feina que ha fet frolesti per a ${client.name}`;
-  if (lead) lead.textContent = 'Aquest comentari ha de reflectir la teva experiència real amb el servei rebut i per què recomanaries frolesti a altres empreses o projectes.';
+  const isTest = clientId === 'prova-interna';
+  if (title) title.textContent = isTest ? 'Prova interna de ressenya' : 'La teva experiència amb frolesti';
+  if (lead) lead.textContent = isTest ? 'Aquest enviament és una prova interna. No és una opinió de cap client i no es publicarà.' : 'Comparteix com ha anat la col·laboració: què ha funcionat bé i què podríem millorar. El teu nom i la teva opinió es publicaran al web després de revisar-los.';
   if (context) {
     context.innerHTML = `
       <div class="client-review-note">
-        <div class="client-review-logo-wrap">
+        ${client.logo ? `<div class="client-review-logo-wrap">
           <img class="client-review-logo" src="${client.logo}" alt="${client.name}">
-        </div>
+        </div>` : ''}
         <div class="client-review-brand">
           <strong>${client.name}</strong>
-          <span>El teu comentari quedarà vinculat automàticament dins de l'apartat de Clients de la <a href="/#clients">pàgina web</a>.</span>
+          <span>${isTest ? 'Prova de formulari i moderació, exclosa de la publicació.' : 'La ressenya quedarà vinculada a aquest client, un cop aprovada.'}</span>
         </div>
       </div>
     `;
@@ -111,6 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (companyNameInput) companyNameInput.value = client.name;
   if (clientTokenInput) clientTokenInput.value = token;
   if (form) form.hidden = false;
+
+  const messageInput = document.getElementById('rv-message');
+  const preview = document.getElementById('clientReviewPreview');
+  function updatePreview() {
+    preview.replaceChildren(window.createClientReviewCard({
+      name: nameInput.value.trim() || 'El teu nom',
+      message: messageInput.value.trim() || 'La teva ressenya apareixerà aquí.',
+      date: new Date().toISOString()
+    }));
+  }
+  form.addEventListener('input', updatePreview);
+  updatePreview();
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -126,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Publicant...';
+    submitBtn.textContent = 'Enviant...';
     setStatus(status, '', '');
 
     try {
@@ -146,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (companyNameInput) companyNameInput.value = client.name;
       if (clientTokenInput) clientTokenInput.value = token;
       if (nameInput) nameInput.value = '';
+      updatePreview();
       setStatus(status, data.message || 'Comentari rebut. Gràcies!', 'ok');
     } catch (err) {
       setStatus(status, err?.message || 'Ara mateix no s\'ha pogut enviar. Torna-ho a provar en un moment.', 'error');

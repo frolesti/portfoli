@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=20261022-reviews">
   <style>
+    #clientReviewForm[hidden] { display: none; }
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, var(--client-bg-1, #eef4f1) 0%, #f9f6f2 48%, var(--client-bg-2, #efe7f4) 100%);
@@ -84,6 +85,9 @@
       margin-bottom: 20px;
       line-height: 1.5;
     }
+    .client-review-preview { margin: 20px 0; }
+    .client-review-preview summary { cursor: pointer; font-weight: 600; padding: 12px 0; }
+    .client-review-preview .client-review-card { margin-top: 8px; }
     .client-review-brand {
       display: grid;
       gap: 4px;
@@ -146,11 +150,15 @@
         </div>
         <div class="form-group">
           <label for="rv-message">Ressenya</label>
-          <textarea id="rv-message" name="message" rows="6" placeholder="Escriu aquí el comentari que vols compartir..." required maxlength="1000"></textarea>
+          <textarea id="rv-message" name="message" rows="6" placeholder="Escriu aquí el comentari que vols compartir..." required minlength="5" maxlength="1000"></textarea>
         </div>
         <input type="hidden" id="rv-company-id" name="companyId" value="">
         <input type="hidden" id="rv-company-name" name="companyName" value="">
         <input type="hidden" id="rv-client-token" name="clientToken" value="">
+        <details class="client-review-preview">
+          <summary>Previsualitza la ressenya</summary>
+          <div id="clientReviewPreview"></div>
+        </details>
         <div class="review-form-footer">
           <button type="submit" class="btn btn-primary">Enviar comentari</button>
         </div>
@@ -159,6 +167,7 @@
     </div>
   </main>
 
-  <script src="assets/client-review.js" defer></script>
+  <script src="assets/review-card.js?v=20261022-reviews" defer></script>
+  <script src="assets/client-review.js?v=20261022-reviews" defer></script>
 </body>
 </html>

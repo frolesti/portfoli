@@ -8,10 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="reviews.css">
+  <link rel="stylesheet" href="reviews.css?v=20261022-reviews">
 </head>
 <body>
   <main class="admin-shell">
+    <header class="dashboard-header review-toolbar">
+      <h1>Ressenyes de clients</h1>
+      <button type="button" class="btn" id="demoPreviewBtn">Previsualitza un exemple</button>
+    </header>
     <section class="admin-panel admin-panel-auth" id="authPanel">
       <h1>Panell de moderacio</h1>
       <p class="muted">Aquesta pagina es privada. Introdueix la clau per gestionar comentaris pendents.</p>
@@ -26,7 +30,7 @@
     <section class="admin-panel admin-panel-dashboard" id="dashboard" hidden>
       <header class="dashboard-header">
         <div>
-          <h2>Comentaris pendents</h2>
+          <h2>Gestió de ressenyes</h2>
           <p class="muted">Revisa i decideix que publicar.</p>
         </div>
         <div class="header-actions">
@@ -43,6 +47,16 @@
           </div>
         </div>
         <div class="invite-list">
+          <article class="invite-card" data-client-id="prova-interna">
+            <div>
+              <strong>Prova interna · no es publica</strong>
+              <p class="muted invite-url" data-invite-url></p>
+            </div>
+            <div class="invite-actions">
+              <button type="button" class="btn btn-primary" data-copy-invite>Copiar enllaç de prova</button>
+              <a class="btn" data-open-invite target="_blank" rel="noopener">Obrir prova</a>
+            </div>
+          </article>
           <article class="invite-card" data-client-id="alta-medical-services">
             <div>
               <div class="invite-client">
@@ -99,11 +113,31 @@
       </section>
 
       <div class="stats" id="stats"></div>
+      <div class="review-filter">
+        <label for="reviewFilter">Mostrar</label>
+        <select id="reviewFilter">
+          <option value="pending">Pendents</option>
+          <option value="approved">Aprovades</option>
+          <option value="rejected">Rebutjades</option>
+          <option value="test">Proves internes</option>
+        </select>
+      </div>
       <p class="status" id="dashboardStatus" hidden></p>
       <div class="pending-list" id="pendingList"></div>
     </section>
   </main>
 
-  <script src="reviews.js" defer></script>
+  <dialog class="review-preview" id="reviewPreview" aria-labelledby="reviewPreviewTitle">
+    <header class="review-preview-header">
+      <h2 id="reviewPreviewTitle">Previsualització al web</h2>
+      <button type="button" class="btn" id="closePreviewBtn" aria-label="Tanca la previsualització" autofocus>&times;</button>
+    </header>
+    <p class="muted" id="previewNotice"></p>
+    <label for="previewClient">Client</label>
+    <select id="previewClient"></select>
+    <iframe id="previewFrame" title="Aspecte de la ressenya a la secció de clients" sandbox="allow-same-origin"></iframe>
+  </dialog>
+  <script src="../assets/review-card.js?v=20261022-reviews" defer></script>
+  <script src="reviews.js?v=20261022-reviews" defer></script>
 </body>
 </html>

@@ -14,6 +14,10 @@ const CORS_HEADERS = {
 const MAX_MESSAGE_LENGTH = 1000;
 const MAX_NAME_LENGTH = 80;
 const CLIENT_INVITES = {
+  'prova-interna': {
+    name: 'Prova interna',
+    token: 'prova-interna-20261022'
+  },
   'alta-medical-services': {
     name: 'ALTA medical services',
     token: 'alta-7c5d2f41b9'
@@ -64,7 +68,7 @@ function ghRequest(method, path, body) {
 }
 
 function sanitize(str) {
-  return String(str || '').replace(/[<>"'`]/g, '').trim();
+  return String(str || '').trim();
 }
 
 function parseReviews(rawContent) {
@@ -78,6 +82,7 @@ function parseReviews(rawContent) {
 
 function isPubliclyVisible(review) {
   if (!review || typeof review !== 'object') return false;
+  if (review.isTest || review.companyId === 'prova-interna') return false;
 
   if (review.status === 'pending' || review.status === 'rejected') return false;
   if (review.approved === false) return false;
@@ -192,6 +197,7 @@ exports.handler = async (event) => {
       companyId: invite ? companyId : '',
       companyName: invite ? companyName : '',
       companyRole: invite ? `Representant de ${companyName}` : '',
+      isTest: companyId === 'prova-interna',
       message,
       date: new Date().toISOString(),
       approved: false,

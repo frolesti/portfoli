@@ -943,25 +943,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function formatDate(iso) {
-    try {
-      return new Date(iso).toLocaleDateString('ca-ES', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch { return ''; }
-  }
-
-  function renderClientReviewCard(review) {
-    const card = document.createElement('article');
-    card.className = 'client-review-card';
-    card.innerHTML = `
-      <div class="client-review-card__top">
-        <strong>${review.name || 'Anònim'}</strong>
-        <span class="client-review-card__date">${formatDate(review.date)}</span>
-      </div>
-      <p class="client-review-card__message">${review.message || ''}</p>
-    `;
-    return card;
-  }
-
   async function loadClientReviews() {
     const slots = Array.from(clientReviewSlots || []);
     if (!slots.length) return;
@@ -993,7 +974,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       clientReviews.slice(0, 3).forEach((review) => {
-        slot.appendChild(renderClientReviewCard(review));
+        slot.appendChild(window.createClientReviewCard(review));
       });
     });
   }

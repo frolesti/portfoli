@@ -139,7 +139,8 @@ exports.handler = async (event) => {
           rejected,
           total: reviews.length
         },
-        pending
+        pending,
+        reviews
       })
     };
   }
@@ -179,6 +180,14 @@ exports.handler = async (event) => {
         statusCode: 404,
         headers: CORS_HEADERS,
         body: JSON.stringify({ error: 'not_found', message: 'No existeix cap comentari amb aquest id.' })
+      };
+    }
+
+    if (action === 'approve' && (reviews[idx].isTest || reviews[idx].companyId === 'prova-interna')) {
+      return {
+        statusCode: 400,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'test_review', message: 'Les proves internes no es poden publicar. Pots previsualitzar-les o esborrar-les.' })
       };
     }
 

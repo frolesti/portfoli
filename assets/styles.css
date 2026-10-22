@@ -2235,6 +2235,7 @@ a.browser-link:hover {
 
 .client-review-card__top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -2247,6 +2248,8 @@ a.browser-link:hover {
 
 .client-review-card__message {
   margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   color: var(--text-muted);
   font-size: 0.88rem;
   line-height: 1.6;
