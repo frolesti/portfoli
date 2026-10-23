@@ -182,14 +182,20 @@ function renderPostPage(post, allPosts) {
   <link rel="icon" href="../assets/img/seo/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/styles.css">
   <link rel="stylesheet" href="../assets/blog.css">
+  <script src="../assets/profile-switch.js" defer></script>
 </head>
 <body>
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar">
     <a href="../index.html" class="nav-logo">frolesti</a>
     <div class="nav-links">
+      <div class="nav-profile-switch profile-switch--blog" role="group" aria-label="Perfil">
+        <button type="button" class="profile-option" data-profile-option="social" aria-pressed="false">Social</button>
+        <button type="button" class="profile-option" data-profile-option="professional" aria-pressed="true">Professional</button>
+      </div>
       <a href="../index.html#projectes">Projectes</a>
       <a href="index.html">Bloc</a>
       <a href="../index.html#sobre">Sobre mi</a>
+      <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
       <a href="../index.html#contacte" class="nav-cta">Contacta'm</a>
     </div>
   </nav>
@@ -305,14 +311,20 @@ function renderBlogIndex(posts) {
   <link rel="icon" href="../assets/img/seo/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/styles.css">
   <link rel="stylesheet" href="../assets/blog.css">
+  <script src="../assets/profile-switch.js" defer></script>
 </head>
 <body>
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar">
     <a href="../index.html" class="nav-logo">frolesti</a>
     <div class="nav-links">
+      <div class="nav-profile-switch profile-switch--blog" role="group" aria-label="Perfil">
+        <button type="button" class="profile-option" data-profile-option="social" aria-pressed="false">Social</button>
+        <button type="button" class="profile-option" data-profile-option="professional" aria-pressed="true">Professional</button>
+      </div>
       <a href="../index.html#projectes">Projectes</a>
       <a href="index.html">Bloc</a>
       <a href="../index.html#sobre">Sobre mi</a>
+      <a href="https://frolesti.aixeta.cat/" target="_blank" rel="noopener">Aixeta</a>
       <a href="../index.html#contacte" class="nav-cta">Contacta'm</a>
     </div>
   </nav>

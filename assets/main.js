@@ -938,6 +938,68 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- REVIEWS ----------
   const clientReviewSlots = document.querySelectorAll('[data-client-reviews]');
 
+  function initClientCarousel(track, label) {
+    if (!track) return;
+    const controls = document.createElement('div');
+    controls.className = 'carousel-controls';
+    controls.hidden = true;
+    const previous = document.createElement('button');
+    const next = document.createElement('button');
+    previous.type = next.type = 'button';
+    previous.className = next.className = 'carousel-arrow';
+    previous.setAttribute('aria-label', label + ': anterior');
+    next.setAttribute('aria-label', label + ': següent');
+    if (!track.id) track.id = track.classList.contains('clients-grid') ? 'clientsCarousel' : 'testimonialsCarousel';
+    if (!track.hasAttribute('role')) track.setAttribute('role', 'region');
+    previous.setAttribute('aria-controls', track.id);
+    next.setAttribute('aria-controls', track.id);
+    previous.title = label + ': anterior';
+    next.title = label + ': següent';
+    previous.innerHTML = '<span aria-hidden="true">&larr;</span>';
+    next.innerHTML = '<span aria-hidden="true">&rarr;</span>';
+    controls.append(previous, next);
+    track.after(controls);
+    if (!track.hasAttribute('aria-label')) track.setAttribute('aria-label', label);
+
+    function update() {
+      const items = track.querySelectorAll('.client-review-card, .client-logo-card');
+      track.classList.toggle('is-single', items.length === 1);
+      const maximum = track.scrollWidth - track.clientWidth;
+      controls.hidden = maximum <= 2;
+      if (maximum > 2) track.setAttribute('tabindex', '0');
+      else track.removeAttribute('tabindex');
+      previous.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= maximum - 2;
+    }
+
+    function move(direction) {
+      const item = track.querySelector('.client-review-card, .client-logo-card');
+      if (!item) return;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({
+        left: direction * (item.getBoundingClientRect().width + gap),
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
+
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('keydown', (event) => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        move(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(track);
+    new MutationObserver(update).observe(track, { childList: true, subtree: true });
+    update();
+  }
+
+  initClientCarousel(document.querySelector('.clients-grid'), 'Clients');
+  initClientCarousel(document.querySelector('.testimonials-grid'), 'Ressenyes');
+
   async function safeJson(res) {
     try {
       return await res.json();
@@ -978,7 +1040,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      clientReviews.slice(0, 3).forEach((review) => {
+      clientReviews.forEach((review) => {
         slot.appendChild(window.createClientReviewCard(review));
       });
     });
